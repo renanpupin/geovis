@@ -1,0 +1,186 @@
+//mixins.scss
+
+//mixin font-size
+@mixin font-size($size) {
+    font-size: $size;
+    line-height: $base-line-height*$size;
+    margin: ($size / 2) 0 ($size / 2.5) 0;
+}
+
+// mixin border-radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+// mixin box-shadow
+@mixin box-shadow ($values...) {
+    -webkit-box-shadow: $values;
+            box-shadow: $values;
+}
+
+// mixin box-sizing
+@mixin box-sizing ($type: border-box) {
+    -webkit-box-sizing: $type;
+       -moz-box-sizing: $type;
+            box-sizing: $type;
+}
+
+// mixin opacity
+@mixin opacity ($value: 1) {
+    $value-percentage : $value * 100;
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$value-percentage+")";
+    /* IE 5-7 */
+    filter: alpha(opacity=$value-percentage);
+    /* Netscape */
+    -moz-opacity: $value;
+    /* Safari 1.x */
+    -khtml-opacity: $value;
+    /* Good browsers */
+    opacity: $value;
+}
+
+// mixin text-shadow
+@mixin text-shadow($x, $y, $blur, $color) {
+    text-shadow: $x $y $blur $color;
+}
+
+// mixin user-select
+@mixin user-select() {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// mixin center
+@mixin center(){
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+    left:50%;
+    top:50%;
+}
+
+// mixin transition
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -o-transition: $time;
+  -ms-transition: $time;
+  transition: $time;
+}
+
+
+//mixin animation duration
+@mixin animation-duration($duration...) {
+  -o-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+  animation-duration: $duration;
+}
+
+//mixin animation delay
+@mixin animation-delay ($delay) {
+    -webkit-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    -o-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+// mixin animation
+@mixin animation($parameters...){
+  -webkit-animation: $parameters;
+     -moz-animation: $parameters;
+          animation: $parameters;
+}
+
+// mixin keyframes
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+
+// mixin clearfix
+@mixin clearfix() {
+  *zoom: 1;
+  &:before, &:after{
+    content: "";
+    display: table;
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// mixin background sizing
+@mixin background-size($size) {
+  -webkit-background-size: unquote($size);
+     -moz-background-size: unquote($size);
+       -o-background-size: unquote($size);
+          background-size: unquote($size);
+}
+
+// mixin calc
+@mixin calc($property, $expression){
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}:    -moz-calc(#{$expression});
+  #{$property}:         calc(#{$expression});
+}
+
+// Transformations
+
+// mixin transform
+@mixin transform($parameters) {
+  -webkit-transform: $parameters;
+     -moz-transform: $parameters;
+      -ms-transform: $parameters;
+          transform: $parameters;
+}
+// mixin rotate
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+     -moz-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+       -o-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+// mixin scale
+@mixin scale($ratio) {
+  -webkit-transform: scale($ratio);
+     -moz-transform: scale($ratio);
+      -ms-transform: scale($ratio);
+       -o-transform: scale($ratio);
+          transform: scale($ratio);
+}
+// mixin translate
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+     -moz-transform: translate($x, $y);
+      -ms-transform: translate($x, $y);
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+
+// mixin coverer
+@mixin coverer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
