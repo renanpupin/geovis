@@ -9,7 +9,7 @@ $(document).ready(function(){
 		$(this).addClass("nav-active");
 	});
 
-	var test_data = [{"geodata": "geodata here", "infodata": "infodata here"}]
+	var test_data = [{"geodata": {"lat": 52.5212, "lon": 4.589}, "infodata": "infodata here"}];
 
 
 });

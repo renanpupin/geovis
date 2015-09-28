@@ -1,7 +1,7 @@
 var App = function(data) {
 	this.data = data || null;
 	this.map = null;
-	this.visualization = null;
+	this.visualizations = new Array();
 	
 
 	this.getData = function(){
@@ -24,21 +24,18 @@ var App = function(data) {
 		this.map.addMarkers(this.data);
 	};
 
-	this.getVisualization = function(){
-		return this.visualization;
+	this.getVisualizations = function(){
+		return this.visualizations;
 	};
 	
-	this.setVisualization = function(visualization){
-		this.visualization = visualization;
+	this.setVisualizations = function(visualizations){
+		this.visualizations.push(visualizations);
 	};
-
-
-	//this.visualization = new Array();
 	
 };
 
 App.prototype.printAppInstances = function(){
 	console.log(this.map);
 	console.log(this.data);
-	console.log(this.visualization);
+	console.log(this.visualizations);
 }
