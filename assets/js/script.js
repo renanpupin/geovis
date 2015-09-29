@@ -31,5 +31,8 @@ $(document).ready(function(){
 
 	var app1 = new App(json_data);
 	app1.initMap();
-	app1.addMarkers();
+	setTimeout(function() {
+		app1.addMarkers();
+	}, 1500);
+	// app1.map.addMarkers(json_data);
 	// addMarkers(app1.map, app1.data);

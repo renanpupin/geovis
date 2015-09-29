@@ -15,14 +15,6 @@ var App = function(data) {
 	this.getMap = function(){
 		return this.map;
 	};
-	
-	this.initMap = function(map){
-		this.map = new Map();
-	};
-
-	this.addMarkers = function(){
-		this.map.addMarkers(this.data);
-	};
 
 	this.getVisualizations = function(){
 		return this.visualizations;
@@ -33,6 +25,14 @@ var App = function(data) {
 	};
 	
 };
+
+App.prototype.initMap = function(){
+	this.map = new Map();
+}
+
+App.prototype.addMarkers = function(){
+	this.map.addMarkers(this.data);
+}
 
 App.prototype.printAppInstances = function(){
 	console.log(this.map);
