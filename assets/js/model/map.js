@@ -43,8 +43,6 @@ Map.prototype.initMap = function(){
 	
 	this.gmap = new google.maps.Map( document.getElementById("map-canvas"), mapOptions );
 
-	
-
 
 	var infoWindowContent = document.createElement("div");
 	infoWindowContent.setAttribute("id", "content");
@@ -66,7 +64,6 @@ Map.prototype.initMap = function(){
 
 
 Map.prototype.addMarkers = function (geodata){
-	//plotting markers
 	// var that = this;
 	for (i = 0; i < geodata.length; i++) {
 		console.log(geodata[i]);
@@ -97,7 +94,7 @@ Map.prototype.addMarkers = function (geodata){
 					'</div>';
 		marker.content = content;
 
-		var clickedMarker = null;
+		
 		google.maps.event.addListener(marker, "click", function() {
 			clickedMarker = marker;
 		});
@@ -118,17 +115,4 @@ Map.prototype.addMarkers = function (geodata){
 //   	});
 
 //   	line.setMap(map);
-// }
-  
-// function initHeatMaps(){
-// 	var markers_heat = [];
-// 	for(var index = 0; index < data.length; index++){
-// 	  markers_heat.push(new google.maps.LatLng(data[index][3], data[index][4]));
-// 	  console.log(data[index][3], data[index][4]);
-// 	}
-// 	heatmap = new google.maps.visualization.HeatmapLayer({
-// 	  data: markers_heat,
-// 	  map: map,
-// 	  radius: 30
-// 	});
 // }

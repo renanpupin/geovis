@@ -20,10 +20,6 @@ var App = function(data) {
 		return this.visualizations;
 	};
 	
-	this.setVisualizations = function(visualizations){
-		this.visualizations.push(visualizations);
-	};
-	
 };
 
 App.prototype.initMap = function(){
@@ -34,8 +30,27 @@ App.prototype.addMarkers = function(){
 	this.map.addMarkers(this.data);
 }
 
+App.prototype.addVisualization = function(name, type){
+	this.visualizations.push(new Visualization(name, type, this.map, this.data));
+};
+
+App.prototype.removeVisualization = function(index){
+	if(this.visualizations[index] !== undefined){
+		this.visualizations.splice(index,1);
+	}
+};
+
 App.prototype.printAppInstances = function(){
 	console.log(this.map);
 	console.log(this.data);
 	console.log(this.visualizations);
+}
+
+App.prototype.saveApplication = function(){
+	var json_application = {};
+	//save app settings and download
+}
+
+App.prototype.loadApplication = function(json_application){
+	//load app here
 }

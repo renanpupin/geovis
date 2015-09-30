@@ -1,7 +1,16 @@
-var visualization = function(type, visualization) {
-	this.type = type || null;
-	this.visualization = visualization || null;
+var Visualization = function(name, type, map, data) {
+	this.name = name || null;
+	this.type = type || null;	//chart, heatmap or line
+	this.visualization = null;
 	
+	this.getName = function(){
+		return this.name;
+	};
+	
+	this.setName = function(name){
+		this.name = name;
+	};
+
 	this.getType = function(){
 		return this.type;
 	};
@@ -18,16 +27,14 @@ var visualization = function(type, visualization) {
 		this.visualization = visualization;
 	};
 
-	this.AddVisualization = function(visualization){
-		this.visualization.push(visualization);
-	};
-
-
-	//this.visualization = new Array();
+	if(this.type === "heatmap"){
+		this.visualization = new Heatmap(map, data);
+	}
 	
 };
 
-app.prototype.printVisualization = function(){
-	console.log(this.visualization);
+Visualization.prototype.printVisualization = function(){
+	console.log(this.name);
 	console.log(this.type);
+	console.log(this.visualization);
 }

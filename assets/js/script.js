@@ -9,10 +9,44 @@ $(document).ready(function(){
 		$(this).addClass("nav-active");
 	});
 
-	var test_data = [{"geodata": {"lat": 52.5212, "lon": 4.589}, "infodata": "infodata here"}];
 
 
 });
+	// var test_data2 = { "Alunos" : [ 
+	// 				        { "nome": "João", "notas": [ 8, 9, 7 ]  },
+	// 				        { "nome": "Maria", "notas": [ 8, 10, 7 ] },
+	// 				        { "nome": "Pedro", "notas": [ 10, 10, 9 ] } 
+	// 				    ]
+	// 				};
+
+	var test_data = [
+						{
+							"geodata": 
+								{
+									"lat": 52.5212, 
+									"lon": 4.589
+								},
+							"infodata": 
+								{
+									"name": "Feature 1",
+									"category": "cat1",
+								}
+						},
+						{
+							"geodata": 
+								{
+									"lat": 52.5212, 
+									"lon": 4.589
+								},
+							"infodata": 
+								{
+									"name": "Feature 1",
+									"category": "cat1",
+								}
+						}
+					];
+
+
 	var json_data = [
 	    ['First Shoppe', "215 West Girard Avenue 19123", "+1-111-111-1111", 52.360986,4.89153],
 	    ['Second Shoppe', "215 West Girard Avenue 19123", "+2-222-222-2222", 52.360847,4.897027],
@@ -30,9 +64,16 @@ $(document).ready(function(){
 	];
 
 	var app1 = new App(json_data);
+	
+	var clickedMarker = null;
+	
 	app1.initMap();
+
 	setTimeout(function() {
 		app1.addMarkers();
 	}, 1500);
-	// app1.map.addMarkers(json_data);
+
+	//var heatmap = new Visualization();
+	app1.addVisualization("Mapa de Calor", "heatmap");
+
 	// addMarkers(app1.map, app1.data);
