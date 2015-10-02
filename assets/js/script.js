@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 	var test_data = [
 						{
+							"id" : 1,
 							"geodata": 
 								{
 									"lat": 52.5212, 
@@ -33,6 +34,7 @@ $(document).ready(function(){
 								}
 						},
 						{
+							"id" : 2,
 							"geodata": 
 								{
 									"lat": 52.5212, 
