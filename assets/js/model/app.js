@@ -1,5 +1,5 @@
 var App = function(data) {
-	this.data = data || null;
+	this.data = null;
 	this.map = null;
 	this.visualizations = new Array();
 	
@@ -20,18 +20,29 @@ var App = function(data) {
 		return this.visualizations;
 	};
 	
+	//on construct methods
+	this.loadData(data);
+
 };
+
+App.prototype.loadData = function(data){
+	this.data = new Data(data);
+}
 
 App.prototype.initMap = function(){
 	this.map = new Map();
 }
 
 App.prototype.addMarkers = function(){
-	this.map.addMarkers(this.data);
+	this.map.addMarkers(this.data.features);
 }
 
-App.prototype.addVisualization = function(name, type){
-	this.visualizations.push(new Visualization(name, type, this.map, this.data, "attribute"));
+App.prototype.addMapVisualization = function(name, type){
+	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, null, null));
+};
+
+App.prototype.addChartVisualization = function(name, type, chart_type){
+	this.visualizations.push(new Visualization(name, type, null, this.data, "attribute", chart_type));
 };
 
 App.prototype.removeVisualization = function(index){

@@ -28,43 +28,25 @@ var Map = function() {
 };
 
 Map.prototype.initMap = function(){
-	
-	// var map;
-	var centerPos = new google.maps.LatLng(52.374847, 4.897027);
-	var zoomLevel = 14;
+
+	var centerPos = new google.maps.LatLng(-22.15, -51.425);
+	var zoomLevel = 12;
 
 	var mapOptions = {
-        center: centerPos,
-        streetViewControl: false,
-        panControl: false,
-        zoom: zoomLevel,
-        zoomControl: true
-    };
-	
+		center: centerPos,
+		streetViewControl: false,
+		panControl: false,
+		zoom: zoomLevel,
+		zoomControl: true
+	};
+
 	this.gmap = new google.maps.Map( document.getElementById("map-canvas"), mapOptions );
-
-
-	// var infoWindowContent = document.createElement("div");
-	// infoWindowContent.setAttribute("id", "content");
-	// var title = document.createElement("DIV");
-	// infoWindowContent.appendChild(title);
-
-	// var infowindow = new google.maps.InfoWindow({
-	// 	size: new google.maps.Size(150,50),
-	// 	content: infoWindowContent
-	// });
-
-	// google.maps.event.addListener(this.gmap, 'click', function() {
-	// 	infowindow.close();
-	// });
-
-	// return map;
 
 }//initMap
 
 
 Map.prototype.addMarkers = function (geodata){
-	// var that = this;
+	// var self = this;
 	for (i = 0; i < geodata.length; i++) {
 		console.log(geodata[i]);
 		var image = {
@@ -78,16 +60,16 @@ Map.prototype.addMarkers = function (geodata){
 		
 
 		var contentString = '<div id="content-wrapper">'+
-					'<div class="item-title"><img src="http://www.clker.com/cliparts/b/o/w/i/Q/y/star-coffee-hi.png" width="50" height="50"><h2>'+geodata[i][0]+'</h2></div>'+
+					'<div class="item-title">Feature #'+geodata[i].id+'</h2></div>'+
 					'<div class="separator"></div>'+
-					'<p><label><i class="fa fa-home"></i>Address: </label>'+geodata[i][1]+'</p>'+
-					'<p><label><i class="fa fa-phone"></i>Phone: </label>'+geodata[i][2]+'</p>'+
-					'<p><label><i class="fa fa-map-marker"></i>GPS: </label>'+geodata[i][4]+', '+geodata[i][3]+'</p>'+
+					'<p><label>Id: </label>'+geodata[i].id+'</p>'+
+					'<p><label>Lat: </label>'+geodata[i].geodata.lat+'</p>'+
+					'<p><label>Lon: </label>'+geodata[i].geodata.lon+'</p>'+
 					'</div>';
 
 		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(geodata[i][3], geodata[i][4]),
-			title: geodata[i][0],
+			position: new google.maps.LatLng(geodata[i].geodata.lat, geodata[i].geodata.lon),
+			title: geodata[i].id.toString(),
 			map: this.gmap,
 			animation: google.maps.Animation.DROP,
 			icon: image,

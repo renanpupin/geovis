@@ -1,5 +1,5 @@
 var Data = function(data) {
-	this.data = JSON.parse(this.data) || null;
+	this.data = data || null;
 	this.features = new Array();
 	
 	this.getData = function(){
@@ -18,13 +18,12 @@ var Data = function(data) {
 		this.features = features;
 	};
 	
-	parseFeatures();
+	this.parseFeatures();
 
 };
 
 Data.prototype.parseFeatures = function(){
-
-    for(var i = 0; i < this.data.length; i++){
-        this.features.push(new Feature(this.data[i].id, this.data[i].geodata, this.data[i].infodata));
-    }
+	for(var i = 0; i < this.data.length; i++){
+		this.features.push(new Feature(this.data[i].id, this.data[i].geodata, this.data[i].infodata));
+	}
 }

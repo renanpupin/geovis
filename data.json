@@ -1,0 +1,46 @@
+var json_data = [
+    {
+        "id" : 1,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "feature2",
+            },
+            {
+                "name": "categoria",
+                "value": "cat1",
+            },
+            {
+                "name": "valor",
+                "value": 5,
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "geodata": 
+            {
+                "lat": -22.08, 
+                "lon": -51.4352
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "feature1",
+            },
+            {
+                "name": "categoria",
+                "value": "cat2",
+            },
+            {
+                "name": "valor",
+                "value": 10,
+            }
+        ]
+    }
+]

@@ -27,12 +27,12 @@ var Feature = function(id, geodata, infodata) {
         this.infodata = infodata;
     };
     
-    parseAttributes();
+    this.parseAttributes(infodata);
 };
 
-Feature.prototype.parseAttributes = function(){
-    for(var i = 0; i < this.infodata; i++){
-        this.infodata.push(new Attribute(this.infodata[i].name, this.infodata[i].value));
+Feature.prototype.parseAttributes = function(infodata){
+    for(var i = 0; i < infodata; i++){
+        this.infodata.push(new Attribute(infodata[i].name, infodata[i].value));
     }
 }
 

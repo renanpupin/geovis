@@ -1,4 +1,4 @@
-var Chart = function(data, type, attributes) {
+var Chart = function(data, attributes, type) {
 	this.data = data || null;
 	this.chart = null;
 	this.type = type || null;
@@ -39,6 +39,6 @@ var Chart = function(data, type, attributes) {
 
 Chart.prototype.printChart = function(){
 	console.log(this.chart);
-	console.log(this.type);
 	console.log(this.attributes);
+	console.log(this.type);
 }
