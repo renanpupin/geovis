@@ -2,6 +2,7 @@ var Feature = function(id, geodata, infodata) {
     this.id = id || null;
     this.geodata = geodata || null;
     this.infodata = new Array();
+    
     this.getId = function(){
         return this.id;
     };
@@ -27,7 +28,6 @@ var Feature = function(id, geodata, infodata) {
     };
     
     parseAttributes();
-
 };
 
 Feature.prototype.parseAttributes = function(){
