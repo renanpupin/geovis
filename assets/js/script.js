@@ -20,33 +20,43 @@ $(document).ready(function(){
 	// 				};
 
 	var test_data = [
-						{
-							"id" : 1,
-							"geodata": 
-								{
-									"lat": 52.5212, 
-									"lon": 4.589
-								},
-							"infodata": 
-								{
-									"name": "Feature 1",
-									"category": "cat1",
-								}
-						},
-						{
-							"id" : 2,
-							"geodata": 
-								{
-									"lat": 52.5212, 
-									"lon": 4.589
-								},
-							"infodata": 
-								{
-									"name": "Feature 1",
-									"category": "cat1",
-								}
-						}
-					];
+					{
+						"id" : 1,
+						"geodata": 
+							{
+								"lat": 52.5212, 
+								"lon": 4.589
+							},
+						"infodata": [
+							{
+								"name": "Feature 1",
+								"value": "cat1",
+							},
+							{
+								"name": "Feature 2",
+								"value": "cat2",
+							}
+						]
+					},
+					{
+						"id" : 2,
+						"geodata": 
+							{
+								"lat": 52.5212, 
+								"lon": 4.589
+							},
+						"infodata": [
+							{
+								"name": "Feature 1",
+								"value": "cat1",
+							},
+							{
+								"name": "Feature 2",
+								"value": "cat2",
+							}
+						]
+					}
+				];
 
 
 	var json_data = [

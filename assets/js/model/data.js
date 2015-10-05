@@ -1,8 +1,6 @@
 var Data = function(data) {
-	this.data = data || null;
-	this.mapData = null;
-	this.attributes = new Array();
-	this.config = '{"geodata": "latlon"}';
+	this.data = JSON.parse(this.data) || null;
+	this.features = new Array();
 	
 	this.getData = function(){
 		return this.data;
@@ -12,27 +10,21 @@ var Data = function(data) {
 		this.data = data;
 	};
 
-	this.getMapData = function(){
-		return this.mapData;
+	this.getFeatures = function(){
+		return this.features;
 	};
 	
-	this.setMapData = function(mapData){
-		this.mapData = mapData;
+	this.setFeatures = function(features){
+		this.features = features;
 	};
 	
-	generateMapData();
+	parseFeatures();
 
 };
 
-Data.prototype.generateMapData = function(){
-	var json_data = JSON.parse(this.data);
-	console.log(json_data);
+Data.prototype.parseFeatures = function(){
 
-	for(var i = 0; i < json_data.length; i++){
-		for(var j = 0; j < json_data.length; j++){
-			if(json_data[i][j] == this.config["geoattribute"]){
-				console.log("geoattribute found");
-			}
-		}
-	}
+    for(var i = 0; i < this.data.length; i++){
+        this.features.push(new Feature(this.data[i].id, this.data[i].geodata, this.data[i].infodata));
+    }
 }
