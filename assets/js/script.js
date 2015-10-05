@@ -74,7 +74,7 @@ $(document).ready(function(){
 	    ['Thirtieth Shoppe', "215 West Girard Avenue 19123", "+7-777-777-7777", 52.377943,4.900104],
 	    ['Fourth Shoppe', "215 West Girard Avenue 19123", "+7-777-777-7777", 52.37146,4.890633]
 	];
-
+var map;
 	var app1 = new App(json_data);
 	
 	var clickedMarker = null;
@@ -87,5 +87,7 @@ $(document).ready(function(){
 
 	//var heatmap = new Visualization();
 	app1.addVisualization("Mapa de Calor", "heatmap");
+	// app1.addVisualization("Linhas", "line");
+	app1.addVisualization("Gráfico", "chart");
 
 	// addMarkers(app1.map, app1.data);

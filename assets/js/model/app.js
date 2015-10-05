@@ -31,7 +31,7 @@ App.prototype.addMarkers = function(){
 }
 
 App.prototype.addVisualization = function(name, type){
-	this.visualizations.push(new Visualization(name, type, this.map, this.data));
+	this.visualizations.push(new Visualization(name, type, this.map, this.data, "attribute"));
 };
 
 App.prototype.removeVisualization = function(index){

@@ -15,5 +15,4 @@ Heatmap.prototype.initHeatmap = function(map, data){
 		map: map.gmap,
 		radius: 30
 	});
-
 }
