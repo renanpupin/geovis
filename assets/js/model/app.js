@@ -21,7 +21,13 @@ var App = function(data) {
 	};
 	
 	//on construct methods
-	this.loadData(data);
+	try {
+		this.loadData(data);
+		//throw "Erro ao carregar os dados, os dados não estão no formato aceito pela aplicação!";
+	}
+	catch(error) {
+		alert(error);
+	}
 
 };
 

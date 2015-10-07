@@ -2,14 +2,11 @@
 //=====================================
 //IMPORTS
 //=====================================
-@import 'mixins';
-
-
+@import '_mixins';
 //=====================================
 //SETTINGS
 //=====================================
 $main-color: #1e8c64;
-
 
 //=====================================
 //BASE STYLE
@@ -45,13 +42,13 @@ video {
 }
 
 
-.right{
+.text-right{
 	text-align: right;
 }
-.left{
+.text-left{
 	text-align: left;
 }
-.center{
+.text-center{
 	text-align: center;
 }
 
@@ -77,9 +74,6 @@ video {
 	width: 100%;
 }
 
-//=====================================
-//LOGIN
-//=====================================
 .overlay{
 	position: absolute;
 	top: 0;
@@ -90,120 +84,6 @@ video {
 	z-index: 99999;
 	display: none;
 }
-
-.login-box{
-	border-top: 5px solid $main-color;
-	background-color: white;
-	max-width: 350px;
-	margin: 0px auto;
-  	padding: 20px;
-  	border-radius: 2px;
-  	-webkit-animation: cardEnter 0.75s ease-in-out 0.5s;
-	animation: cardEnter 0.75s ease-in-out 0.5s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	opacity: 0;
-	.form-group{
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-}
-.login-box-header{
-	text-align: center;
-	.login-box-logo{
-		width: 100%;
-		height: auto;
-	}
-	.login-box-subtitle{
-		font-size: 24px;
-		padding: 15px;
-	}
-}
-
-.floating-label{
-	color: $main-color !important;
-}
-
-#form-login-remember{
-	display: inline-block;
-	padding-left: 0px;
-	label{
-		color: $main-color !important;
-		.chk-span{
-			// border-left-color: $main-color;
-  			// border-bottom-color: $main-color;
-  			border-color: $main-color;
-		}
-		.chk-span.checked{
-			border-left-color: $main-color;
-  			border-bottom-color: $main-color;
-  			border-right-color: transparent;
-  			border-top-color: transparent;
-		}
-	}
-}
-
-.form-submit-btn{
-	float: right;
-	display: inline-block;
-	.btn{
-		// color: $main-color !important;
-		background-color: $main-color !important;
-	}
-}
-
-.form-lost-pwd{
-	text-align: center;
-	padding: 15px;
-	font-size: 12px;
-	a, a:hover, a:focus{
-		color: $main-color;
-	}
-}
-
-.login-messages{
-	text-align: center;
-	font-size: 12px;
-	display: none;
-}
-
-.login-loader{
-	text-align: center;
-	display: none;
-	.circular{
-		animation: rotate 2s linear infinite;
-		height: 50px;
-		width: 50px;
-	}
-	.path {
-		stroke-dasharray: 1,200;
-		stroke-dashoffset: 0;
-		animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-		stroke-linecap: round;
-		stroke: $main-color;
-	}
-}
-
-@keyframes rotate{
- 100%{
-  transform: rotate(360deg);
- }
-}
-@keyframes dash{
- 0%{
-  stroke-dasharray: 1,200;
-  stroke-dashoffset: 0;
- }
- 50%{
-  stroke-dasharray: 89,200;
-  stroke-dashoffset: -35;
- }
- 100%{
-  stroke-dasharray: 89,200;
-  stroke-dashoffset: -124;
- }
-}
-
 //=====================================
 //SECTION
 //=====================================
@@ -233,6 +113,8 @@ video {
     display: inline-flex;
     line-height: 50px;
     color: rgb(59, 39, 39);
+    font-size: 26px;
+    font-weight: bold;
 }
 #content-wrapper .item-title h2{
     color: rgb(59, 39, 39);
@@ -241,9 +123,7 @@ video {
     background-color: black;
     height: 2px;
     width:100%;
-    *width:40%;
     margin: 0px;
-    *margin-left: 30%;
     margin-bottom: 7px;
     border: none;
 }
@@ -257,11 +137,11 @@ video {
 #content-wrapper .fa:hover{
     color: white;
     background-color: black;
-    *cursor: pointer;
 }
 
 #content-wrapper label{
     font-weight: bold;
+    text-transform: capitalize
 }
 
 #content-wrapper label .fa{

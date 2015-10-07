@@ -4,7 +4,6 @@ var Heatmap = function(map, geodata) {
 };
 
 Heatmap.prototype.initHeatmap = function(map, geodata){
-	console.log(geodata);
 	var markers = [];
 	for(var index = 0; index < geodata.length; index++){
 	 	markers.push(new google.maps.LatLng(geodata[index].geodata.lat, geodata[index].geodata.lon));

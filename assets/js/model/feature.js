@@ -31,7 +31,7 @@ var Feature = function(id, geodata, infodata) {
 };
 
 Feature.prototype.parseAttributes = function(infodata){
-    for(var i = 0; i < infodata; i++){
+    for(var i = 0; i < infodata.length; i++){
         this.infodata.push(new Attribute(infodata[i].name, infodata[i].value));
     }
 }
