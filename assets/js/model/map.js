@@ -85,6 +85,7 @@ Map.prototype.addMarkers = function (features){
 		this.markers.push(marker);
 	}
 }
+
 Map.prototype.addInfoWindow = function(map, marker){
 	var infoWindow = new google.maps.InfoWindow({
 		content: marker.content

@@ -14,6 +14,6 @@ setTimeout(function() {
 	app1.addMarkers();
 }, 1500);
 
-//app1.addMapVisualization("Mapa de Calor", "heatmap");
+app1.addMapVisualization("Mapa de Calor", "heatmap");
 // app1.addMapVisualization("Linhas", "line");
 //app1.addChartVisualization("Gráfico", "chart", "pie");
