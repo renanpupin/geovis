@@ -17,6 +17,7 @@
 
         <!-- FONTS -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- FAVICON -->
         <!-- <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32"> -->
@@ -25,60 +26,48 @@
 
         <!-- LOADING ICON -->
         <span class="preloader"></span>
+        
+        <!-- LAYER CONTROL -->
+        <div id="layer-control" class="">
+            <span class="layers">
+                <h3>Camadas</h3>
+                <p><input id="1" value="gmaplayer" type="checkbox" onchange="layerVis(this.value)" checked/> Layer 1</p>
+                <p><input id="2" value="markers" type="checkbox" onchange="layerVis(this.value)" checked/> Layer 2</p>
+            </span>
+            <span class="layers-toggle" title="Camadas">
+                <a href="javascript:void(0)">
+                    <i class="material-icons">layers</i>
+                </a>
+            </span>
+        </div>
 
         <div class="wrapper">
 
             <!-- NAVBAR -->
-            <div class="navbar navbar-inverse navbar-fixed-top shadow-z-1" style="display: none;">
-                <div class="container">
-
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        
-                        <img class="brand-logo" src="http://placehold.it/350x150" />
-                    </div>
-
-                    <div class="navbar-collapse collapse">
-
-                        <!-- LINKS -->
-                        <ul id="nav-links" class="nav navbar-nav">
-                            <li><a href="#Home" class="nav-active">Home</a></li>
-                            <li><a href="javascript:void(0);">Link 1</a></li>
-                            <li><a href="javascript:void(0);">Link 2</a></li>
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown user-menu">
-                                <a href="#" data-target="#" class="user-menu-area dropdown-toggle" data-toggle="dropdown">
-                                    <img class="user-avatar" src="assets/img/avatar.jpg" width=35 height=35>
-                                    Username
-                                    <i id="user-menu" class="mdi-hardware-keyboard-arrow-down"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="user-menu-icons mdi-action-settings"></i>
-                                            Alterar Senha
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" id="logoff-btn" class="navbar-menu-item" target="" role="button" title="Sair" data-toggle="modal" data-target=".logout-window">
-                                            <i class="user-menu-icons mdi-action-settings-power"></i>
-                                            Logoff
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-            </div><!-- NAVBAR -->
+            <nav id="navbar">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="material-icons">assignment</i>Dados
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="material-icons">insert_chart</i>Visualizações
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="material-icons">file_download</i>Salvar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="material-icons">file_upload</i>Carregar
+                        </a>
+                    </li>
+                </ul>
+            </nav><!-- NAVBAR -->
 
             <div class="map-wrap">
                 <div id="map-canvas"></div>

@@ -1,5 +1,7 @@
 $(document).ready(function(){
-	//
+	$(".layers-toggle").click(function(){
+		$("#layer-control").toggleClass("open");
+	});
 });
 
 google.load('visualization', '1', {'packages':['corechart']});
