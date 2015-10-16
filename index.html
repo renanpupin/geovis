@@ -44,17 +44,64 @@
         <div class="wrapper">
 
             <!-- NAVBAR -->
-            <nav id="navbar">
-                <ul>
-                    <li>
+            <nav id="nav" class="nav">
+
+                <!-- <button class="menu">
+                    <em class="hamburger"></em>
+                </button> -->
+
+                <div class="brand">
+                    <a href="#">
+                        <img id="logo" width="40px" src="assets/img/logo.svg">
+                    </a>
+                </div>
+
+                <ul class="navbar">
+                    <li class="submenu">
                         <a href="javascript:void(0)">
                             <i class="material-icons">assignment</i>Dados
                         </a>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" id="carregarDados">
+                                    <i class="material-icons">attach_file</i>Carregar
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
+                    <li class="submenu">
                         <a href="javascript:void(0)">
                             <i class="material-icons">insert_chart</i>Visualizações
                         </a>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" id="adicionarVisualizacao">
+                                    <i class="material-icons">add</i>Adicionar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" id="removerVisualizacao">
+                                    <i class="material-icons">delete</i>Remover
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="submenu">
+                        <a href="javascript:void(0)">
+                            <i class="material-icons">details</i>Filtros
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" id="adicionarFiltro">
+                                    <i class="material-icons">add</i>Adicionar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" id="removerFiltro">
+                                    <i class="material-icons">delete</i>Remover
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
@@ -96,6 +143,26 @@
             </div> -->
 
         </div><!-- WRAPPER -->
+
+        <div id="modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+                        <button id="modalClose" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id=""></h4>
+                    </div>
+                    
+                    <div class="modal-body"></div>
+                    
+                    <div class="modal-footer">
+                        <button id="btnCloseModal" class="btn btn-secundary">Close</button>
+                        <button id="btnConfirmModal" class="btn btn-primary">Ok</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         
         <div id="chart_div"></div>
         
@@ -106,6 +173,7 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script><!--Load the AJAX API-->
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script><!-- Load MAPS API -->
         <script src="assets/js/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/modal.js"></script>
         <!-- CLASSES -->
         <script src="assets/js/model/attribute.js"></script>
         <script src="assets/js/model/feature.js"></script>

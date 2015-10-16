@@ -51,9 +51,11 @@ App.prototype.addChartVisualization = function(name, type, chart_type){
 	this.visualizations.push(new Visualization(name, type, null, this.data, "attribute", chart_type));
 };
 
-App.prototype.removeVisualization = function(index){
-	if(this.visualizations[index] !== undefined){
-		this.visualizations.splice(index,1);
+App.prototype.removeVisualization = function(name){
+	for(var index = 0; index < this.visualizations.length; index++){	
+		if(this.visualizations[index].name == name){
+			this.visualizations.splice(index,1);
+		}
 	}
 };
 
