@@ -30,22 +30,22 @@ var Filter = function(attribute, condition, value) {
 	
 };
 
-Filter.prototype.queryFilter = function(){
+Filter.prototype.queryFilter = function(checkValue){
 	if(this.condition === "equal"){
-		if(value !== null && value !== undefined){
-			return (this.attribute === value);
+		if(this.value !== null && this.value !== undefined){
+			return (checkValue === this.value);
 		}else{
 			return false;
 		}
 	}else if(this.condition === "more than"){
-		if(!isNaN(value)){	//check if it's a valid number
-			return (this.attribute >= value);
+		if(!isNaN(this.value)){	//check if it's a valid number
+			return (checkValue >= this.value);
 		}else{
 			return false;
 		}
 	}else if(this.condition === "less than"){
-		if(!isNaN(value)){	//check if it's a valid number
-			return (this.attribute <= value);
+		if(!isNaN(this.value)){	//check if it's a valid number
+			return (checkValue <= this.value);
 		}else{
 			return false;
 		}

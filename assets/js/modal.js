@@ -13,8 +13,14 @@
         action: "open",
         title: "Modal Title",
         content: "Your content here",
-        footer: '<button id="btnCloseModal" class="btn btn-secundary">CLOSE</button> '+
-                '<button id="btnConfirmModal" class="btn btn-primary">OK</button>',
+        footer: '<div class="row">'+
+                    '<div class="grid-m-6 grid-s-6 grid-xs-12">'+
+                      '<button id="btnCloseModal" class="btn btn-secundary">CLOSE</button> '+
+                    '</div>'+
+                    '<div class="grid-m-6 grid-s-6 grid-xs-12">'+
+                      '<button id="btnConfirmModal" class="btn btn-primary">OK</button>'+
+                    '</div>'+
+                '</div>',
         max_width: "inherit",
         min_width: "inherit",
         max_height: "inherit",
@@ -51,8 +57,14 @@
     
     //setting footer
     if(settings.closeButtonText !== "CLOSE"){
-      settings.footer = '<button id="btnCloseModal" class="btn btn-secundary">'+settings.closeButtonText+'</button> '+
-                        '<button id="btnConfirmModal" class="btn btn-primary">'+settings.confirmButtonText+'</button>';
+      settings.footer = '<div class="row">'+
+                          '<div class="grid-m-6 grid-s-6 grid-xs-12">'+
+                            '<button id="btnCloseModal" class="btn btn-secundary">'+settings.closeButtonText+'</button> '+
+                          '</div>'+
+                          '<div class="grid-m-6 grid-s-6 grid-xs-12">'+
+                            '<button id="btnConfirmModal" class="btn btn-primary">'+settings.confirmButtonText+'</button>'+
+                          '</div>'+
+                      '</div>';
     }
     $(self).find(".modal-footer").html(settings.footer);
 

@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 	/*======================================================*/
 	var app1 = new App(json_data);	//json_data - DATA LOADEAD FROM FILE
+	window.app = app1;
 
 	var clickedMarker = null;
 
@@ -11,6 +12,9 @@ $(document).ready(function(){
 
 	setTimeout(function() {
 		app1.addMarkers();
+		// app1.addFilter("valor", "more than", 5);
+		// app1.addFilter("valor", "less than", 3);
+		//app1.addFilter("categoria", "equal", "cat3");
 	}, 1500);
 
 	app1.addMapVisualization("Mapa de Calor", "heatmap");
@@ -42,7 +46,7 @@ $(document).ready(function(){
 
 	$("#adicionarVisualizacao").click(function(){
 
-		var content = '';
+		var content = '<div class="row">';
 
 		content += '<label for="inputVisAddName">Nome da visualização</label><input type="text" id="inputVisAddName">';
 
@@ -50,7 +54,8 @@ $(document).ready(function(){
 						'<option value="heatmap">Mapa de calor</option>'+
 						'<option value="chart">Gráfico</option>'+
 						'<option value="line">Linha</option>'+
-					'</select>';
+					'</select>'+
+					'</div>';
 
 		$( "#modal" ).Modal({
 			"title": "Adicionar Visualização",
@@ -78,9 +83,10 @@ $(document).ready(function(){
 
 	$("#removerVisualizacao").click(function(){
 
-		var content = '';
+		var content = '<div class="row">';
 
-		content += '<label for="inputVisRemove">Seleciona a visualização</label><select id="inputVisRemove">';
+		content += '<label for="inputVisRemove">Seleciona a visualização</label><select id="inputVisRemove">'+
+				   '</div>';
 
 		for(var i = 0; i < app1.visualizations.length; i++){
 			content += '<option value="'+app1.visualizations[i].name+'">'+app1.visualizations[i].name+'</option>';
@@ -105,6 +111,7 @@ $(document).ready(function(){
 			var arquivo_json = $("#inputCarregarArquivo").val();
 
 			//upload and verify null file here
+			// LOAD JSON FROM FILE: http://jsfiddle.net/L85h4p96/
 
 			app1 = new App(arquivo_json);
 			app1.initMap();
@@ -122,7 +129,7 @@ $(document).ready(function(){
 
 	$("#carregarDados").click(function(){
 
-		var content = '<label for="inputCarregarArquivo">Selecione o arquivo</label><input type="file" id="inputCarregarArquivo" accept=".json">';
+		var content = '<div class="row"><label for="inputCarregarArquivo">Selecione o arquivo</label><input type="file" id="inputCarregarArquivo" accept=".json"></div>';
 
 		$( "#modal" ).Modal({
 			"title": "Remover Visualização",

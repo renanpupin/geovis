@@ -2,6 +2,7 @@ var App = function(data) {
 	this.data = null;
 	this.map = null;
 	this.visualizations = new Array();
+	this.filters = new Array();
 	
 
 	this.getData = function(){
@@ -18,6 +19,10 @@ var App = function(data) {
 
 	this.getVisualizations = function(){
 		return this.visualizations;
+	};
+
+	this.getFilters= function(){
+		return this.filters;
 	};
 	
 	//on construct methods
@@ -39,6 +44,30 @@ App.prototype.initMap = function(){
 	this.map = new Map();
 }
 
+App.prototype.addFilter = function(attribute, condition, value){
+	this.filters.push(new Filter(attribute, condition, value));
+	this.map.executeFilter(this.data.features, this.filters[this.filters.length-1]);	//execute the last inserted filter
+}
+
+App.prototype.removeFilter = function(filter){
+	for(var index = 0; index < this.filters.length; index++){
+		if(this.filters[index] == filter){
+			this.filters.splice(index,1);
+		}
+	}
+	//this.map.resetMarkersVisibility();
+	//reaply filters
+	//heatmap verify marker visibility
+}
+
+App.prototype.toggleHeatmap = function(){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "heatmap"){
+			this.visualizations[index].visualization.toggleHeatmap(this.map);
+		}
+	}
+}
+
 App.prototype.addMarkers = function(){
 	this.map.addMarkers(this.data.features);
 }
@@ -48,11 +77,12 @@ App.prototype.addMapVisualization = function(name, type){
 };
 
 App.prototype.addChartVisualization = function(name, type, chart_type){
+	//TODO: chart on div, on map, with filters, without filters
 	this.visualizations.push(new Visualization(name, type, null, this.data, "attribute", chart_type));
 };
 
 App.prototype.removeVisualization = function(name){
-	for(var index = 0; index < this.visualizations.length; index++){	
+	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].name == name){
 			this.visualizations.splice(index,1);
 		}

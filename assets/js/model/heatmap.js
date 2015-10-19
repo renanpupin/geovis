@@ -1,18 +1,22 @@
-var Heatmap = function(map, geodata) {
+var Heatmap = function(map, features) {
 	//this.radius = radius || 30;
-	this.initHeatmap(map, geodata);
+	this.heatmap = null;
+	this.initHeatmap(map, features);
 };
 
-Heatmap.prototype.initHeatmap = function(map, geodata){
+Heatmap.prototype.initHeatmap = function(map, features){
 	var markers = [];
-	for(var index = 0; index < geodata.length; index++){
-	 	markers.push(new google.maps.LatLng(geodata[index].geodata.lat, geodata[index].geodata.lon));
+	for(var index = 0; index < features.length; index++){
+		//if (marker[index].visible == false)	//don't show the heatmap
+	 	markers.push(new google.maps.LatLng(features[index].geodata.lat, features[index].geodata.lon));
 	}
-	heatmap = new google.maps.visualization.HeatmapLayer({
+	this.heatmap = new google.maps.visualization.HeatmapLayer({
 		data: markers,
 		map: map.gmap,
 		radius: 30
 	});
+}
 
-	//TODO: return heatmap instance to control on layers
+Heatmap.prototype.toggleHeatmap = function(map){
+	this.heatmap.setMap(this.heatmap.getMap() ? null : map.gmap);
 }

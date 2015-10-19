@@ -36,6 +36,16 @@ Feature.prototype.parseAttributes = function(infodata){
     }
 }
 
+Feature.prototype.getAttributeValueByName = function(name){
+    
+    for(var i = 0; i < this.infodata.length; i++){
+        if(this.infodata[i].getName() == name){
+            return this.infodata[i].getValue()
+        }
+    }
+    return null;  //if don't find marker return -1
+}
+
 Feature.prototype.getFeatureLat = function(){
     return this.geodata.lat;
 }

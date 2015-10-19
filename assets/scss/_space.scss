@@ -1,0 +1,291 @@
+// grid vars
+$grid-columns: 12;
+$gutter_width: 15px;
+$grid-large-width-breakpoint: 1200px;
+$grid-medium-width-breakpoint: 992px;
+$grid-small-width-breakpoint: 768px;
+$grid-xsmall-width-breakpoint: 768px;
+$breakpoints: (
+    'xs' '(max-width: #{$grid-xsmall-width-breakpoint})' 768px, // xsmall
+    's'  '(min-width: #{$grid-small-width-breakpoint})' 780px, // small
+    'm'  '(min-width: #{$grid-medium-width-breakpoint})' 1000px, // medium
+    'l'  '(min-width: #{$grid-large-width-breakpoint})' 1200px // large
+);
+$widths: (
+  '1' '8.33333333%',
+  '2' '16.66666667%',
+  '3' '25%',
+  '4' '33.3333333%',
+  '5' '41.66666667%',
+  '6' '50%',
+  '7' '58.33333333%',
+  '8' '66.66666667%',
+  '9' '75%',
+  '10' '83.33333333%',
+  '11' '91.66666667%',
+  '12' '100%'
+);
+//mixins.scss
+
+@mixin font-size($size) {
+    font-size: $size;
+    line-height: $base-line-height*$size;
+    margin: ($size / 2) 0 ($size / 2.5) 0;
+}
+
+// mixin border-radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+// mixin box-shadow
+@mixin box-shadow ($values...) {
+    -webkit-box-shadow: $values;
+            box-shadow: $values;
+}
+
+// mixin box-sizing
+@mixin box-sizing ($type: border-box) {
+    -webkit-box-sizing: $type;
+       -moz-box-sizing: $type;
+            box-sizing: $type;
+}
+
+// mixin opacity
+@mixin opacity ($value: 1) {
+    $value-percentage : $value * 100;
+    opacity: $value;
+    filter: alpha(opacity=$value-percentage);
+}
+
+// mixin text-shadow
+@mixin text-shadow($x, $y, $blur, $color) {
+    text-shadow: $x $y $blur $color;
+}
+
+// mixin user-select
+@mixin user-select() {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+//mixin center
+@mixin center(){
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+    left:50%;
+    top:50%;
+}
+
+// mixin transition
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -o-transition: $time;
+  -ms-transition: $time;
+  transition: $time;
+}
+
+//mixin clearfix
+@mixin clearfix() {
+  *zoom: 1;
+  &:before, &:after{
+    content: "";
+    display: table;
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// function calculateContainerWidth
+@function calculateContainerWidth($width, $gutter){
+  @return $width - ($gutter * 2)
+}
+
+//mixin media-query
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $rule: nth($breakpoint, 2);
+    $container_size: nth($breakpoint, 3);
+    @if $media-query == $name and $rule {
+      $breakpoint-found: true;
+      @media only screen and #{$rule} {
+        [class*='grid-#{$name}-']{
+          float: left;
+        }
+        @if $name == "s" or $name == "m" or $name == "l"{
+          .container {
+            width: unquote(calculateContainerWidth($container_size, $gutter_width));
+          }
+        }
+        $index: 1;
+        @each $width in $widths {
+          $width_value: nth($width, 2);
+          .grid-#{$name}-#{$index}{
+            width: unquote($width_value);
+            padding-right: $gutter_width;
+            padding-left: $gutter_width;
+            position: relative;
+            min-height: 1px;
+          }
+          .grid-#{$name}-offset-#{$index}{
+            margin-left: unquote($width_value);
+          }
+          .grid-#{$name}-pull-#{$index}{
+            right: unquote($width_value);
+          }
+          .grid-#{$name}-push-#{$index}{
+            left: unquote($width_value);
+          }
+          $index: $index + 1;
+        }
+      }
+    }
+  }
+  @if $breakpoint-found == false {
+    @warn "Breakpoint '#{$media-query}'' does not exist"
+  }
+}
+
+//mixin all-grid
+@mixin all-grid() {
+  $index: 1;
+  @each $width in $widths {
+    $width_value: nth($width, 2);
+    .grid-all-#{$index}{
+      width: unquote($width_value);
+      padding-right: $gutter_width;
+      padding-left: $gutter_width;
+      position: relative;
+      min-height: 1px;
+    }
+    .grid-all-offset-#{$index}{
+      margin-left: unquote($width_value);
+    }
+    .grid-all-pull-#{$index}{
+      right: unquote($width_value);
+    }
+    .grid-all-push-#{$index}{
+      left: unquote($width_value);
+    }
+    $index: $index + 1;
+  }
+}
+
+// Background sizing
+@mixin background-size($size) {
+  -webkit-background-size: unquote($size);
+     -moz-background-size: unquote($size);
+       -o-background-size: unquote($size);
+          background-size: unquote($size);
+}
+
+// Transformations
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+     -moz-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+       -o-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+//mixin scale
+@mixin scale($ratio) {
+  -webkit-transform: scale($ratio);
+     -moz-transform: scale($ratio);
+      -ms-transform: scale($ratio);
+       -o-transform: scale($ratio);
+          transform: scale($ratio);
+}
+//mixin translate
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+     -moz-transform: translate($x, $y);
+      -ms-transform: translate($x, $y);
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid#c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+/*
+clearfix.scss
+*/
+
+.clearfix {
+  @include clearfix();
+}
+
+* {
+    &,
+    &:before,
+    &:after {
+        @include box-sizing(border-box);
+    }
+}
+/*
+grid.scss
+*/
+
+.container{
+  padding-right: $gutter_width;
+  padding-left: $gutter_width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-full{
+  padding-right: $gutter_width;
+  padding-left: $gutter_width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  margin-left: -$gutter_width;
+  margin-right: -$gutter_width;
+  // margin-bottom: 20px;
+  @include clearfix();
+}
+
+[class*='grid-']{
+    padding-right: $gutter_width;
+    padding-left: $gutter_width;
+    position: relative;
+    min-height: 1px;
+}
+
+[class*='grid-']:last-of-type {
+    /*padding-right: 0px;*/
+}
+
+.container::before, .container-full::before{
+  display: table;
+  content: "";
+}
+
+[class*='grid-']::after, .container::after, .container-full::before{
+  content: "";
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+  clear: both;
+}
+
+@include media-query("xs");
+@include media-query("s");
+@include media-query("m");
+@include media-query("l");
+@include all-grid();
