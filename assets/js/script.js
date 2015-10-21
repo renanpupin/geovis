@@ -3,6 +3,8 @@ google.load('visualization', '1', {'packages':['corechart']});
 $(document).ready(function(){
 
 	/*======================================================*/
+	// MAP
+	/*======================================================*/
 	var app1 = new App(json_data);	//json_data - DATA LOADEAD FROM FILE
 	window.app = app1;
 
@@ -22,8 +24,11 @@ $(document).ready(function(){
 	// app1.addMapVisualization("Linhas", "line");
 	//app1.addChartVisualization("Gráfico", "chart", "pie");
 	
+	
 	/*======================================================*/
-
+	// UI
+	/*======================================================*/
+	$("#nav").dropdown();
 
 
 	$(".layers-toggle").click(function(){
@@ -41,7 +46,6 @@ $(document).ready(function(){
 		}else{
 			console.log("erro no form");
 		}
-
 	}
 
 	$("#adicionarVisualizacao").click(function(){
@@ -106,11 +110,10 @@ $(document).ready(function(){
 
 	function carregarDados(){
 
-		if(visualizations != ""){
+		var arquivo_json = $("#inputCarregarArquivo").val();
 
-			var arquivo_json = $("#inputCarregarArquivo").val();
+		if(arquivo_json != "" && arquivo_json != null){
 
-			//upload and verify null file here
 			// LOAD JSON FROM FILE: http://jsfiddle.net/L85h4p96/
 
 			app1 = new App(arquivo_json);
@@ -132,13 +135,14 @@ $(document).ready(function(){
 		var content = '<div class="row"><label for="inputCarregarArquivo">Selecione o arquivo</label><input type="file" id="inputCarregarArquivo" accept=".json"></div>';
 
 		$( "#modal" ).Modal({
-			"title": "Remover Visualização",
+			"title": "Carregar Dados",
 			"content": content,
 			"size": "small",
 			"onConfirm": carregarDados,
 			"closeButtonText": "CANCELAR",
-			"confirmButtonText": "REMOVER"
+			"confirmButtonText": "CARREGAR"
 		});
 	});
+	/*======================================================*/
 
 });

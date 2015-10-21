@@ -9,6 +9,7 @@ $green: green;
 @import '_mixins';
 @import '_space';
 @import '_formPatterns';
+@import '_navbar';
 @import '_modal';
 
 //=====================================
@@ -121,13 +122,17 @@ i, input[type="checkbox"]{
             font-size: 18px;
             // font-weight: bold;
         }
+        p{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
     }
     .layers-toggle{
         float: left;
         // width: 25px;
         // height: 25px;
         padding: 5px;
-        background-color: blue;
+        background-color: #757575;
         a{
             color: white;
             text-decoration: none;
@@ -138,28 +143,62 @@ i, input[type="checkbox"]{
 //=====================================
 //NAV
 //=====================================
-nav{
-    width: 100%;
-    border-bottom: 1px solid #e7e7e7;
-    display: inline-block;
-    .brand{
-        float: left;
-        padding-left: 15px;
-        padding-right: 15px;
-        vertical-align: middle;
-        height: 50px;
+#nav{
+    position: absolute;
+    margin-bottom: 0;
+    z-index: 1000;
+    background-color: white;
+    a{
+        border: none;
+        i{
+            padding-right: 5px;
+            font-size: 16px;
+            vertical-align: middle;
+        }
     }
-    ul{
-        height: 50px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        li{
-            display: inline-block;
-            padding: 5px;
+    .navbarHeader{
+        background-color: white;
+        .brand {
+            padding: 10px;
+            a{
+                text-decoration: none;
+                img#logoApp{
+                    height: 40px;
+                    width: auto;
+                }
+                span{
+                    display: inline-block;
+                    color: #757575;
+                    font-size: 26px;
+                    top: 5px;
+                    position: relative;
+                }
+            }
         }
     }
 }
+// nav{
+//     width: 100%;
+//     border-bottom: 1px solid #e7e7e7;
+//     display: inline-block;
+//     .brand{
+//         float: left;
+//         padding-left: 15px;
+//         padding-right: 15px;
+//         vertical-align: middle;
+//         height: 50px;
+//     }
+//     ul{
+//         height: 50px;
+//         list-style: none;
+//         padding: 0;
+//         margin: 0;
+//         li{
+//             display: inline-block;
+//             padding: 5px;
+//         }
+//     }
+// }
 //=====================================
 //SECTION
 //=====================================

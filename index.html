@@ -32,8 +32,9 @@
         <div id="layer-control" class="">
             <span class="layers">
                 <h3>Camadas</h3>
-                <p><input id="1" value="gmaplayer" type="checkbox" onchange="layerVis(this.value)" checked/> Layer 1</p>
-                <p><input id="2" value="markers" type="checkbox" onchange="layerVis(this.value)" checked/> Layer 2</p>
+                <p><input id="1" value="gmaplayer" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa</p>
+                <p><input id="2" value="markers" type="checkbox" onchange="layerVis(this.value)" checked/> Marcadores</p>
+                <p><input id="3" value="heatmap" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa de Calor</p>
             </span>
             <span class="layers-toggle" title="Camadas">
                 <a href="javascript:void(0)">
@@ -46,75 +47,80 @@
 
             <!-- NAVBAR -->
             <nav id="nav" class="nav">
+                <div class="container">
+                    <!-- <button class="menu">
+                        <em class="hamburger"></em>
+                    </button> -->
 
-                <!-- <button class="menu">
-                    <em class="hamburger"></em>
-                </button> -->
+                    <div class="navbarHeader">
+                        <div class="toggleMenu"></div>
+                        <div class="brand">
+                            <a href="#">
+                                <img id="logoApp" src="assets/img/logo.svg">
+                                <span>GeoVIS</span>
+                            </a>
+                        </div>
+                    </div>
 
-                <div class="brand">
-                    <a href="#">
-                        <img id="logo" width="40px" src="assets/img/logo.svg">
-                    </a>
+                    <ul role="menu">
+                        <li class="submenu">
+                            <a href="javascript:void(0)">
+                                <i class="material-icons">assignment</i>Dados
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)" id="carregarDados">
+                                        <i class="material-icons">attach_file</i>Carregar
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0)">
+                                <i class="material-icons">insert_chart</i>Visualizações
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)" id="adicionarVisualizacao">
+                                        <i class="material-icons">add</i>Adicionar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" id="removerVisualizacao">
+                                        <i class="material-icons">delete</i>Remover
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0)">
+                                <i class="material-icons">details</i>Filtros
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)" id="adicionarFiltro">
+                                        <i class="material-icons">add</i>Adicionar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" id="removerFiltro">
+                                        <i class="material-icons">delete</i>Remover
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="material-icons">file_download</i>Salvar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="material-icons">file_upload</i>Carregar
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-
-                <ul class="navbar">
-                    <li class="submenu">
-                        <a href="javascript:void(0)">
-                            <i class="material-icons">assignment</i>Dados
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" id="carregarDados">
-                                    <i class="material-icons">attach_file</i>Carregar
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="javascript:void(0)">
-                            <i class="material-icons">insert_chart</i>Visualizações
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" id="adicionarVisualizacao">
-                                    <i class="material-icons">add</i>Adicionar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" id="removerVisualizacao">
-                                    <i class="material-icons">delete</i>Remover
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="javascript:void(0)">
-                            <i class="material-icons">details</i>Filtros
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" id="adicionarFiltro">
-                                    <i class="material-icons">add</i>Adicionar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" id="removerFiltro">
-                                    <i class="material-icons">delete</i>Remover
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="material-icons">file_download</i>Salvar
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="material-icons">file_upload</i>Carregar
-                        </a>
-                    </li>
-                </ul>
             </nav><!-- NAVBAR -->
 
             <div class="map-wrap">
@@ -171,8 +177,10 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script><!--Load the AJAX API-->
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script><!-- Load MAPS API -->
         <script src="assets/js/jquery-1.10.2.min.js"></script>
+        <script src="assets/js/jquery-ui.min.js"></script>
         <script src="assets/js/modal.js"></script>
-        <!-- CLASSES -->
+        <script src="assets/js/dropdown.js"></script>
+        <!-- MODELS -->
         <script src="assets/js/model/attribute.js"></script>
         <script src="assets/js/model/feature.js"></script>
         <script src="assets/js/model/data.js"></script>

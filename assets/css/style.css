@@ -1152,6 +1152,191 @@ table .col-actions i {
   font-size: 24px !important;
   padding-right: 0; }
 
+nav {
+  width: 100%;
+  font-size: 13px;
+  position: relative;
+  background: #efefef;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px; }
+  nav :before, nav :after {
+    content: " ";
+    display: table; }
+  nav :after {
+    clear: both; }
+  nav ul {
+    text-transform: uppercase;
+    list-style: none;
+    font-size: .8rem;
+    margin: 0; }
+  nav #brand {
+    float: left;
+    padding: 20px;
+    height: 60px;
+    font-size: 1.4rem;
+    line-height: 20px; }
+  nav .navbarHeader {
+    float: left; }
+  nav > ul {
+    padding: 0;
+    margin-top: 0; }
+  nav ul:after {
+    content: "";
+    clear: both;
+    display: block; }
+  nav li {
+    float: left;
+    position: relative; }
+    nav li a {
+      list-style: none;
+      text-decoration: none;
+      padding: 20px;
+      line-height: 20px;
+      display: block;
+      color: #757575; }
+  nav li:hover, nav .submenu.openSub {
+    background: #4b545f;
+    cursor: pointer; }
+  nav li:hover a, nav .submenu.openSub {
+    color: #fff; }
+  nav .submenu-button {
+    float: right;
+    padding-left: 5px;
+    margin-top: 4px;
+    position: relative; }
+  nav .submenu-button::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    display: block;
+    width: 9px;
+    height: 1px;
+    background: #757575;
+    z-index: 99;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s; }
+  nav .submenu-button::after {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 1px;
+    display: block;
+    width: 1px;
+    height: 9px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;
+    background: #757575;
+    z-index: 99; }
+  nav li:hover .submenu-button::before,
+  nav li:hover .submenu-button::after,
+  nav .active .submenu-button::before,
+  nav .active .submenu-button::after {
+    background: #fff; }
+
+.submenu.openSub a {
+  color: #fff; }
+
+.openSub .submenu-button::after, .openSub .submenu-button::before {
+  -webkit-transform: rotate(135deg); }
+
+.toggleMenu {
+  display: none;
+  list-style: none;
+  float: right;
+  line-height: 1;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+  margin: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #757575;
+  cursor: pointer; }
+  .toggleMenu::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block;
+    width: 15px;
+    height: 2px;
+    background: #000000; }
+  .toggleMenu::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    display: block;
+    width: 15px;
+    height: 7px;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000; }
+
+.submenu ul {
+  display: none;
+  background: #626d7c;
+  padding: 0;
+  position: absolute;
+  top: 100%; }
+
+.submenu li {
+  float: none;
+  border-top: 1px solid #6d7a8a;
+  border-bottom: 1px solid #56616d;
+  position: relative; }
+
+.submenu li a {
+  padding: 15px 20px;
+  width: 155px;
+  color: #fff; }
+
+.submenu li a:hover {
+  background: #4b545f; }
+
+/*ul ul ul {
+  position: absolute;
+  left: 100%;
+  top:0;
+}*/
+@media screen and (max-width: 768px) {
+  .toggleMenu {
+    display: block; }
+  #brand {
+    float: left; }
+  .submenu ul {
+    position: relative; }
+  .submenu li a {
+    padding: 20px;
+    width: 100%; }
+  .submenu-button {
+    padding-right: 10px; }
+  nav .container, nav .container > ul, nav > ul {
+    padding: 0; }
+  nav .navbarHeader {
+    float: none;
+    background-color: #efefef; }
+  nav ul {
+    display: none; }
+  nav > ul {
+    border-top: 1px solid rgba(120, 120, 120, 0.15); }
+  nav ul li {
+    float: none;
+    border-top: 1px solid rgba(120, 120, 120, 0.15); }
+  nav li:hover .submenu-button::after,
+  nav li:hover .submenu-button::before,
+  nav .active .submenu-button::before,
+  nav .active .submenu-button::after {
+    background-color: #fff; } }
+
 .modal {
   position: fixed;
   top: 0;
@@ -1339,32 +1524,43 @@ i, input[type="checkbox"] {
       font-weight: 400;
       text-align: center;
       font-size: 18px; }
+    #layer-control .layers p {
+      padding-left: 5px;
+      padding-right: 5px; }
   #layer-control .layers-toggle {
     float: left;
     padding: 5px;
-    background-color: blue; }
+    background-color: #757575; }
     #layer-control .layers-toggle a {
       color: white;
       text-decoration: none; }
 
-nav {
-  width: 100%;
-  border-bottom: 1px solid #e7e7e7;
-  display: inline-block; }
-  nav .brand {
-    float: left;
-    padding-left: 15px;
-    padding-right: 15px;
-    vertical-align: middle;
-    height: 50px; }
-  nav ul {
-    height: 50px;
-    list-style: none;
-    padding: 0;
-    margin: 0; }
-    nav ul li {
-      display: inline-block;
-      padding: 5px; }
+#nav {
+  position: absolute;
+  margin-bottom: 0;
+  z-index: 1000;
+  background-color: white; }
+  #nav a {
+    border: none; }
+    #nav a i {
+      padding-right: 5px;
+      font-size: 16px;
+      vertical-align: middle; }
+  #nav .navbarHeader {
+    background-color: white; }
+    #nav .navbarHeader .brand {
+      padding: 10px; }
+      #nav .navbarHeader .brand a {
+        text-decoration: none; }
+        #nav .navbarHeader .brand a img#logoApp {
+          height: 40px;
+          width: auto; }
+        #nav .navbarHeader .brand a span {
+          display: inline-block;
+          color: #757575;
+          font-size: 26px;
+          top: 5px;
+          position: relative; }
 
 /*=================================================
 4 - MAP
