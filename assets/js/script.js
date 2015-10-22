@@ -14,9 +14,9 @@ $(document).ready(function(){
 
 	setTimeout(function() {
 		app1.addMarkers();
-		// app1.addFilter("valor", "more than", 5);
-		// app1.addFilter("valor", "less than", 3);
-		//app1.addFilter("categoria", "equal", "cat3");
+		app1.addFilter("Valores maior que 5", "valor", "more than", 5);
+		// app1.addFilter("Valores maior que 3", "valor", "less than", 3);
+		app1.addFilter("Categoria igual a 'cat3'", "categoria", "equal", "cat3");
 	}, 1500);
 
 	app1.addMapVisualization("Mapa de Calor", "heatmap");
@@ -33,6 +33,94 @@ $(document).ready(function(){
 
 	$(".layers-toggle").click(function(){
 		$("#layer-control").toggleClass("open");
+	});
+
+	function adicionarFiltro(){
+		var name = $("#inputFiltroAddName").val();
+		var attribute = $("#inputFiltroAddAttribute").val();
+		var condition = $("#inputFiltroAddCondition").val();
+		var value = $("#inputFiltroAddValue").val();
+
+		if(name != "" && attribute != "" && condition != "" && value != ""){
+			app1.addFilter(name, attribute, condition, value);
+			console.log("OK");
+			$("#modal").removeClass("open");
+		}else{
+			console.log("erro no form");
+		}
+	}
+
+	$("#adicionarFiltro").click(function(){
+
+		if(app1.data.features.length > 0){
+			var content = '<div class="row">';
+
+			content += '<label for="inputFiltroAddAttribute">Atributo</label><select id="inputFiltroAddAttribute">';
+
+			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+				content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name+'</option>';
+			}
+
+			content += '</select>';
+			
+			content += '<label for="inputFiltroAddCondition">Condição</label><select id="inputFiltroAddCondition">'+
+							'<option value="more than">Maior que (>)</option>'+
+							'<option value="less than">Menor que (<)</option>'+
+							'<option value="equal">Igual (=)</option>'+
+						'</select>';
+			
+			content += '<label for="inputFiltroAddValue">Valor</label><input type="text" id="inputFiltroAddValue">';
+
+			content += '</div>';
+
+			$( "#modal" ).Modal({
+				"title": "Adicionar Filtro",
+				"content": content,
+				"size": "small",
+				"onConfirm": adicionarFiltro,
+				"closeButtonText": "CANCELAR",
+				"confirmButtonText": "ADICIONAR"
+			});
+		}else{
+			console.log("carregue os dados primeiro");
+		}
+	});
+
+	function removerFiltro(){
+
+		var selectedFilter = $("#inputFilterRemove").val();
+
+		if(selectedFilter != "" && selectedFilter != null){
+			app1.removeFilter(selectedFilter);
+			$('option:selected', "#inputFilterRemove").remove();
+			console.log("OK");
+		}else{
+			console.log("erro ao remover");
+		}
+
+	}
+
+	$("#removerFiltro").click(function(){
+
+		var content = '<div class="row">';
+
+		content += '<label for="inputFilterRemove">Seleciona o filtro</label><select id="inputFilterRemove">'+
+				   '</div>';
+
+		for(var i = 0; i < app1.filters.length; i++){
+			content += '<option value="'+app1.filters[i].name+'">'+app1.filters[i].name+'</option>';
+		}
+
+		content += '</select>';
+
+		$( "#modal" ).Modal({
+			"title": "Remover Filtro",
+			"content": content,
+			"size": "small",
+			"onConfirm": removerFiltro,
+			"closeButtonText": "CANCELAR",
+			"confirmButtonText": "REMOVER"
+		});
 	});
 
 
@@ -76,8 +164,9 @@ $(document).ready(function(){
 
 		var selectedVis = $("#inputVisRemove").val();
 
-		if(selectedVis != ""){
+		if(selectedVis != "" && selectedVis != null){
 			app1.removeVisualization(selectedVis);
+			$('option:selected', "#inputVisRemove").remove();
 			console.log("OK");
 		}else{
 			console.log("erro ao remover");

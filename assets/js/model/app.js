@@ -44,8 +44,8 @@ App.prototype.initMap = function(){
 	this.map = new Map();
 }
 
-App.prototype.addFilter = function(attribute, condition, value){
-	this.filters.push(new Filter(attribute, condition, value));
+App.prototype.addFilter = function(name, attribute, condition, value){
+	this.filters.push(new Filter(name, attribute, condition, value));
 	this.map.executeFilter(this.data.features, this.filters[this.filters.length-1]);	//execute the last inserted filter
 }
 

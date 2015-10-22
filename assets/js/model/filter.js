@@ -1,8 +1,16 @@
-var Filter = function(attribute, condition, value) {
+var Filter = function(name, attribute, condition, value) {
+	this.name = name || null;
 	this.attribute = attribute || null;
 	this.condition = condition || null;	//equal, more than, less than
 	this.value = value || null;
 	
+	this.getName = function(){
+		return this.name;
+	};
+	
+	this.setName = function(name){
+		this.name = name;
+	};
 
 	this.getAttribute = function(){
 		return this.attribute;
