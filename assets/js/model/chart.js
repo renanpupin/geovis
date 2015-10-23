@@ -1,15 +1,14 @@
-var Chart = function(data, attributes, type) {
-	this.data = data || null;
+var Chart = function(features, attributes, type) {
 	this.chart = null;
-	this.type = type || null;
 	this.attributes = attributes || null;
+	this.type = type || null;
 
-	this.getData = function(){
-		return this.data;
+	this.getChart = function(){
+		return this.chart;
 	};
 	
-	this.setData = function(data){
-		this.data = data;
+	this.setChart = function(chart){
+		this.chart = chart;
 	};
 
 	this.getType = function(){
@@ -29,11 +28,11 @@ var Chart = function(data, attributes, type) {
 	};
 	
 	if(this.type === "pie"){
-		this.chart = new PieChart(data, attributes);
+		this.chart = new PieChart(features, attributes);
 	}else if(this.type === "line"){
-		this.chart = new LineChart(data, attributes);
+		this.chart = new LineChart(features, attributes);
 	}else if(this.type === "bar"){
-		this.chart = new BarChar(data, attributes);
+		this.chart = new BarChar(features, attributes);
 	}
 };
 
@@ -41,4 +40,12 @@ Chart.prototype.printChart = function(){
 	console.log(this.chart);
 	console.log(this.attributes);
 	console.log(this.type);
+}
+
+Chart.prototype.destroy = function(){
+	this.chart = null;
+}
+
+Chart.prototype.updateChartData = function(features){
+	//todo
 }

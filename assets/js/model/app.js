@@ -36,28 +36,83 @@ var App = function(data) {
 
 };
 
+//load data from json
 App.prototype.loadData = function(data){
 	this.data = new Data(data);
 }
 
+//init map instance
 App.prototype.initMap = function(){
 	this.map = new Map();
 }
 
+//push filter to filters list
 App.prototype.addFilter = function(name, attribute, condition, value){
 	this.filters.push(new Filter(name, attribute, condition, value));
-	this.map.executeFilter(this.data.features, this.filters[this.filters.length-1]);	//execute the last inserted filter
+	
+	//this.map.executeFilter(this.data.features, this.filters[this.filters.length-1]);	//execute the last inserted filter
+
+	this.executeFilter(this.filters[this.filters.length-1]);
+
+	this.map.runMapFilter(this.data.features);
 }
 
+//apply filter
+App.prototype.executeFilter = function(filter){
+	for (var i = 0; i < this.data.features.length; i++) {
+		var feature_value = this.data.features[i].getAttributeValueByName(filter.attribute);
+		if(feature_value != null && feature_value != undefined){
+			var filter_result = filter.queryFilter(feature_value);
+
+			if(filter_result === false){
+				this.data.features[i].setVisible(false);
+			}
+		}
+	}
+}
+
+//remove filter
 App.prototype.removeFilter = function(filter){
+	//remove from filters array
 	for(var index = 0; index < this.filters.length; index++){
-		if(this.filters[index] == filter){
+		if(this.filters[index].name == filter){
 			this.filters.splice(index,1);
 		}
 	}
-	//this.map.resetMarkersVisibility();
-	//reaply filters
-	//heatmap verify marker visibility
+
+	//marker visible attribute set to true
+	this.data.resetFeatureVisibility();
+	this.map.resetMarkersVisibility();
+	// console.log("asdas");
+
+	//execute another filters again
+	for(var index = 0; index < this.filters.length; index++){
+		this.executeFilter(this.filters[index]);
+	}
+
+	//update map markers after execute filters again
+	this.map.runMapFilter(this.data.features);
+
+	//find heatmap visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "heatmap"){
+			this.visualizations[index].visualization.updateHeatmapData(this.data.features);
+		}
+	}
+
+	//find line visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "line"){
+			this.visualizations[index].visualization.updateLineData(this.data.features);
+		}
+	}
+
+	//find chart visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "chart"){
+			this.visualizations[index].visualization.updateChartData(this.data.features);
+		}
+	}
 }
 
 App.prototype.toggleHeatmap = function(){
@@ -84,6 +139,7 @@ App.prototype.addChartVisualization = function(name, type, chart_type){
 App.prototype.removeVisualization = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].name == name){
+			this.visualizations[index].remove();
 			this.visualizations.splice(index,1);
 		}
 	}
@@ -102,4 +158,8 @@ App.prototype.saveApplication = function(){
 
 App.prototype.loadApplication = function(json_application){
 	//load app here
+	
+	//this.addMarkers();
+	//this.addFilters();
+	//this.addVisualizations();
 }

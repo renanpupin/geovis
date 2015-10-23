@@ -1,16 +1,7 @@
 var Map = function() {
 	this.gmap = null;
 	this.markers = [];
-	//this.filters = [];
 	//this.layers = [];
-	
-	// this.getFilters = function(){
-	// 	return this.filters;
-	// };
-	
-	// this.setFilters = function(filters){
-	// 	this.filters = filters;
-	// };
 
 	// this.getLayers = function(){
 	// 	return this.layers;
@@ -36,6 +27,7 @@ var Map = function() {
 	
 };
 
+//init google maps
 Map.prototype.initMap = function(){
 
 	var centerPos = new google.maps.LatLng(-22.15, -51.425);
@@ -53,30 +45,36 @@ Map.prototype.initMap = function(){
 
 }//initMap
 
-// Map.prototype.checkFilters = function(filters){
-// 	//foreach filter
-// 	for (var i = 0; i < filters.length; i++) {
-// 		this.executeFilter(filters[i]);
+
+// Map.prototype.executeFilter = function(features, filter){
+// 	for (var i = 0; i < features.length; i++) {
+// 		var marker = this.findMarkerById(features[i].id);
+// 		if(marker != null){	//marker found
+// 			var feature_value = features[i].getAttributeValueByName(filter.attribute);
+// 			if(feature_value != null){
+// 				var filter_result = filter.queryFilter(feature_value);
+
+// 				if(filter_result === false){
+// 					marker.setVisible(false);
+// 				}
+// 			}
+// 		}
 // 	}
 // }
 
-Map.prototype.executeFilter = function(features, filter){
-	//foreach map marker, check the conditions for the filter
+//foreach feature, update map marker visibility
+Map.prototype.runMapFilter = function(features){
 	for (var i = 0; i < features.length; i++) {
 		var marker = this.findMarkerById(features[i].id);
 		if(marker != null){	//marker found
-			var feature_value = features[i].getAttributeValueByName(filter.attribute);
-			if(feature_value != null){
-				var filter_result = filter.queryFilter(feature_value);
-
-				if(filter_result === false){
-					marker.setVisible(false);
-				}
+			if(features[i].visible == false){
+				marker.setVisible(false);
 			}
 		}
 	}
 }
 
+//find marker by id or null
 Map.prototype.findMarkerById = function(id){
 	for (var i = 0; i < this.markers.length; i++) {
 		if(this.markers[i].id == id){
@@ -86,13 +84,14 @@ Map.prototype.findMarkerById = function(id){
 	return null;	//if don't find marker return null
 }
 
+//reset markers visibility
 Map.prototype.resetMarkersVisibility = function(){
-	for (var i = 0; i < this.markers.length; i++) {
-		this.markers[i].setVisible(true);
+	for (var index = 0; index < this.markers.length; index++) {
+		this.markers[index].setVisible(true);
 	}
 }
 
-
+//add markers to map
 Map.prototype.addMarkers = function (features){
 	// var self = this;
 	for (var i = 0; i < features.length; i++) {
@@ -136,6 +135,7 @@ Map.prototype.addMarkers = function (features){
 	}
 }
 
+//click event window
 Map.prototype.addInfoWindow = function(map, marker){
 	var infoWindow = new google.maps.InfoWindow({
 		content: marker.content

@@ -2,6 +2,7 @@ var Feature = function(id, geodata, infodata) {
     this.id = id || null;
     this.geodata = geodata || null;
     this.infodata = new Array();
+    this.visible = true;
     
     this.getId = function(){
         return this.id;
@@ -26,6 +27,14 @@ var Feature = function(id, geodata, infodata) {
     this.setInfodata = function(infodata){
         this.infodata = infodata;
     };
+
+    this.getVisible = function(){
+        return this.visible;
+    };
+    
+    this.setVisible = function(visible){
+        this.visible = visible;
+    };
     
     this.parseAttributes(infodata);
 };
@@ -41,6 +50,16 @@ Feature.prototype.getAttributeValueByName = function(name){
     for(var i = 0; i < this.infodata.length; i++){
         if(this.infodata[i].getName() == name){
             return this.infodata[i].getValue()
+        }
+    }
+    return null;  //if don't find marker return -1
+}
+
+Feature.prototype.getAttributeTypeByName = function(name){
+    
+    for(var i = 0; i < this.infodata.length; i++){
+        if(this.infodata[i].getName() == name){
+            return this.infodata[i].getType()
         }
     }
     return null;  //if don't find marker return -1

@@ -1,4 +1,4 @@
-google.load('visualization', '1', {'packages':['corechart']});
+google.load('visualization', '1', {'packages':['corechart', 'bar', 'line', ]});
 
 $(document).ready(function(){
 
@@ -14,15 +14,16 @@ $(document).ready(function(){
 
 	setTimeout(function() {
 		app1.addMarkers();
-		app1.addFilter("Valores maior que 5", "valor", "more than", 5);
-		// app1.addFilter("Valores maior que 3", "valor", "less than", 3);
+		app1.addFilter("Valores maiores que 5", "valor", "more than", 5);
+		// app1.addFilter("Valores menores que 3", "valor", "less than", 3);
 		app1.addFilter("Categoria igual a 'cat3'", "categoria", "equal", "cat3");
+		//app1.addFilter("Marcadores Ativos", "ativo", "equal", true);
+		app1.addMapVisualization("Mapa de Calor", "heatmap");
+		//app1.addMapVisualization("Linhas", "line");
+		//app1.addChartVisualization("Gráfico", "chart", "pie");
 	}, 1500);
 
-	app1.addMapVisualization("Mapa de Calor", "heatmap");
 
-	// app1.addMapVisualization("Linhas", "line");
-	//app1.addChartVisualization("Gráfico", "chart", "pie");
 	
 	
 	/*======================================================*/
@@ -70,6 +71,7 @@ $(document).ready(function(){
 						'</select>';
 			
 			content += '<label for="inputFiltroAddValue">Valor</label><input type="text" id="inputFiltroAddValue">';
+			//more than average value
 
 			content += '</div>';
 

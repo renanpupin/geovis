@@ -42,3 +42,7 @@ Visualization.prototype.printVisualization = function(){
 	console.log(this.type);
 	console.log(this.visualization);
 }
+
+Visualization.prototype.remove = function(){
+	this.visualization.destroy();
+}
