@@ -50,6 +50,7 @@ App.prototype.initMap = function(){
 App.prototype.addFilter = function(name, attribute, condition, value){
 	this.filters.push(new Filter(name, attribute, condition, value));
 	
+	//verificar se o atributo é booleano para executar o filtro ("true" é diferente de true)
 	//this.map.executeFilter(this.data.features, this.filters[this.filters.length-1]);	//execute the last inserted filter
 
 	this.executeFilter(this.filters[this.filters.length-1]);
