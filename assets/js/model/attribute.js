@@ -28,7 +28,7 @@ var Attribute = function(name, value) {
 	};
 
 	//on construct methods
-	this.type = this.findAttributeType();
+	this.findAttributeType();
 };
 
 Attribute.prototype.findAttributeType = function(){

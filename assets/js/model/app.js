@@ -124,6 +124,23 @@ App.prototype.toggleHeatmap = function(){
 	}
 }
 
+App.prototype.toggleMarkers = function(){
+	this.map.toggleMarkers();
+	//reaply filters when visible
+}
+
+App.prototype.toggleLine = function(name){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].name === nam){
+			this.visualizations[index].visualization.toggleLine(this.map);
+		}
+	}
+}
+
+App.prototype.toggleChart = function(name){
+	//toggle chart
+}
+
 App.prototype.addMarkers = function(){
 	this.map.addMarkers(this.data.features);
 }

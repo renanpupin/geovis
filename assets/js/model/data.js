@@ -28,6 +28,50 @@ Data.prototype.parseFeatures = function(){
 	}
 }
 
+Data.prototype.findLargestAttributeValueFeatures = function(attribute){
+	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
+		var largest_features = [];
+		var largest_value;
+		for(var index = 0; index < this.features.length; index++){
+			if(largest_features.length == 0){
+				largest_features.push(this.features[index]);
+				largest_value = this.features[index].getAttributeValueByName(attribute);
+			}else if(largest_value == this.features[index].getAttributeValueByName(attribute)){
+				largest_features.push(this.features[index]);
+			}else if(largest_value < this.features[index].getAttributeValueByName(attribute)){
+				largest_features = [];
+				largest_features.push(this.features[index]);
+				largest_value = this.features[index].getAttributeValueByName(attribute);
+			}
+		}
+		return largest_features;
+	}else{
+		console.log("o tipo do atributo deve ser um número");
+	}
+}
+
+Data.prototype.findLowestAttributeValueFeatures = function(attribute){
+	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
+		var lowest_features = [];
+		var lowest_value;
+		for(var index = 0; index < this.features.length; index++){
+			if(lowest_features.length == 0){
+				lowest_features.push(this.features[index]);
+				lowest_value = this.features[index].getAttributeValueByName(attribute);
+			}else if(lowest_value == this.features[index].getAttributeValueByName(attribute)){
+				lowest_features.push(this.features[index]);
+			}else if(lowest_value > this.features[index].getAttributeValueByName(attribute)){
+				lowest_features = [];
+				lowest_features.push(this.features[index]);
+				lowest_value = this.features[index].getAttributeValueByName(attribute);
+			}
+		}
+		return lowest_features;
+	}else{
+		console.log("o tipo do atributo deve ser um número");
+	}
+}
+
 Data.prototype.calculateAverageAttributeValue = function(attribute){
 	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
 		var average = 0;

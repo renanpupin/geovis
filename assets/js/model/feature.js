@@ -52,7 +52,7 @@ Feature.prototype.getAttributeValueByName = function(name){
             return this.infodata[i].getValue()
         }
     }
-    return null;  //if don't find marker return -1
+    return null;  //if don't find marker return null
 }
 
 Feature.prototype.getAttributeTypeByName = function(name){
@@ -62,7 +62,7 @@ Feature.prototype.getAttributeTypeByName = function(name){
             return this.infodata[i].getType()
         }
     }
-    return null;  //if don't find marker return -1
+    return null;  //if don't find marker return null
 }
 
 Feature.prototype.getFeatureLat = function(){

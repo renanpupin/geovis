@@ -91,6 +91,13 @@ Map.prototype.resetMarkersVisibility = function(){
 	}
 }
 
+//reset markers visibility
+Map.prototype.toggleMarkers = function(){
+	for (var index = 0; index < this.markers.length; index++) {
+		this.markers[index].setMap(this.markers[index].getMap() === null ? this.gmap : null);
+	}
+}
+
 //add markers to map
 Map.prototype.addMarkers = function (features){
 	// var self = this;

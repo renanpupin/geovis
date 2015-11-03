@@ -140,7 +140,7 @@ $(document).ready(function(){
 
 	$("#adicionarVisualizacao").click(function(){
 
-		var content = '<div class="row">';
+		var content = '<div class="row rowVisType">';
 
 		content += '<label for="inputVisAddName">Nome da visualização</label><input type="text" id="inputVisAddName">';
 
@@ -150,6 +150,22 @@ $(document).ready(function(){
 						'<option value="line">Linha</option>'+
 					'</select>'+
 					'</div>';
+
+		$(document).on("change", "#inputVisAddType", function(){
+			if($(this).val() == "chart"){
+				var chart_type_content = '<div class="row rowChartType"><label for="inputVisAddChartType">Tipo do gráfico</label><select id="inputVisAddChartType">'+
+										  	  '<option value="pie">Pizza</option>'+
+										  	  '<option value="line">Linha</option>'+
+										  	  '<option value="bar">Barra</option>'+
+										  '</select>'+
+										  '</div>';
+				$(".rowVisType").after(chart_type_content);
+			}else{
+				if($("#inputVisAddChartType").length > 0){
+					$(".rowChartType").remove();
+				}
+			}
+		});
 
 		$( "#modal" ).Modal({
 			"title": "Adicionar Visualização",
@@ -235,5 +251,16 @@ $(document).ready(function(){
 		});
 	});
 	/*======================================================*/
-
+	
+	//console.log(app.data.findLowestAttributeValueFeatures('valor'));
+	//console.log(app.data.findLargestAttributeValueFeatures('valor'));
+	//console.log(app.data.calculateAverageAttributeValue('valor'));
 });
+
+function layerVis(layer){
+	if(layer === "markers"){
+		app.toggleMarkers();
+	} else if(layer === "heatmap"){
+		app.toggleHeatmap();
+	}
+}

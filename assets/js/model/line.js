@@ -36,3 +36,7 @@ Line.prototype.updateLineData = function(features){
 Line.prototype.destroy = function(){
     this.line.setMap(null);
 }
+
+Line.prototype.toggleLine = function(map){
+    this.line.setMap(this.line.getMap() ? null : map.gmap);
+}
