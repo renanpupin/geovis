@@ -195,7 +195,7 @@ var json_data = [
             },
             {
                 "name": "categoria",
-                "value": "cat3",
+                "value": "cat1",
             },
             {
                 "name": "valor",
@@ -273,7 +273,7 @@ var json_data = [
             },
             {
                 "name": "categoria",
-                "value": "cat3",
+                "value": "cat1",
             },
             {
                 "name": "valor",

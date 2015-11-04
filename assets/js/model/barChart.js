@@ -1,7 +1,9 @@
-var BarChart = function(features, attributes) {
+var BarChart = function(name, features, attributes, processed_data, div) {
     this.barChart = null;
+    this.name = name || null;
     this.features = features || null;
     this.attributes = attributes || null;
+    this.processed_data = processed_data || null;
 
     this.getBarChart = function(){
         return this.barChart;
@@ -11,27 +13,28 @@ var BarChart = function(features, attributes) {
         this.barChart = barChart;
     };
 
-    this.initChart();
+    this.initChart(div);
 };
 
-BarChart.prototype.initChart = function(){
-    var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
-        ]);
+BarChart.prototype.initChart = function(div){
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', this.attributes);
+      data.addColumn('number', 'Ocorrências');
+      data.addRows(this.processed_data);
 
         var options = {
-          chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-          },
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
+                      'title': this.name,
+                      'width':350,
+                      'height':250,
+                      bar: {groupWidth: "50%"},
+                      legend: { position: 'bottom', maxLines: 1 },
+                      hAxis: {
+                        minValue: 0
+                      },
+                 };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.BarChart(div);
     chart.draw(data, options);
 }

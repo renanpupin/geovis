@@ -32,9 +32,10 @@
         <div id="layer-control" class="">
             <span class="layers">
                 <h3>Camadas</h3>
-                <p><input id="1" value="gmaplayer" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa</p>
-                <p><input id="2" value="markers" type="checkbox" onchange="layerVis(this.value)" checked/> Marcadores</p>
-                <p><input id="3" value="heatmap" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa de Calor</p>
+                <!-- <p><input id="1" value="gmaplayer" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa</p> -->
+                <p><input id="1" value="markers" type="checkbox" onchange="layerVis(this.value)" checked/> Marcadores</p>
+                <p><input id="2" value="heatmap" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa de Calor</p>
+                <p><input id="3" value="chart" type="checkbox" onchange="layerVis(this.value)" checked/> Gráficos</p>
             </span>
             <span class="layers-toggle" title="Camadas">
                 <a href="javascript:void(0)">
@@ -184,13 +185,13 @@
         <script src="assets/js/model/attribute.js"></script>
         <script src="assets/js/model/feature.js"></script>
         <script src="assets/js/model/data.js"></script>
-        <!--<script src="assets/js/model/line.js"></script>-->
         <script src="assets/js/model/heatmap.js"></script>
+        <!--<script src="assets/js/model/line.js"></script>-->
         <!--<script src="assets/js/model/polarChart.js"></script>-->
         <!--<script src="assets/js/model/lineChart.js"></script>-->
-        <!--<script src="assets/js/model/barChart.js"></script>-->
-        <!--<script src="assets/js/model/pieChart.js"></script>-->
-        <!--<script src="assets/js/model/chart.js"></script>-->
+        <script src="assets/js/model/chart.js"></script>
+        <script src="assets/js/model/barChart.js"></script>
+        <script src="assets/js/model/pieChart.js"></script>
         <script src="assets/js/model/visualization.js"></script>
         <script src="assets/js/model/filter.js"></script>
         <script src="assets/js/model/map.js"></script>

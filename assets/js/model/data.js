@@ -97,7 +97,7 @@ Data.prototype.countAttributeOcurrences = function(attribute){
 
     for(var index = 0; index < data_array.length; index++){
     	
-    	var value = data_array[i];
+    	var value = data_array[index];
         if ( value !== prev ) {
             keys.push(value);
             ocurrences.push(1);

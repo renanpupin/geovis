@@ -32,7 +32,7 @@ var Visualization = function(name, type, map, data, attribute, chart_type) {
 	}else if(this.type === "line"){
 		this.visualization = new Line(map, data);
 	}else if(this.type === "chart"){
-		this.visualization = new Chart(data, attribute, chart_type);
+		this.visualization = new Chart(name, data, attribute, chart_type);
 	}
 	
 };

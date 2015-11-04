@@ -1,7 +1,9 @@
-var PieChart = function(features, attributes) {
+var PieChart = function(name, features, attributes, processed_data, div) {
     this.pieChart = null;
+    this.name = name || null;
     this.features = features || null;
     this.attributes = attributes || null;
+    this.processed_data = processed_data || null;
 
     this.getPieChart = function(){
         return this.pieChart;
@@ -11,29 +13,24 @@ var PieChart = function(features, attributes) {
         this.pieChart = pieChart;
     };
 
-    this.initChart();
+    this.initChart(div);
 };
 
-PieChart.prototype.initChart = function(){
-    //console.log(this.features);
+PieChart.prototype.initChart = function(div){
+
     // Create the data table.
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-      ['Mushrooms', 3],
-      ['Onions', 1],
-      ['Olives', 1],
-      ['Zucchini', 1],
-      ['Pepperoni', 2]
-    ]);
+    data.addColumn('string', this.attributes);
+    data.addColumn('number', 'Ocorrências');
+    data.addRows(this.processed_data);
 
     // Set chart options
-    var options = {'title':'How Much Pizza I Ate Last Night',
-                   'width':400,
-                   'height':300};
+    var options = {'title': this.name,
+                   'width': 350,
+                   'height': 250
+                };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.PieChart(div);
     chart.draw(data, options);
 }

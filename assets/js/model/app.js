@@ -149,9 +149,9 @@ App.prototype.addMapVisualization = function(name, type){
 	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, null, null));
 };
 
-App.prototype.addChartVisualization = function(name, type, chart_type){
+App.prototype.addChartVisualization = function(name, type, attributes, chart_type){
 	//TODO: chart on div, on map, with filters, without filters
-	this.visualizations.push(new Visualization(name, type, null, this.data, "attribute", chart_type));
+	this.visualizations.push(new Visualization(name, type, null, this.data, attributes, chart_type));
 };
 
 App.prototype.removeVisualization = function(name){

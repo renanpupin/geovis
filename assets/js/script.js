@@ -14,13 +14,14 @@ $(document).ready(function(){
 
 	setTimeout(function() {
 		app1.addMarkers();
-		app1.addFilter("Valores maiores que 5", "valor", "more than", 5);
+		// app1.addFilter("Valores maiores que 5", "valor", "more than", 5);
 		// app1.addFilter("Valores menores que 3", "valor", "less than", 3);
-		app1.addFilter("Categoria igual a 'cat3'", "categoria", "equal", "cat3");
+		// app1.addFilter("Categoria igual a 'cat3'", "categoria", "equal", "cat3");
 		//app1.addFilter("Marcadores Ativos", "ativo", "equal", true);
 		app1.addMapVisualization("Mapa de Calor", "heatmap");
-		//app1.addMapVisualization("Linhas", "line");
-		//app1.addChartVisualization("Gráfico", "chart", "pie");
+		// app1.addMapVisualization("Linhas", "line");
+		app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
+		app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
 	}, 1500);
 
 
@@ -185,6 +186,11 @@ $(document).ready(function(){
 		if(selectedVis != "" && selectedVis != null){
 			app1.removeVisualization(selectedVis);
 			$('option:selected', "#inputVisRemove").remove();
+			$(".chartDiv").each(function(){
+				if($(this).attr("chart-name") == selectedVis){
+					$(this).remove();
+				}
+			});
 			console.log("OK");
 		}else{
 			console.log("erro ao remover");
@@ -255,6 +261,7 @@ $(document).ready(function(){
 	//console.log(app.data.findLowestAttributeValueFeatures('valor'));
 	//console.log(app.data.findLargestAttributeValueFeatures('valor'));
 	//console.log(app.data.calculateAverageAttributeValue('valor'));
+
 });
 
 function layerVis(layer){
@@ -263,4 +270,13 @@ function layerVis(layer){
 	} else if(layer === "heatmap"){
 		app.toggleHeatmap();
 	}
+}
+
+function makeDivDraggable(div){
+	$(div).draggable({
+      scroll: true, 
+      scrollSpeed: 100, 
+      scrollSensitivity: 100,
+      containment: ".map-wrap"
+    });
 }

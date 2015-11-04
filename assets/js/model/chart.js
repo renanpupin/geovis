@@ -1,5 +1,6 @@
-var Chart = function(features, attributes, type) {
+var Chart = function(name, features, attributes, type) {
 	this.chart = null;
+	this.name = name || null;
 	this.attributes = attributes || null;
 	this.type = type || null;
 
@@ -9,6 +10,14 @@ var Chart = function(features, attributes, type) {
 	
 	this.setChart = function(chart){
 		this.chart = chart;
+	};
+
+	this.getName = function(){
+		return this.name;
+	};
+	
+	this.setName = function(name){
+		this.name = name;
 	};
 
 	this.getType = function(){
@@ -26,15 +35,37 @@ var Chart = function(features, attributes, type) {
 	this.setAttributes = function(attributes){
 		this.attributes = attributes;
 	};
+
+	var chart_div = document.createElement('div');
+	chart_div.className = 'chartDiv';
+	chart_div.setAttribute("chart-name", name);
+	document.getElementsByClassName('map-wrap')[0].appendChild(chart_div);
+	makeDivDraggable(chart_div);
+
+	//TODO: habilitar gráficos apenas para registros filtrados
 	
 	if(this.type === "pie"){
-		this.chart = new PieChart(features, attributes);
+		var processed_data = this.processChartData(features, attributes);
+		this.chart = new PieChart(name, features, attributes, processed_data, chart_div);
 	}else if(this.type === "line"){
 		this.chart = new LineChart(features, attributes);
 	}else if(this.type === "bar"){
-		this.chart = new BarChar(features, attributes);
+		var processed_data = this.processChartData(features, attributes);
+		this.chart = new BarChart(name, features, attributes, processed_data, chart_div);
 	}
 };
+
+Chart.prototype.processChartData = function(features, attributes){
+	var data_chart = [];
+
+	var ocurrences = features.countAttributeOcurrences(attributes);
+
+	for(var index = 0; index < ocurrences[0].length; index++){
+		data_chart[index] = [ocurrences[0][index], ocurrences[1][index]];
+	}
+
+	return data_chart;
+}
 
 Chart.prototype.printChart = function(){
 	console.log(this.chart);

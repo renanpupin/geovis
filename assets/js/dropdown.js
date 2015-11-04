@@ -46,6 +46,12 @@ Usage: $("#navbarMenu").dropdown();
                 $(this).addClass('openSub');
             });
 
+            $(".submenu ul li").click(function(e){
+                console.log($(this).parents().eq(1));
+                $(this).parents().eq(1).removeClass('active openSub');
+                $(this).parents().eq(0).slideUp();
+            });
+
             $("body, html").click(function(){
                 $(this).find("ul li").removeClass('active openSub');
                 $(this).find("ul li ul").stop().slideUp();
