@@ -25,10 +25,11 @@ PieChart.prototype.initChart = function(div){
     data.addRows(this.processed_data);
 
     // Set chart options
-    var options = {'title': this.name,
-                   'width': 350,
-                   'height': 250
-                };
+    var options = {
+        'title': this.name,
+        'width': 350,
+        'height': 250
+    };
 
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.visualization.PieChart(div);

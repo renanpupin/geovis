@@ -42,18 +42,32 @@ var Chart = function(name, features, attributes, type) {
 	document.getElementsByClassName('map-wrap')[0].appendChild(chart_div);
 	makeDivDraggable(chart_div);
 
+
 	//TODO: habilitar gráficos apenas para registros filtrados
 	
 	if(this.type === "pie"){
 		var processed_data = this.processChartData(features, attributes);
 		this.chart = new PieChart(name, features, attributes, processed_data, chart_div);
 	}else if(this.type === "line"){
-		this.chart = new LineChart(features, attributes);
+		var processed_data = this.processLineChartData(features, attributes);
+		this.chart = new LineChart(name, features, attributes, processed_data, chart_div);
 	}else if(this.type === "bar"){
 		var processed_data = this.processChartData(features, attributes);
 		this.chart = new BarChart(name, features, attributes, processed_data, chart_div);
 	}
 };
+
+Chart.prototype.processLineChartData = function(features, attributes){
+	var data_chart = [];
+
+	var media = features.calculateAverageAttributeValue(attributes);
+	
+	for(var index = 0; index < features.features.length; index++){
+		data_chart[index] = ["ID "+features.features[index].id, features.features[index].getAttributeValueByName(attributes), media, "Média = "+media];
+	}
+
+	return data_chart;
+}
 
 Chart.prototype.processChartData = function(features, attributes){
 	var data_chart = [];

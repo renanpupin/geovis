@@ -24,15 +24,20 @@ BarChart.prototype.initChart = function(div){
       data.addRows(this.processed_data);
 
         var options = {
-                      'title': this.name,
-                      'width':350,
-                      'height':250,
-                      bar: {groupWidth: "50%"},
-                      legend: { position: 'bottom', maxLines: 1 },
-                      hAxis: {
-                        minValue: 0
-                      },
-                 };
+          'title': this.name,
+          'width':350,
+          'height':250,
+          bar: {
+            groupWidth: "50%"
+          },
+          legend: {
+            position: 'bottom', 
+            maxLines: 1
+          },
+          hAxis: {
+            minValue: 0
+          },
+       };
 
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.visualization.BarChart(div);
