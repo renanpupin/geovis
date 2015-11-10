@@ -21,8 +21,8 @@ $(document).ready(function(){
 		app1.addMapVisualization("Mapa de Calor", "heatmap");
 		// app1.addMapVisualization("Linhas", "line");
 		app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
-		app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
-		app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
+		//app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
+		//app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
 	}, 1500);
 
 
@@ -162,11 +162,34 @@ $(document).ready(function(){
 										  '</select>'+
 										  '</div>';
 				$(".rowVisType").after(chart_type_content);
+				$("#inputVisAddChartType").trigger("change");
 			}else{
 				if($("#inputVisAddChartType").length > 0){
 					$(".rowChartType").remove();
+					$(".rowChartAttribute").remove();
 				}
 			}
+		});
+
+		$(document).on("change", "#inputVisAddChartType", function(){
+			if($(".rowChartAttribute").length == 0){
+					console.log($(this).val());
+				if($(this).val() == "pie" || $(this).val() == "line" || $(this).val() == "bar"){
+
+					var chart_attribute_content = '<div class="row rowChartAttribute"><label for="inputVisAddChartAttribute">Atributo</label><select id="inputVisAddChartAttribute">';
+											  
+
+					for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+						chart_attribute_content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
+					}
+
+					chart_attribute_content += '</select></div>';
+
+					$(".rowChartType").after(chart_attribute_content);
+				}
+			}/*else{
+				$(".rowChartAttribute").remove();
+			}*/
 		});
 
 		$( "#modal" ).Modal({

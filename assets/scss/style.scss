@@ -336,6 +336,12 @@ a[href^="http://maps.google.com/maps"]{
     width: 350px;
     height: auto;
     overflow: hidden;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    // left: 50%;
+    // top: 50%;
+    // margin: -125px -175px;
     @extend .shadow-1;
     &:hover{
         @extend .shadow-2;
