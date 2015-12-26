@@ -5,14 +5,18 @@ $(document).ready(function(){
 	/*======================================================*/
 	// MAP
 	/*======================================================*/
-	var app1 = new App(json_data);	//json_data - DATA LOADEAD FROM FILE
-	window.app = app1;
+	var app1 = new App();	//json_data - DATA LOADEAD FROM FILE
+	app1.initMap();
+
+	//DEBUG MODE
+	//var app1 = new App(json_data);	//json_data - DATA LOADEAD FROM FILE
+	// app1.initMap();
+	// window.app = app1;	//just to debug objects
 
 	var clickedMarker = null;
 
-	app1.initMap();
 
-	setTimeout(function() {
+	/*setTimeout(function() {
 		app1.addMarkers();
 		// app1.addFilter("Valores maiores que 5", "valor", "more than", 5);
 		// app1.addFilter("Valores menores que 3", "valor", "less than", 3);
@@ -21,9 +25,9 @@ $(document).ready(function(){
 		app1.addMapVisualization("Mapa de Calor", "heatmap");
 		// app1.addMapVisualization("Linhas", "line");
 		app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
-		app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
-		app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
-	}, 1500);
+		//app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
+		//app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
+	}, 1500);*/
 
 
 	
@@ -247,22 +251,51 @@ $(document).ready(function(){
 
 	function carregarDados(){
 
-		var arquivo_json = $("#inputCarregarArquivo").val();
+		if (FileReader){
+			if (window.File && window.FileReader && window.FileList && window.Blob) {
 
-		if(arquivo_json != "" && arquivo_json != null){
+				var arquivo = document.getElementById('inputCarregarArquivo').files[0];
+				// alert(arquivo);
 
-			// LOAD JSON FROM FILE: http://jsfiddle.net/L85h4p96/
+				if (arquivo) {
 
-			app1 = new App(arquivo_json);
-			app1.initMap();
+					var freader = new FileReader();
 
-			setTimeout(function() {
-				app1.addMarkers();
-			}, 1500);
+			        freader.onload = function(e) {
+			        	
 
-			console.log("OK");
+			        	try{
+			        		var file_content = e.target.result;
+					        file_content = file_content.replace(/\t/g, "");	//removing tabs
+							file_content = file_content.replace(/\n/g, "");	//removing new line
+							file_content = file_content.replace(/ /g, "");	//removing spaces
+					        
+				        	file_content = JSON.parse(file_content);
+
+				        	app1.loadData(file_content);
+
+							setTimeout(function() {
+								app1.addMarkers();
+							}, 1500);
+
+							console.log("LEITURA DO ARQUIVO OK");
+
+					    }catch(e){
+							alert("Erro ao ler o arquivo de entrada, verifique se seu arquite está seguindo o padrão. <br>Erro: '"+e+"'");
+					    }
+			      	}
+
+			      	freader.readAsText(arquivo);
+
+
+				}else{
+					alert("Falha ao carregar o arquivo");
+				}
+			}else{
+				alert("Desculpe, mas seu navegador não suporta algumas funcionalidades desta aplicação!");
+			}
 		}else{
-			console.log("erro ao carregar os dados");
+			alert("Desculpe, mas seu browser não suporte esta aplicação. Atualize para uma versão mais recente!");
 		}
 
 	}
