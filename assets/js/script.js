@@ -21,8 +21,6 @@ $(document).ready(function(){
 		app1.addMapVisualization("Mapa de Calor", "heatmap");
 		// app1.addMapVisualization("Linhas", "line");
 		app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
-		//app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
-		//app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
 	}, 1500);
 
 
@@ -285,6 +283,31 @@ $(document).ready(function(){
 	//console.log(app.data.findLowestAttributeValueFeatures('valor'));
 	//console.log(app.data.findLargestAttributeValueFeatures('valor'));
 	//console.log(app.data.calculateAverageAttributeValue('valor'));
+
+	//remover gráfico pelo botão
+	$("body").on("click", ".chartClose", function(){
+		var name = $(this).parent().attr("chart-name");
+		console.log(name);
+		if(name != "" && name != null){
+			app1.removeVisualization(name);
+			if($(this).parent().attr("chart-name") == name){
+				$(this).parent().remove();
+			}
+		}
+	});
+
+	$("body").on("click", ".chartToggle", function(){
+		var self = $(this);
+		console.log($(self).parent().hasClass("open"))
+		// var graph_window = $(self).siblings().not(".chartClose");
+		if($(self).parent().hasClass("open")){
+			$(self).parent().removeClass("open");
+			$(self).siblings().not(".chartClose").css("height","45px");
+		}else{
+			$(self).parent().addClass("open");
+			$(self).siblings().not(".chartClose").addClass("open").css("height","250px");
+		}
+	});
 
 });
 

@@ -345,5 +345,41 @@ a[href^="http://maps.google.com/maps"]{
     @extend .shadow-1;
     &:hover{
         @extend .shadow-2;
-    }   
+    }
+    .open{
+        @include transition(height .3s ease);
+    }
+    .chartClose{
+        background-color: white;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        display: block;
+        float: left;
+        top: 5px;
+        right: 5px;
+        border: 1px solid #444;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .chartToggle{
+        background-color: white;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        display: block;
+        float: left;
+        top: 5px;
+        right: 30px;
+        border: 1px solid #444;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+        // @extend .shadow-2;
+        
+    }
 }

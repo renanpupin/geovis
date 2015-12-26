@@ -56,6 +56,27 @@ App.prototype.addFilter = function(name, attribute, condition, value){
 	this.executeFilter(this.filters[this.filters.length-1]);
 
 	this.map.runMapFilter(this.data.features);
+
+	//find heatmap visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "heatmap"){
+			this.visualizations[index].visualization.updateHeatmapData(this.data.features);
+		}
+	}
+
+	//find line visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "line"){
+			this.visualizations[index].visualization.updateLineData(this.data.features);
+		}
+	}
+
+	//find chart visualization and update data based on filters
+	/*for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "chart"){
+			this.visualizations[index].visualization.updateChartData(this.data.features);
+		}
+	}*/
 }
 
 //apply filter

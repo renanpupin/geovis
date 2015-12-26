@@ -37,8 +37,9 @@ var Chart = function(name, features, attributes, type) {
 	};
 
 	var chart_div = document.createElement('div');
-	chart_div.className = 'chartDiv';
+	chart_div.className = 'chartDiv open';
 	chart_div.setAttribute("chart-name", name);
+
 	document.getElementsByClassName('map-wrap')[0].appendChild(chart_div);
 	makeDivDraggable(chart_div);
 
@@ -55,6 +56,24 @@ var Chart = function(name, features, attributes, type) {
 		var processed_data = this.processChartData(features, attributes);
 		this.chart = new BarChart(name, features, attributes, processed_data, chart_div);
 	}
+
+	//console.log($(chart_div).find("div:first").addClass("open"));
+
+
+	var toggle_span = document.createElement('span');
+	toggle_span.className = 'chartToggle';
+	toggle_span.innerHTML = "-";
+	chart_div.appendChild(toggle_span);
+
+	var close_span = document.createElement('span');
+	close_span.className = 'chartClose';
+	close_span.innerHTML = "x";
+	chart_div.appendChild(close_span);
+
+	// var child = document.createElement('div');
+	// child.innerHTML = "<p>suave</p>";
+	// // child = child.firstChild;
+	// chart_div.appendChild(child);
 };
 
 Chart.prototype.processLineChartData = function(features, attributes){
