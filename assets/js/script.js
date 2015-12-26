@@ -21,6 +21,8 @@ $(document).ready(function(){
 		app1.addMapVisualization("Mapa de Calor", "heatmap");
 		// app1.addMapVisualization("Linhas", "line");
 		app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
+		app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
+		app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
 	}, 1500);
 
 
