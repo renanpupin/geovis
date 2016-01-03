@@ -155,7 +155,9 @@ clearfix.scss
   .clearfix:after {
     clear: both; }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -211,7 +213,7 @@ grid.scss
   clear: both; }
 
 @media only screen and (max-width: 768px) {
-  [class*='grid-xs-'] {
+  [class*="grid-xs-"] {
     float: left; }
   .grid-xs-1 {
     width: 8.33333333%;
@@ -359,7 +361,7 @@ grid.scss
     left: 100%; } }
 
 @media only screen and (min-width: 768px) {
-  [class*='grid-s-'] {
+  [class*="grid-s-"] {
     float: left; }
   .container {
     width: 750px; }
@@ -509,7 +511,7 @@ grid.scss
     left: 100%; } }
 
 @media only screen and (min-width: 992px) {
-  [class*='grid-m-'] {
+  [class*="grid-m-"] {
     float: left; }
   .container {
     width: 970px; }
@@ -659,7 +661,7 @@ grid.scss
     left: 100%; } }
 
 @media only screen and (min-width: 1200px) {
-  [class*='grid-l-'] {
+  [class*="grid-l-"] {
     float: left; }
   .container {
     width: 1170px; }
@@ -1120,11 +1122,11 @@ button[disabled=disabled], button:disabled {
     background-color: #ddd; }
 
 table tr {
-  -webkit-transition: background-color .25s ease;
-  -moz-transition: background-color .25s ease;
-  -o-transition: background-color .25s ease;
-  -ms-transition: background-color .25s ease;
-  transition: background-color .25s ease; }
+  -webkit-transition: background-color 0.25s ease;
+  -moz-transition: background-color 0.25s ease;
+  -o-transition: background-color 0.25s ease;
+  -ms-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease; }
 
 table td, table th {
   padding: 15px 5px;
@@ -1501,37 +1503,56 @@ i, input[type="checkbox"] {
   z-index: 99999;
   display: none; }
 
-#layer-control {
+#side-controls {
   position: fixed;
   left: -177px;
   top: 150px;
   transition: .5s linear;
   z-index: 1000;
   color: #676767; }
-  #layer-control.open {
+  #side-controls.open {
     left: 0px; }
-  #layer-control .layers {
+  #side-controls .tabs {
     width: 175px;
     float: left;
     border: 1px solid #D6D6D6;
-    background-color: #f7f7f7; }
-    #layer-control .layers h3 {
+    background-color: #f7f7f7;
+    display: none; }
+    #side-controls .tabs h3 {
       padding: 5px;
       border-bottom: 1px solid #D6D6D6;
       margin-top: 0;
       font-weight: 400;
       text-align: center;
       font-size: 18px; }
-    #layer-control .layers p {
+    #side-controls .tabs p {
       padding-left: 5px;
       padding-right: 5px; }
-  #layer-control .layers-toggle {
+    #side-controls .tabs.active {
+      display: block; }
+  #side-controls .side-toggle {
     float: left;
     padding: 5px;
-    background-color: #757575; }
-    #layer-control .layers-toggle a {
+    background-color: #9b9b9b; }
+    #side-controls .side-toggle a {
       color: white;
       text-decoration: none; }
+    #side-controls .side-toggle:hover i {
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      transform: scale(1.1); }
+    #side-controls .side-toggle[data-target="layers"] {
+      top: 0px;
+      left: 0px;
+      position: relative; }
+    #side-controls .side-toggle[data-target="filters"] {
+      top: 35px;
+      left: -34px;
+      position: relative; }
+    #side-controls .side-toggle.active {
+      background-color: #4f4f4f; }
 
 #nav {
   position: absolute;

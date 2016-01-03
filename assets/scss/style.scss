@@ -97,7 +97,7 @@ i, input[type="checkbox"]{
 //=====================================
 //LAYERS
 //=====================================
-#layer-control{
+#side-controls{
     position: fixed;
     left: -177px;
     top: 150px;
@@ -107,7 +107,7 @@ i, input[type="checkbox"]{
     &.open{
         left: 0px;
     }
-    .layers{
+    .tabs{
         width: 175px;
         float: left;
         border: 1px solid #D6D6D6;
@@ -126,19 +126,39 @@ i, input[type="checkbox"]{
             padding-left: 5px;
             padding-right: 5px;
         }
+        display: none;
+        &.active{
+            display: block;
+        }
     }
-    .layers-toggle{
+    .side-toggle{
         float: left;
-        // width: 25px;
-        // height: 25px;
         padding: 5px;
-        background-color: #757575;
+        background-color: lighten(#757575, 15%);
         a{
             color: white;
             text-decoration: none;
         }
+        &:hover{
+            i{
+                @include scale(1.1);
+                // @include transition(all .3s ease);
+            }
+        }
+        &[data-target="layers"]{
+            top: 0px;
+            left: 0px;
+            position: relative;
+        }
+        &[data-target="filters"]{
+            top: 35px;
+            left: -34px;
+            position: relative;
+        }
+        &.active{
+            background-color: darken(#757575, 15%);
+        }
     }
-
 }
 //=====================================
 //NAV

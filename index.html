@@ -29,19 +29,31 @@
         <span class="preloader"></span>
         
         <!-- LAYER CONTROL -->
-        <div id="layer-control" class="">
-            <span class="layers">
+        <div id="side-controls" class="">
+            <span class="layers tabs active">
                 <h3>Camadas</h3>
-                <!-- <p><input id="1" value="gmaplayer" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa</p> -->
-                <p><input id="1" value="markers" type="checkbox" onchange="layerVis(this.value)" checked/> Marcadores</p>
-                <p><input id="2" value="heatmap" type="checkbox" onchange="layerVis(this.value)" checked/> Mapa de Calor</p>
-                <p><input id="3" value="chart" type="checkbox" onchange="layerVis(this.value)" checked/> Gráficos</p>
+                <p class="layerItem"><input id="layer_1" value="markers" type="checkbox" class="toggleLayers" checked/> Marcadores</p>
+                <p class="layerItem"><input id="layer_2" value="heatmap" type="checkbox" class="toggleLayers" checked/> Mapa de Calor</p>
+                <p class="layerItem"><input id="layer_3" value="chart" type="checkbox" class="toggleLayers" checked/> Gráficos</p>
             </span>
-            <span class="layers-toggle" title="Camadas">
+            <span class="filters tabs">
+                <h3>Filtros</h3>
+                <p class="filterItem"><input id="filter_1" value="markers" type="checkbox" class="toggleFilters" checked/> Filtro 1</p>
+                <p class="filterItem"><input id="filter_2" value="heatmap" type="checkbox" class="toggleFilters" checked/> Filtro 2</p>
+                <p class="filterItem"><input id="filter_3" value="chart" type="checkbox" class="toggleFilters" checked/> Filtro 3</p>
+            </span>
+
+            <span class="side-toggle" data-target="layers" title="Camadas">
                 <a href="javascript:void(0)">
                     <i class="material-icons">layers</i>
                 </a>
             </span>
+            <span class="side-toggle" data-target="filters" title="Filtros">
+                <a href="javascript:void(0)">
+                    <i class="material-icons">details</i>
+                </a>
+            </span>
+
         </div>
 
         <div class="wrapper">

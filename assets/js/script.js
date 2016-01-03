@@ -5,7 +5,7 @@ $(document).ready(function(){
 	/*======================================================*/
 	// MAP
 	/*======================================================*/
-	var app1 = new App();	//json_data - DATA LOADEAD FROM FILE
+	var app1 = new App();
 	app1.initMap();
 
 	//DEBUG MODE
@@ -38,8 +38,33 @@ $(document).ready(function(){
 	$("#nav").dropdown();
 
 
-	$(".layers-toggle").click(function(){
-		$("#layer-control").toggleClass("open");
+	$(".side-toggle").click(function(){
+
+		$(".side-toggle").removeClass("active");
+		$(this).addClass("active");
+
+		var target = $(this).attr("data-target");
+
+		if(target == "layers"){
+			if(!($(".tabs.layers").hasClass("active") && $("#side-controls").hasClass("open"))){
+				$(".tabs.filters").removeClass("active");
+				$(".tabs.layers").addClass("active");
+				$("#side-controls").addClass("open");
+			}else{
+				$(".side-toggle").removeClass("active");
+				$("#side-controls").removeClass("open");
+			}
+		}else{
+			if(!($(".tabs.filters").hasClass("active") && $("#side-controls").hasClass("open"))){
+				$(".tabs.layers").removeClass("active");
+				$(".tabs.filters").addClass("active");
+				$("#side-controls").addClass("open");
+			}else{
+				$(".side-toggle").removeClass("active");
+				$("#side-controls").removeClass("open");
+			}
+		}
+
 	});
 
 	function adicionarFiltro(){
@@ -61,6 +86,8 @@ $(document).ready(function(){
 
 		if(app1.data.features.length > 0){
 			var content = '<div class="row">';
+
+			content += '<label for="inputFiltroAddName">Nome do filtro</label><input type="text" id="inputFiltroAddName">';
 
 			content += '<label for="inputFiltroAddAttribute">Atributo</label><select id="inputFiltroAddAttribute">';
 
@@ -112,10 +139,11 @@ $(document).ready(function(){
 
 		var content = '<div class="row">';
 
-		content += '<label for="inputFilterRemove">Seleciona o filtro</label><select id="inputFilterRemove">'+
+		content += '<label for="inputFilterRemove">Selecione o filtro</label><select id="inputFilterRemove">'+
 				   '</div>';
 
 		for(var i = 0; i < app1.filters.length; i++){
+			console.log(app1.filters);
 			content += '<option value="'+app1.filters[i].name+'">'+app1.filters[i].name+'</option>';
 		}
 
@@ -135,15 +163,73 @@ $(document).ready(function(){
 	function adicionarVisualizacao(){
 		var name = $("#inputVisAddName").val();
 		var type = $("#inputVisAddType").val();
-
-		if(name != "" && type != ""){
-			app1.addMapVisualization(name, type);
-			console.log("OK");
+		var attribute = $("#inputVisAddChartAttribute").val();
+		var chart_type = $("#inputVisAddChartType").val();
+		
+		//app1.addMapVisualization("Mapa de Calor", "heatmap");
+		// app1.addMapVisualization("Linhas", "line");
+		//app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
+		
+		if(type !== "chart"){
+			if(name != "" && type != ""){
+				app1.addMapVisualization(name, type);
+				console.log("OK");
+				$("#modalClose").trigger("click");	//close modal
+			}else{
+				console.log("erro no form");
+				alert("Preencha todos os campos!");
+			}
 		}else{
-			console.log("erro no form");
+			if(name != "" && type != "" && attribute != "" && chart_type != ""){
+				app1.addChartVisualization(name, type, attribute, chart_type);
+				console.log("OK");
+				$("#modalClose").trigger("click");	//close modal
+			}else{
+				console.log("erro no form");
+				alert("Preencha todos os campos!");
+			}
+
 		}
 	}
 
+	$(document).on("change", "#inputVisAddType", function(){
+		if($(this).val() == "chart"){
+			var chart_type_content = '<div class="row rowChartType"><label for="inputVisAddChartType">Tipo do gráfico</label><select id="inputVisAddChartType">'+
+									  	  '<option value="pie">Pizza</option>'+
+									  	  '<option value="line">Linha</option>'+
+									  	  '<option value="bar">Barra</option>'+
+									  '</select>'+
+									  '</div>';
+			$(".rowVisType").after(chart_type_content);
+			$("#inputVisAddChartType").trigger("change");
+		}else{
+			if($("#inputVisAddChartType").length > 0){
+				$(".rowChartType").remove();
+				$(".rowChartAttribute").remove();
+			}
+		}
+	});
+
+	$(document).on("change", "#inputVisAddChartType", function(){
+		if($(".rowChartAttribute").length == 0){
+				console.log($(this).val());
+			if($(this).val() == "pie" || $(this).val() == "line" || $(this).val() == "bar"){
+
+				var chart_attribute_content = '<div class="row rowChartAttribute"><label for="inputVisAddChartAttribute">Atributo</label><select id="inputVisAddChartAttribute">';
+
+				for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+					chart_attribute_content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
+				}
+
+				chart_attribute_content += '</select></div>';
+
+				$(".rowChartType").after(chart_attribute_content);
+			}
+		}/*else{
+			$(".rowChartAttribute").remove();
+		}*/
+	});
+	
 	$("#adicionarVisualizacao").click(function(){
 
 		var content = '<div class="row rowVisType">';
@@ -157,44 +243,6 @@ $(document).ready(function(){
 					'</select>'+
 					'</div>';
 
-		$(document).on("change", "#inputVisAddType", function(){
-			if($(this).val() == "chart"){
-				var chart_type_content = '<div class="row rowChartType"><label for="inputVisAddChartType">Tipo do gráfico</label><select id="inputVisAddChartType">'+
-										  	  '<option value="pie">Pizza</option>'+
-										  	  '<option value="line">Linha</option>'+
-										  	  '<option value="bar">Barra</option>'+
-										  '</select>'+
-										  '</div>';
-				$(".rowVisType").after(chart_type_content);
-				$("#inputVisAddChartType").trigger("change");
-			}else{
-				if($("#inputVisAddChartType").length > 0){
-					$(".rowChartType").remove();
-					$(".rowChartAttribute").remove();
-				}
-			}
-		});
-
-		$(document).on("change", "#inputVisAddChartType", function(){
-			if($(".rowChartAttribute").length == 0){
-					console.log($(this).val());
-				if($(this).val() == "pie" || $(this).val() == "line" || $(this).val() == "bar"){
-
-					var chart_attribute_content = '<div class="row rowChartAttribute"><label for="inputVisAddChartAttribute">Atributo</label><select id="inputVisAddChartAttribute">';
-											  
-
-					for(var i = 0; i < app1.data.features[0].infodata.length; i++){
-						chart_attribute_content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
-					}
-
-					chart_attribute_content += '</select></div>';
-
-					$(".rowChartType").after(chart_attribute_content);
-				}
-			}/*else{
-				$(".rowChartAttribute").remove();
-			}*/
-		});
 
 		$( "#modal" ).Modal({
 			"title": "Adicionar Visualização",
@@ -276,9 +324,11 @@ $(document).ready(function(){
 
 							setTimeout(function() {
 								app1.addMarkers();
-							}, 1500);
+							}, 500);
 
 							console.log("LEITURA DO ARQUIVO OK");
+
+							$("#modalClose").trigger("click");
 
 					    }catch(e){
 							alert("Erro ao ler o arquivo de entrada, verifique se seu arquite está seguindo o padrão. <br>Erro: '"+e+"'");
@@ -344,15 +394,19 @@ $(document).ready(function(){
 		}
 	});
 
-});
 
-function layerVis(layer){
-	if(layer === "markers"){
-		app.toggleMarkers();
-	} else if(layer === "heatmap"){
-		app.toggleHeatmap();
-	}
-}
+	$(".toggleLayers").on("change", function(){
+		var target = $(this).val();
+		if(target === "markers"){
+			app1.toggleMarkers();
+		} else if(target === "heatmap"){
+			app1.toggleHeatmap();
+		} else if(target === "chart"){
+			console.log("esconder graficos");
+		}
+	});
+
+});
 
 function makeDivDraggable(div){
 	$(div).draggable({
