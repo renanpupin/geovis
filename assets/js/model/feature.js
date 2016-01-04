@@ -35,6 +35,14 @@ var Feature = function(id, geodata, infodata) {
     this.setVisible = function(visible){
         this.visible = visible;
     };
+
+    this.isVisible = function(){
+        if(this.visible == true){
+            return true;
+        }else{
+            return false;
+        }
+    };
     
     this.parseAttributes(infodata);
 };

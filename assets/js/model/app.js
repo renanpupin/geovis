@@ -94,6 +94,37 @@ App.prototype.executeFilter = function(filter){
 			}
 		}
 	}
+	this.updateFeaturesCounter();
+	this.updateSideFilterList();
+}
+
+App.prototype.updateSideFilterList = function(){
+	var html_str = "";
+	for(var i = 0; i < this.filters.length; i++){
+		console.log(i);
+		html_str += '<p class="filterItem"><input id="filter_'+(i+1)+'" value="markers" type="checkbox" class="toggleFilters" checked=""> Filtro '+(i+1)+'</p>';
+	}
+	$(".tabs.filters").find(".filterItem").remove();
+	
+	$(".tabs.filters").append(html_str);
+
+	if($(".tabs.filters").find(".filterItem").length == 0){
+		$(".tabs.filters").append("Sem filtros");
+	}
+};
+
+App.prototype.updateFeaturesCounter = function(){
+	console.log(this.countVisibleFeatures()+" de "+this.data.features.length +" visível");
+};
+
+App.prototype.countVisibleFeatures = function(){
+	var counter = 0;
+	for (var i = 0; i < this.data.features.length; i++) {
+		if(this.data.features[i].isVisible()){
+			counter++;
+		}
+	}
+	return counter;
 }
 
 //remove filter
