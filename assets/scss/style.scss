@@ -403,3 +403,14 @@ a[href^="http://maps.google.com/maps"]{
         
     }
 }
+
+.features-counter{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: -6px;
+    border-bottom: 1px solid #e7e7e7;
+    // text-align: center;
+    padding-bottom: 8px;
+    display: none;
+}

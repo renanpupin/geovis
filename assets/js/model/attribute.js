@@ -32,12 +32,12 @@ var Attribute = function(name, value) {
 };
 
 Attribute.prototype.findAttributeType = function(){
-	if(typeof(this.value) === "string"){
-		this.type = "string";
+	if(typeof(this.value) === "boolean"){
+		this.type = "boolean";
 	}else if(typeof(this.value) === "number"){
 		this.type = "number";
-	}else if(typeof(this.value) === "boolean"){
-		this.type = "boolean";
+	}else if(typeof(this.value) === "string"){
+		this.type = "string";
 	}else{
 		this.type = undefined;
 	}

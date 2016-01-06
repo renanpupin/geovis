@@ -211,23 +211,36 @@ $(document).ready(function(){
 	});
 
 	$(document).on("change", "#inputVisAddChartType", function(){
-		if($(".rowChartAttribute").length == 0){
-				console.log($(this).val());
-			if($(this).val() == "pie" || $(this).val() == "line" || $(this).val() == "bar"){
+		$(".rowChartAttribute").remove();
 
-				var chart_attribute_content = '<div class="row rowChartAttribute"><label for="inputVisAddChartAttribute">Atributo</label><select id="inputVisAddChartAttribute">';
+		var chart_type = $(this).val();
+		console.log(chart_type);
+		if($(this).val() == "pie" || $(this).val() == "line" || $(this).val() == "bar"){
 
-				for(var i = 0; i < app1.data.features[0].infodata.length; i++){
-					chart_attribute_content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
+			var chart_attribute_content = '<div class="row rowChartAttribute"><label for="inputVisAddChartAttribute">Atributo</label><select id="inputVisAddChartAttribute">';
+
+			var chart_attribute_content_options = "";
+
+			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+				if(chart_type == "line"){
+					if(app1.data.features[0].infodata[i].type == "number"){
+						chart_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
+					}
+				}else{
+					chart_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
 				}
-
-				chart_attribute_content += '</select></div>';
-
-				$(".rowChartType").after(chart_attribute_content);
 			}
-		}/*else{
-			$(".rowChartAttribute").remove();
-		}*/
+
+			if(chart_attribute_content_options == ""){
+				chart_attribute_content_options = '<option value="-1">Não há atributos suportados para este tipo de gráfico.</option>'
+			}else{
+				chart_attribute_content += chart_attribute_content_options;
+			}
+
+			chart_attribute_content += '</select></div>';
+
+			$(".rowChartType").after(chart_attribute_content);
+		}
 	});
 	
 	$("#adicionarVisualizacao").click(function(){
@@ -325,6 +338,8 @@ $(document).ready(function(){
 							setTimeout(function() {
 								app1.addMarkers();
 							}, 500);
+				        	
+				        	app1.updateFeaturesCounter();
 
 							console.log("LEITURA DO ARQUIVO OK");
 
@@ -402,7 +417,7 @@ $(document).ready(function(){
 		} else if(target === "heatmap"){
 			app1.toggleHeatmap();
 		} else if(target === "chart"){
-			console.log("esconder graficos");
+			app1.toggleCharts();
 		}
 	});
 

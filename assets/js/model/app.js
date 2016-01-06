@@ -96,25 +96,32 @@ App.prototype.executeFilter = function(filter){
 	}
 	this.updateFeaturesCounter();
 	this.updateSideFilterList();
+	console.log(filter);
 }
 
 App.prototype.updateSideFilterList = function(){
 	var html_str = "";
+	console.log(this.filters.length);
+	// console.log(this.filters);
 	for(var i = 0; i < this.filters.length; i++){
-		console.log(i);
-		html_str += '<p class="filterItem"><input id="filter_'+(i+1)+'" value="markers" type="checkbox" class="toggleFilters" checked=""> Filtro '+(i+1)+'</p>';
+		// console.log(i);
+		html_str += '<p class="filterItem"><input id="filter_'+(i+1)+'" value="markers" type="checkbox" class="toggleFilters" checked=""> '+this.filters[i].name+'</p>';
 	}
 	$(".tabs.filters").find(".filterItem").remove();
 	
 	$(".tabs.filters").append(html_str);
 
 	if($(".tabs.filters").find(".filterItem").length == 0){
-		$(".tabs.filters").append("Sem filtros");
+		$(".tabs.filters").append('<p class="filterItem">Sem Filtros</p>');
 	}
 };
 
 App.prototype.updateFeaturesCounter = function(){
 	console.log(this.countVisibleFeatures()+" de "+this.data.features.length +" visível");
+	$(".features-visible").html(this.countVisibleFeatures());
+	$(".features-total").html(this.data.features.length);
+
+	$(".features-counter").css("display", "block");
 };
 
 App.prototype.countVisibleFeatures = function(){
@@ -139,9 +146,8 @@ App.prototype.removeFilter = function(filter){
 	//marker visible attribute set to true
 	this.data.resetFeatureVisibility();
 	this.map.resetMarkersVisibility();
-	// console.log("asdas");
 
-	//execute another filters again
+	//execute others filters again
 	for(var index = 0; index < this.filters.length; index++){
 		this.executeFilter(this.filters[index]);
 	}
@@ -169,6 +175,9 @@ App.prototype.removeFilter = function(filter){
 			this.visualizations[index].visualization.updateChartData(this.data.features);
 		}
 	}
+
+	this.updateFeaturesCounter();
+	this.updateSideFilterList();
 }
 
 App.prototype.toggleHeatmap = function(){
@@ -192,8 +201,8 @@ App.prototype.toggleLine = function(name){
 	}
 }
 
-App.prototype.toggleChart = function(name){
-	//toggle chart
+App.prototype.toggleCharts = function(name){
+	$(".chartDiv").fadeToggle();
 }
 
 App.prototype.addMarkers = function(){
