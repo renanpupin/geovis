@@ -378,6 +378,20 @@ $(document).ready(function(){
 			"confirmButtonText": "CARREGAR"
 		});
 	});
+
+	$("#salvarApp").click(function(){
+		console.log("save app");
+		//save data
+		//save visualizations (heatmap, graph, line)
+		//save filters
+	});
+
+	$("#carregarApp").click(function(){
+		console.log("load app");
+		//load data file
+		//load visualzations
+		//load filters
+	});
 	/*======================================================*/
 	
 	//console.log(app.data.findLowestAttributeValueFeatures('valor'));
@@ -419,6 +433,11 @@ $(document).ready(function(){
 		} else if(target === "chart"){
 			app1.toggleCharts();
 		}
+	});
+
+	$(".toggleFilters").on("change", function(){
+		var filter_index = parseInt($(this).attr("id")) - 1;
+		app1.toggleFilter(filter_index);
 	});
 
 });

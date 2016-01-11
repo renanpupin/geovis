@@ -1,6 +1,7 @@
 var Attribute = function(name, value) {
 	this.name = name || null;
-	this.value = (value === null ? null : value === false ? String(value) : value);
+	// this.value = (value === null ? null : value === false ? String(value) : value);
+	this.value = value;
 	this.type = null;
 	
 	this.getName= function(){

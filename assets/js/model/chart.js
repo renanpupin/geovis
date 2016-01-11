@@ -59,7 +59,6 @@ var Chart = function(name, features, attributes, type) {
 
 	//console.log($(chart_div).find("div:first").addClass("open"));
 
-
 	var toggle_span = document.createElement('span');
 	toggle_span.className = 'chartToggle';
 	toggle_span.innerHTML = "-";
@@ -69,11 +68,6 @@ var Chart = function(name, features, attributes, type) {
 	close_span.className = 'chartClose';
 	close_span.innerHTML = "x";
 	chart_div.appendChild(close_span);
-
-	// var child = document.createElement('div');
-	// child.innerHTML = "<p>suave</p>";
-	// // child = child.firstChild;
-	// chart_div.appendChild(child);
 };
 
 Chart.prototype.processLineChartData = function(features, attributes){

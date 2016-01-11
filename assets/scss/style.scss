@@ -414,3 +414,9 @@ a[href^="http://maps.google.com/maps"]{
     padding-bottom: 8px;
     display: none;
 }
+.info-attribute{
+    margin: 0;
+    label{
+        padding: 2px 0px;
+    }
+}

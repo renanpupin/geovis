@@ -115,14 +115,14 @@ Map.prototype.addMarkers = function (features){
 		for(var index = 0; index < features[i].infodata.length; index++){
 			var attribute_name = features[i].infodata[index].name;
 			var attribute_value = features[i].infodata[index].value;
-		 	marker_attributes += '<p><label>'+attribute_name+':</label> '+attribute_value+'</p>';
+		 	marker_attributes += '<p class="info-attribute"><label>'+attribute_name+':</label> '+attribute_value+'</p>';
 		}
 
 		var contentString = '<div id="content-wrapper">'+
 								'<div class="item-title">Feature #'+features[i].id+'</div>'+
 								'<div class="separator"></div>'+
-								'<p><label>Lat:</label> '+features[i].geodata.lat+'</p>'+
-								'<p><label>Lon:</label> '+features[i].geodata.lon+'</p>'+
+								'<p class="info-attribute"><label>Lat:</label> '+features[i].geodata.lat+'</p>'+
+								'<p class="info-attribute"><label>Lon:</label> '+features[i].geodata.lon+'</p>'+
 								marker_attributes+
 							'</div>';
 

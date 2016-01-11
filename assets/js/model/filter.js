@@ -41,7 +41,7 @@ var Filter = function(name, attribute, condition, value) {
 Filter.prototype.queryFilter = function(checkValue){
 	if(this.condition === "equal"){
 		if(this.value !== null && this.value !== undefined){
-			return (checkValue === this.value);
+			return (String(checkValue) == String(this.value));
 		}else{
 			return false;
 		}

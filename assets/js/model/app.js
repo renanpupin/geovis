@@ -195,7 +195,7 @@ App.prototype.toggleMarkers = function(){
 
 App.prototype.toggleLine = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
-		if(this.visualizations[index].name === nam){
+		if(this.visualizations[index].name === name){
 			this.visualizations[index].visualization.toggleLine(this.map);
 		}
 	}
@@ -203,6 +203,18 @@ App.prototype.toggleLine = function(name){
 
 App.prototype.toggleCharts = function(name){
 	$(".chartDiv").fadeToggle();
+}
+
+App.prototype.toggleFilter = function(index, state){
+	if(index != null && index != undefined){
+		for(var index = 0; index < this.filters.length; index++){
+			if(this.filters[index].name === name){
+				this.filters[index].filter.setVisible(state);
+			}
+		}
+	}else{
+		console.log ("index undefined");
+	}
 }
 
 App.prototype.addMarkers = function(){
