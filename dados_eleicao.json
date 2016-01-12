@@ -1,0 +1,1344 @@
+[
+    {
+        "id" : 1,
+        "geodata": 
+            {
+                "lat": -23.55052, 
+                "lon": -46.63331
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "São Paulo"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "geodata": 
+            {
+                "lat": -23.53288, 
+                "lon": -46.79200
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Osasco"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "geodata": 
+            {
+                "lat": -22.90685, 
+                "lon": -43.17290
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio de Janeiro"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "geodata": 
+            {
+                "lat": -23.45425, 
+                "lon": -46.53379
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Guarulhos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 5,
+        "geodata": 
+            {
+                "lat": -22.12113, 
+                "lon": -51.39301
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Presidente Prudente"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "geodata": 
+            {
+                "lat": -22.66043, 
+                "lon": -50.41878
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Assis"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "geodata": 
+            {
+                "lat": -21.76686, 
+                "lon": -52.10964
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Presidente Epitácio"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "geodata": 
+            {
+                "lat": -20.81176, 
+                "lon": -49.37623
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "São José do Rio Preto"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 9,
+        "geodata": 
+            {
+                "lat": -20.81156, 
+                "lon": -49.37613
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "São José do Rio Preto"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 10,
+        "geodata": 
+            {
+                "lat": -25.42895, 
+                "lon": -49.26714
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Curitiba"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 11,
+        "geodata": 
+            {
+                "lat": -23.30445, 
+                "lon": -51.16958
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Londrina"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 12,
+        "geodata": 
+            {
+                "lat": -25.42885, 
+                "lon": -49.26724
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Curitiba"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 13,
+        "geodata": 
+            {
+                "lat": -23.55059, 
+                "lon": -46.63339
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "São Paulo"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "geodata": 
+            {
+                "lat": -25.42865, 
+                "lon": -49.26714
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Curitiba"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "geodata": 
+            {
+                "lat": -20.26869, 
+                "lon": -50.54904
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Jales"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 15,
+        "geodata": 
+            {
+                "lat": -26.24990, 
+                "lon": -49.51807
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio Negrinho"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            }
+        ]
+    },
+    {
+        "id" : 16,
+        "geodata": 
+            {
+                "lat": -23.42100, 
+                "lon": -51.93306
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Maringá"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 17,
+        "geodata": 
+            {
+                "lat": -23.42100, 
+                "lon": -51.93306
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Maringá"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 18,
+        "geodata": 
+            {
+                "lat": -30.05465, 
+                "lon": -51.28766
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Porto Alegre"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 19,
+        "geodata": 
+            {
+                "lat": -29.68731, 
+                "lon": -53.81548
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Santa Maria"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 20,
+        "geodata": 
+            {
+                "lat": -30.08415, 
+                "lon": -51.21146
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Porto Alegre"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 21,
+        "geodata": 
+            {
+                "lat": -30.01135, 
+                "lon": -51.28796
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Porto Alegre"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 22,
+        "geodata": 
+            {
+                "lat": -30.01425, 
+                "lon": -51.26712
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Porto Alegre"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 23,
+        "geodata": 
+            {
+                "lat": -3.1633, 
+                "lon": -60.09173
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Manaus"
+            },
+            {
+                "name": "estado",
+                "value": "AM"
+            }
+        ]
+    },
+    {
+        "id" : 24,
+        "geodata": 
+            {
+                "lat": -3.15923, 
+                "lon": -60.08153
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Manaus"
+            },
+            {
+                "name": "estado",
+                "value": "AM"
+            }
+        ]
+    },
+    {
+        "id" : 25,
+        "geodata": 
+            {
+                "lat": -3.11513, 
+                "lon": -60.04133
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Manaus"
+            },
+            {
+                "name": "estado",
+                "value": "AM"
+            }
+        ]
+    },
+    {
+        "id" : 26,
+        "geodata": 
+            {
+                "lat": -3.16955, 
+                "lon": -60.13131
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Manaus"
+            },
+            {
+                "name": "estado",
+                "value": "AM"
+            }
+        ]
+    },
+    {
+        "id" : 27,
+        "geodata": 
+            {
+                "lat": -3.22933, 
+                "lon": -60.12112
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Manaus"
+            },
+            {
+                "name": "estado",
+                "value": "AM"
+            }
+        ]
+    },
+    {
+        "id" : 28,
+        "geodata": 
+            {
+                "lat": -15.63423, 
+                "lon": -47.76217
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Brasília"
+            },
+            {
+                "name": "estado",
+                "value": "DF"
+            }
+        ]
+    },
+    {
+        "id" : 29,
+        "geodata": 
+            {
+                "lat": -15.76523, 
+                "lon": -47.81017
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Brasília"
+            },
+            {
+                "name": "estado",
+                "value": "DF"
+            }
+        ]
+    },
+    {
+        "id" : 30,
+        "geodata": 
+            {
+                "lat": -20.31762, 
+                "lon": -40.31578
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Vitória"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            }
+        ]
+    },
+    {
+        "id" : 31,
+        "geodata": 
+            {
+                "lat": -20.29762, 
+                "lon": -40.29578
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Vitória"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            }
+        ]
+    },
+    {
+        "id" : 32,
+        "geodata": 
+            {
+                "lat": -20.28762, 
+                "lon": -40.29578
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Vitória"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            }
+        ]
+    },
+    {
+        "id" : 33,
+        "geodata": 
+            {
+                "lat": -20.30762, 
+                "lon": -40.28578
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Vitória"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            }
+        ]
+    },
+    {
+        "id" : 34,
+        "geodata": 
+            {
+                "lat": -12.97304, 
+                "lon": -38.50230
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Salvador"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 35,
+        "geodata": 
+            {
+                "lat": -12.91304, 
+                "lon": -38.49230
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Salvador"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 36,
+        "geodata": 
+            {
+                "lat": -1.45575, 
+                "lon": -48.49018
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Belém"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            }
+        ]
+    },
+    {
+        "id" : 37,
+        "geodata": 
+            {
+                "lat": -1.45575, 
+                "lon": -48.49018
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Belém"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            }
+        ]
+    },
+    {
+        "id" : 38,
+        "geodata": 
+            {
+                "lat": -15.60141, 
+                "lon": -56.09789
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Cuiabá"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 39,
+        "geodata": 
+            {
+                "lat": -15.59141, 
+                "lon": -56.10789
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Cuiabá"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 40,
+        "geodata": 
+            {
+                "lat": -15.62141, 
+                "lon": -56.11789
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Cuiabá"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 41,
+        "geodata": 
+            {
+                "lat": -20.51933, 
+                "lon": -47.42134
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Franca"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 42,
+        "geodata": 
+            {
+                "lat": -20.53933, 
+                "lon": -47.40134
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Franca"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 43,
+        "geodata": 
+            {
+                "lat": -10.24909, 
+                "lon": -48.32429
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Palmas"
+            },
+            {
+                "name": "estado",
+                "value": "TO"
+            }
+        ]
+    },
+    {
+        "id" : 44,
+        "geodata": 
+            {
+                "lat": -10.24909, 
+                "lon": -48.32429
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Palmas"
+            },
+            {
+                "name": "estado",
+                "value": "TO"
+            }
+        ]
+    },
+    {
+        "id" : 45,
+        "geodata": 
+            {
+                "lat": -3.72186, 
+                "lon": -38.51667
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Fortaleza"
+            },
+            {
+                "name": "estado",
+                "value": "CE"
+            }
+        ]
+    },
+    {
+        "id" : 46,
+        "geodata": 
+            {
+                "lat": -3.73186, 
+                "lon": -38.52667
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Fortaleza"
+            },
+            {
+                "name": "estado",
+                "value": "CE"
+            }
+        ]
+    },
+    {
+        "id" : 47,
+        "geodata": 
+            {
+                "lat": -24.91778, 
+                "lon": -53.45951
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Cascavel"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 48,
+        "geodata": 
+            {
+                "lat": -24.95778, 
+                "lon": -53.46951
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Cascavel"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 49,
+        "geodata": 
+            {
+                "lat": -24.95778, 
+                "lon": -53.45951
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Cascavel"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            }
+        ]
+    },
+    {
+        "id" : 50,
+        "geodata": 
+            {
+                "lat": -9.97538, 
+                "lon": -67.82490
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio Branco"
+            },
+            {
+                "name": "estado",
+                "value": "AC"
+            }
+        ]
+    },
+    {
+        "id" : 51,
+        "geodata": 
+            {
+                "lat": -9.97538, 
+                "lon": -67.82490
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio Branco"
+            },
+            {
+                "name": "estado",
+                "value": "AC"
+            }
+        ]
+    },
+    {
+        "id" : 52,
+        "geodata": 
+            {
+                "lat": -9.97538, 
+                "lon": -67.82490
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio Grande"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 53,
+        "geodata": 
+            {
+                "lat": -9.92538, 
+                "lon": -67.81490
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio Grande"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 53,
+        "geodata": 
+            {
+                "lat": -9.99538, 
+                "lon": -67.82490
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Rio Grande"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            }
+        ]
+    },
+    {
+        "id" : 54,
+        "geodata": 
+            {
+                "lat": -27.59538, 
+                "lon": -48.54805
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Florianópolis"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            }
+        ]
+    },
+    {
+        "id" : 55,
+        "geodata": 
+            {
+                "lat": -27.60538, 
+                "lon": -48.53805
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Florianópolis"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            }
+        ]
+    },
+    {
+        "id" : 56,
+        "geodata": 
+            {
+                "lat": -27.60938, 
+                "lon": -48.51805
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Florianópolis"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            }
+        ]
+    },
+    {
+        "id" : 57,
+        "geodata": 
+            {
+                "lat": -20.46971, 
+                "lon": -54.62012
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Campo Grande"
+            },
+            {
+                "name": "estado",
+                "value": "MS"
+            }
+        ]
+    },
+    {
+        "id" : 58,
+        "geodata": 
+            {
+                "lat": -20.47971, 
+                "lon": -54.61012
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Campo Grande"
+            },
+            {
+                "name": "estado",
+                "value": "MS"
+            }
+        ]
+    },
+    {
+        "id" : 59,
+        "geodata": 
+            {
+                "lat": -20.49971, 
+                "lon": -54.62012
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Campo Grande"
+            },
+            {
+                "name": "estado",
+                "value": "MS"
+            }
+        ]
+    }
+]
