@@ -3,7 +3,6 @@ var App = function(data) {
 	this.map = null;
 	this.visualizations = new Array();
 	this.filters = new Array();
-	
 
 	this.getData = function(){
 		return this.data;
@@ -42,6 +41,7 @@ var App = function(data) {
 App.prototype.loadData = function(data){
 	//TODO: limpar se já tiver carregado e mensagem de verificação
 	this.data = new Data(data);
+	console.log(this.data);
 }
 
 //init map instance
@@ -105,7 +105,8 @@ App.prototype.updateSideFilterList = function(){
 	// console.log(this.filters);
 	for(var i = 0; i < this.filters.length; i++){
 		// console.log(i);
-		html_str += '<p class="filterItem"><input id="filter_'+(i+1)+'" value="markers" type="checkbox" class="toggleFilters" checked=""> '+this.filters[i].name+'</p>';
+		// html_str += '<p class="filterItem"><input id="filter_'+(i+1)+'" value="markers" type="checkbox" class="toggleFilters" checked=""> '+this.filters[i].name+'</p>';
+		html_str += '<p class="filterItem">'+this.filters[i].name+'</p>';
 	}
 	$(".tabs.filters").find(".filterItem").remove();
 	

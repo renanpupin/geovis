@@ -329,7 +329,7 @@ $(document).ready(function(){
 			        		var file_content = e.target.result;
 					        file_content = file_content.replace(/\t/g, "");	//removing tabs
 							file_content = file_content.replace(/\n/g, "");	//removing new line
-							file_content = file_content.replace(/ /g, "");	//removing spaces
+							// file_content = file_content.replace(/ /g, "");	//removing spaces
 					        
 				        	file_content = JSON.parse(file_content);
 
