@@ -46,7 +46,7 @@ App.prototype.loadData = function(data){
 
 //init map instance
 App.prototype.initMap = function(){
-	this.map = new Map();
+	this.map = new Map(this);
 }
 
 //push filter to filters list
@@ -74,6 +74,7 @@ App.prototype.addFilter = function(name, attribute, condition, value){
 		}
 	}
 
+	//TODO
 	//find chart visualization and update data based on filters
 	/*for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "chart"){
@@ -222,8 +223,8 @@ App.prototype.addMarkers = function(){
 	this.map.addMarkers(this.data.features);
 }
 
-App.prototype.addMapVisualization = function(name, type){
-	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, null, null));
+App.prototype.addMapVisualization = function(name, type, attribute){
+	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, attribute, null));
 };
 
 App.prototype.addChartVisualization = function(name, type, attributes, chart_type){
@@ -236,6 +237,14 @@ App.prototype.removeVisualization = function(name){
 		if(this.visualizations[index].name == name){
 			this.visualizations[index].remove();
 			this.visualizations.splice(index,1);
+		}
+	}
+};
+
+App.prototype.updateLineVisualization = function(marker_id){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type == "line"){
+			this.visualizations[index].visualization.updateLineData(marker_id, this.data.features);
 		}
 	}
 };

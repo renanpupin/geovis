@@ -1,4 +1,5 @@
-var Map = function() {
+var Map = function(app) {
+	this.application = app;
 	this.gmap = null;
 	this.markers = [];
 	//this.layers = [];
@@ -30,8 +31,8 @@ var Map = function() {
 //init google maps
 Map.prototype.initMap = function(){
 
-	var centerPos = new google.maps.LatLng(-22.15, -51.425);
-	var zoomLevel = 12;
+	var centerPos = new google.maps.LatLng(-14.15, -51.425);
+	var zoomLevel = 4;
 
 	var mapOptions = {
 		center: centerPos,
@@ -148,7 +149,11 @@ Map.prototype.addInfoWindow = function(map, marker){
 		content: marker.content
 	});
 
+	var self = this;
+
 	google.maps.event.addListener(marker, 'click', function () {
 		infoWindow.open(map, marker);
+
+		self.application.updateLineVisualization(marker.id);
 	});
 }

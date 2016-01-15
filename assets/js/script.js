@@ -164,6 +164,7 @@ $(document).ready(function(){
 		var name = $("#inputVisAddName").val();
 		var type = $("#inputVisAddType").val();
 		var attribute = $("#inputVisAddChartAttribute").val();
+		var attribute_line = $("#inputVisAddLineAttribute").val();
 		var chart_type = $("#inputVisAddChartType").val();
 		
 		//app1.addMapVisualization("Mapa de Calor", "heatmap");
@@ -172,9 +173,20 @@ $(document).ready(function(){
 		
 		if(type !== "chart"){
 			if(name != "" && type != ""){
-				app1.addMapVisualization(name, type);
+				if(type == "heatmap"){
+					app1.addMapVisualization(name, type, null);
+					console.log("add heatmap");
+					$("#modalClose").trigger("click");	//close modal
+				}else{
+					if(attribute_line != "" && attribute_line != undefined){
+						app1.addMapVisualization(name, type, attribute_line);
+						console.log("add line");
+						$("#modalClose").trigger("click");	//close modal
+					}else{
+						alert("Selecione o atribute da visualização por linhas!");
+					}
+				}
 				console.log("OK");
-				$("#modalClose").trigger("click");	//close modal
 			}else{
 				console.log("erro no form");
 				alert("Preencha todos os campos!");
@@ -208,10 +220,40 @@ $(document).ready(function(){
 				$(".rowChartAttribute").remove();
 			}
 		}
+
+		if($(this).val() == "line"){
+			$(".rowChartType").remove();
+			$(".rowChartAttribute").remove();
+
+			var line_attribute_content = '<div class="row rowLineAttribute"><label for="inputVisAddLineAttribute">Atributo</label><select id="inputVisAddLineAttribute">';
+
+			var line_attribute_content_options = "";
+
+			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+				line_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
+			}
+
+			if(line_attribute_content_options == ""){
+				line_attribute_content_options = '<option value="-1">Não há atributos suportados para este tipo de gráfico.</option>'
+			}else{
+				line_attribute_content += line_attribute_content_options;
+			}
+
+			line_attribute_content += '</select></div>';
+
+			$(".rowVisType").after(line_attribute_content);
+
+		}else{
+			// if($("#inputVisAddChartType").length > 0){
+			// 	$(".rowChartType").remove();
+			// 	$(".rowChartAttribute").remove();
+			// }
+		}
 	});
 
 	$(document).on("change", "#inputVisAddChartType", function(){
 		$(".rowChartAttribute").remove();
+		$(".rowLineAttribute").remove();
 
 		var chart_type = $(this).val();
 		console.log(chart_type);

@@ -30,7 +30,7 @@ var Visualization = function(name, type, map, data, attribute, chart_type) {
 	if(this.type === "heatmap"){
 		this.visualization = new Heatmap(map, data);
 	}else if(this.type === "line"){
-		this.visualization = new Line(map, data);
+		this.visualization = new Line(map, data, attribute);
 	}else if(this.type === "chart"){
 		this.visualization = new Chart(name, data, attribute, chart_type);
 	}
@@ -40,6 +40,7 @@ var Visualization = function(name, type, map, data, attribute, chart_type) {
 Visualization.prototype.printVisualization = function(){
 	console.log(this.name);
 	console.log(this.type);
+	console.log(this.attribute);
 	console.log(this.visualization);
 }
 
