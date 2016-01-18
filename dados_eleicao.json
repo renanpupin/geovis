@@ -1081,8 +1081,8 @@
         "id" : 50,
         "geodata": 
             {
-                "lat": -9.97538, 
-                "lon": -67.82490
+                "lat": -32.025378, 
+                "lon": -52.107580
             },
         "infodata": [
             {
@@ -1091,11 +1091,11 @@
             },
             {
                 "name": "cidade",
-                "value": "Rio Branco"
+                "value": "Rio Grande"
             },
             {
                 "name": "estado",
-                "value": "AC"
+                "value": "RS"
             }
         ]
     },
@@ -1103,8 +1103,8 @@
         "id" : 51,
         "geodata": 
             {
-                "lat": -9.97538, 
-                "lon": -67.82490
+                "lat": -32.035378, 
+                "lon": -52.107580
             },
         "infodata": [
             {
@@ -1113,11 +1113,11 @@
             },
             {
                 "name": "cidade",
-                "value": "Rio Branco"
+                "value": "Rio Grande"
             },
             {
                 "name": "estado",
-                "value": "AC"
+                "value": "RS"
             }
         ]
     },
@@ -1125,8 +1125,8 @@
         "id" : 52,
         "geodata": 
             {
-                "lat": -9.97538, 
-                "lon": -67.82490
+                "lat": -32.040378, 
+                "lon": -52.117580
             },
         "infodata": [
             {
@@ -1157,11 +1157,11 @@
             },
             {
                 "name": "cidade",
-                "value": "Rio Grande"
+                "value": "Rio Branco"
             },
             {
                 "name": "estado",
-                "value": "RS"
+                "value": "AC"
             }
         ]
     },
@@ -1179,11 +1179,11 @@
             },
             {
                 "name": "cidade",
-                "value": "Rio Grande"
+                "value": "Rio Branco"
             },
             {
                 "name": "estado",
-                "value": "RS"
+                "value": "AC"
             }
         ]
     },
@@ -1602,6 +1602,182 @@
             {
                 "name": "estado",
                 "value": "MA"
+            }
+        ]
+    },
+    {
+        "id" : 74,
+        "geodata": 
+            {
+                "lat": -5.092011, 
+                "lon": -42.803760
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Teresina"
+            },
+            {
+                "name": "estado",
+                "value": "PI"
+            }
+        ]
+    },
+    {
+        "id" : 75,
+        "geodata": 
+            {
+                "lat": -5.089011, 
+                "lon": -42.893760
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Teresina"
+            },
+            {
+                "name": "estado",
+                "value": "PI"
+            }
+        ]
+    },
+    {
+        "id" : 76,
+        "geodata": 
+            {
+                "lat": -8.057838, 
+                "lon": -34.882897
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Recife"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            }
+        ]
+    },
+    {
+        "id" : 77,
+        "geodata": 
+            {
+                "lat": -14.793505, 
+                "lon": -39.046380
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Ilhéus"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 78,
+        "geodata": 
+            {
+                "lat": -14.803505, 
+                "lon": -39.036380
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Ilhéus"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 79,
+        "geodata": 
+            {
+                "lat": -19.916681, 
+                "lon": -43.934493
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Belo Horizonte"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            }
+        ]
+    },
+    {
+        "id" : 80,
+        "geodata": 
+            {
+                "lat": -7.627998, 
+                "lon": -72.676149
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Cruzeiro do Sul"
+            },
+            {
+                "name": "estado",
+                "value": "AC"
+            }
+        ]
+    },
+    {
+        "id" : 81,
+        "geodata": 
+            {
+                "lat": -7.637998, 
+                "lon": -72.646149
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Cruzeiro do Sul"
+            },
+            {
+                "name": "estado",
+                "value": "AC"
             }
         ]
     }

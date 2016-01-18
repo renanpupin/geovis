@@ -9,9 +9,9 @@
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
     background-color: rgba(0,0,0,0.4);
-    -webkit-transition: visibility 0.5s, opacity 0.5s cubic-bezier(.55,0,.1,1);
-    -o-transition: visibility 0.5s, opacity 0.5s cubic-bezier(.55,0,.1,1);
-    transition: visibility 0.5s, opacity 0.5s cubic-bezier(.55,0,.1,1);
+    // -webkit-transition: visibility 0.5s, opacity 0.5s cubic-bezier(.55,0,.1,1);
+    // -o-transition: visibility 0.5s, opacity 0.5s cubic-bezier(.55,0,.1,1);
+    // transition: visibility 0.5s, opacity 0.5s cubic-bezier(.55,0,.1,1);
     visibility: hidden;
     opacity: 0;
     &.open{
