@@ -76,7 +76,9 @@ Chart.prototype.processLineChartData = function(features, attributes){
 	var media = features.calculateAverageAttributeValue(attributes);
 	
 	for(var index = 0; index < features.features.length; index++){
-		data_chart[index] = ["ID "+features.features[index].id, features.features[index].getAttributeValueByName(attributes), media, "Média = "+media];
+		if (features.features[index].visible == true){
+			data_chart[index] = ["ID "+features.features[index].id, features.features[index].getAttributeValueByName(attributes), media, "Média = "+media];
+		}
 	}
 
 	return data_chart;

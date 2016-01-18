@@ -197,7 +197,7 @@ App.prototype.toggleMarkers = function(){
 
 App.prototype.toggleLine = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
-		if(this.visualizations[index].name === name){
+		if(this.visualizations[index].type === "line"){
 			this.visualizations[index].visualization.toggleLine(this.map);
 		}
 	}

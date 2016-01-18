@@ -474,6 +474,8 @@ $(document).ready(function(){
 			app1.toggleHeatmap();
 		} else if(target === "chart"){
 			app1.toggleCharts();
+		} else if(target === "line"){
+			app1.toggleLine();
 		}
 	});
 

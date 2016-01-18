@@ -33,15 +33,17 @@ Data.prototype.findLargestAttributeValueFeatures = function(attribute){
 		var largest_features = [];
 		var largest_value;
 		for(var index = 0; index < this.features.length; index++){
-			if(largest_features.length == 0){
-				largest_features.push(this.features[index]);
-				largest_value = this.features[index].getAttributeValueByName(attribute);
-			}else if(largest_value == this.features[index].getAttributeValueByName(attribute)){
-				largest_features.push(this.features[index]);
-			}else if(largest_value < this.features[index].getAttributeValueByName(attribute)){
-				largest_features = [];
-				largest_features.push(this.features[index]);
-				largest_value = this.features[index].getAttributeValueByName(attribute);
+			if (this.features[index].visible == true){
+				if(largest_features.length == 0){
+					largest_features.push(this.features[index]);
+					largest_value = this.features[index].getAttributeValueByName(attribute);
+				}else if(largest_value == this.features[index].getAttributeValueByName(attribute)){
+					largest_features.push(this.features[index]);
+				}else if(largest_value < this.features[index].getAttributeValueByName(attribute)){
+					largest_features = [];
+					largest_features.push(this.features[index]);
+					largest_value = this.features[index].getAttributeValueByName(attribute);
+				}
 			}
 		}
 		return largest_features;
@@ -55,15 +57,17 @@ Data.prototype.findLowestAttributeValueFeatures = function(attribute){
 		var lowest_features = [];
 		var lowest_value;
 		for(var index = 0; index < this.features.length; index++){
-			if(lowest_features.length == 0){
-				lowest_features.push(this.features[index]);
-				lowest_value = this.features[index].getAttributeValueByName(attribute);
-			}else if(lowest_value == this.features[index].getAttributeValueByName(attribute)){
-				lowest_features.push(this.features[index]);
-			}else if(lowest_value > this.features[index].getAttributeValueByName(attribute)){
-				lowest_features = [];
-				lowest_features.push(this.features[index]);
-				lowest_value = this.features[index].getAttributeValueByName(attribute);
+			if (this.features[index].visible == true){
+				if(lowest_features.length == 0){
+					lowest_features.push(this.features[index]);
+					lowest_value = this.features[index].getAttributeValueByName(attribute);
+				}else if(lowest_value == this.features[index].getAttributeValueByName(attribute)){
+					lowest_features.push(this.features[index]);
+				}else if(lowest_value > this.features[index].getAttributeValueByName(attribute)){
+					lowest_features = [];
+					lowest_features.push(this.features[index]);
+					lowest_value = this.features[index].getAttributeValueByName(attribute);
+				}
 			}
 		}
 		return lowest_features;
@@ -76,7 +80,9 @@ Data.prototype.calculateAverageAttributeValue = function(attribute){
 	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
 		var average = 0;
 		for(var index = 0; index < this.features.length; index++){
-			average += this.features[index].getAttributeValueByName(attribute);
+			if (this.features[index].visible == true){
+				average += this.features[index].getAttributeValueByName(attribute);
+			}
 		}
 		average = average / this.features.length;
 		return average;
@@ -90,7 +96,9 @@ Data.prototype.countAttributeOcurrences = function(attribute){
     var prev;
 
 	for(var index = 0; index < this.features.length; index++){
-		data_array.push(this.features[index].getAttributeValueByName(attribute));
+		if (this.features[index].visible == true){
+			data_array.push(this.features[index].getAttributeValueByName(attribute));
+		}
 	}
 
     data_array.sort();
