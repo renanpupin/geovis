@@ -79,12 +79,14 @@ Data.prototype.findLowestAttributeValueFeatures = function(attribute){
 Data.prototype.calculateAverageAttributeValue = function(attribute){
 	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
 		var average = 0;
+		var visible_count = 0;;
 		for(var index = 0; index < this.features.length; index++){
 			if (this.features[index].visible == true){
+				visible_count++;
 				average += this.features[index].getAttributeValueByName(attribute);
 			}
 		}
-		average = average / this.features.length;
+		average = average / visible_count;
 		return average;
 	}else{
 		console.log("o tipo do atributo deve ser um número");

@@ -358,21 +358,19 @@ $(document).ready(function(){
 			if (window.File && window.FileReader && window.FileList && window.Blob) {
 
 				var arquivo = document.getElementById('inputCarregarArquivo').files[0];
-				// alert(arquivo);
 
 				if (arquivo) {
 
 					var freader = new FileReader();
 
 			        freader.onload = function(e) {
-			        	
 
 			        	try{
 			        		var file_content = e.target.result;
 					        file_content = file_content.replace(/\t/g, "");	//removing tabs
 							file_content = file_content.replace(/\n/g, "");	//removing new line
 							// file_content = file_content.replace(/ /g, "");	//removing spaces
-					        
+
 				        	file_content = JSON.parse(file_content);
 
 				        	app1.loadData(file_content);
@@ -404,7 +402,6 @@ $(document).ready(function(){
 		}else{
 			alert("Desculpe, mas seu browser não suporte esta aplicação. Atualize para uma versão mais recente!");
 		}
-
 	}
 
 	$("#carregarDados").click(function(){
@@ -415,7 +412,7 @@ $(document).ready(function(){
 			"title": "Carregar Dados",
 			"content": content,
 			"size": "small",
-			"onConfirm": carregarDados,
+			"onConfirm": carregarAplicacao,
 			"closeButtonText": "CANCELAR",
 			"confirmButtonText": "CARREGAR"
 		});
@@ -423,16 +420,78 @@ $(document).ready(function(){
 
 	$("#salvarApp").click(function(){
 		console.log("save app");
-		//save data
-		//save visualizations (heatmap, graph, line)
-		//save filters
+		app1.saveApplication();
 	});
+
+	function carregarConfiguracoes(){
+
+		if (FileReader){
+			if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+				var arquivo = document.getElementById('inputCarregarConfiguracoes').files[0];
+
+				if (arquivo) {
+
+					var freader = new FileReader();
+
+			        freader.onload = function(e) {
+
+			        	try{
+			        		var file_content = e.target.result;
+					        file_content = file_content.replace(/\t/g, "");	//removing tabs
+							file_content = file_content.replace(/\n/g, "");	//removing new line
+							// file_content = file_content.replace(/ /g, "");	//removing spaces
+
+				        	file_content = JSON.parse(file_content);
+
+				        	app1.loadConfig(file_content);
+
+							console.log("LEITURA DO ARQUIVO DE CONFIGURAÇÃO OK");
+
+							$("#modalClose").trigger("click");
+
+					    }catch(e){
+							alert("Erro ao ler o arquivo de entrada, verifique se seu arquite está seguindo o padrão. <br>Erro: '"+e+"'");
+					    }
+			      	}
+
+			      	freader.readAsText(arquivo);
+
+
+				}else{
+					alert("Falha ao carregar o arquivo");
+				}
+			}else{
+				alert("Desculpe, mas seu navegador não suporta algumas funcionalidades desta aplicação!");
+			}
+		}else{
+			alert("Desculpe, mas seu browser não suporte esta aplicação. Atualize para uma versão mais recente!");
+		}
+	}
+
+	function carregarAplicacao(){
+		carregarDados();
+		carregarConfiguracoes();
+	}
 
 	$("#carregarApp").click(function(){
 		console.log("load app");
-		//load data file
-		//load visualzations
-		//load filters
+
+		var content =   '<div class="row">'+
+							'<label for="inputCarregarArquivo">Selecione o arquivo de dados</label><input type="file" id="inputCarregarArquivo" accept=".json">'+
+							'<label for="inputCarregarConfiguracoes">Selecione o arquivo de configuração</label><input type="file" id="inputCarregarConfiguracoes" accept=".json">'+
+						'</div>';
+
+		$( "#modal" ).Modal({
+			"title": "Carregar Aplicação",
+			"content": content,
+			"size": "small",
+			"onConfirm": carregarAplicacao,
+			"closeButtonText": "CANCELAR",
+			"confirmButtonText": "CARREGAR"
+		});
+
+		//app1.loadApplication(json);
 	});
 	/*======================================================*/
 	

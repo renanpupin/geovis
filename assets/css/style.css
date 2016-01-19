@@ -1569,14 +1569,24 @@ i, input[type="checkbox"] {
       #nav .navbarHeader .brand a {
         text-decoration: none; }
         #nav .navbarHeader .brand a img#logoApp {
-          height: 40px;
-          width: auto; }
+          height: 50px;
+          width: auto;
+          position: absolute;
+          top: 5px; }
         #nav .navbarHeader .brand a span {
+          margin-left: 50px;
           display: inline-block;
           color: #757575;
           font-size: 26px;
           top: 5px;
           position: relative; }
+
+@media screen and (max-width: 768px) {
+  #nav .navbarHeader .brand a img#logoApp {
+    height: 40px; }
+  #nav .navbarHeader .brand a span {
+    top: 0;
+    margin-left: 45px; } }
 
 /*=================================================
 4 - MAP

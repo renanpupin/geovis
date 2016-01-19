@@ -13,9 +13,25 @@ var LineChart = function(name, features, attributes, processed_data, div) {
         this.lineChart = lineChart;
     };
 
+    this.cleanChartDataNullIndex();
+
     this.initChart(div);
 };
 
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
+
+LineChart.prototype.cleanChartDataNullIndex = function(){
+  this.processed_data.clean(undefined);
+  console.log(this.processed_data);
+}
 LineChart.prototype.initChart = function(div){
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Id');
