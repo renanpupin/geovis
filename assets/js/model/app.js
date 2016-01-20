@@ -305,6 +305,7 @@ App.prototype.saveApplication = function(){
 
 	console.log(json_application);
 	console.log(JSON.parse(json_application));
+	return json_application;
 }
 
 App.prototype.loadApplication = function(json_application){

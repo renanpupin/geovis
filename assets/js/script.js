@@ -420,7 +420,14 @@ $(document).ready(function(){
 
 	$("#salvarApp").click(function(){
 		console.log("save app");
-		app1.saveApplication();
+		
+		var json_config = app1.saveApplication();
+
+		  var text = json_config;
+		  var filename = "configuracao_app_"+Math.floor(Date.now() / 1000)+".json";
+		  var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+		  saveAs(blob, filename);
+
 	});
 
 	function carregarConfiguracoes(){
@@ -471,7 +478,9 @@ $(document).ready(function(){
 
 	function carregarAplicacao(){
 		carregarDados();
-		carregarConfiguracoes();
+		setTimeout(function(){
+			carregarConfiguracoes();
+		}, 1000);
 	}
 
 	$("#carregarApp").click(function(){
