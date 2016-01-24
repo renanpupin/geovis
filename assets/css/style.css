@@ -1076,7 +1076,6 @@ table th, td {
   width: 100%;
   line-height: 36px;
   outline: 0;
-  padding: 0 2rem;
   text-transform: uppercase;
   vertical-align: middle;
   -webkit-tap-highlight-color: transparent;
@@ -1406,7 +1405,6 @@ nav {
       .modal .modal-dialog .modal-footer button#btnCloseModal, .modal .modal-dialog .modal-footer button#btnConfirmModal {
         border: none;
         cursor: pointer;
-        padding: 7px 15px;
         background: transparent;
         color: #404040;
         opacity: 0.5; }

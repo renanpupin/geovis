@@ -92,7 +92,7 @@ $(document).ready(function(){
 			content += '<label for="inputFiltroAddAttribute">Atributo</label><select id="inputFiltroAddAttribute">';
 
 			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
-				content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name+'</option>';
+				content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name+' ('+app1.data.features[0].infodata[i].type+')'+'</option>';
 			}
 
 			content += '</select>';
@@ -233,11 +233,10 @@ $(document).ready(function(){
 				line_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
 			}
 
-			if(line_attribute_content_options == ""){
-				line_attribute_content_options = '<option value="-1">Não há atributos suportados para este tipo de gráfico.</option>'
-			}else{
-				line_attribute_content += line_attribute_content_options;
+			if(String(line_attribute_content_options) == ""){
+				line_attribute_content_options = '<option value="-1">Não há atributos suportados.</option>'
 			}
+			line_attribute_content += line_attribute_content_options;
 
 			line_attribute_content += '</select></div>';
 
@@ -273,11 +272,11 @@ $(document).ready(function(){
 				}
 			}
 
-			if(chart_attribute_content_options == ""){
-				chart_attribute_content_options = '<option value="-1">Não há atributos suportados para este tipo de gráfico.</option>'
-			}else{
-				chart_attribute_content += chart_attribute_content_options;
+			if(String(chart_attribute_content_options) == ""){
+				chart_attribute_content_options = '<option value="-1">Não há atributos suportados.</option>'
 			}
+			
+			chart_attribute_content += chart_attribute_content_options;
 
 			chart_attribute_content += '</select></div>';
 
@@ -412,7 +411,7 @@ $(document).ready(function(){
 			"title": "Carregar Dados",
 			"content": content,
 			"size": "small",
-			"onConfirm": carregarAplicacao,
+			"onConfirm": carregarDados,
 			"closeButtonText": "CANCELAR",
 			"confirmButtonText": "CARREGAR"
 		});

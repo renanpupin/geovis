@@ -105,7 +105,7 @@ Map.prototype.addMarkers = function (features){
 	for (var i = 0; i < features.length; i++) {
 		
 		var image = {
-			url: 'http://www.larchfieldestate.co.uk/wp-content/themes/larchfield/style/images/larchfield_icon_mapmarker.gif',
+			url: 'assets/img/marker.gif',
 			size: new google.maps.Size(65, 35),
 			origin: new google.maps.Point(0, 0),
 			anchor: new google.maps.Point(33, 33),

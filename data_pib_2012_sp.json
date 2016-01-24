@@ -1,0 +1,419 @@
+var json_data = [
+    {
+        "id" : 1,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Adamantina",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 641.66,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 18.968,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.045543
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Agudos",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 1.165,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 33.441,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.082723
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Americana",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 557.021,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 15.662,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.039598
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Andradina",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 1.322,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 23.815,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.093833
+            }
+        ]
+    },
+    {
+        "id" : 5,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Araraquara",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 5.681,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 26.695,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.40328
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Araras",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 2.987,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 24.634,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.212023
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Bálsamo",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 172.109,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 20.992,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.012275
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Bauru",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 8.430,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 24.215,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.598374
+            }
+        ]
+    },
+    {
+        "id" : 9,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Brotas",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 458.614,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 20.803,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.03255
+            }
+        ]
+    },
+    {
+        "id" : 10,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Capivari",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 1.577,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 15.179,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.111945
+            }
+        ]
+    },
+    {
+        "id" : 11,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Chavantes",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 267.122,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 22.035,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.018981
+            }
+        ]
+    },
+    {
+        "id" : 12,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Cosmópolis",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 983.321,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 16.057,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.069816
+            }
+        ]
+    },
+    {
+        "id" : 13,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Dourado",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 173.123,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 20.233,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.012323
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Estrela do Norte",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 49.612,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 18.541,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.003495
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Garça",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 848.123,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 19.736,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.060202
+            }
+        ]
+    },
+    {
+        "id" : 15,
+        "geodata": 
+            {
+                "lat": -22.075, 
+                "lon": -51.425
+            },
+        "infodata": [
+            {
+                "name": "nome",
+                "value": "Guaíra",
+            },
+            {
+                "name": "Pib (Em milhões de reais)",
+                "value": 959.001,
+            },
+            {
+                "name": "Pib Per Capita(Em Reais)",
+                "value": 25.408,
+            },
+            {
+                "name": "Participação no Pib(Em %)",
+                "value": 0.068089
+            }
+        ]
+    },
+
+]
