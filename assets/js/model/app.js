@@ -91,6 +91,13 @@ App.prototype.addFilter = function(name, attribute, condition, value){
 		}
 	}
 
+	//find convexhull visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "convexhull"){
+			this.visualizations[index].visualization.updateConvexHullData(this.data.features);
+		}
+	}
+
 	//TODO
 	//find chart visualization and update data based on filters
 	/*for(var index = 0; index < this.visualizations.length; index++){
@@ -188,6 +195,13 @@ App.prototype.removeFilter = function(filter){
 		}
 	}
 
+	//find convexhull visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "convexhull"){
+			this.visualizations[index].visualization.updateConvexHullData(this.data.features);
+		}
+	}
+
 	//find chart visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "chart"){
@@ -216,6 +230,14 @@ App.prototype.toggleLine = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "line"){
 			this.visualizations[index].visualization.toggleLine(this.map);
+		}
+	}
+}
+
+App.prototype.toggleConvexHull = function(name){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "convexhull"){
+			this.visualizations[index].visualization.toggleConvexHull(this.map);
 		}
 	}
 }
@@ -262,6 +284,14 @@ App.prototype.updateLineVisualization = function(marker_id){
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type == "line"){
 			this.visualizations[index].visualization.updateLineData(marker_id, this.data.features);
+		}
+	}
+};
+
+App.prototype.updateConvexHullVisualization = function(){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type == "convexhull"){
+			this.visualizations[index].visualization.updateConvexHullData(this.data.features);
 		}
 	}
 };

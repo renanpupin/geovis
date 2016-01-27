@@ -177,6 +177,10 @@ $(document).ready(function(){
 					app1.addMapVisualization(name, type, null);
 					console.log("add heatmap");
 					$("#modalClose").trigger("click");	//close modal
+				}if(type == "convexhull"){
+					app1.addMapVisualization(name, type, null);
+					console.log("add convex hull");
+					$("#modalClose").trigger("click");	//close modal
 				}else{
 					if(attribute_line != "" && attribute_line != undefined){
 						app1.addMapVisualization(name, type, attribute_line);
@@ -294,6 +298,7 @@ $(document).ready(function(){
 						'<option value="heatmap">Mapa de calor</option>'+
 						'<option value="chart">Gráfico</option>'+
 						'<option value="line">Linha</option>'+
+						'<option value="convexhull">Fecho Convexo</option>'+
 					'</select>'+
 					'</div>';
 
@@ -379,6 +384,7 @@ $(document).ready(function(){
 							}, 500);
 				        	
 				        	app1.updateFeaturesCounter();
+
 
 							console.log("LEITURA DO ARQUIVO OK");
 
@@ -543,6 +549,8 @@ $(document).ready(function(){
 			app1.toggleCharts();
 		} else if(target === "line"){
 			app1.toggleLine();
+		} else if(target === "convexhull"){
+			app1.toggleConvexHull();
 		}
 	});
 

@@ -29,6 +29,8 @@ var Visualization = function(name, type, map, data, attribute, chart_type) {
 
 	if(this.type === "heatmap"){
 		this.visualization = new Heatmap(map, data);
+	}if(this.type === "convexhull"){
+		this.visualization = new ConvexHull(map, data);
 	}else if(this.type === "line"){
 		this.visualization = new Line(map, data, attribute);
 	}else if(this.type === "chart"){
