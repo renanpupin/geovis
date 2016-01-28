@@ -1780,5 +1780,357 @@
                 "value": "AC"
             }
         ]
+    },
+    {
+        "id" : 82,
+        "geodata": 
+            {
+                "lat": -11.860846, 
+                "lon": -55.509545
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Sinop"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 83,
+        "geodata": 
+            {
+                "lat": -11.856846, 
+                "lon": -55.509545
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Sinop"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 84,
+        "geodata": 
+            {
+                "lat": -11.890846, 
+                "lon": -55.519545
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Sinop"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 85,
+        "geodata": 
+            {
+                "lat": -22.979880, 
+                "lon": -49.869938
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Ourinhos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 86,
+        "geodata": 
+            {
+                "lat": -22.989880, 
+                "lon": -49.859938
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Ourinhos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            }
+        ]
+    },
+    {
+        "id" : 87,
+        "geodata": 
+            {
+                "lat": -16.728641, 
+                "lon": -43.858214
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Montes Claros"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            }
+        ]
+    },
+    {
+        "id" : 88,
+        "geodata": 
+            {
+                "lat": -16.728641, 
+                "lon": -43.858214
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Montes Claros"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            }
+        ]
+    },
+    {
+        "id" : 89,
+        "geodata": 
+            {
+                "lat": -7.688656, 
+                "lon": -54.817032
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Usina"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            }
+        ]
+    },
+    {
+        "id" : 90,
+        "geodata": 
+            {
+                "lat": -7.658656, 
+                "lon": -54.807032
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Usina"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            }
+        ]
+    },
+    {
+        "id" : 91,
+        "geodata": 
+            {
+                "lat": -12.147748, 
+                "lon": -44.995347
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Barreiras"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 92,
+        "geodata": 
+            {
+                "lat": -12.137748, 
+                "lon": -44.985347
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Barreiras"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 93,
+        "geodata": 
+            {
+                "lat": -12.145448, 
+                "lon": -44.915347
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Barreiras"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            }
+        ]
+    },
+    {
+        "id" : 94,
+        "geodata": 
+            {
+                "lat": -7.077616, 
+                "lon": -41.467374
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "João Ferreira"
+            },
+            {
+                "name": "cidade",
+                "value": "Picos"
+            },
+            {
+                "name": "estado",
+                "value": "PI"
+            }
+        ]
+    },
+    {
+        "id" : 95,
+        "geodata": 
+            {
+                "lat": -7.037616, 
+                "lon": -41.467374
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Picos"
+            },
+            {
+                "name": "estado",
+                "value": "PI"
+            }
+        ]
+    },
+    {
+        "id" : 96,
+        "geodata": 
+            {
+                "lat": -16.465476, 
+                "lon": -54.628723
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "José de Souza"
+            },
+            {
+                "name": "cidade",
+                "value": "Rondonópolis"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
+    },
+    {
+        "id" : 97,
+        "geodata": 
+            {
+                "lat": -16.465476, 
+                "lon": -54.638723
+            },
+        "infodata": [
+            {
+                "name": "nomeCandidato",
+                "value": "Maria da Silva"
+            },
+            {
+                "name": "cidade",
+                "value": "Rondonópolis"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            }
+        ]
     }
 ]

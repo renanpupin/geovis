@@ -87,7 +87,7 @@ App.prototype.addFilter = function(name, attribute, condition, value){
 	//find line visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "line"){
-			this.visualizations[index].visualization.updateLineData(this.data.features);
+			this.visualizations[index].visualization.updateLineData(null, this.data.features);
 		}
 	}
 
@@ -191,7 +191,7 @@ App.prototype.removeFilter = function(filter){
 	//find line visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "line"){
-			this.visualizations[index].visualization.updateLineData(this.data.features);
+			this.visualizations[index].visualization.updateLineData(null, this.data.features);
 		}
 	}
 

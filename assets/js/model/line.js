@@ -25,29 +25,34 @@ Line.prototype.updateLineData = function(clicked_feature_id, features){
 
     console.log("clicked_feature_id = "+clicked_feature_id);
 
-    var clicked_feature = null;
+    if(clicked_feature_id == null){
+        this.line.setPath([]);
+    }else{
 
-    for(var index = 1; index < features.length; index++){
-        if(features[index].id == clicked_feature_id){
-            clicked_feature = features[index];
-            break;
-        }
-    }
+        var clicked_feature = null;
 
-    var clicked_feature_attribute_value = clicked_feature.getAttributeValueByName(this.attribute);
-
-    for(var index = 1; index < features.length; index++){
-        if (features[index].visible == true){
-            if(features[index].getAttributeValueByName(this.attribute) == clicked_feature_attribute_value){
-                lineCoordinates.push(new google.maps.LatLng(clicked_feature.getFeatureLat(), clicked_feature.getFeatureLon()), 
-                                     new google.maps.LatLng(features[index].geodata.lat, features[index].geodata.lon)
-                );
+        for(var index = 1; index < features.length; index++){
+            if(features[index].id == clicked_feature_id){
+                clicked_feature = features[index];
+                break;
             }
         }
-    }
 
-    console.log("LINE PATH = "+lineCoordinates);
-    this.line.setPath(lineCoordinates);
+        var clicked_feature_attribute_value = clicked_feature.getAttributeValueByName(this.attribute);
+
+        for(var index = 1; index < features.length; index++){
+            if (features[index].visible == true){
+                if(features[index].getAttributeValueByName(this.attribute) == clicked_feature_attribute_value){
+                    lineCoordinates.push(new google.maps.LatLng(clicked_feature.getFeatureLat(), clicked_feature.getFeatureLon()), 
+                                         new google.maps.LatLng(features[index].geodata.lat, features[index].geodata.lon)
+                    );
+                }
+            }
+        }
+
+        console.log("LINE PATH = "+lineCoordinates);
+        this.line.setPath(lineCoordinates);
+    }
 }
 
 Line.prototype.destroy = function(){

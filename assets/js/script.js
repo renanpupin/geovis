@@ -177,7 +177,7 @@ $(document).ready(function(){
 					app1.addMapVisualization(name, type, null);
 					console.log("add heatmap");
 					$("#modalClose").trigger("click");	//close modal
-				}if(type == "convexhull"){
+				}else if(type == "convexhull"){
 					app1.addMapVisualization(name, type, null);
 					console.log("add convex hull");
 					$("#modalClose").trigger("click");	//close modal

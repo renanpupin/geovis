@@ -1,23 +1,23 @@
-var json_data = [
+[
     {
         "id" : 1,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -21.682483, 
+                "lon": -51.074171
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Adamantina",
+                "value": "Adamantina"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 641.66,
+                "value": 641.66
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 18.968,
+                "value": 18.968
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -29,21 +29,21 @@ var json_data = [
         "id" : 2,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.471463, 
+                "lon": -48.979031
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Agudos",
+                "value": "Agudos"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 1.165,
+                "value": 1.165
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 33.441,
+                "value": 33.441
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -55,21 +55,21 @@ var json_data = [
         "id" : 3,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.737846, 
+                "lon": -47.333569
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Americana",
+                "value": "Americana"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 557.021,
+                "value": 557.021
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 15.662,
+                "value": 15.662
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -81,21 +81,21 @@ var json_data = [
         "id" : 4,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -20.899008, 
+                "lon": -51.379704
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Andradina",
+                "value": "Andradina"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 1.322,
+                "value": 1.322
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 23.815,
+                "value": 23.815
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -107,21 +107,21 @@ var json_data = [
         "id" : 5,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -21.784827, 
+                "lon": -48.178649
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Araraquara",
+                "value": "Araraquara"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 5.681,
+                "value": 5.681
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 26.695,
+                "value": 26.695
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -133,21 +133,21 @@ var json_data = [
         "id" : 6,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.360491, 
+                "lon": -47.379839
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Araras",
+                "value": "Araras"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 2.987,
+                "value": 2.987
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 24.634,
+                "value": 24.634
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -159,21 +159,21 @@ var json_data = [
         "id" : 7,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -20.735494, 
+                "lon": -49.579704
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Bálsamo",
+                "value": "Bálsamo"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 172.109,
+                "value": 172.109
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 20.992,
+                "value": 20.992
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -185,21 +185,21 @@ var json_data = [
         "id" : 8,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.314459, 
+                "lon": -49.058695
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Bauru",
+                "value": "Bauru"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 8.430,
+                "value": 8.430
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 24.215,
+                "value": 24.215
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -211,21 +211,21 @@ var json_data = [
         "id" : 9,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.279958, 
+                "lon": -48.125570
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Brotas",
+                "value": "Brotas"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 458.614,
+                "value": 458.614
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 20.803,
+                "value": 20.803
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -237,21 +237,21 @@ var json_data = [
         "id" : 10,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.997203, 
+                "lon": -47.512814
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Capivari",
+                "value": "Capivari"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 1.577,
+                "value": 1.577
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 15.179,
+                "value": 15.179
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -263,21 +263,21 @@ var json_data = [
         "id" : 11,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -23.037569, 
+                "lon": -49.711440
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Chavantes",
+                "value": "Chavantes"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 267.122,
+                "value": 267.122
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 22.035,
+                "value": 22.035
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -289,21 +289,21 @@ var json_data = [
         "id" : 12,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.642392, 
+                "lon": -47.193026
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Cosmópolis",
+                "value": "Cosmópolis"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 983.321,
+                "value": 983.321
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 16.057,
+                "value": 16.057
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -315,21 +315,21 @@ var json_data = [
         "id" : 13,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.104917, 
+                "lon": -48.318279
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Dourado",
+                "value": "Dourado"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 173.123,
+                "value": 173.123
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 20.233,
+                "value": 20.233
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -341,21 +341,21 @@ var json_data = [
         "id" : 14,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.486408, 
+                "lon": -51.663686
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Estrela do Norte",
+                "value": "Estrela do Norte"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 49.612,
+                "value": 49.612
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 18.541,
+                "value": 18.541
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -367,21 +367,21 @@ var json_data = [
         "id" : 14,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -22.213164, 
+                "lon": -49.655539
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Garça",
+                "value": "Garça"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 848.123,
+                "value": 848.123
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 19.736,
+                "value": 19.736
             },
             {
                 "name": "Participação no Pib(Em %)",
@@ -393,27 +393,26 @@ var json_data = [
         "id" : 15,
         "geodata": 
             {
-                "lat": -22.075, 
-                "lon": -51.425
+                "lat": -20.325371, 
+                "lon": -48.310855
             },
         "infodata": [
             {
                 "name": "nome",
-                "value": "Guaíra",
+                "value": "Guaíra"
             },
             {
                 "name": "Pib (Em milhões de reais)",
-                "value": 959.001,
+                "value": 959.001
             },
             {
                 "name": "Pib Per Capita(Em Reais)",
-                "value": 25.408,
+                "value": 25.408
             },
             {
                 "name": "Participação no Pib(Em %)",
                 "value": 0.068089
             }
         ]
-    },
-
+    }
 ]
