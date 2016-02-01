@@ -569,3 +569,5 @@ function makeDivDraggable(div){
       containment: ".map-wrap"
     });
 }
+
+console.log("Geovis v1.0");

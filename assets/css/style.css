@@ -155,7 +155,9 @@ clearfix.scss
   .clearfix:after {
     clear: both; }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -211,7 +213,7 @@ grid.scss
   clear: both; }
 
 @media only screen and (max-width: 768px) {
-  [class*='grid-xs-'] {
+  [class*="grid-xs-"] {
     float: left; }
   .grid-xs-1 {
     width: 8.33333333%;
@@ -359,7 +361,7 @@ grid.scss
     left: 100%; } }
 
 @media only screen and (min-width: 768px) {
-  [class*='grid-s-'] {
+  [class*="grid-s-"] {
     float: left; }
   .container {
     width: 750px; }
@@ -509,7 +511,7 @@ grid.scss
     left: 100%; } }
 
 @media only screen and (min-width: 992px) {
-  [class*='grid-m-'] {
+  [class*="grid-m-"] {
     float: left; }
   .container {
     width: 970px; }
@@ -659,7 +661,7 @@ grid.scss
     left: 100%; } }
 
 @media only screen and (min-width: 1200px) {
-  [class*='grid-l-'] {
+  [class*="grid-l-"] {
     float: left; }
   .container {
     width: 1170px; }
@@ -1119,11 +1121,11 @@ button[disabled=disabled], button:disabled {
     background-color: #ddd; }
 
 table tr {
-  -webkit-transition: background-color .25s ease;
-  -moz-transition: background-color .25s ease;
-  -o-transition: background-color .25s ease;
-  -ms-transition: background-color .25s ease;
-  transition: background-color .25s ease; }
+  -webkit-transition: background-color 0.25s ease;
+  -moz-transition: background-color 0.25s ease;
+  -o-transition: background-color 0.25s ease;
+  -ms-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease; }
 
 table td, table th {
   padding: 15px 5px;
@@ -1364,9 +1366,7 @@ nav {
       border-radius: 2px;
       outline: 0;
       -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      transition: all 1s cubic-bezier(0.55, 0, 0.1, 1);
-      transition-delay: 0.7s; }
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
     .modal .modal-dialog .modal-header {
       min-height: 20px;
       padding: 15px;
