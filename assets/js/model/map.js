@@ -155,5 +155,24 @@ Map.prototype.addInfoWindow = function(map, marker){
 		infoWindow.open(map, marker);
 
 		self.application.updateLineVisualization(marker.id);
+		self.application.updateEuclidianVisualization(marker.id);
 	});
 }
+
+//TODO: ADD CLUSTERING VIS
+//TODO: CHECK IF THE MARKERS IS INSIDE BOUNDS
+//http://jsfiddle.net/glafarge/mbuLw/
+//https://developers.google.com/maps/articles/toomanymarkers#gridbasedclustering
+/*Map.prototype.addInfoWindow = function(map, marker){
+	for (var i=0; i < markers.length; i++) 
+	{
+	    if map.getBounds().contains(markers[i].getPosition())
+	    {
+	        // markers[i] in visible bounds
+	    } 
+	    else 
+	    {
+	        // markers[i] is not in visible bounds
+	    }
+	}
+}*/

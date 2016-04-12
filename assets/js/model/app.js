@@ -84,6 +84,13 @@ App.prototype.addFilter = function(name, attribute, condition, value){
 		}
 	}
 
+	//find euclidian visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "euclidian"){
+			this.visualizations[index].visualization.updateEuclidianData(null, this.data.features);
+		}
+	}
+
 	//find line visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "line"){
@@ -188,6 +195,13 @@ App.prototype.removeFilter = function(filter){
 		}
 	}
 
+	//find euclidian visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "euclidian"){
+			this.visualizations[index].visualization.updateEuclidianData(null, this.data.features);
+		}
+	}
+
 	//find line visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "line"){
@@ -224,6 +238,14 @@ App.prototype.toggleHeatmap = function(){
 App.prototype.toggleMarkers = function(){
 	this.map.toggleMarkers();
 	//reaply filters when visible
+}
+
+App.prototype.toggleEuclidian = function(name){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "euclidian"){
+			this.visualizations[index].visualization.toggleEuclidian(this.map);
+		}
+	}
 }
 
 App.prototype.toggleLine = function(name){
@@ -280,6 +302,14 @@ App.prototype.removeVisualization = function(name){
 	}
 };
 
+App.prototype.updateEuclidianVisualization = function(marker_id){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type == "euclidian"){
+			this.visualizations[index].visualization.updateEuclidianData(marker_id, this.data.features);
+		}
+	}
+};
+
 App.prototype.updateLineVisualization = function(marker_id){
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type == "line"){
@@ -317,6 +347,8 @@ App.prototype.saveApplication = function(){
 
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type == "line"){
+			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attribute+'", "chart_type": "'+this.visualizations[index].chart_type+'"}'
+		}else if(this.visualizations[index].type == "euclidian"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attribute+'", "chart_type": "'+this.visualizations[index].chart_type+'"}'
 		}else if(this.visualizations[index].type == "chart"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attributes+'", "chart_type": "'+this.visualizations[index].visualization.type+'"}'

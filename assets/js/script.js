@@ -30,8 +30,6 @@ $(document).ready(function(){
 	}, 1500);*/
 
 
-	
-	
 	/*======================================================*/
 	// UI
 	/*======================================================*/
@@ -165,6 +163,7 @@ $(document).ready(function(){
 		var type = $("#inputVisAddType").val();
 		var attribute = $("#inputVisAddChartAttribute").val();
 		var attribute_line = $("#inputVisAddLineAttribute").val();
+		var attribute_euclidian = $("#inputVisAddEuclidianAttribute").val();
 		var chart_type = $("#inputVisAddChartType").val();
 		
 		//app1.addMapVisualization("Mapa de Calor", "heatmap");
@@ -181,13 +180,21 @@ $(document).ready(function(){
 					app1.addMapVisualization(name, type, null);
 					console.log("add convex hull");
 					$("#modalClose").trigger("click");	//close modal
+				}else if(type == "euclidian"){
+					if(attribute_euclidian != "" && attribute_euclidian != undefined){
+						app1.addMapVisualization(name, type, attribute_euclidian);
+						console.log("add euclidian distance");
+						$("#modalClose").trigger("click");	//close modal
+					}else{
+						alert("Selecione o atributo da visualização de distância euclidiana!");
+					}
 				}else{
 					if(attribute_line != "" && attribute_line != undefined){
 						app1.addMapVisualization(name, type, attribute_line);
 						console.log("add line");
 						$("#modalClose").trigger("click");	//close modal
 					}else{
-						alert("Selecione o atribute da visualização por linhas!");
+						alert("Selecione o atributo da visualização por linhas!");
 					}
 				}
 				console.log("OK");
@@ -222,12 +229,38 @@ $(document).ready(function(){
 			if($("#inputVisAddChartType").length > 0){
 				$(".rowChartType").remove();
 				$(".rowChartAttribute").remove();
+				$(".rowEuclidianAttribute").remove();
 			}
 		}
 
-		if($(this).val() == "line"){
+		if($(this).val() == "euclidian"){
 			$(".rowChartType").remove();
 			$(".rowChartAttribute").remove();
+			$(".rowLineAttribute").remove();
+
+			var euclidian_attribute_content = '<div class="row rowEuclidianAttribute"><label for="inputVisAddEuclidianAttribute">Atributo</label><select id="inputVisAddEuclidianAttribute">';
+
+			var euclidian_attribute_content_options = "";
+
+			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+				if(app1.data.features[0].infodata[i].type == "number"){
+					euclidian_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
+				}
+			}
+
+			if(String(euclidian_attribute_content_options) == ""){
+				euclidian_attribute_content_options = '<option value="-1">Não há atributos suportados.</option>'
+			}
+			euclidian_attribute_content += euclidian_attribute_content_options;
+
+			euclidian_attribute_content += '</select></div>';
+
+			$(".rowVisType").after(euclidian_attribute_content);
+
+		}else if($(this).val() == "line"){
+			$(".rowChartType").remove();
+			$(".rowChartAttribute").remove();
+			$(".rowEuclidianAttribute").remove();
 
 			var line_attribute_content = '<div class="row rowLineAttribute"><label for="inputVisAddLineAttribute">Atributo</label><select id="inputVisAddLineAttribute">';
 
@@ -257,6 +290,7 @@ $(document).ready(function(){
 	$(document).on("change", "#inputVisAddChartType", function(){
 		$(".rowChartAttribute").remove();
 		$(".rowLineAttribute").remove();
+		$(".rowEuclidianAttribute").remove();
 
 		var chart_type = $(this).val();
 		console.log(chart_type);
@@ -298,6 +332,7 @@ $(document).ready(function(){
 						'<option value="heatmap">Mapa de calor</option>'+
 						'<option value="chart">Gráfico</option>'+
 						'<option value="line">Linha</option>'+
+						'<option value="euclidian">Distância Euclidiana</option>'+
 						'<option value="convexhull">Fecho Convexo</option>'+
 					'</select>'+
 					'</div>';
@@ -549,6 +584,8 @@ $(document).ready(function(){
 			app1.toggleCharts();
 		} else if(target === "line"){
 			app1.toggleLine();
+		} else if(target === "euclidian"){
+			app1.toggleEuclidian();
 		} else if(target === "convexhull"){
 			app1.toggleConvexHull();
 		}
@@ -570,4 +607,4 @@ function makeDivDraggable(div){
     });
 }
 
-console.log("Geovis v1.0");
+console.log("Geovis v1.1");
