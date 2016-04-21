@@ -37,30 +37,6 @@ var App = function(data) {
 
 };
 
-//load data from json
-App.prototype.loadData = function(data){
-	//TODO: limpar se já tiver carregado e mensagem de verificação
-	this.data = new Data(data);
-	console.log(this.data);
-}
-
-//load config from json
-App.prototype.loadConfig = function(data){
-	console.log(data);
-
-	for(var index = 0; index < data.app.filters.length; index++){
-		this.addFilter(data.app.filters[index].name, data.app.filters[index].attribute, data.app.filters[index].condition, data.app.filters[index].value)
-	}
-
-	for(var index = 0; index < data.app.visualizations.length; index++){
-		if(data.app.visualizations[index].type == "chart"){
-			this.addChartVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute, data.app.visualizations[index].chart_type);
-		}else{
-			this.addMapVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute);
-		}
-	}
-}
-
 //init map instance
 App.prototype.initMap = function(){
 	this.map = new Map(this);
@@ -370,10 +346,35 @@ App.prototype.saveApplication = function(){
 	return json_application;
 }
 
-App.prototype.loadApplication = function(json_application){
+
+//load data from json
+App.prototype.loadData = function(data){
+	//TODO: limpar se já tiver carregado e mensagem de verificação
+	this.data = new Data(data);
+	console.log(this.data);
+}
+
+//load config from json
+App.prototype.loadConfig = function(data){
+	console.log(data);
+
+	for(var index = 0; index < data.app.filters.length; index++){
+		this.addFilter(data.app.filters[index].name, data.app.filters[index].attribute, data.app.filters[index].condition, data.app.filters[index].value)
+	}
+
+	for(var index = 0; index < data.app.visualizations.length; index++){
+		if(data.app.visualizations[index].type == "chart"){
+			this.addChartVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute, data.app.visualizations[index].chart_type);
+		}else{
+			this.addMapVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute);
+		}
+	}
+}
+
+// App.prototype.loadApplication = function(json_application){
 	//load app here
 	
 	//this.addMarkers();
 	//this.addFilters();
 	//this.addVisualizations();
-}
+// }
