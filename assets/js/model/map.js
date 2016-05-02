@@ -102,6 +102,9 @@ Map.prototype.toggleMarkers = function(){
 //add markers to map
 Map.prototype.addMarkers = function (features){
 	// var self = this;
+	
+	//var bounds = new google.maps.LatLngBounds();
+
 	for (var i = 0; i < features.length; i++) {
 		
 		var image = {
@@ -140,7 +143,12 @@ Map.prototype.addMarkers = function (features){
 
 		this.addInfoWindow(this.gmap, marker);
 		this.markers.push(marker);
+
+		//bounds.extend(marker);
 	}
+
+	//this.gmap.fitBounds(bounds);
+
 }
 
 //click event window
@@ -159,8 +167,8 @@ Map.prototype.addInfoWindow = function(map, marker){
 	});
 }
 
-//TODO: ADD CLUSTERING VIS
-//TODO: CHECK IF THE MARKERS IS INSIDE BOUNDS
+//CLUSTERING VIS
+//CHECK IF THE MARKERS IS INSIDE BOUNDS
 //http://jsfiddle.net/glafarge/mbuLw/
 //https://developers.google.com/maps/articles/toomanymarkers#gridbasedclustering
 /*Map.prototype.addInfoWindow = function(map, marker){
