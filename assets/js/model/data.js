@@ -94,8 +94,8 @@ Data.prototype.calculateAverageAttributeValue = function(attribute){
 }
 
 Data.prototype.countAttributeOcurrences = function(attribute){
-    var data_array = [], keys = [], ocurrences = [];
-    var prev;
+	var data_array = [], keys = [], ocurrences = [];
+	var prev;
 
 	for(var index = 0; index < this.features.length; index++){
 		if (this.features[index].visible == true){
@@ -103,11 +103,11 @@ Data.prototype.countAttributeOcurrences = function(attribute){
 		}
 	}
 
-    data_array.sort();
+	data_array.sort();
 
-    for(var index = 0; index < data_array.length; index++){
-    	
-    	var value = data_array[index];
+	for(var index = 0; index < data_array.length; index++){
+
+		var value = data_array[index];
         if ( value !== prev ) {
             keys.push(value);
             ocurrences.push(1);

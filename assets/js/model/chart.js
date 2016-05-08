@@ -90,8 +90,10 @@ Chart.prototype.processChartData = function(features, attributes){
 	var ocurrences = features.countAttributeOcurrences(attributes);
 
 	for(var index = 0; index < ocurrences[0].length; index++){
-		data_chart[index] = [ocurrences[0][index], ocurrences[1][index]];
+		data_chart[index] = [String(ocurrences[0][index]), ocurrences[1][index]];
 	}
+
+	console.log(data_chart);
 
 	return data_chart;
 }

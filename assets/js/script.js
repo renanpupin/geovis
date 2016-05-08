@@ -8,26 +8,9 @@ $(document).ready(function(){
 	var app1 = new App();
 	app1.initMap();
 
-	//DEBUG MODE
-	//var app1 = new App(json_data);	//json_data - DATA LOADEAD FROM FILE
-	// app1.initMap();
 	// window.app = app1;	//just to debug objects
 
 	var clickedMarker = null;
-
-
-	/*setTimeout(function() {
-		app1.addMarkers();
-		// app1.addFilter("Valores maiores que 5", "valor", "more than", 5);
-		// app1.addFilter("Valores menores que 3", "valor", "less than", 3);
-		// app1.addFilter("Categoria igual a 'cat3'", "categoria", "equal", "cat3");
-		//app1.addFilter("Marcadores Ativos", "ativo", "equal", true);
-		app1.addMapVisualization("Mapa de Calor", "heatmap");
-		// app1.addMapVisualization("Linhas", "line");
-		app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
-		//app1.addChartVisualization("Gráfico de Pizza para o atributo 'categoria'", "chart", "categoria", "pie");
-		//app1.addChartVisualization("Gráfico de Barras para o atributo 'categoria'", "chart", "categoria", "bar");
-	}, 1500);*/
 
 
 	/*======================================================*/
@@ -165,11 +148,7 @@ $(document).ready(function(){
 		var attribute_line = $("#inputVisAddLineAttribute").val();
 		var attribute_euclidian = $("#inputVisAddEuclidianAttribute").val();
 		var chart_type = $("#inputVisAddChartType").val();
-		
-		//app1.addMapVisualization("Mapa de Calor", "heatmap");
-		// app1.addMapVisualization("Linhas", "line");
-		//app1.addChartVisualization("Gráfico de Linha para o atributo 'valor'", "chart", "valor", "line");
-		
+
 		if(type !== "chart"){
 			if(name != "" && type != ""){
 				if(type == "heatmap"){
@@ -218,10 +197,10 @@ $(document).ready(function(){
 	$(document).on("change", "#inputVisAddType", function(){
 		if($(this).val() == "chart"){
 			var chart_type_content = '<div class="row rowChartType"><label for="inputVisAddChartType">Tipo do gráfico</label><select id="inputVisAddChartType">'+
-									  	  '<option value="pie">Pizza</option>'+
-									  	  '<option value="line">Linha</option>'+
-									  	  '<option value="bar">Barra</option>'+
-									  '</select>'+
+									      '<option value="pie">Pizza</option>'+
+									      '<option value="line">Linha</option>'+
+									      '<option value="bar">Barra</option>'+
+									    '</select>'+
 									  '</div>';
 			$(".rowVisType").after(chart_type_content);
 			$("#inputVisAddChartType").trigger("change");
