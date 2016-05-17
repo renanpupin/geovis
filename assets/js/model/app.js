@@ -261,12 +261,16 @@ App.prototype.addMarkers = function(){
 }
 
 App.prototype.addMapVisualization = function(name, type, attribute){
-	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, attribute, null));
+	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, attribute, null, null));
 };
 
 App.prototype.addChartVisualization = function(name, type, attributes, chart_type){
 	//TODO: chart on div, on map, with filters, without filters
-	this.visualizations.push(new Visualization(name, type, null, this.data, attributes, chart_type));
+	this.visualizations.push(new Visualization(name, type, null, this.data, attributes, chart_type, null));
+};
+
+App.prototype.addEuclidianVisualization = function(name, type, euclidian_number){
+	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, null, null, euclidian_number));
 };
 
 App.prototype.removeVisualization = function(name){
@@ -323,13 +327,13 @@ App.prototype.saveApplication = function(){
 
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type == "line"){
-			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attribute+'", "chart_type": "'+this.visualizations[index].chart_type+'"}'
+			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attribute+'"}'
 		}else if(this.visualizations[index].type == "euclidian"){
-			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attribute+'", "chart_type": "'+this.visualizations[index].chart_type+'"}'
+			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "euclidian_number": "'+this.visualizations[index].visualization.euclidian_number+'"}'
 		}else if(this.visualizations[index].type == "chart"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attributes+'", "chart_type": "'+this.visualizations[index].visualization.type+'"}'
 		}else{
-			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].attribute+'", "chart_type": "'+this.visualizations[index].chart_type+'"}'
+			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].attribute+'"}'
 		}
 
 		if(index < this.visualizations.length-1){
@@ -365,6 +369,8 @@ App.prototype.loadConfig = function(data){
 	for(var index = 0; index < data.app.visualizations.length; index++){
 		if(data.app.visualizations[index].type == "chart"){
 			this.addChartVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute, data.app.visualizations[index].chart_type);
+		}else if(data.app.visualizations[index].type == "euclidian"){
+			this.addEuclidianVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].euclidian_number);
 		}else{
 			this.addMapVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute);
 		}

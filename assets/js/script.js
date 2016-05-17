@@ -146,7 +146,7 @@ $(document).ready(function(){
 		var type = $("#inputVisAddType").val();
 		var attribute = $("#inputVisAddChartAttribute").val();
 		var attribute_line = $("#inputVisAddLineAttribute").val();
-		var attribute_euclidian = $("#inputVisAddEuclidianAttribute").val();
+		var euclidian_number = $("#inputVisAddEuclidianNumber").val();
 		var chart_type = $("#inputVisAddChartType").val();
 
 		if(type !== "chart"){
@@ -160,12 +160,12 @@ $(document).ready(function(){
 					console.log("add convex hull");
 					$("#modalClose").trigger("click");	//close modal
 				}else if(type == "euclidian"){
-					if(attribute_euclidian != "" && attribute_euclidian != undefined){
-						app1.addMapVisualization(name, type, attribute_euclidian);
+					if(euclidian_number != "" && euclidian_number != undefined){
+						app1.addEuclidianVisualization(name, type, euclidian_number);
 						console.log("add euclidian distance");
 						$("#modalClose").trigger("click");	//close modal
 					}else{
-						alert("Selecione o atributo da visualização de distância euclidiana!");
+						alert("Selecione o número de instâncias próximas da visualização de distância euclidiana!");
 					}
 				}else{
 					if(attribute_line != "" && attribute_line != undefined){
@@ -208,7 +208,7 @@ $(document).ready(function(){
 			if($("#inputVisAddChartType").length > 0){
 				$(".rowChartType").remove();
 				$(".rowChartAttribute").remove();
-				$(".rowEuclidianAttribute").remove();
+				$(".rowEuclidianNumber").remove();
 			}
 		}
 
@@ -217,29 +217,14 @@ $(document).ready(function(){
 			$(".rowChartAttribute").remove();
 			$(".rowLineAttribute").remove();
 
-			var euclidian_attribute_content = '<div class="row rowEuclidianAttribute"><label for="inputVisAddEuclidianAttribute">Atributo</label><select id="inputVisAddEuclidianAttribute">';
-
-			var euclidian_attribute_content_options = "";
-
-			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
-				if(app1.data.features[0].infodata[i].type == "number"){
-					euclidian_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
-				}
-			}
-
-			if(String(euclidian_attribute_content_options) == ""){
-				euclidian_attribute_content_options = '<option value="-1">Não há atributos suportados.</option>'
-			}
-			euclidian_attribute_content += euclidian_attribute_content_options;
-
-			euclidian_attribute_content += '</select></div>';
+			var euclidian_attribute_content = '<div class="row rowEuclidianNumber"><label for="inputVisAddEuclidianNumber">Número de instâncias</label><input type="text" id="inputVisAddEuclidianNumber">';
 
 			$(".rowVisType").after(euclidian_attribute_content);
 
 		}else if($(this).val() == "line"){
 			$(".rowChartType").remove();
 			$(".rowChartAttribute").remove();
-			$(".rowEuclidianAttribute").remove();
+			$(".rowEuclidianNumber").remove();
 
 			var line_attribute_content = '<div class="row rowLineAttribute"><label for="inputVisAddLineAttribute">Atributo</label><select id="inputVisAddLineAttribute">';
 
@@ -269,7 +254,7 @@ $(document).ready(function(){
 	$(document).on("change", "#inputVisAddChartType", function(){
 		$(".rowChartAttribute").remove();
 		$(".rowLineAttribute").remove();
-		$(".rowEuclidianAttribute").remove();
+		$(".rowEuclidianNumber").remove();
 
 		var chart_type = $(this).val();
 		console.log(chart_type);

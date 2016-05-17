@@ -1,8 +1,7 @@
-var Euclidian = function(map, features, attribute) {
+var Euclidian = function(map, features, euclidian_number) {
     //this.radius = radius || 30;
     this.line = null;
-    this.attribute = attribute;
-    this.limit = 10;    //10 mais próximos
+    this.euclidian_number = euclidian_number;
     this.initEuclidian(map, features);
 };
 
@@ -42,23 +41,32 @@ Euclidian.prototype.updateEuclidianData = function(clicked_feature_id, features)
 
         //calcula as distâncias
         for(var index = 0; index < features.length; index++){
-            if (features[index].visible == true){
-                var distance = this.calculateEuclidianDistance(features[index], clicked_feature);
-                euclidian_features.push([index, distance]);
+            if ((features[index].visible == true) && (features[index].id !== clicked_feature.id)){
+                var all_distances = 0;
+                for(var index_attribute = 0; index_attribute < features[index].infodata.length; index_attribute++){
+                    if(features[index].infodata[index_attribute].type === "number"){
+                        console.log("atributos utilizado distância euclidiana = "+features[index].infodata[index_attribute].name);
+                        var selected_attribute = features[index].infodata[index_attribute].name;
+                        var distance = this.calculateEuclidianDistance(features[index], clicked_feature, selected_attribute);
+                        all_distances += distance;
+                    }
+                }
+                euclidian_features.push([index, all_distances]);
             }
         }
 
         euclidian_features.sort(function(obj1, obj2) {
             return obj1[1] - obj2[1];
         });
+        console.log(euclidian_features);
 
 
-        if(euclidian_features.length > this.limit){
-            console.log("o número de features itens deve ser maior que o limite da  distância euclidiana");
+        if(euclidian_features.length < this.euclidian_number){
+            console.log("o número de features deve ser maior que o limite da  distância euclidiana = "+this.euclidian_number);
         }
 
         //encontra os mais próximos
-        for(var index = 0; ((index < this.limit) && (index < euclidian_features.length)); index++){
+        for(var index = 0; ((index < this.euclidian_number) && (index < euclidian_features.length)); index++){
 
             var selected_feature = features[euclidian_features[index][0]];
 
@@ -72,8 +80,8 @@ Euclidian.prototype.updateEuclidianData = function(clicked_feature_id, features)
     }
 }
 
-Euclidian.prototype.calculateEuclidianDistance = function(feature, clicked_feature){
-    return Math.sqrt(Math.pow((feature.getAttributeValueByName(this.attribute) - clicked_feature.getAttributeValueByName(this.attribute)), 2));
+Euclidian.prototype.calculateEuclidianDistance = function(feature, clicked_feature, attribute){
+    return Math.sqrt(Math.pow((feature.getAttributeValueByName(attribute) - clicked_feature.getAttributeValueByName(attribute)), 2));
 }
 
 Euclidian.prototype.destroy = function(){

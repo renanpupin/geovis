@@ -125,7 +125,7 @@ $widths: (
         }
         @if $name == "s" or $name == "m" or $name == "l"{
           .container {
-            width: unquote(calculateContainerWidth($container_size, $gutter_width));
+            width: calculateContainerWidth($container_size, $gutter_width);
           }
         }
         $index: 1;
