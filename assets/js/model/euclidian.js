@@ -51,18 +51,13 @@ Euclidian.prototype.updateEuclidianData = function(clicked_feature_id, features)
                         all_distances += distance;
                     }
                 }
-                euclidian_features.push([index, all_distances);
+                euclidian_features.push([index, all_distances]);
             }
         }
-        // console.log("Antes da ordenação");
-        // console.log(euclidian_features);
 
         euclidian_features.sort(function(obj1, obj2) {
             return obj1[1] - obj2[1];
         });
-        
-        // console.log("Depois da ordenação");
-        // console.log(euclidian_features);
 
 
         if(euclidian_features.length < this.euclidian_number){
