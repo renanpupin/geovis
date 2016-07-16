@@ -97,7 +97,7 @@
             },
             {
                 "name": "capital",
-                "value": false
+                "value": true
             },
             {
                 "name": "população (em milhões de pessoas)",
@@ -3019,7 +3019,7 @@
             },
             {
                 "name": "região",
-                "value": "NE"
+                "value": "SE"
             },
             {
                 "name": "capital",
