@@ -36,10 +36,11 @@
                 <h3>Camadas</h3>
                 <p class="layerItem"><input id="layer_1" value="markers" type="checkbox" class="toggleLayers" checked/> Marcadores</p>
                 <p class="layerItem"><input id="layer_2" value="heatmap" type="checkbox" class="toggleLayers" checked/> Mapa de Calor</p>
-                <p class="layerItem"><input id="layer_3" value="chart" type="checkbox" class="toggleLayers" checked/> Gráficos</p>
-                <p class="layerItem"><input id="layer_4" value="line" type="checkbox" class="toggleLayers" checked/> Linhas</p>
-                <p class="layerItem"><input id="layer_5" value="convexhull" type="checkbox" class="toggleLayers" checked/> Fecho Convexo</p>
-                <p class="layerItem"><input id="layer_6" value="euclidian" type="checkbox" class="toggleLayers" checked/> Distância Euclidiana</p>
+                <p class="layerItem"><input id="layer_3" value="cluster" type="checkbox" class="toggleLayers" checked/> Cluster</p>
+                <p class="layerItem"><input id="layer_4" value="chart" type="checkbox" class="toggleLayers" checked/> Gráficos</p>
+                <p class="layerItem"><input id="layer_5" value="line" type="checkbox" class="toggleLayers" checked/> Linhas</p>
+                <p class="layerItem"><input id="layer_6" value="convexhull" type="checkbox" class="toggleLayers" checked/> Fecho Convexo</p>
+                <p class="layerItem"><input id="layer_7" value="euclidian" type="checkbox" class="toggleLayers" checked/> Distância Euclidiana</p>
             </span>
             <span class="filters tabs">
                 <h3>Filtros</h3>
@@ -192,7 +193,9 @@
         
         <!-- SCRIPTS -->
         <script type="text/javascript" src="https://www.google.com/jsapi"></script><!--Load the AJAX API-->
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script><!-- Load MAPS 
+        <!-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script> -->
+        <script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerclustererplus/src/markerclusterer.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3B202UDbbPzCUO9UGp9-rlBQ8glIQ0uQ&libraries=visualization"></script><!-- Load MAPS 
         API -->
         <script src="assets/js/FileSaver.min.js"></script>
         
@@ -206,6 +209,7 @@
         <script src="assets/js/model/feature.js"></script>
         <script src="assets/js/model/data.js"></script>
         <script src="assets/js/model/heatmap.js"></script>
+        <script src="assets/js/model/cluster.js"></script>
         <script src="assets/js/model/convex_hull.js"></script>
         <script src="assets/js/model/euclidian.js"></script>
         <script src="assets/js/model/line.js"></script>

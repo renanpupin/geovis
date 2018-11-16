@@ -109,6 +109,15 @@ Map.prototype.addMarkers = function (features){
 		
 		var image = {
 			url: 'assets/img/marker.gif',
+			// url: 'https://chart.googleapis.com/chart?chs=500x200&chd=t:120,80&cht=p3&chl=aaa|World&chf=bg,s,FFFFFF00',
+			//https://chart.googleapis.com/chart?chs=500x200&chd=t:120,80&cht=p3&chl=aaa|World&chf=bg,s,FFFFFF00
+			//https://chart.googleapis.com/chart?chs=500x200&chd=t:120,80&cht=p&chl=aaaaaaa|bbbbb&chf=bg,s,FFFFFF00
+			//https://developers.google.com/chart/image/docs/chart_params#gcharts_rgb
+			//https://developers.google.com/chart/image/docs/chart_params#gcharts_solid_fills
+			//https://developers.google.com/chart/image/docs/data_formats#encoding_data
+			//https://developers.google.com/chart/image/docs/data_formats
+			//https://developers.google.com/chart/image/docs/gallery/dynamic_icons
+			//https://stackoverflow.com/questions/12698003/save-a-google-chart-as-svg
 			size: new google.maps.Size(65, 35),
 			origin: new google.maps.Point(0, 0),
 			anchor: new google.maps.Point(33, 33),
@@ -148,6 +157,14 @@ Map.prototype.addMarkers = function (features){
 	}
 
 	//this.gmap.fitBounds(bounds);
+
+	// var markerCluster = new MarkerClusterer(
+		// this.gmap, 
+		// this.markers,
+        // {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+    // );
+    //https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus
+    //https://github.com/googlemaps/v3-utility-library
 
 }
 

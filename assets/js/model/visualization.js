@@ -37,6 +37,8 @@ var Visualization = function(name, type, map, data, attribute, chart_type, eucli
 		this.visualization = new Euclidian(map, data, euclidian_number);
 	}else if(this.type === "chart"){
 		this.visualization = new Chart(name, data, attribute, chart_type);
+	}else if(this.type === "cluster"){
+		this.visualization = new ClusterVis(map);
 	}
 	
 };

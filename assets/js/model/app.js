@@ -60,6 +60,13 @@ App.prototype.addFilter = function(name, attribute, condition, value){
 		}
 	}
 
+	//find cluster visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "cluster"){
+			this.visualizations[index].visualization.updateClusterData(this.data.features);
+		}
+	}
+
 	//find euclidian visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "euclidian"){
@@ -171,6 +178,13 @@ App.prototype.removeFilter = function(filter){
 		}
 	}
 
+	//find cluster visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "cluster"){
+			this.visualizations[index].visualization.updateClusterData(this.data.features);
+		}
+	}
+
 	//find euclidian visualization and update data based on filters
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "euclidian"){
@@ -207,6 +221,14 @@ App.prototype.toggleHeatmap = function(){
 	for(var index = 0; index < this.visualizations.length; index++){
 		if(this.visualizations[index].type === "heatmap"){
 			this.visualizations[index].visualization.toggleHeatmap(this.map);
+		}
+	}
+}
+
+App.prototype.toggleCluster = function(){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "cluster"){
+			this.visualizations[index].visualization.toggleCluster(this.map);
 		}
 	}
 }
@@ -332,6 +354,8 @@ App.prototype.saveApplication = function(){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "euclidian_number": "'+this.visualizations[index].visualization.euclidian_number+'"}'
 		}else if(this.visualizations[index].type == "chart"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attributes+'", "chart_type": "'+this.visualizations[index].visualization.type+'"}'
+		}else if(this.visualizations[index].type == "heatmap" || this.visualizations[index].type == "cluster"){
+			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'"}'
 		}else{
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].attribute+'"}'
 		}

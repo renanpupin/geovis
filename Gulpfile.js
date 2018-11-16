@@ -5,7 +5,7 @@ var reload      = browserSync.reload;
 var paths = {
     css: 'assets/css',
     scss: 'assets/scss/*.scss',
-    js: 'assets/js/*.js'
+    js: 'assets/**/*.js'
 };
 gulp.task('sass-min', function () {
     return gulp.src(paths.scss,

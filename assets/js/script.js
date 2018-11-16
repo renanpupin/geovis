@@ -155,6 +155,10 @@ $(document).ready(function(){
 					app1.addMapVisualization(name, type, null);
 					console.log("add heatmap");
 					$("#modalClose").trigger("click");	//close modal
+				}else if(type == "cluster"){
+					app1.addMapVisualization(name, type, null);
+					console.log("add cluster");
+					$("#modalClose").trigger("click");	//close modal
 				}else if(type == "convexhull"){
 					app1.addMapVisualization(name, type, null);
 					console.log("add convex hull");
@@ -294,6 +298,7 @@ $(document).ready(function(){
 
 		content += '<label for="inputVisAddType">Tipo da visualização</label><select id="inputVisAddType">'+
 						'<option value="heatmap">Mapa de calor</option>'+
+						'<option value="cluster">Cluster</option>'+
 						'<option value="chart">Gráfico</option>'+
 						'<option value="line">Linha</option>'+
 						'<option value="euclidian">Distância Euclidiana</option>'+
@@ -544,6 +549,8 @@ $(document).ready(function(){
 			app1.toggleMarkers();
 		} else if(target === "heatmap"){
 			app1.toggleHeatmap();
+		} else if(target === "cluster"){
+			app1.toggleCluster();
 		} else if(target === "chart"){
 			app1.toggleCharts();
 		} else if(target === "line"){

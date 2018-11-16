@@ -32,6 +32,7 @@ LineChart.prototype.cleanChartDataNullIndex = function(){
   this.processed_data.clean(undefined);
   console.log(this.processed_data);
 }
+
 LineChart.prototype.initChart = function(div){
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Id');
