@@ -112,7 +112,7 @@ App.prototype.executeFilter = function(filter){
 	this.updateFeaturesCounter();
 	this.updateSideFilterList();
 	console.log(filter);
-}
+};
 
 App.prototype.updateSideFilterList = function(){
 	var html_str = "";
@@ -127,7 +127,7 @@ App.prototype.updateSideFilterList = function(){
 	
 	$(".tabs.filters").append(html_str);
 
-	if($(".tabs.filters").find(".filterItem").length == 0){
+	if($(".tabs.filters").find(".filterItem").length === 0){
 		$(".tabs.filters").append('<p class="filterItem">Sem Filtros</p>');
 	}
 };
@@ -148,7 +148,7 @@ App.prototype.countVisibleFeatures = function(){
 		}
 	}
 	return counter;
-}
+};
 
 //remove filter
 App.prototype.removeFilter = function(filter){
@@ -213,9 +213,17 @@ App.prototype.removeFilter = function(filter){
 		}
 	}
 
+	//find marker_chart visualization and update data based on filters
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "marker_chart"){
+			alert("implementar");
+			// this.visualizations[index].visualization.updateMarkerChartData(this.data.features);
+		}
+	}
+
 	this.updateFeaturesCounter();
 	this.updateSideFilterList();
-}
+};
 
 App.prototype.toggleHeatmap = function(){
 	for(var index = 0; index < this.visualizations.length; index++){
@@ -223,7 +231,7 @@ App.prototype.toggleHeatmap = function(){
 			this.visualizations[index].visualization.toggleHeatmap(this.map);
 		}
 	}
-}
+};
 
 App.prototype.toggleCluster = function(){
 	for(var index = 0; index < this.visualizations.length; index++){
@@ -231,12 +239,12 @@ App.prototype.toggleCluster = function(){
 			this.visualizations[index].visualization.toggleCluster(this.map);
 		}
 	}
-}
+};
 
 App.prototype.toggleMarkers = function(){
 	this.map.toggleMarkers();
 	//reaply filters when visible
-}
+};
 
 App.prototype.toggleEuclidian = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
@@ -244,7 +252,7 @@ App.prototype.toggleEuclidian = function(name){
 			this.visualizations[index].visualization.toggleEuclidian(this.map);
 		}
 	}
-}
+};
 
 App.prototype.toggleLine = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
@@ -252,7 +260,7 @@ App.prototype.toggleLine = function(name){
 			this.visualizations[index].visualization.toggleLine(this.map);
 		}
 	}
-}
+};
 
 App.prototype.toggleConvexHull = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
@@ -260,11 +268,26 @@ App.prototype.toggleConvexHull = function(name){
 			this.visualizations[index].visualization.toggleConvexHull(this.map);
 		}
 	}
-}
+};
 
 App.prototype.toggleCharts = function(name){
 	$(".chartDiv").fadeToggle();
-}
+};
+
+
+App.prototype.toggleMarkerChart = function(){
+	for(var index = 0; index < this.visualizations.length; index++){
+		if(this.visualizations[index].type === "marker_chart"){
+			this.visualizations[index].visualization.toggleMarkerChart(
+				this.map,
+                this.visualizations[index].name,
+				this.data,
+                this.visualizations[index].attribute,
+                this.visualizations[index].type
+			);
+		}
+	}
+};
 
 App.prototype.toggleFilter = function(index, state){
 	if(index != null && index != undefined){
@@ -274,13 +297,13 @@ App.prototype.toggleFilter = function(index, state){
 			}
 		}
 	}else{
-		console.log ("index undefined");
+		console.log("index undefined");
 	}
-}
+};
 
 App.prototype.addMarkers = function(){
 	this.map.addMarkers(this.data.features);
-}
+};
 
 App.prototype.addMapVisualization = function(name, type, attribute){
 	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, attribute, null, null));
@@ -291,14 +314,19 @@ App.prototype.addChartVisualization = function(name, type, attributes, chart_typ
 	this.visualizations.push(new Visualization(name, type, null, this.data, attributes, chart_type, null));
 };
 
+App.prototype.addMarkerChartVisualization = function(name, type, attributes, chart_type){
+	// console.log("addMarkerChartVisualization", name, type, attributes, chart_type);
+	this.visualizations.push(new Visualization(name, type, this.map, this.data, attributes, chart_type, null));
+};
+
 App.prototype.addEuclidianVisualization = function(name, type, euclidian_number){
 	this.visualizations.push(new Visualization(name, type, this.map, this.data.features, null, null, euclidian_number));
 };
 
 App.prototype.removeVisualization = function(name){
 	for(var index = 0; index < this.visualizations.length; index++){
-		if(this.visualizations[index].name == name){
-			this.visualizations[index].remove();
+		if(this.visualizations[index].name === name){
+            this.visualizations[index].remove(this.map);
 			this.visualizations.splice(index,1);
 		}
 	}
@@ -332,7 +360,7 @@ App.prototype.printAppInstances = function(){
 	console.log(this.map);
 	console.log(this.data);
 	console.log(this.visualizations);
-}
+};
 
 App.prototype.saveApplication = function(){
 	var json_application = '{"app": { "filters" : [';
@@ -348,13 +376,15 @@ App.prototype.saveApplication = function(){
 	json_application += '], "visualizations" : [';
 
 	for(var index = 0; index < this.visualizations.length; index++){
-		if(this.visualizations[index].type == "line"){
+		if(this.visualizations[index].type === "line"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attribute+'"}'
-		}else if(this.visualizations[index].type == "euclidian"){
+		}else if(this.visualizations[index].type === "euclidian"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "euclidian_number": "'+this.visualizations[index].visualization.euclidian_number+'"}'
-		}else if(this.visualizations[index].type == "chart"){
+		}else if(this.visualizations[index].type === "chart"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attributes+'", "chart_type": "'+this.visualizations[index].visualization.type+'"}'
-		}else if(this.visualizations[index].type == "heatmap" || this.visualizations[index].type == "cluster"){
+		}else if(this.visualizations[index].type === "marker_chart"){
+			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].visualization.attributes+'"}'
+		}else if(this.visualizations[index].type === "heatmap" || this.visualizations[index].type === "cluster"){
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'"}'
 		}else{
 			json_application += '{"name": "'+this.visualizations[index].name+'", "type": "'+this.visualizations[index].type+'", "attribute": "'+this.visualizations[index].attribute+'"}'
@@ -372,7 +402,7 @@ App.prototype.saveApplication = function(){
 	console.log(json_application);
 	console.log(JSON.parse(json_application));
 	return json_application;
-}
+};
 
 
 //load data from json
@@ -380,7 +410,7 @@ App.prototype.loadData = function(data){
 	//TODO: limpar se já tiver carregado e mensagem de verificação
 	this.data = new Data(data);
 	console.log(this.data);
-}
+};
 
 //load config from json
 App.prototype.loadConfig = function(data){
@@ -391,15 +421,17 @@ App.prototype.loadConfig = function(data){
 	}
 
 	for(var index = 0; index < data.app.visualizations.length; index++){
-		if(data.app.visualizations[index].type == "chart"){
+		if(data.app.visualizations[index].type === "chart"){
 			this.addChartVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute, data.app.visualizations[index].chart_type);
-		}else if(data.app.visualizations[index].type == "euclidian"){
+		}else if(data.app.visualizations[index].type === "marker_chart"){
+			this.addMarkerChartVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute, data.app.visualizations[index].chart_type);
+		}else if(data.app.visualizations[index].type === "euclidian"){
 			this.addEuclidianVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].euclidian_number);
 		}else{
 			this.addMapVisualization(data.app.visualizations[index].name, data.app.visualizations[index].type, data.app.visualizations[index].attribute);
 		}
 	}
-}
+};
 
 // App.prototype.loadApplication = function(json_application){
 	//load app here

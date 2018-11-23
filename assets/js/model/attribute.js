@@ -42,4 +42,4 @@ Attribute.prototype.findAttributeType = function(){
 	}else{
 		this.type = undefined;
 	}
-}
+};

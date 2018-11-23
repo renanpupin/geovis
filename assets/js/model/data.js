@@ -26,7 +26,7 @@ Data.prototype.parseFeatures = function(){
 	for(var i = 0; i < this.data.length; i++){
 		this.features.push(new Feature(this.data[i].id, this.data[i].geodata, this.data[i].infodata));
 	}
-}
+};
 
 Data.prototype.findLargestAttributeValueFeatures = function(attribute){
 	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
@@ -50,7 +50,7 @@ Data.prototype.findLargestAttributeValueFeatures = function(attribute){
 	}else{
 		console.log("o tipo do atributo deve ser um número");
 	}
-}
+};
 
 Data.prototype.findLowestAttributeValueFeatures = function(attribute){
 	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
@@ -74,24 +74,73 @@ Data.prototype.findLowestAttributeValueFeatures = function(attribute){
 	}else{
 		console.log("o tipo do atributo deve ser um número");
 	}
-}
+};
 
 Data.prototype.calculateAverageAttributeValue = function(attribute){
-	if(this.features[0].getAttributeTypeByName(attribute) == "number"){
-		var average = 0;
-		var visible_count = 0;;
-		for(var index = 0; index < this.features.length; index++){
-			if (this.features[index].visible == true){
-				visible_count++;
-				average += this.features[index].getAttributeValueByName(attribute);
-			}
-		}
-		average = average / visible_count;
-		return average;
-	}else{
-		console.log("o tipo do atributo deve ser um número");
-	}
-}
+    if(this.features[0].getAttributeTypeByName(attribute) == "number"){
+        var average = 0;
+        var visible_count = 0;
+        for(var index = 0; index < this.features.length; index++){
+            if (this.features[index].visible == true){
+                visible_count++;
+                average += this.features[index].getAttributeValueByName(attribute);
+            }
+        }
+        average = average / visible_count;
+        return average;
+    }else{
+        console.log("o tipo do atributo deve ser um número");
+    }
+};
+
+Data.prototype.calculateMaxAttributeValue = function(attribute){
+    if(this.features[0].getAttributeTypeByName(attribute) == "number"){
+        var max;
+        for(var index = 0; index < this.features.length; index++){
+            if (this.features[index].visible == true){
+                if(!max || this.features[index].getAttributeValueByName(attribute) > max){
+                    max = this.features[index].getAttributeValueByName(attribute);
+                }
+            }
+        }
+        return max;
+    }else{
+        console.log("o tipo do atributo deve ser um número");
+    }
+};
+
+Data.prototype.calculateMinAttributeValue = function(attribute){
+    if(this.features[0].getAttributeTypeByName(attribute) == "number"){
+        var min;
+        for(var index = 0; index < this.features.length; index++){
+            if (this.features[index].visible == true){
+                if(!min || this.features[index].getAttributeValueByName(attribute) < min){
+                    min = this.features[index].getAttributeValueByName(attribute);
+                }
+            }
+        }
+        return min;
+    }else{
+        console.log("o tipo do atributo deve ser um número");
+    }
+};
+
+Data.prototype.calculateAttributesMinAndMaxValue = function(){
+
+	var attributes = this.features[0].getAttributesNameByType("number");
+
+	var result = [];
+
+    for(var index = 0; index < attributes.length; index++){
+        var max = this.calculateMaxAttributeValue(attributes[index]);
+        var min = this.calculateMinAttributeValue(attributes[index]);
+
+        result.push({name: attributes[index], min, max})
+    }
+
+	console.log("calculateAttributesMinAndMaxValue", result);
+    return result;
+};
 
 Data.prototype.countAttributeOcurrences = function(attribute){
 	var data_array = [], keys = [], ocurrences = [];
@@ -120,11 +169,20 @@ Data.prototype.countAttributeOcurrences = function(attribute){
     return [keys, ocurrences];
 	//http://jsfiddle.net/bnACW/727/
 	//document.write('[' + result[0] + ']<br>[' + result[1] + ']');
-}
+};
 
 //reset feature visibility
 Data.prototype.resetFeatureVisibility = function(){
     for (var index = 0; index < this.features.length; index++) {
         this.features[index].setVisible(true);
     }
-}
+};
+
+Data.prototype.findFeatureById = function(id){
+    for (var i = 0; i < this.features.length; i++) {
+        if(this.features[i].id == id){
+            return this.features[i];
+        }
+    }
+    return null;	//if don't find marker return null
+};

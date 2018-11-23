@@ -62,7 +62,7 @@ var Chart = function(name, features, attributes, type) {
 	var toggle_span = document.createElement('span');
 	toggle_span.className = 'chartToggle';
 	toggle_span.innerHTML = "-";
-	chart_div.appendChild(toggle_span);
+	// chart_div.appendChild(toggle_span);	//REMOVI AQUI POIS NAO ESTAVA FUNCIONANDO O MINIMIZAR
 
 	var close_span = document.createElement('span');
 	close_span.className = 'chartClose';
@@ -82,7 +82,7 @@ Chart.prototype.processLineChartData = function(features, attributes){
 	}
 
 	return data_chart;
-}
+};
 
 Chart.prototype.processChartData = function(features, attributes){
 	var data_chart = [];
@@ -96,18 +96,18 @@ Chart.prototype.processChartData = function(features, attributes){
 	console.log(data_chart);
 
 	return data_chart;
-}
+};
 
 Chart.prototype.printChart = function(){
 	console.log(this.chart);
 	console.log(this.attributes);
 	console.log(this.type);
-}
+};
 
 Chart.prototype.destroy = function(){
 	this.chart = null;
-}
+};
 
 Chart.prototype.updateChartData = function(features){
 	//todo
-}
+};

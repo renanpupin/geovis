@@ -110,6 +110,8 @@ $(document).ready(function(){
 			app1.removeFilter(selectedFilter);
 			$('option:selected', "#inputFilterRemove").remove();
 			console.log("OK");
+
+            $("#modalClose").trigger("click");	//close modal
 		}else{
 			console.log("erro ao remover");
 		}
@@ -149,7 +151,7 @@ $(document).ready(function(){
 		var euclidian_number = $("#inputVisAddEuclidianNumber").val();
 		var chart_type = $("#inputVisAddChartType").val();
 
-		if(type !== "chart"){
+		if(type !== "chart" && type !== "marker_chart"){
 			if(name != "" && type != ""){
 				if(type == "heatmap"){
 					app1.addMapVisualization(name, type, null);
@@ -185,7 +187,17 @@ $(document).ready(function(){
 				console.log("erro no form");
 				alert("Preencha todos os campos!");
 			}
-		}else{
+		}else if(type === "marker_chart"){
+			if(name != "" && type != "" && attribute != ""){
+				app1.addMarkerChartVisualization(name, type, attribute, chart_type);
+				console.log("OK");
+				$("#modalClose").trigger("click");	//close modal
+			}else{
+				console.log("erro no form");
+				alert("Preencha todos os campos!");
+			}
+
+		} else {
 			if(name != "" && type != "" && attribute != "" && chart_type != ""){
 				app1.addChartVisualization(name, type, attribute, chart_type);
 				console.log("OK");
@@ -199,8 +211,13 @@ $(document).ready(function(){
 	}
 
 	$(document).on("change", "#inputVisAddType", function(){
-		if($(this).val() == "chart"){
-			var chart_type_content = '<div class="row rowChartType"><label for="inputVisAddChartType">Tipo do gráfico</label><select id="inputVisAddChartType">'+
+		$(".rowChartType").remove();
+		$(".rowChartAttribute").remove();
+		$(".rowEuclidianNumber").remove();
+        $(".rowLineAttribute").remove();
+
+		if($(this).val() === "chart" || $(this).val() === "marker_chart"){
+            let chart_type_content = '<div class="row rowChartType"><label for="inputVisAddChartType">Tipo do gráfico</label><select id="inputVisAddChartType">'+
 									      '<option value="pie">Pizza</option>'+
 									      '<option value="line">Linha</option>'+
 									      '<option value="bar">Barra</option>'+
@@ -208,50 +225,32 @@ $(document).ready(function(){
 									  '</div>';
 			$(".rowVisType").after(chart_type_content);
 			$("#inputVisAddChartType").trigger("change");
-		}else{
-			if($("#inputVisAddChartType").length > 0){
-				$(".rowChartType").remove();
-				$(".rowChartAttribute").remove();
-				$(".rowEuclidianNumber").remove();
-			}
-		}
+		}else if($(this).val() === "euclidian"){
 
-		if($(this).val() == "euclidian"){
-			$(".rowChartType").remove();
-			$(".rowChartAttribute").remove();
-			$(".rowLineAttribute").remove();
-
-			var euclidian_attribute_content = '<div class="row rowEuclidianNumber"><label for="inputVisAddEuclidianNumber">Número de instâncias</label><input type="text" id="inputVisAddEuclidianNumber">';
+            let euclidian_attribute_content = '<div class="row rowEuclidianNumber"><label for="inputVisAddEuclidianNumber">Número de instâncias</label><input type="text" id="inputVisAddEuclidianNumber">';
 
 			$(".rowVisType").after(euclidian_attribute_content);
 
-		}else if($(this).val() == "line"){
-			$(".rowChartType").remove();
-			$(".rowChartAttribute").remove();
-			$(".rowEuclidianNumber").remove();
+		}else if($(this).val() === "line"){
 
-			var line_attribute_content = '<div class="row rowLineAttribute"><label for="inputVisAddLineAttribute">Atributo</label><select id="inputVisAddLineAttribute">';
+            let line_attribute_content = '<div class="row rowLineAttribute"><label for="inputVisAddLineAttribute">Atributo</label><select id="inputVisAddLineAttribute">';
 
-			var line_attribute_content_options = "";
+            let line_attribute_content_options = "";
 
-			for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+			for(let i = 0; i < app1.data.features[0].infodata.length; i++){
 				line_attribute_content_options += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name +' ('+app1.data.features[0].infodata[i].type+')</option>';
 			}
 
-			if(String(line_attribute_content_options) == ""){
+			if(String(line_attribute_content_options) === ""){
 				line_attribute_content_options = '<option value="-1">Não há atributos suportados.</option>'
 			}
+
 			line_attribute_content += line_attribute_content_options;
 
 			line_attribute_content += '</select></div>';
 
 			$(".rowVisType").after(line_attribute_content);
 
-		}else{
-			// if($("#inputVisAddChartType").length > 0){
-			// 	$(".rowChartType").remove();
-			// 	$(".rowChartAttribute").remove();
-			// }
 		}
 	});
 
@@ -260,9 +259,15 @@ $(document).ready(function(){
 		$(".rowLineAttribute").remove();
 		$(".rowEuclidianNumber").remove();
 
-		var chart_type = $(this).val();
-		console.log(chart_type);
-		if($(this).val() == "pie" || $(this).val() == "line" || $(this).val() == "bar"){
+		let vis_type = $("#inputVisAddType").val();
+		console.log("vis_type = ", vis_type);
+        let chart_type = $(this).val();
+		console.log("chart_type = ", chart_type);
+
+		if(
+			(vis_type === "chart") &&
+			($(this).val() === "pie" || $(this).val() === "line" || $(this).val() === "bar")
+		){
 
 			var chart_attribute_content = '<div class="row rowChartAttribute"><label for="inputVisAddChartAttribute">Atributo</label><select id="inputVisAddChartAttribute">';
 
@@ -281,7 +286,7 @@ $(document).ready(function(){
 			if(String(chart_attribute_content_options) == ""){
 				chart_attribute_content_options = '<option value="-1">Não há atributos suportados.</option>'
 			}
-			
+
 			chart_attribute_content += chart_attribute_content_options;
 
 			chart_attribute_content += '</select></div>';
@@ -300,6 +305,7 @@ $(document).ready(function(){
 						'<option value="heatmap">Mapa de calor</option>'+
 						'<option value="cluster">Cluster</option>'+
 						'<option value="chart">Gráfico</option>'+
+						'<option value="marker_chart">Gráfico em marcadores</option>'+
 						'<option value="line">Linha</option>'+
 						'<option value="euclidian">Distância Euclidiana</option>'+
 						'<option value="convexhull">Fecho Convexo</option>'+
@@ -331,6 +337,8 @@ $(document).ready(function(){
 				}
 			});
 			console.log("OK");
+
+            $("#modalClose").trigger("click");	//close modal
 		}else{
 			console.log("erro ao remover");
 		}
@@ -553,6 +561,8 @@ $(document).ready(function(){
 			app1.toggleCluster();
 		} else if(target === "chart"){
 			app1.toggleCharts();
+		} else if(target === "marker_chart"){
+			app1.toggleMarkerChart();
 		} else if(target === "line"){
 			app1.toggleLine();
 		} else if(target === "euclidian"){
@@ -578,4 +588,4 @@ function makeDivDraggable(div){
     });
 }
 
-console.log("Geovis v1.1");
+console.log("Geovis v1.2");

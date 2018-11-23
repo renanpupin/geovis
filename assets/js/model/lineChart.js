@@ -31,7 +31,7 @@ Array.prototype.clean = function(deleteValue) {
 LineChart.prototype.cleanChartDataNullIndex = function(){
   this.processed_data.clean(undefined);
   console.log(this.processed_data);
-}
+};
 
 LineChart.prototype.initChart = function(div){
     var data = new google.visualization.DataTable();
@@ -63,4 +63,4 @@ LineChart.prototype.initChart = function(div){
 
     var chart = new google.visualization.LineChart(div);
     chart.draw(data, options);
-}
+};

@@ -1,6 +1,7 @@
 var Visualization = function(name, type, map, data, attribute, chart_type, euclidian_number) {
 	this.name = name || null;
 	this.type = type || null;	//chart, heatmap or line
+	this.attribute = attribute || null;
 	this.visualization = null;
 	
 	this.getName = function(){
@@ -17,6 +18,14 @@ var Visualization = function(name, type, map, data, attribute, chart_type, eucli
 	
 	this.setType = function(type){
 		this.type = type;
+	};
+
+	this.getAttribute = function(){
+		return this.attribute;
+	};
+
+	this.setAttribute = function(attribute){
+		this.attribute = attribute;
 	};
 
 	this.getVisualization = function(){
@@ -36,8 +45,11 @@ var Visualization = function(name, type, map, data, attribute, chart_type, eucli
 	}else if(this.type === "euclidian"){
 		this.visualization = new Euclidian(map, data, euclidian_number);
 	}else if(this.type === "chart"){
-		this.visualization = new Chart(name, data, attribute, chart_type);
-	}else if(this.type === "cluster"){
+        this.visualization = new Chart(name, data, attribute, chart_type);
+    }else if(this.type === "marker_chart"){
+		console.log("MarkerChart", map, name, data, attribute, chart_type);
+        this.visualization = new MarkerChart(map, name, data, attribute, chart_type);
+    }else if(this.type === "cluster"){
 		this.visualization = new ClusterVis(map);
 	}
 	
@@ -48,8 +60,8 @@ Visualization.prototype.printVisualization = function(){
 	console.log(this.type);
 	console.log(this.attribute);
 	console.log(this.visualization);
-}
+};
 
-Visualization.prototype.remove = function(){
-	this.visualization.destroy();
-}
+Visualization.prototype.remove = function(map){
+	this.visualization.destroy(map);
+};

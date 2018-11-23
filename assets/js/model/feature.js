@@ -51,7 +51,27 @@ Feature.prototype.parseAttributes = function(infodata){
     for(var i = 0; i < infodata.length; i++){
         this.infodata.push(new Attribute(infodata[i].name, infodata[i].value));
     }
-}
+};
+
+Feature.prototype.getAttributesName = function(){
+    var attributes = [];
+    for(var i = 0; i < this.infodata.length; i++){
+        attributes.push(this.infodata[i].name);
+    }
+
+    return attributes;
+};
+
+Feature.prototype.getAttributesNameByType = function(type){
+    var attributes = [];
+    for(var i = 0; i < this.infodata.length; i++){
+        if(this.infodata[i].type === type){
+            attributes.push(this.infodata[i].name);
+        }
+    }
+
+    return attributes;
+};
 
 Feature.prototype.getAttributeValueByName = function(name){
     
@@ -61,7 +81,7 @@ Feature.prototype.getAttributeValueByName = function(name){
         }
     }
     return null;  //if don't find marker return null
-}
+};
 
 Feature.prototype.getAttributeTypeByName = function(name){
     
@@ -71,12 +91,12 @@ Feature.prototype.getAttributeTypeByName = function(name){
         }
     }
     return null;  //if don't find marker return null
-}
+};
 
 Feature.prototype.getFeatureLat = function(){
     return this.geodata.lat;
-}
+};
 
 Feature.prototype.getFeatureLon = function(){
     return this.geodata.lon;
-}
+};

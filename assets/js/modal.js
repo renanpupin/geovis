@@ -88,6 +88,7 @@
       if (settings.onConfirm !== undefined) {
          settings.onConfirm();
       }
+
       e.stopPropagation();
     });
     

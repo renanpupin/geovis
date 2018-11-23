@@ -3,6 +3,14 @@ var Map = function(app) {
 	this.gmap = null;
 	this.markers = [];
 	//this.layers = [];
+	this.defaultIcon = {
+        url: 'assets/img/marker.gif',
+        size: new google.maps.Size(65, 35),
+        // size: new google.maps.Size(this.relativePixelSize, this.relativePixelSize), //changes the scale
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(33, 33),
+        scaledSize: new google.maps.Size(65, 35)
+    };
 
 	// this.getLayers = function(){
 	// 	return this.layers;
@@ -24,6 +32,10 @@ var Map = function(app) {
 		return this.gmap;
 	};
 
+    this.getDefaultIcon = function(){
+        return this.defaultIcon;
+    };
+
 	this.initMap();
 	
 };
@@ -44,7 +56,11 @@ Map.prototype.initMap = function(){
 
 	this.gmap = new google.maps.Map( document.getElementById("map-canvas"), mapOptions );
 
-}//initMap
+    // map.gmap.addListener('zoom_changed', function() {
+    //     console.log("zoom_changed = ", this.map.getZoom());
+    // });
+
+};//initMap
 
 
 // Map.prototype.executeFilter = function(features, filter){
@@ -73,7 +89,7 @@ Map.prototype.runMapFilter = function(features){
 			}
 		}
 	}
-}
+};
 
 //find marker by id or null
 Map.prototype.findMarkerById = function(id){
@@ -83,21 +99,21 @@ Map.prototype.findMarkerById = function(id){
 		}
 	}
 	return null;	//if don't find marker return null
-}
+};
 
 //reset markers visibility
 Map.prototype.resetMarkersVisibility = function(){
 	for (var index = 0; index < this.markers.length; index++) {
 		this.markers[index].setVisible(true);
 	}
-}
+};
 
 //reset markers visibility
 Map.prototype.toggleMarkers = function(){
 	for (var index = 0; index < this.markers.length; index++) {
 		this.markers[index].setMap(this.markers[index].getMap() === null ? this.gmap : null);
 	}
-}
+};
 
 //add markers to map
 Map.prototype.addMarkers = function (features){
@@ -106,23 +122,6 @@ Map.prototype.addMarkers = function (features){
 	//var bounds = new google.maps.LatLngBounds();
 
 	for (var i = 0; i < features.length; i++) {
-		
-		var image = {
-			url: 'assets/img/marker.gif',
-			// url: 'https://chart.googleapis.com/chart?chs=500x200&chd=t:120,80&cht=p3&chl=aaa|World&chf=bg,s,FFFFFF00',
-			//https://chart.googleapis.com/chart?chs=500x200&chd=t:120,80&cht=p3&chl=aaa|World&chf=bg,s,FFFFFF00
-			//https://chart.googleapis.com/chart?chs=500x200&chd=t:120,80&cht=p&chl=aaaaaaa|bbbbb&chf=bg,s,FFFFFF00
-			//https://developers.google.com/chart/image/docs/chart_params#gcharts_rgb
-			//https://developers.google.com/chart/image/docs/chart_params#gcharts_solid_fills
-			//https://developers.google.com/chart/image/docs/data_formats#encoding_data
-			//https://developers.google.com/chart/image/docs/data_formats
-			//https://developers.google.com/chart/image/docs/gallery/dynamic_icons
-			//https://stackoverflow.com/questions/12698003/save-a-google-chart-as-svg
-			size: new google.maps.Size(65, 35),
-			origin: new google.maps.Point(0, 0),
-			anchor: new google.maps.Point(33, 33),
-			scaledSize: new google.maps.Size(65, 35)
-		};
 
 		var marker_attributes = "";
 		for(var index = 0; index < features[i].infodata.length; index++){
@@ -144,7 +143,7 @@ Map.prototype.addMarkers = function (features){
 			title: "#"+features[i].id.toString(),
 			map: this.gmap,
 			animation: google.maps.Animation.DROP,
-			icon: image,
+			icon: this.defaultIcon,
 			//layer: "marcadores",
 			id: features[i].id,
 			content: contentString
@@ -153,20 +152,13 @@ Map.prototype.addMarkers = function (features){
 		this.addInfoWindow(this.gmap, marker);
 		this.markers.push(marker);
 
+		// console.log(marker);
+
 		//bounds.extend(marker);
 	}
 
 	//this.gmap.fitBounds(bounds);
-
-	// var markerCluster = new MarkerClusterer(
-		// this.gmap, 
-		// this.markers,
-        // {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
-    // );
-    //https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus
-    //https://github.com/googlemaps/v3-utility-library
-
-}
+};
 
 //click event window
 Map.prototype.addInfoWindow = function(map, marker){
@@ -182,7 +174,26 @@ Map.prototype.addInfoWindow = function(map, marker){
 		self.application.updateLineVisualization(marker.id);
 		self.application.updateEuclidianVisualization(marker.id);
 	});
-}
+};
+
+//when the map zoom changes, resize the icon based on the zoom level so the marker covers the same geographic area
+// google.maps.event.addListener(this.gmap, 'zoom_changed', function() {
+//
+//     var pixelSizeAtZoom0 = 8; //the size of the icon at zoom level 0
+//     var maxPixelSize = 350; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
+//
+//     var zoom = this.gmap.getZoom();
+//     var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(2,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
+//
+//     if(relativePixelSize > maxPixelSize) //restrict the maximum size of the icon
+//         relativePixelSize = maxPixelSize;
+//
+//     this.relativePixelSize = relativePixelSize;
+//     //change the size of the icon
+//     // marker.setIcon(
+//     //     new google.maps.MarkerImage(this.defaultIcon)
+//     // );
+// });
 
 //CLUSTERING VIS
 //CHECK IF THE MARKERS IS INSIDE BOUNDS
