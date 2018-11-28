@@ -67,31 +67,47 @@ MarkerChart.prototype.generateChartUrl = function(features, attributesMinMaxValu
     //polar, radar
     // https://chart.googleapis.com/chart?cht=rs&chs=200x200&chd=t:77,66,15,0,31,48,100,77|20,36,100,2,0,100&chco=FF0000,FF9900&chls=2.0,4.0,0.0|2.0,4.0,0.0&chxt=x&chxl=0:|0|45|90|135|180|225|270|315&chxr=0,0.0,360.0&chg=25.0,25.0,4.0,4.0&chm=B,FF000080,0,1.0,5.0|B,FF990080,1,1.0,5.0
 
+    let type = this.getType();
+
     //set value
-    let result = this.processChartData(features, attributesMinMaxValues, marker);
-    let url = `https://chart.googleapis.com/chart?chxl=0:||1:|}&chf=bg,s,FFFFFF00`;
+    let result = this.processChartData(features, attributesMinMaxValues, marker, type);
+    let url = `https://chart.googleapis.com/chart?chxl=0:||1:|&chf=bg,s,FFFFFF00`;
     //legends: &chl=${result.legends}
 
     //set type and size
-    let type = this.getType();
     let size;
+    let scale = this.getScaleForNormalizedValue(result.avg);
+    let width;
+    let height;
     let gChartType;
+    let colors;
     if(type === "bar"){
         // gChartType = "bvs";
         gChartType = "bvg";
-        size = "150x250";
+        colors = result.colors;
+        size = "100x160";
+        width = 65*scale;
+        height = 35*scale;
     }else if(type === "line"){
+        let normalizedColor = this.getColorForNormalizedValue(result.avg);
+
+        url += `&chm=B,${normalizedColor},0,0,0`;
+        colors = normalizedColor;
         gChartType = "lc";  //lc:nda
-        size = "150x150";
-        url += `&chm=B,FF0000,0,0,0`;
+        size = "100x100";
+        width = 50*scale;
+        height = 50*scale;
     }else{
         gChartType = "p3";
-        size = "150x60";
+        colors = result.colors;
+        size = "100x50";
+        width = 65*scale;
+        height = 37*scale;
     }
 
     url += `&chs=${size}`;
     url += `&cht=${gChartType}`;
-    url += `&chco=${result.colors}`;
+    url += `&chco=${colors}`;
     url += `&chd=t:${result.values}`;
 
     //permitir gráfico ser maior
@@ -102,7 +118,7 @@ MarkerChart.prototype.generateChartUrl = function(features, attributesMinMaxValu
 
     //https://www.targetmap.com/viewer.aspx?reportId=47255
 
-    return url
+    return {url, width, height};
 
 };
 
@@ -122,13 +138,20 @@ MarkerChart.prototype.getColorForNormalizedValue = function(normalizedValue){
     }
 };
 
-MarkerChart.prototype.processChartData = function(features, attributesMinMaxValues, marker){
+MarkerChart.prototype.getScaleForNormalizedValue = function(normalizedValue){
+    console.log("getScaleForNormalizedValue", normalizedValue);
+
+    return (normalizedValue/50)+0.5;  //make the scale go from 1 to 3
+};
+
+MarkerChart.prototype.processChartData = function(features, attributesMinMaxValues, marker, type){
 
     let values = "";
     let legends = "";
     let colors = "";
 
     var markerFeature = features.findFeatureById(marker.id);
+    var avg = 0;
 
     if (markerFeature.visible === true){
         for(var index = 0; index < attributesMinMaxValues.length; index++){
@@ -138,19 +161,23 @@ MarkerChart.prototype.processChartData = function(features, attributesMinMaxValu
             values += normalizedValue;
             legends += String(attributesMinMaxValues[index].name);
             colors += this.getColorForNormalizedValue(normalizedValue);
+            avg += normalizedValue;
 
             if(index !== attributesMinMaxValues.length-1){
                 values += ",";
                 legends += "|";
-                colors += ",";
+                colors += type === "bar" ? "|" : ",";
             }
         }
     }
 
+    avg = avg / attributesMinMaxValues.length;
+
+    console.log("processChartData avg", avg);
     console.log("processChartData values", values);
     // console.log("processChartData legends", legends);
     console.log("processChartData colors", colors);
-    return {values, legends, colors};
+    return {values, avg, legends, colors};
 };
 
 MarkerChart.prototype.processChartDataOld = function(features){
@@ -189,17 +216,19 @@ MarkerChart.prototype.generateMarkerCharts = function(map, name, features, attri
 
     for (var index = 0; index < markers.length; index++) {
         // console.log(markers[index]);
+
+        let result = this.generateChartUrl(features, attributesMinMaxValues, markers[index]);
+
         markers[index].setIcon({
-            url: this.generateChartUrl(features, attributesMinMaxValues, markers[index]),
-            size: new google.maps.Size(65, 35),
+            url: result.url,
+            size: new google.maps.Size(result.width, result.height),
             origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(33, 33),
-            scaledSize: new google.maps.Size(65, 35)
+            anchor: new google.maps.Point((result.width/2), (result.height/2)),
+            scaledSize: new google.maps.Size(result.width, result.height)
         });
     }
 };
 MarkerChart.prototype.destroy = function(map){
-    console.log(map);
     let markers = map.getMarkers();
     for (var index = 0; index < markers.length; index++) {
         markers[index].setIcon(map.getDefaultIcon());
