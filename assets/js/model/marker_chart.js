@@ -91,7 +91,7 @@ MarkerChart.prototype.generateChartUrl = function(features, attributesMinMaxValu
     }else if(type === "line"){
         let normalizedColor = this.getColorForNormalizedValue(result.avg);
 
-        url += `&chm=B,${normalizedColor},0,0,0`;
+        url += `&chm=B,${normalizedColor},0,0,0`;   //&chm=a,990066,0,0.0,9.0|o,FF0000,0,1.0,25
         colors = normalizedColor;
         gChartType = "lc";  //lc:nda
         size = "100x100";
