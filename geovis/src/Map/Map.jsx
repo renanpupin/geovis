@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import styles from './Map.module.css';
 
 class Map extends Component {
     constructor(props) {
@@ -16,10 +17,10 @@ class Map extends Component {
 
     componentDidMount() {
         if (!window.google) {
-            var s = document.createElement('script');
+            let s = document.createElement('script');
             s.type = 'text/javascript';
             s.src = `https://maps.google.com/maps/api/js?key=YOUR_API_KEY`;
-            var x = document.getElementsByTagName('script')[0];
+            let x = document.getElementsByTagName('script')[0];
             x.parentNode.insertBefore(s, x);
             // Below is important.
             //We cannot access google.maps until it's finished loading
@@ -33,7 +34,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div style={{ width: 500, height: 500 }} id={this.props.id} />
+            <div className={styles.map} id={this.props.id} />
         );
     }
 }
