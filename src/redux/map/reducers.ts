@@ -2,8 +2,8 @@ import { SET_MARKERS } from "./actionTypes";
 
 const initialState = {
     map: null,
-    markers: null,
-    visibleMarkers: null
+    markers: [],
+    visibleMarkers: []
 };
 
 export default function(state = initialState, action: any) {
