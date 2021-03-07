@@ -19,7 +19,7 @@ class Map extends Component {
         if (!window.google) {
             let s = document.createElement('script');
             s.type = 'text/javascript';
-            s.src = `https://maps.google.com/maps/api/js?key=YOUR_API_KEY`;
+            s.src = `http://maps.googleapis.com/maps/api/js?v=3.44&key=AIzaSyB3B202UDbbPzCUO9UGp9-rlBQ8glIQ0uQ&libraries=visualization`;
             let x = document.getElementsByTagName('script')[0];
             x.parentNode.insertBefore(s, x);
             // Below is important.
