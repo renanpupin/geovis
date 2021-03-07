@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import Map from './Map/Map'
+import Menu from './Menu/Menu'
 import {setMarkers} from 'src/redux/map/actions'
 
 const markers = [
@@ -15,7 +16,10 @@ const App: React.FC = () => {
     }, [])
 
     return (
-        <Map/>
+        <div>
+            <Map/>
+            <Menu/>
+        </div>
     );
 }
 
