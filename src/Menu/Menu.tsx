@@ -23,6 +23,7 @@ const Menu: React.FC = () => {
 
     const deleteMarker = () => {
         dispatch(removeMarker(markers[0]))
+        dispatch(removeMarker(add))
     }
 
     const addMarkers = () => {

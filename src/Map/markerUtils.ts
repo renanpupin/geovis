@@ -1,5 +1,3 @@
-import createInfoWindow from "src/Map/InfoWindow";
-
 export const createMarker = (markerData: any, map: any) => {
     //@ts-ignore
     const mapMarker = new window.google.maps.Marker({
@@ -7,14 +5,12 @@ export const createMarker = (markerData: any, map: any) => {
         map: map,
         title: markerData.title
     });
-    mapMarker.addListener('click', (e: any) => {
-        createInfoWindow(e, map)
-    })
     return mapMarker
 }
 
 export const removeMarker = (marker: any) => {
     //@ts-ignore
+    window.google.maps.event.clearInstanceListeners(marker);
     marker.setMap(null)
 }
 
