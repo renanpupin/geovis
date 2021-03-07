@@ -26,7 +26,19 @@ const Map: React.FC = () => {
         }
         // @ts-ignore
         setMapMarkers(mapMarkersArr)
+
+        // addHeatMap(mapMarkersArr)
     }
+
+    // const addHeatMap = (mapMarkersArr: any) => {
+    //     // @ts-ignore
+    //     new window.google.maps.visualization.HeatmapLayer({
+    //         // @ts-ignore
+    //         data: mapMarkersArr.map(mapMarker => new window.google.maps.LatLng(mapMarker.position.lat(), mapMarker.position.lng())),
+    //         map: map,
+    //         radius: 30
+    //     });
+    // }
 
     const removeMarkers = () => {
         for(const marker of mapMarkers){
