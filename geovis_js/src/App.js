@@ -1,6 +1,6 @@
 import React from 'react';
 //import classes from './app.module.css';
-import Map from './Map/Map.jsx'
+import Map from './Map/Map'
 import InfoWindow from './InfoWindow'
 import {render} from 'react-dom';
 
