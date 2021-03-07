@@ -12,7 +12,7 @@ const mapOptions = {
     zoomControl: true
 }
 
-const MapLoader = (props: { onLoad: any; }) => {
+const MapLoader = (props: any) => {
     const {onLoad} = props
     const onScriptLoad = () => {
         //@ts-ignore
@@ -39,7 +39,9 @@ const MapLoader = (props: { onLoad: any; }) => {
     }, [])
 
     return (
-        <div id={mapNodeId} className={styles.map}/>
+        <div id={mapNodeId} className={styles.map}>
+            {props.children}
+        </div>
     );
 }
 

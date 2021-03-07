@@ -1,11 +1,11 @@
 import createInfoWindow from "src/Map/InfoWindow";
 
-export const createMarker = (marker: any, map: any) => {
+export const createMarker = (markerData: any, map: any) => {
     //@ts-ignore
     const mapMarker = new window.google.maps.Marker({
-        position: {lat: marker.lat, lng: marker.lng},
+        position: {lat: markerData.lat, lng: markerData.lng},
         map: map,
-        title: marker.title
+        title: markerData.title
     });
     mapMarker.addListener('click', (e: any) => {
         createInfoWindow(e, map)
