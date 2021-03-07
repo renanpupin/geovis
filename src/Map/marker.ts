@@ -10,4 +10,15 @@ export const createMarker = (marker: any, map: any) => {
     mapMarker.addListener('click', (e: any) => {
         createInfoWindow(e, map)
     })
+    return mapMarker
+}
+
+export const removeMarker = (marker: any) => {
+    //@ts-ignore
+    marker.setMap(null)
+}
+
+export const toggleMarker = (marker: any, map: any) => {
+    //@ts-ignore
+    marker.setMap(marker.getMap() ? null : map)
 }
