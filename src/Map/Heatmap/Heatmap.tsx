@@ -6,6 +6,7 @@ const Heatmap = (props: any) => {
         map: props.map,
         radius: 30
     })
+
     useEffect(() => {
         return () => {
             gmapHeatmap.setMap(null)
