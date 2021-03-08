@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
 import {useDispatch} from "react-redux";
-import {setData, removeDataItem, addDataItem} from "src/redux/data/actions";
+import {setData, removeDataItem, addDataItem, addVisualization} from "src/redux/data/actions";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -31,6 +31,10 @@ const Menu: React.FC = (props: any) => {
         dispatch(addDataItem(add))
     }
 
+    const addHeatmap = () => {
+        dispatch(addVisualization('heatmap'))
+    }
+
     return (
         <nav id="nav" className={styles.nav}>
             <div className={styles.navbarHeader}>
@@ -53,6 +57,9 @@ const Menu: React.FC = (props: any) => {
                     </button>
                     <button onClick={deleteMarker}>
                         <i className="material-icons">assignment</i>Remover dado
+                    </button>
+                    <button onClick={addHeatmap}>
+                        <i className="material-icons">assignment</i>Heatmap
                     </button>
                     {/*<button onClick={loadMarkers}>*/}
                     {/*    <i className="material-icons">assignment</i>Dados*/}

@@ -2,21 +2,36 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import MapLoader from './MapLoader';
 import Marker from './Marker';
-import {getVisibleData} from "src/redux/data/selectors";
+import Heatmap from 'src/Map/Heatmap/Heatmap';
+import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
 
 const Map: React.FC = () => {
     const visibleData = useSelector(getVisibleData)
-    const [map, setMap] = useState(null)
-    console.log("redux visibleData", visibleData)
+    const visualizations = useSelector(getVisualizations)
+    const [map, setMap] = useState(undefined)
+    // console.log("redux visibleData", visibleData)
+    // console.log("redux visualizations", visualizations)
 
     const onLoad = (map: any) => {
         setMap(map)
     }
 
+    const getHeatmap = useCallback(() => {
+        if(!visualizations.includes('heatmap')){
+            return;
+        }
+
+        return <Heatmap
+            map={map}
+            data={visibleData.map((markerData: any) => ({lat: markerData.lat, lng: markerData.lng}))}
+        />
+    }, [visualizations, visibleData, map])
+
     const getMarkers = useCallback(() => {
         if(!map){
             return
         }
+
         return visibleData.map((data: any) => {
             return(
                 <Marker
@@ -28,21 +43,10 @@ const Map: React.FC = () => {
         })
     }, [visibleData, map])
 
-    //for weight (cluster points), we can add weight
-    //https://developers.google.com/maps/documentation/javascript/heatmaplayer#add_weighted_data_points
-    // const addHeatMap = (mapMarkersArr: any) => {
-    //     // @ts-ignore
-    //     new window.google.maps.visualization.HeatmapLayer({
-    //         // @ts-ignore
-    //         data: mapMarkersArr.map(mapMarker => new window.google.maps.LatLng(mapMarker.position.lat(), mapMarker.position.lng())),
-    //         map: map,
-    //         radius: 30
-    //     });
-    // }
-
     return (
         <MapLoader onLoad={onLoad}>
             {getMarkers()}
+            {getHeatmap()}
         </MapLoader>
     );
 }

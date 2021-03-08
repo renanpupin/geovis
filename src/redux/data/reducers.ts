@@ -1,9 +1,10 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, CLEAR_DATA } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, CLEAR_DATA, ADD_VISUALIZATION } from "./actionTypes";
 
 const initialState = {
     data: [],
     visibleData: [],
-    filters: []
+    filters: [],
+    visualizations: [],
 };
 
 export default function(state = initialState, action: any) {
@@ -32,6 +33,17 @@ export default function(state = initialState, action: any) {
                 data: [
                     ...state.data,
                     marker
+                ]
+            };
+        }
+        case ADD_VISUALIZATION: {
+            const { type } = action.payload;
+            return {
+                ...state,
+            // @ts-ignore
+                visualizations: state.visualizations.includes(type) ? state.visualizations : [
+                    ...state.visualizations,
+                    type
                 ]
             };
         }
