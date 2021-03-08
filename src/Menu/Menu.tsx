@@ -14,7 +14,8 @@ const markers = [
 
 const add = {id: 5, lat: -21, lng: -44, title: 'Another'}
 
-const Menu: React.FC = () => {
+const Menu: React.FC = (props: any) => {
+    const {onChangeMode} = props
     const dispatch = useDispatch()
 
     const loadMarkers = () => {
@@ -41,14 +42,17 @@ const Menu: React.FC = () => {
 
             <ul role="menu" className={styles.menuList}>
                 <li className="submenu">
+                    <button onClick={onChangeMode}>
+                        <i className="material-icons">assignment</i>Mudar modo
+                    </button>
                     <button onClick={loadMarkers}>
-                        <i className="material-icons">assignment</i>Setar
+                        <i className="material-icons">assignment</i>Carregar dados
                     </button>
                     <button onClick={addMarkers}>
-                        <i className="material-icons">assignment</i>Adicionar
+                        <i className="material-icons">assignment</i>Adicionar dado
                     </button>
                     <button onClick={deleteMarker}>
-                        <i className="material-icons">assignment</i>Remover
+                        <i className="material-icons">assignment</i>Remover dado
                     </button>
                     {/*<button onClick={loadMarkers}>*/}
                     {/*    <i className="material-icons">assignment</i>Dados*/}

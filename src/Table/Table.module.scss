@@ -1,0 +1,30 @@
+.tableContainer {
+  overflow-x: auto;
+  margin-top: 75px;
+}
+
+//.table{
+//  width: 100%;
+//}
+
+.table {
+  //background-color: #f5f4fc;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #eceeef;
+  text-align: left;
+  border-radius: 7px;
+  //border-collapse: collapse;
+  th {
+    //vertical-align: bottom;
+    //border: 1px solid #eceeef;
+    border-bottom: 2px solid #eceeef;
+    padding: 15px;
+  }
+
+  td {
+    //border: 1px solid #eceeef;
+    padding: 15px;
+    //vertical-align: top;
+  }
+}

@@ -11,7 +11,21 @@ const Map: React.FC = () => {
 
     const onLoad = (map: any) => {
         setMap(map)
+
+        // setupData()
     }
+    //
+    // const setupData = () => {
+    //     visibleData.map((data: any) => {
+    //         return(
+    //             <Marker
+    //                 key={data.id}
+    //                 marker={data}
+    //                 map={map}
+    //             />
+    //         )
+    //     })
+    // }
 
     const getMarkers = useCallback(() => {
         return visibleData.map((data: any) => {
