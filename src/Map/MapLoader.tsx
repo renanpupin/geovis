@@ -24,7 +24,7 @@ const MapLoader = (props: any) => {
         if (!window.google) {
             let s = document.createElement('script');
             s.type = 'text/javascript';
-            s.src = `http://maps.googleapis.com/maps/api/js?v=3.44&key=AIzaSyB3B202UDbbPzCUO9UGp9-rlBQ8glIQ0uQ&libraries=visualization`;
+            s.src = `http://maps.googleapis.com/maps/api/js?v=3.44&key=AIzaSyD0b0-oD2iEMKCLCbsPglCut8z3OJ2B4A8&libraries=visualization`;
             let x = document.getElementsByTagName('script')[0];
             //@ts-ignore
             x.parentNode.insertBefore(s, x);

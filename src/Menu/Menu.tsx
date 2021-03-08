@@ -43,7 +43,7 @@ const Menu: React.FC = (props: any) => {
             <ul role="menu" className={styles.menuList}>
                 <li className="submenu">
                     <button onClick={onChangeMode}>
-                        <i className="material-icons">assignment</i>Mudar modo
+                        <i className="material-icons">{props.viewMode === 'map' ? 'map' : 'table_view'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}
                     </button>
                     <button onClick={loadMarkers}>
                         <i className="material-icons">assignment</i>Carregar dados

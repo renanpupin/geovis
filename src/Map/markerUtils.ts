@@ -1,5 +1,7 @@
 export const createMarker = (markerData: any, map: any) => {
     //@ts-ignore
+    console.log("window.google", window.google)
+    //@ts-ignore
     const mapMarker = new window.google.maps.Marker({
         position: {lat: markerData.lat, lng: markerData.lng},
         map: map,

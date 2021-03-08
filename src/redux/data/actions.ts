@@ -1,4 +1,4 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_MARKER } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM } from "./actionTypes";
 
 export const setData = (data: any) => ({
     type: LOAD_DATA,
@@ -15,7 +15,7 @@ export const removeDataItem = (marker: any) => ({
 });
 
 export const addDataItem = (marker: any) => ({
-    type: ADD_MARKER,
+    type: ADD_DATA_ITEM,
     payload: {
         marker
     }

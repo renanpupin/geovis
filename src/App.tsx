@@ -4,12 +4,13 @@ import Table from './Table/Table'
 import Menu from './Menu/Menu'
 
 const App: React.FC = () => {
-    const [viewMode, setViewMode] = useState('map')
+    const [viewMode, setViewMode] = useState('table')
     return (
         <div>
             {viewMode === 'map' ? <Map/> : <Table/>}
             <Menu
                 //@ts-ignore
+                viewMode={viewMode}
                 onChangeMode={() => {
                     setViewMode(viewMode === 'map' ? 'table' : 'map')
                 }}

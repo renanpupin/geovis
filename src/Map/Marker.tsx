@@ -3,6 +3,7 @@ import {createMarker, removeMarker} from "./markerUtils";
 import {createInfoWindow} from "src/Map/InfoWindow/infoWindowUtils";
 
 const Marker = (props: any) => {
+    console.log("mount")
     useEffect(() => {
         const gmapMarker = createMarker(props.marker, props.map)
 

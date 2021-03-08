@@ -18,18 +18,21 @@ const Table: React.FC = () => {
             )
         }
 
-        const bodyColumns = Object.values(visibleData[0]).map((item: any, index: number) => {
+        return visibleData.map((itemData: any, indexData: number) => {
+            const bodyColumns = Object.values(itemData).map((item: any, index: number) => {
+                return (
+                    <td key={index}>
+                        {item}
+                    </td>
+                )
+            });
+
             return (
-                <td key={index}>
-                    {item}
-                </td>
-            )
-        })
-        return (
-            <tr>
-                {bodyColumns}
-            </tr>
-        )
+                <tr key={indexData}>
+                    {bodyColumns}
+                </tr>
+            );
+        });
     }
 
     const getHeaders = () => {

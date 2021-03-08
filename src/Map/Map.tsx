@@ -11,23 +11,12 @@ const Map: React.FC = () => {
 
     const onLoad = (map: any) => {
         setMap(map)
-
-        // setupData()
     }
-    //
-    // const setupData = () => {
-    //     visibleData.map((data: any) => {
-    //         return(
-    //             <Marker
-    //                 key={data.id}
-    //                 marker={data}
-    //                 map={map}
-    //             />
-    //         )
-    //     })
-    // }
 
     const getMarkers = useCallback(() => {
+        if(!map){
+            return
+        }
         return visibleData.map((data: any) => {
             return(
                 <Marker
@@ -37,7 +26,7 @@ const Map: React.FC = () => {
                 />
             )
         })
-    }, [visibleData])
+    }, [visibleData, map])
 
     //for weight (cluster points), we can add weight
     //https://developers.google.com/maps/documentation/javascript/heatmaplayer#add_weighted_data_points

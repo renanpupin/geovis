@@ -1,4 +1,4 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_MARKER } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, CLEAR_DATA } from "./actionTypes";
 
 const initialState = {
     data: [],
@@ -15,6 +15,9 @@ export default function(state = initialState, action: any) {
                 data
             };
         }
+        case CLEAR_DATA: {
+            return initialState
+        }
         case REMOVE_DATA_ITEM: {
             const { marker } = action.payload;
             return {
@@ -22,7 +25,7 @@ export default function(state = initialState, action: any) {
                 data: state.data.filter((item: any) => item.id !== marker.id)
             };
         }
-        case ADD_MARKER: {
+        case ADD_DATA_ITEM: {
             const { marker } = action.payload;
             return {
                 ...state,
