@@ -1,33 +1,33 @@
-import { SET_MARKERS, REMOVE_MARKER, ADD_MARKER } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_MARKER } from "./actionTypes";
 
 const initialState = {
-    map: null,
-    markers: [],
-    visibleMarkers: []
+    data: [],
+    visibleData: [],
+    filters: []
 };
 
 export default function(state = initialState, action: any) {
     switch (action.type) {
-        case SET_MARKERS: {
-            const { markers } = action.payload;
+        case LOAD_DATA: {
+            const { data } = action.payload;
             return {
                 ...state,
-                markers
+                data
             };
         }
-        case REMOVE_MARKER: {
+        case REMOVE_DATA_ITEM: {
             const { marker } = action.payload;
             return {
                 ...state,
-                markers: state.markers.filter((item: any) => item.id !== marker.id)
+                data: state.data.filter((item: any) => item.id !== marker.id)
             };
         }
         case ADD_MARKER: {
             const { marker } = action.payload;
             return {
                 ...state,
-                markers: [
-                    ...state.markers,
+                data: [
+                    ...state.data,
                     marker
                 ]
             };

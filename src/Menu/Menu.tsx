@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
 import {useDispatch} from "react-redux";
-import {setMarkers, removeMarker, addMarker} from "src/redux/map/actions";
+import {setData, removeDataItem, addDataItem} from "src/redux/data/actions";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -18,16 +18,16 @@ const Menu: React.FC = () => {
     const dispatch = useDispatch()
 
     const loadMarkers = () => {
-        dispatch(setMarkers(markers))
+        dispatch(setData(markers))
     }
 
     const deleteMarker = () => {
-        dispatch(removeMarker(markers[0]))
-        dispatch(removeMarker(add))
+        dispatch(removeDataItem(markers[0]))
+        dispatch(removeDataItem(add))
     }
 
     const addMarkers = () => {
-        dispatch(addMarker(add))
+        dispatch(addDataItem(add))
     }
 
     return (
