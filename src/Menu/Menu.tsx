@@ -4,6 +4,7 @@ import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
 import {useDispatch} from "react-redux";
 import {setData, removeDataItem, addDataItem, addVisualization} from "src/redux/data/actions";
+import {VisualizationTypes} from "src/redux/data/actions";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -32,7 +33,11 @@ const Menu: React.FC = (props: any) => {
     }
 
     const addHeatmap = () => {
-        dispatch(addVisualization('heatmap'))
+        dispatch(addVisualization(VisualizationTypes.Heatmap))
+    }
+
+    const addMarkerCluster = () => {
+        dispatch(addVisualization(VisualizationTypes.MarkerCluster))
     }
 
     return (
@@ -60,6 +65,9 @@ const Menu: React.FC = (props: any) => {
                     </button>
                     <button onClick={addHeatmap}>
                         <i className="material-icons">assignment</i>Heatmap
+                    </button>
+                    <button onClick={addMarkerCluster}>
+                        <i className="material-icons">assignment</i>Adicionar marker cluster
                     </button>
                     {/*<button onClick={loadMarkers}>*/}
                     {/*    <i className="material-icons">assignment</i>Dados*/}

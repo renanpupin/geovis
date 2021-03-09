@@ -21,7 +21,21 @@ export const addDataItem = (marker: any) => ({
     }
 });
 
-export const addVisualization = (type: any) => ({
+// export enum MapVisualizationTypes {
+//     Heatmap = 'heatmap',
+//     MapCluster = 'cluster'
+// }
+// export enum DataVisualizationTypes {
+//     Chart = 'chart',
+// }
+// export type VisualizationTypes = MapVisualizationTypes & DataVisualizationTypes
+
+export enum VisualizationTypes {
+    Heatmap = 'Heatmap',
+    MarkerCluster = 'MarkerCluster'
+}
+
+export const addVisualization = (type: VisualizationTypes) => ({
     type: ADD_VISUALIZATION,
     payload: {
         type

@@ -1,22 +1,54 @@
 import React, {useEffect, useState} from 'react';
-import {createMarker, removeMarker} from "./markerUtils";
+import {createMarker, removeMarker, createMarkerEmpty} from "./markerUtils";
 import {createInfoWindow} from "src/Map/InfoWindow/infoWindowUtils";
 
 const Marker = (props: any) => {
-    useEffect(() => {
-        const gmapMarker = createMarker(props.marker, props.map)
+    const [didMount, setDidMount] = useState(false)
+    const [gmapMarker] = useState(createMarkerEmpty(props.data))
+    let infoWindow: any = null;
 
-        let infoWindow: any = null;
-        gmapMarker.addListener('click', (evt: any) => {
-            infoWindow = createInfoWindow(gmapMarker, props.marker, props.map)
-        })
+    //TODO: fix info window
+    // gmapMarker.addListener('click', (evt: any) => {
+    //     infoWindow = createInfoWindow(gmapMarker, props.data, props.map)
+    // })
+
+    useEffect(() => {
+        // console.log("mount", props.enableMarkerCluster)
+        if (props.enableMarkerCluster) {
+            props.cluster.addMarker(gmapMarker);
+        } else {
+            gmapMarker.setMap(props.map)
+        }
+        // return () => {
+        //     console.log("unmount", props.enableMarkerCluster)
+        //     if(props.enableMarkerCluster){
+        //         props.cluster.removeMarker(gmapMarker);
+        //     }else{
+        //         gmapMarker.setMap(null)
+        //     }
+        // }
+    }, []);
+
+    useEffect(() => {
+        if (didMount) {
+            // console.log("mount 2", props.enableMarkerCluster)
+            if (props.enableMarkerCluster) {
+                gmapMarker.setMap(null);
+                props.cluster.addMarker(gmapMarker)
+            } else {
+                props.cluster.removeMarker(gmapMarker)
+                gmapMarker.setMap(props.map);
+            }
+        }
+        setDidMount(true)
 
         return () => {
-            //@ts-ignore
-            removeMarker(gmapMarker)
+            removeMarker(gmapMarker, props.enableMarkerCluster, props.cluster)
+            // console.log("remove", infoWindow)
             infoWindow?.close()
         };
-    }, []);
+    }, [props.cluster, props.enableMarkerCluster, infoWindow]);
+
     return null;
 }
 
