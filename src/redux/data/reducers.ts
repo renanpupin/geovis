@@ -1,7 +1,18 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, CLEAR_DATA, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER } from "./actionTypes";
+import {
+    LOAD_DATA,
+    REMOVE_DATA_ITEM,
+    ADD_DATA_ITEM,
+    CLEAR_DATA,
+    ADD_VISUALIZATION,
+    ADD_FILTER,
+    REMOVE_FILTER,
+    TOGGLE_FILTER
+} from "./actionTypes";
 import { applyFilters, filterAttributes } from "./filters";
 
-const initialState = {
+import {StateProps} from "./types";
+
+const initialState: StateProps = {
     attributes: [],
     data: [],
     visibleData: [],
@@ -16,6 +27,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 data,
+                visibleData: data,
                 attributes: filterAttributes(data[0])
             };
         }
@@ -23,19 +35,19 @@ export default function(state = initialState, action: any) {
             return initialState
         }
         case REMOVE_DATA_ITEM: {
-            const { marker } = action.payload;
+            const { dataItem } = action.payload;
             return {
                 ...state,
-                data: state.data.filter((item: any) => item.id !== marker.id)
+                data: state.data.filter((item: any) => item.id !== dataItem.id)
             };
         }
         case ADD_DATA_ITEM: {
-            const { marker } = action.payload;
+            const { dataItem } = action.payload;
             return {
                 ...state,
                 data: [
                     ...state.data,
-                    marker
+                    dataItem
                 ]
             };
         }
@@ -43,29 +55,58 @@ export default function(state = initialState, action: any) {
             const { type } = action.payload;
             return {
                 ...state,
-                visualizations: state.visualizations.includes(type) ? state.visualizations : [
+                visualizations: [
                     ...state.visualizations,
-                    type
+                    {
+                        type,
+                        visible: true
+                    }
                 ]
             };
         }
         case ADD_FILTER: {
             const { filter } = action.payload;
+
+            const updatedFilters = [
+                ...state.filters,
+                filter
+            ];
+
             return {
                 ...state,
-                filters: state.filters.includes(filter) ? state.filters : [
-                    ...state.filters,
-                    filter
-                ],
-                visibleData: applyFilters(state.data, state.filters)
+                filters: updatedFilters,
+                visibleData: applyFilters(state.data, updatedFilters)
             };
         }
         case REMOVE_FILTER: {
             const { filter } = action.payload;
+
+            const updatedFilters = state.filters.filter(item => item !== filter);
+
             return {
                 ...state,
-                filters: state.filters.filter(item => item !== filter),
-                visibleData: applyFilters(state.data, state.filters)
+                filters: updatedFilters,
+                visibleData: applyFilters(state.data, updatedFilters)
+            };
+        }
+        case TOGGLE_FILTER: {
+            const { filter, toggle } = action.payload;
+
+            const updatedFilters = state.filters.map(item => {
+                if(item === filter){
+                    return {
+                        ...item,
+                        visible: toggle
+                    };
+                }else{
+                    return item;
+                }
+            })
+
+            return {
+                ...state,
+                filters: updatedFilters,
+                visibleData: applyFilters(state.data, updatedFilters)
             };
         }
         default:

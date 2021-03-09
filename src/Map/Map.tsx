@@ -6,7 +6,7 @@ import Heatmap from 'src/Map/Heatmap/Heatmap';
 import MarkerList from 'src/Map/MarkerList';
 // import MarkerCluster from 'src/Map/MarkerCluster/MarkerCluster';
 import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
-import {VisualizationTypes} from "src/redux/data/actions";
+import {VisualizationTypeValues} from "src/redux/data/types";
 
 const Map: React.FC = () => {
     const visibleData = useSelector(getVisibleData)
@@ -21,7 +21,7 @@ const Map: React.FC = () => {
 
     useEffect(() => {
         if(map && visibleData?.length > 0){
-            let bounds = new window.google.maps.LatLngBounds();
+            let bounds = new google.maps.LatLngBounds();
             visibleData.map((markerData: any) => bounds.extend(new google.maps.LatLng(markerData.lat, markerData.lng)))
             // @ts-ignore
             map.fitBounds(bounds);
@@ -29,10 +29,16 @@ const Map: React.FC = () => {
     }, [visibleData, map]);
 
     const getHeatmap = useCallback(() => {
-        if(!visualizations.includes(VisualizationTypes.Heatmap)){
+        if(visualizations.filter(visualization => {
+            return(
+                visualization.visible &&
+                visualization.type === VisualizationTypeValues.Heatmap
+            )
+        }).length === 0){
             return;
         }
 
+        //TODO: maybe refactor heatmap and move inside markers (inside cluster to use marker.getLocation())
         return(
             <Heatmap
                 map={map}
@@ -41,7 +47,7 @@ const Map: React.FC = () => {
         )
     }, [visualizations, visibleData, map]);
 
-    const enableMarkerCluster = visualizations.includes(VisualizationTypes.MarkerCluster)
+    const enableMarkerCluster = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster).length > 0;
 
     const getMarkers = useCallback(() => {
         if(!map){

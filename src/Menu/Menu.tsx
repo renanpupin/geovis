@@ -4,7 +4,7 @@ import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
 import {useDispatch, useSelector} from "react-redux";
 import {setData, removeDataItem, addDataItem, addVisualization} from "src/redux/data/actions";
-import {VisualizationTypes} from "src/redux/data/actions";
+import {VisualizationTypeValues} from "src/redux/data/types";
 import {getVisibleData} from "src/redux/data/selectors";
 
 const markers = [
@@ -44,11 +44,11 @@ const Menu: React.FC = (props: any) => {
     }
 
     const addHeatmap = () => {
-        dispatch(addVisualization(VisualizationTypes.Heatmap))
+        dispatch(addVisualization(VisualizationTypeValues.Heatmap))
     }
 
     const addMarkerCluster = () => {
-        dispatch(addVisualization(VisualizationTypes.MarkerCluster))
+        dispatch(addVisualization(VisualizationTypeValues.MarkerCluster))
     }
 
     return (

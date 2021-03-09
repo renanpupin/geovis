@@ -43,3 +43,21 @@ const MarkerCluster = (props: any) => {
 }
 
 export default MarkerCluster;
+
+//CLUSTERING VIS
+//CHECK IF THE MARKERS IS INSIDE BOUNDS
+//http://jsfiddle.net/glafarge/mbuLw/
+//https://developers.google.com/maps/articles/toomanymarkers#gridbasedclustering
+/*Map.prototype.addInfoWindow = function(map, marker){
+	for (var i=0; i < markers.length; i++)
+	{
+	    if map.getBounds().contains(markers[i].getPosition())
+	    {
+	        // markers[i] in visible bounds
+	    }
+	    else
+	    {
+	        // markers[i] is not in visible bounds
+	    }
+	}
+}*/
