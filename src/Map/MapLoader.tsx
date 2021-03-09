@@ -6,7 +6,7 @@ const mapNodeId = "map"
 
 const mapOptions = {
     center: {lat: 41.0082, lng: 28.9784},
-    zoom: 4,
+    zoom: 8,
     streetViewControl: false,
     panControl: false,
     zoomControl: true

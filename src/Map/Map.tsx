@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import MapLoader from './MapLoader';
 import Marker from './Marker';
@@ -18,6 +18,15 @@ const Map: React.FC = () => {
     const onLoad = (map: any) => {
         setMap(map)
     };
+
+    useEffect(() => {
+        if(map && visibleData?.length > 0){
+            let bounds = new window.google.maps.LatLngBounds();
+            visibleData.map((markerData: any) => bounds.extend(new google.maps.LatLng(markerData.lat, markerData.lng)))
+            // @ts-ignore
+            map.fitBounds(bounds);
+        }
+    }, [visibleData, map]);
 
     const getHeatmap = useCallback(() => {
         if(!visualizations.includes(VisualizationTypes.Heatmap)){
@@ -40,7 +49,7 @@ const Map: React.FC = () => {
         }
 
         return <MarkerList data={visibleData} map={map} enableMarkerCluster={enableMarkerCluster}/>
-    }, [visibleData, map, enableMarkerCluster])
+    }, [visibleData, map, enableMarkerCluster]);
 
     return (
         <MapLoader onLoad={onLoad}>
