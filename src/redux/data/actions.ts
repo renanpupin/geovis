@@ -1,4 +1,4 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, ADD_VISUALIZATION } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER } from "./actionTypes";
 
 export const setData = (data: any) => ({
     type: LOAD_DATA,
@@ -39,5 +39,39 @@ export const addVisualization = (type: VisualizationTypes) => ({
     type: ADD_VISUALIZATION,
     payload: {
         type
+    }
+});
+
+export enum ConditionsTypes {
+    Equal = 'Equal',
+    Different = 'Different',
+    MoreThan = 'MoreThan',
+    LessThan = 'LessThan',
+    MoreThanOrEqual = 'MoreThanOrEqual',
+    LessThanOrEqual = 'LessThanOrEqual',
+}
+
+export type FilterConditionsTypes = {
+    type: ConditionsTypes
+    value: string | number | boolean | null | undefined
+}
+
+export type FilterTypes = {
+    name: string
+    attribute: string
+    conditions: FilterConditionsTypes[]
+}
+
+export const addFilter = (filter: FilterTypes) => ({
+    type: ADD_FILTER,
+    payload: {
+        filter
+    }
+});
+
+export const removeFilter = (filter: FilterTypes) => ({
+    type: REMOVE_FILTER,
+    payload: {
+        filter
     }
 });

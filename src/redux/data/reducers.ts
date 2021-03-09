@@ -1,6 +1,8 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, CLEAR_DATA, ADD_VISUALIZATION } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, CLEAR_DATA, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER } from "./actionTypes";
+import { applyFilters, filterAttributes } from "./filters";
 
 const initialState = {
+    attributes: [],
     data: [],
     visibleData: [],
     filters: [],
@@ -13,7 +15,8 @@ export default function(state = initialState, action: any) {
             const { data } = action.payload;
             return {
                 ...state,
-                data
+                data,
+                attributes: filterAttributes(data[0])
             };
         }
         case CLEAR_DATA: {
@@ -40,11 +43,29 @@ export default function(state = initialState, action: any) {
             const { type } = action.payload;
             return {
                 ...state,
-            // @ts-ignore
                 visualizations: state.visualizations.includes(type) ? state.visualizations : [
                     ...state.visualizations,
                     type
                 ]
+            };
+        }
+        case ADD_FILTER: {
+            const { filter } = action.payload;
+            return {
+                ...state,
+                filters: state.filters.includes(filter) ? state.filters : [
+                    ...state.filters,
+                    filter
+                ],
+                visibleData: applyFilters(state.data, state.filters)
+            };
+        }
+        case REMOVE_FILTER: {
+            const { filter } = action.payload;
+            return {
+                ...state,
+                filters: state.filters.filter(item => item !== filter),
+                visibleData: applyFilters(state.data, state.filters)
             };
         }
         default:
