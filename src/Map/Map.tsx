@@ -4,6 +4,8 @@ import MapLoader from './MapLoader';
 import Marker from './Marker';
 import Heatmap from 'src/Map/Heatmap/Heatmap';
 import MarkerList from 'src/Map/MarkerList';
+import FilterList from 'src/components/FilterList/FilterList';
+import LayersList from 'src/components/LayersList/LayersList';
 // import MarkerCluster from 'src/Map/MarkerCluster/MarkerCluster';
 import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from "src/redux/data/types";
@@ -61,8 +63,18 @@ const Map: React.FC = () => {
         <MapLoader onLoad={onLoad}>
             {getMarkers()}
             {getHeatmap()}
+            <FilterList/>
+            <LayersList/>
         </MapLoader>
     );
 }
 
 export default Map
+
+// Fired when the map becomes idle after panning or zooming.
+// google.maps.event.addListener(map, 'idle', function() {
+//     var bounds = map.getBounds();
+//     for (var i = 0; i < markers.length; i++) {
+//         bounds.contains(marker.getPosition())
+//     }
+// });
