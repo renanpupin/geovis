@@ -1,21 +1,27 @@
 import React, {useCallback} from 'react';
 import ReactDOM from 'react-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getVisualizations} from "src/redux/data/selectors";
 import Touchable from "src/components/Touchable/Touchable";
 import styles from './LayersList.module.scss';
+import {toggleVisualization} from "src/redux/data/actions";
 
 const layersListRoot = document.getElementById('map-controls')
 
 const LayersList: React.FC = () => {
+    const dispatch = useDispatch()
     const visualizations = useSelector(getVisualizations)
 
+    const toggleLayer = (visualization: any) => {
+        dispatch(toggleVisualization(visualization, !visualization.visible))
+    }
+
     const getLayersList = useCallback(() => {
-        return visualizations.map((visualizations, index) => {
+        return visualizations.map((visualization, index) => {
             return(
                 <li key={index}>
                     <Touchable onClick={() => {}}>
-                        <input type={"checkbox"} checked={visualizations.visible}/><span>{visualizations.type}</span>
+                        <input type={"checkbox"} checked={visualization.visible} onChange={(event: any) => {toggleLayer(visualization)}}/><span>{visualization.type}</span>
                     </Touchable>
                 </li>
             )

@@ -27,12 +27,14 @@ const Map: React.FC = () => {
     }, [visibleData, map]);
 
     const getHeatmap = useCallback(() => {
-        if(visualizations.filter(visualization => {
+        const hideHeatmap = visualizations.filter(visualization => {
+            console.log("visualization", visualization)
             return(
                 visualization.visible &&
                 visualization.type === VisualizationTypeValues.Heatmap
             )
-        }).length === 0){
+        }).length === 0;
+        if(hideHeatmap){
             return;
         }
 

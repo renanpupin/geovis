@@ -10,12 +10,16 @@ const filterListRoot = document.getElementById('map-controls')
 const FilterList: React.FC = () => {
     const filters = useSelector(getFilters)
 
+    const toggleFilter = (e: any) => {
+        console.log(e)
+    }
+
     const getFiltersList = useCallback(() => {
         return filters.map((filter, index) => {
             return(
                 <li key={index}>
                     <Touchable onClick={() => {}}>
-                        <input type={"checkbox"} checked={filter.visible}/><span>{filter.name}</span>
+                        <input type={"checkbox"} checked={filter.visible} onChange={toggleFilter}/><span>{filter.name}</span>
                     </Touchable>
                 </li>
             )

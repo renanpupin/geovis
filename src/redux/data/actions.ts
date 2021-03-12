@@ -1,4 +1,4 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, REMOVE_VISUALIZATION } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, TOGGLE_VISUALIZATION, REMOVE_VISUALIZATION } from "./actionTypes";
 
 import {VisualizationTypeValues, VisualizationTypes, FilterTypes} from 'src/redux/data/types'
 
@@ -34,6 +34,14 @@ export const removeVisualization = (visualization: VisualizationTypes) => ({
     type: REMOVE_VISUALIZATION,
     payload: {
         visualization
+    }
+});
+
+export const toggleVisualization = (visualization: VisualizationTypes, toggle: boolean) => ({
+    type: TOGGLE_VISUALIZATION,
+    payload: {
+        visualization,
+        toggle
     }
 });
 
