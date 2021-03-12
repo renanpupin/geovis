@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import ReactDOM from 'react-dom';
 import {useSelector} from 'react-redux';
 import {getVisualizations} from "src/redux/data/selectors";
