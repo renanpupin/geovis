@@ -25,6 +25,9 @@ ul {
     font-size: 20px;
     margin-right: 4px;
   }
+  &:hover, &:active, .open{
+    background-color: rgba(0,0,0,0.1);
+  }
 }
 
 .submenu {
