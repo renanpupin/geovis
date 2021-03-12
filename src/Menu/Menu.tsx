@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
@@ -6,6 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {setData, removeDataItem, addDataItem, addVisualization} from "src/redux/data/actions";
 import {VisualizationTypeValues} from "src/redux/data/types";
 import {getVisibleData} from "src/redux/data/selectors";
+import DropdownItem from "src/Menu/DropdownItem";
+import DropdownMenu from "src/Menu/DropdownMenu";
+import DropdownList from "src/Menu/DropdownList";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -51,6 +54,127 @@ const Menu: React.FC = (props: any) => {
         dispatch(addVisualization(VisualizationTypeValues.MarkerCluster))
     }
 
+    const dropdownMenu = useRef(null)
+    const [menuOpen, setMenuOpen] = useState<string | null>(null)
+
+    const closeMenu = (event: any) => {
+        console.log("closeMenu", dropdownMenu)
+        //@ts-ignore
+        if (!dropdownMenu?.current?.contains(event.target)) {
+            // document.removeEventListener('click', closeMenu);
+            setMenuOpen(null)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', closeMenu);
+
+        return () => {
+            document.removeEventListener('click', closeMenu);
+        }
+    }, [])
+    const toggleMenu = (event: any, name: string) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (menuOpen) {
+            // document.removeEventListener('click', closeMenu);
+        } else {
+            // document.addEventListener('click', closeMenu);
+        }
+
+        setMenuOpen(menuOpen !== name ? name : null);
+    }
+
+    const onPressItem = (event: any) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        setMenuOpen(null);
+        // document.removeEventListener('click', closeMenu);
+    }
+
+    const Dropdown = () => {
+        return (
+            <div>
+                <ul className={styles.menuList} ref={dropdownMenu}>
+                    <li className={styles.submenu}>
+                        <DropdownItem onPress={(event: any) => {toggleMenu(event, 'data')}}>
+                            <i className="material-icons">assignment</i>Dados
+                        </DropdownItem>
+                        {menuOpen === 'data' && <DropdownMenu>
+                            <li className={styles.submenu}>
+                                <DropdownItem onPress={onPressItem}>
+                                    <i className="material-icons">attach_file</i>Carregar
+                                </DropdownItem>
+                            </li>
+                        </DropdownMenu>}
+                    </li>
+                    <li className={styles.submenu}>
+                        <DropdownItem onPress={(event: any) => {toggleMenu(event, 'visualizations')}}>
+                            <i className="material-icons">insert_chart</i>Visualizações
+                        </DropdownItem>
+                        {menuOpen === 'visualizations' && <DropdownMenu>
+                            <li className={styles.submenu}>
+                                <DropdownItem onPress={onPressItem}>
+                                    <i className="material-icons">add</i>Adicionar
+                                </DropdownItem>
+                            </li>
+                            <li className={styles.submenu}>
+                                <DropdownItem onPress={onPressItem}>
+                                    <i className="material-icons">delete</i>Remover
+                                </DropdownItem>
+                            </li>
+                        </DropdownMenu>}
+                    </li>
+                    <li className={styles.submenu}>
+                        <DropdownItem onPress={(event: any) => {toggleMenu(event, 'filters')}}>
+                            <i className="material-icons">details</i>Filtros
+                        </DropdownItem>
+                        {menuOpen === 'filters' && <DropdownMenu>
+                            <li className={styles.submenu}>
+                                <DropdownItem onPress={onPressItem}>
+                                    <i className="material-icons">add</i>Adicionar
+                                </DropdownItem>
+                            </li>
+                            <li className={styles.submenu}>
+                                <DropdownItem onPress={onPressItem}>
+                                    <i className="material-icons">delete</i>Remover
+                                </DropdownItem>
+                            </li>
+                        </DropdownMenu>}
+                    </li>
+                    <li className={styles.submenu}>
+                        <DropdownItem onPress={onPressItem}>
+                            <i className="material-icons">file_download</i>Salvar
+                        </DropdownItem>
+                    </li>
+                    <li className={styles.submenu}>
+                        <DropdownItem onPress={onPressItem}>
+                            <i className="material-icons">file_upload</i>Carregar
+                        </DropdownItem>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+
+    // <li className="nav-item">
+    //     <a className="nav-link" href="#">Link</a>
+    // </li>
+    // <li className="nav-item dropdown">
+    //     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+    //        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    //         Dropdown
+    //     </a>
+    //     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+    //         <a className="dropdown-item" href="#">Action</a>
+    //         <a className="dropdown-item" href="#">Another action</a>
+    //         <div className="dropdown-divider"></div>
+    //         <a className="dropdown-item" href="#">Something else here</a>
+    //     </div>
+    // </li>
+
     return (
         <nav id="nav" className={styles.nav}>
             <div className={styles.navbarHeader}>
@@ -60,82 +184,88 @@ const Menu: React.FC = (props: any) => {
                 </div>
             </div>
 
-            <ul role="menu" className={styles.menuList}>
-                <li className="submenu">
-                    <button onClick={onChangeMode}>
-                        <i className="material-icons">{props.viewMode === 'map' ? 'map' : 'table_view'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}
-                    </button>
-                    <button onClick={loadMarkers}>
-                        <i className="material-icons">assignment</i>Carregar dados
-                    </button>
-                    <button onClick={addMarkers}>
-                        <i className="material-icons">assignment</i>Adicionar dado
-                    </button>
-                    <button onClick={deleteMarker}>
-                        <i className="material-icons">assignment</i>Remover dado
-                    </button>
-                    <button onClick={addHeatmap}>
-                        <i className="material-icons">assignment</i>Heatmap
-                    </button>
-                    <button onClick={addMarkerCluster}>
-                        <i className="material-icons">assignment</i>Adicionar marker cluster
-                    </button>
-                    {/*<button onClick={loadMarkers}>*/}
-                    {/*    <i className="material-icons">assignment</i>Dados*/}
-                    {/*</button>*/}
-                    {/*<ul>*/}
-                    {/*    <li>*/}
-                    {/*        <a href="javascript:void(0)" id="carregarDados">*/}
-                    {/*            <i className="material-icons">attach_file</i>Carregar*/}
-                    {/*        </a>*/}
-                    {/*    </li>*/}
-                    {/*</ul>*/}
-                </li>
-                {/*<li className="submenu">*/}
-                {/*    <a href="javascript:void(0)">*/}
-                {/*        <i className="material-icons">insert_chart</i>Visualizações*/}
-                {/*    </a>*/}
-                {/*    /!*<ul>*!/*/}
-                {/*    /!*    <li>*!/*/}
-                {/*    /!*        <a href="javascript:void(0)" id="adicionarVisualizacao">*!/*/}
-                {/*    /!*            <i className="material-icons">add</i>Adicionar*!/*/}
-                {/*    /!*        </a>*!/*/}
-                {/*    /!*    </li>*!/*/}
-                {/*    /!*    <li>*!/*/}
-                {/*    /!*        <a href="javascript:void(0)" id="removerVisualizacao">*!/*/}
-                {/*    /!*            <i className="material-icons">delete</i>Remover*!/*/}
-                {/*    /!*        </a>*!/*/}
-                {/*    /!*    </li>*!/*/}
-                {/*    /!*</ul>*!/*/}
-                {/*</li>*/}
-                {/*<li className="submenu">*/}
-                {/*    <a href="javascript:void(0)">*/}
-                {/*        <i className="material-icons">details</i>Filtros*/}
-                {/*    </a>*/}
-                {/*    /!*<ul>*!/*/}
-                {/*    /!*    <li>*!/*/}
-                {/*    /!*        <a href="javascript:void(0)" id="adicionarFiltro">*!/*/}
-                {/*    /!*            <i className="material-icons">add</i>Adicionar*!/*/}
-                {/*    /!*        </a>*!/*/}
-                {/*    /!*    </li>*!/*/}
-                {/*    /!*    <li>*!/*/}
-                {/*    /!*        <a href="javascript:void(0)" id="removerFiltro">*!/*/}
-                {/*    /!*            <i className="material-icons">delete</i>Remover*!/*/}
-                {/*    /!*        </a>*!/*/}
-                {/*    /!*    </li>*!/*/}
-                {/*    /!*</ul>*!/*/}
-                {/*</li>*/}
-                {/*<li>*/}
-                {/*    <a href="javascript:void(0)" id="salvarApp">*/}
-                {/*        <i className="material-icons">file_download</i>Salvar*/}
-                {/*    </a>*/}
-                {/*</li>*/}
-                {/*<li>*/}
-                {/*    <a href="javascript:void(0)" id="carregarApp">*/}
-                {/*        <i className="material-icons">file_upload</i>Carregar*/}
-                {/*    </a>*/}
-                {/*</li>*/}
-            </ul>
+            <Dropdown/>
+
+            {/*<ul*/}
+            {/*    role="menu"*/}
+            {/*    className={styles.menuList}*/}
+            {/*    ref={dropdownMenu}*/}
+            {/*>*/}
+            {/*    <li className="submenu">*/}
+            {/*        <button onClick={onChangeMode}>*/}
+            {/*            <i className="material-icons">{props.viewMode === 'map' ? 'map' : 'table_view'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}*/}
+            {/*        </button>*/}
+            {/*        <button onClick={loadMarkers}>*/}
+            {/*            <i className="material-icons">assignment</i>Carregar dados*/}
+            {/*        </button>*/}
+            {/*        <button onClick={addMarkers}>*/}
+            {/*            <i className="material-icons">assignment</i>Adicionar dado*/}
+            {/*        </button>*/}
+            {/*        <button onClick={deleteMarker}>*/}
+            {/*            <i className="material-icons">assignment</i>Remover dado*/}
+            {/*        </button>*/}
+            {/*        <button onClick={addHeatmap}>*/}
+            {/*            <i className="material-icons">assignment</i>Heatmap*/}
+            {/*        </button>*/}
+            {/*        <button onClick={addMarkerCluster}>*/}
+            {/*            <i className="material-icons">assignment</i>Adicionar marker cluster*/}
+            {/*        </button>*/}
+            {/*        /!*<button onClick={loadMarkers}>*!/*/}
+            {/*        /!*    <i className="material-icons">assignment</i>Dados*!/*/}
+            {/*        /!*</button>*!/*/}
+            {/*        /!*<ul>*!/*/}
+            {/*        /!*    <li>*!/*/}
+            {/*        /!*        <a href="javascript:void(0)" id="carregarDados">*!/*/}
+            {/*        /!*            <i className="material-icons">attach_file</i>Carregar*!/*/}
+            {/*        /!*        </a>*!/*/}
+            {/*        /!*    </li>*!/*/}
+            {/*        /!*</ul>*!/*/}
+            {/*    </li>*/}
+            {/*    /!*<li className="submenu">*!/*/}
+            {/*    /!*    <a href="javascript:void(0)">*!/*/}
+            {/*    /!*        <i className="material-icons">insert_chart</i>Visualizações*!/*/}
+            {/*    /!*    </a>*!/*/}
+            {/*    /!*    /!*<ul>*!/*!/*/}
+            {/*    /!*    /!*    <li>*!/*!/*/}
+            {/*    /!*    /!*        <a href="javascript:void(0)" id="adicionarVisualizacao">*!/*!/*/}
+            {/*    /!*    /!*            <i className="material-icons">add</i>Adicionar*!/*!/*/}
+            {/*    /!*    /!*        </a>*!/*!/*/}
+            {/*    /!*    /!*    </li>*!/*!/*/}
+            {/*    /!*    /!*    <li>*!/*!/*/}
+            {/*    /!*    /!*        <a href="javascript:void(0)" id="removerVisualizacao">*!/*!/*/}
+            {/*    /!*    /!*            <i className="material-icons">delete</i>Remover*!/*!/*/}
+            {/*    /!*    /!*        </a>*!/*!/*/}
+            {/*    /!*    /!*    </li>*!/*!/*/}
+            {/*    /!*    /!*</ul>*!/*!/*/}
+            {/*    /!*</li>*!/*/}
+            {/*    /!*<li className="submenu">*!/*/}
+            {/*    /!*    <a href="javascript:void(0)">*!/*/}
+            {/*    /!*        <i className="material-icons">details</i>Filtros*!/*/}
+            {/*    /!*    </a>*!/*/}
+            {/*    /!*    /!*<ul>*!/*!/*/}
+            {/*    /!*    /!*    <li>*!/*!/*/}
+            {/*    /!*    /!*        <a href="javascript:void(0)" id="adicionarFiltro">*!/*!/*/}
+            {/*    /!*    /!*            <i className="material-icons">add</i>Adicionar*!/*!/*/}
+            {/*    /!*    /!*        </a>*!/*!/*/}
+            {/*    /!*    /!*    </li>*!/*!/*/}
+            {/*    /!*    /!*    <li>*!/*!/*/}
+            {/*    /!*    /!*        <a href="javascript:void(0)" id="removerFiltro">*!/*!/*/}
+            {/*    /!*    /!*            <i className="material-icons">delete</i>Remover*!/*!/*/}
+            {/*    /!*    /!*        </a>*!/*!/*/}
+            {/*    /!*    /!*    </li>*!/*!/*/}
+            {/*    /!*    /!*</ul>*!/*!/*/}
+            {/*    /!*</li>*!/*/}
+            {/*    /!*<li>*!/*/}
+            {/*    /!*    <a href="javascript:void(0)" id="salvarApp">*!/*/}
+            {/*    /!*        <i className="material-icons">file_download</i>Salvar*!/*/}
+            {/*    /!*    </a>*!/*/}
+            {/*    /!*</li>*!/*/}
+            {/*    /!*<li>*!/*/}
+            {/*    /!*    <a href="javascript:void(0)" id="carregarApp">*!/*/}
+            {/*    /!*        <i className="material-icons">file_upload</i>Carregar*!/*/}
+            {/*    /!*    </a>*!/*/}
+            {/*    /!*</li>*!/*/}
+            {/*</ul>*/}
         </nav>
     )
 }
