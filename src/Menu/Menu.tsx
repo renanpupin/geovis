@@ -1,14 +1,13 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
 import {useDispatch, useSelector} from "react-redux";
-import {setData, removeDataItem, addDataItem, addVisualization} from "src/redux/data/actions";
+import {addDataItem, addVisualization, removeDataItem, removeVisualization, setData} from "src/redux/data/actions";
 import {VisualizationTypeValues} from "src/redux/data/types";
-import {getVisibleData} from "src/redux/data/selectors";
+import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
 import DropdownItem from "src/Menu/DropdownItem";
 import DropdownMenu from "src/Menu/DropdownMenu";
-import DropdownList from "src/Menu/DropdownList";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -33,6 +32,7 @@ const Menu: React.FC = (props: any) => {
     const {onChangeMode} = props
     const dispatch = useDispatch()
     const visibleData = useSelector(getVisibleData)
+    const visualizations = useSelector(getVisualizations)
 
     const loadMarkers = () => {
         dispatch(setData(markers))
@@ -49,16 +49,21 @@ const Menu: React.FC = (props: any) => {
     const addHeatmap = () => {
         dispatch(addVisualization(VisualizationTypeValues.Heatmap))
     }
+    const removeHeatmap = () => {
+        dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.Heatmap)?.[0]))
+    }
 
     const addMarkerCluster = () => {
         dispatch(addVisualization(VisualizationTypeValues.MarkerCluster))
+    }
+    const removeMarkerCluster = () => {
+        dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.MarkerCluster)?.[0]))
     }
 
     const dropdownMenu = useRef(null)
     const [menuOpen, setMenuOpen] = useState<string | null>(null)
 
-    const closeMenu = (event: any) => {
-        console.log("closeMenu", dropdownMenu)
+    const documentClickListener = (event: any) => {
         //@ts-ignore
         if (!dropdownMenu?.current?.contains(event.target)) {
             // document.removeEventListener('click', closeMenu);
@@ -67,12 +72,12 @@ const Menu: React.FC = (props: any) => {
     }
 
     useEffect(() => {
-        document.addEventListener('click', closeMenu);
-
+        document.addEventListener('click', documentClickListener);
         return () => {
-            document.removeEventListener('click', closeMenu);
+            document.removeEventListener('click', documentClickListener);
         }
-    }, [])
+    }, []);
+
     const toggleMenu = (event: any, name: string) => {
         event.preventDefault();
         event.stopPropagation();
@@ -86,25 +91,51 @@ const Menu: React.FC = (props: any) => {
         setMenuOpen(menuOpen !== name ? name : null);
     }
 
-    const onPressItem = (event: any) => {
+    const onPressItem = (event: any, action: any) => {
         event.preventDefault();
         event.stopPropagation();
 
         setMenuOpen(null);
         // document.removeEventListener('click', closeMenu);
+
+        switch(action){
+            case 'changeView': {
+                onChangeMode();
+                break;
+            }
+            case 'loadData': {
+                loadMarkers();
+                break;
+            }
+            case 'addVis': {
+                addHeatmap();
+                addMarkerCluster();
+                break;
+            }
+            case 'removeVis': {
+                removeHeatmap();
+                removeMarkerCluster();
+                break;
+            }
+        }
     }
 
     const Dropdown = () => {
         return (
-            <div>
-                <ul className={styles.menuList} ref={dropdownMenu}>
+            <div ref={dropdownMenu}>
+                <ul className={styles.menuList}>
+                    <li className={styles.submenu}>
+                        <DropdownItem onPress={(event: any) => {onPressItem(event, 'changeView')}}>
+                            <i className="material-icons">{props.viewMode === 'map' ? 'map' : 'table_view'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}
+                        </DropdownItem>
+                    </li>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {toggleMenu(event, 'data')}}>
                             <i className="material-icons">assignment</i>Dados
                         </DropdownItem>
                         {menuOpen === 'data' && <DropdownMenu>
                             <li className={styles.submenu}>
-                                <DropdownItem onPress={onPressItem}>
+                                <DropdownItem onPress={(event: any) => {onPressItem(event, 'loadData')}}>
                                     <i className="material-icons">attach_file</i>Carregar
                                 </DropdownItem>
                             </li>
@@ -116,12 +147,12 @@ const Menu: React.FC = (props: any) => {
                         </DropdownItem>
                         {menuOpen === 'visualizations' && <DropdownMenu>
                             <li className={styles.submenu}>
-                                <DropdownItem onPress={onPressItem}>
+                                <DropdownItem onPress={(event: any) => {onPressItem(event, 'addVis')}}>
                                     <i className="material-icons">add</i>Adicionar
                                 </DropdownItem>
                             </li>
                             <li className={styles.submenu}>
-                                <DropdownItem onPress={onPressItem}>
+                                <DropdownItem onPress={(event: any) => {onPressItem(event, 'removeVis')}}>
                                     <i className="material-icons">delete</i>Remover
                                 </DropdownItem>
                             </li>
@@ -185,87 +216,6 @@ const Menu: React.FC = (props: any) => {
             </div>
 
             <Dropdown/>
-
-            {/*<ul*/}
-            {/*    role="menu"*/}
-            {/*    className={styles.menuList}*/}
-            {/*    ref={dropdownMenu}*/}
-            {/*>*/}
-            {/*    <li className="submenu">*/}
-            {/*        <button onClick={onChangeMode}>*/}
-            {/*            <i className="material-icons">{props.viewMode === 'map' ? 'map' : 'table_view'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}*/}
-            {/*        </button>*/}
-            {/*        <button onClick={loadMarkers}>*/}
-            {/*            <i className="material-icons">assignment</i>Carregar dados*/}
-            {/*        </button>*/}
-            {/*        <button onClick={addMarkers}>*/}
-            {/*            <i className="material-icons">assignment</i>Adicionar dado*/}
-            {/*        </button>*/}
-            {/*        <button onClick={deleteMarker}>*/}
-            {/*            <i className="material-icons">assignment</i>Remover dado*/}
-            {/*        </button>*/}
-            {/*        <button onClick={addHeatmap}>*/}
-            {/*            <i className="material-icons">assignment</i>Heatmap*/}
-            {/*        </button>*/}
-            {/*        <button onClick={addMarkerCluster}>*/}
-            {/*            <i className="material-icons">assignment</i>Adicionar marker cluster*/}
-            {/*        </button>*/}
-            {/*        /!*<button onClick={loadMarkers}>*!/*/}
-            {/*        /!*    <i className="material-icons">assignment</i>Dados*!/*/}
-            {/*        /!*</button>*!/*/}
-            {/*        /!*<ul>*!/*/}
-            {/*        /!*    <li>*!/*/}
-            {/*        /!*        <a href="javascript:void(0)" id="carregarDados">*!/*/}
-            {/*        /!*            <i className="material-icons">attach_file</i>Carregar*!/*/}
-            {/*        /!*        </a>*!/*/}
-            {/*        /!*    </li>*!/*/}
-            {/*        /!*</ul>*!/*/}
-            {/*    </li>*/}
-            {/*    /!*<li className="submenu">*!/*/}
-            {/*    /!*    <a href="javascript:void(0)">*!/*/}
-            {/*    /!*        <i className="material-icons">insert_chart</i>Visualizações*!/*/}
-            {/*    /!*    </a>*!/*/}
-            {/*    /!*    /!*<ul>*!/*!/*/}
-            {/*    /!*    /!*    <li>*!/*!/*/}
-            {/*    /!*    /!*        <a href="javascript:void(0)" id="adicionarVisualizacao">*!/*!/*/}
-            {/*    /!*    /!*            <i className="material-icons">add</i>Adicionar*!/*!/*/}
-            {/*    /!*    /!*        </a>*!/*!/*/}
-            {/*    /!*    /!*    </li>*!/*!/*/}
-            {/*    /!*    /!*    <li>*!/*!/*/}
-            {/*    /!*    /!*        <a href="javascript:void(0)" id="removerVisualizacao">*!/*!/*/}
-            {/*    /!*    /!*            <i className="material-icons">delete</i>Remover*!/*!/*/}
-            {/*    /!*    /!*        </a>*!/*!/*/}
-            {/*    /!*    /!*    </li>*!/*!/*/}
-            {/*    /!*    /!*</ul>*!/*!/*/}
-            {/*    /!*</li>*!/*/}
-            {/*    /!*<li className="submenu">*!/*/}
-            {/*    /!*    <a href="javascript:void(0)">*!/*/}
-            {/*    /!*        <i className="material-icons">details</i>Filtros*!/*/}
-            {/*    /!*    </a>*!/*/}
-            {/*    /!*    /!*<ul>*!/*!/*/}
-            {/*    /!*    /!*    <li>*!/*!/*/}
-            {/*    /!*    /!*        <a href="javascript:void(0)" id="adicionarFiltro">*!/*!/*/}
-            {/*    /!*    /!*            <i className="material-icons">add</i>Adicionar*!/*!/*/}
-            {/*    /!*    /!*        </a>*!/*!/*/}
-            {/*    /!*    /!*    </li>*!/*!/*/}
-            {/*    /!*    /!*    <li>*!/*!/*/}
-            {/*    /!*    /!*        <a href="javascript:void(0)" id="removerFiltro">*!/*!/*/}
-            {/*    /!*    /!*            <i className="material-icons">delete</i>Remover*!/*!/*/}
-            {/*    /!*    /!*        </a>*!/*!/*/}
-            {/*    /!*    /!*    </li>*!/*!/*/}
-            {/*    /!*    /!*</ul>*!/*!/*/}
-            {/*    /!*</li>*!/*/}
-            {/*    /!*<li>*!/*/}
-            {/*    /!*    <a href="javascript:void(0)" id="salvarApp">*!/*/}
-            {/*    /!*        <i className="material-icons">file_download</i>Salvar*!/*/}
-            {/*    /!*    </a>*!/*/}
-            {/*    /!*</li>*!/*/}
-            {/*    /!*<li>*!/*/}
-            {/*    /!*    <a href="javascript:void(0)" id="carregarApp">*!/*/}
-            {/*    /!*        <i className="material-icons">file_upload</i>Carregar*!/*/}
-            {/*    /!*    </a>*!/*/}
-            {/*    /!*</li>*!/*/}
-            {/*</ul>*/}
         </nav>
     )
 }

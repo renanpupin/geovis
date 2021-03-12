@@ -41,6 +41,7 @@ const MarkerList = (props: any) => {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
         averageCenter: true,
         ignoreHidden: true,
+        zoomOnClick: false,
         // gridSize: 2,
         // title: 'dasssasdas',
         // calculator: ''

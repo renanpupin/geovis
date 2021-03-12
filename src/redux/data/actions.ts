@@ -1,6 +1,6 @@
-import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER } from "./actionTypes";
+import { LOAD_DATA, REMOVE_DATA_ITEM, ADD_DATA_ITEM, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, REMOVE_VISUALIZATION } from "./actionTypes";
 
-import {VisualizationTypeValues, FilterTypes} from 'src/redux/data/types'
+import {VisualizationTypeValues, VisualizationTypes, FilterTypes} from 'src/redux/data/types'
 
 export const setData = (data: object[]) => ({
     type: LOAD_DATA,
@@ -27,6 +27,13 @@ export const addVisualization = (type: VisualizationTypeValues) => ({
     type: ADD_VISUALIZATION,
     payload: {
         type
+    }
+});
+
+export const removeVisualization = (visualization: VisualizationTypes) => ({
+    type: REMOVE_VISUALIZATION,
+    payload: {
+        visualization
     }
 });
 

@@ -6,7 +6,7 @@ import {
     ADD_VISUALIZATION,
     ADD_FILTER,
     REMOVE_FILTER,
-    TOGGLE_FILTER
+    TOGGLE_FILTER, REMOVE_VISUALIZATION
 } from "./actionTypes";
 import { applyFilters, filterAttributes } from "./filters";
 
@@ -62,6 +62,14 @@ export default function(state = initialState, action: any) {
                         visible: true
                     }
                 ]
+            };
+        }
+        case REMOVE_VISUALIZATION: {
+            const { visualization } = action.payload;
+
+            return {
+                ...state,
+                visualizations: state.visualizations.filter(item => item !== visualization)
             };
         }
         case ADD_FILTER: {
