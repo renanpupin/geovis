@@ -9,7 +9,6 @@ const layersListRoot = document.getElementById('map-controls')
 
 const LayersList: React.FC = () => {
     const visualizations = useSelector(getVisualizations)
-    // console.log("redux visualizations", visualizations)
 
     const getLayersList = useCallback(() => {
         return visualizations.map((visualizations, index) => {

@@ -1,12 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import MapLoader from './MapLoader';
-import Marker from './Marker';
 import Heatmap from 'src/Map/Heatmap/Heatmap';
 import MarkerList from 'src/Map/MarkerList';
 import FilterList from 'src/components/FilterList/FilterList';
 import LayersList from 'src/components/LayersList/LayersList';
-// import MarkerCluster from 'src/Map/MarkerCluster/MarkerCluster';
 import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from "src/redux/data/types";
 
@@ -14,8 +12,6 @@ const Map: React.FC = () => {
     const visibleData = useSelector(getVisibleData)
     const visualizations = useSelector(getVisualizations)
     const [map, setMap] = useState(undefined)
-    // console.log("redux visibleData", visibleData)
-    // console.log("redux visualizations", visualizations)
 
     const onLoad = (map: any) => {
         setMap(map)

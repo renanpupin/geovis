@@ -9,7 +9,6 @@ const filterListRoot = document.getElementById('map-controls')
 
 const FilterList: React.FC = () => {
     const filters = useSelector(getFilters)
-    // console.log("redux filters", filters)
 
     const getFiltersList = useCallback(() => {
         return filters.map((filter, index) => {
