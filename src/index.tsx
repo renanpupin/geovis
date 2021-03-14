@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
 import FPSStats from "src/libs/fps-stats";
+import {ENV} from "src/libs/env";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,7 @@ ReactDOM.render(
         <Provider store={store}>
             <App/>
         </Provider>
-        {process.env.NODE_ENV === 'development' && <FPSStats right={0} left={'auto'} />}
+        {ENV === 'development' && <FPSStats right={0} left={'auto'} />}
     </React.StrictMode>,
     document.getElementById('root')
 );
