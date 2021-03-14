@@ -1,17 +1,19 @@
 import React, {useCallback} from 'react';
 import ReactDOM from 'react-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getFilters} from "src/redux/data/selectors";
 import Touchable from "src/components/Touchable/Touchable";
 import styles from './FilterList.module.scss';
+import {toggleFilter} from "src/redux/data/actions";
 
 const filterListRoot = document.getElementById('map-controls')
 
 const FilterList: React.FC = () => {
+    const dispatch = useDispatch()
     const filters = useSelector(getFilters)
 
-    const toggleFilter = (e: any) => {
-        console.log(e)
+    const toggleFilterVisible = (filter: any) => {
+        dispatch(toggleFilter(filter, !filter.visible))
     }
 
     const getFiltersList = useCallback(() => {
@@ -19,7 +21,7 @@ const FilterList: React.FC = () => {
             return(
                 <li key={index}>
                     <Touchable onClick={() => {}}>
-                        <input type={"checkbox"} checked={filter.visible} onChange={toggleFilter}/><span>{filter.name}</span>
+                        <input type={"checkbox"} checked={filter.visible} onChange={toggleFilterVisible}/><span>{filter.name}</span>
                     </Touchable>
                 </li>
             )
