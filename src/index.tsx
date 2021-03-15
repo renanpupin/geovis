@@ -14,7 +14,7 @@ ReactDOM.render(
         <Provider store={store}>
             <App/>
         </Provider>
-        {ENV === 'development' && <FPSStats right={0} left={'auto'} />}
+        {ENV !== 'production' && <FPSStats right={0} left={'auto'} />}
     </React.StrictMode>,
     document.getElementById('root')
 );
