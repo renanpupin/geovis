@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useCallback, useMemo} from 'react';
-import Marker from "src/Map/Marker";
-import Img from "src/assets/img/logo.png";
 import MarkerClusterer from "@googlemaps/markerclustererplus";
-import {createInfoWindow} from "src/Map/InfoWindow/infoWindowUtils";
+import Marker from "src/components/Map/Marker";
+import Img from "src/assets/img/logo.png";
+import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 
 const styleCluster = [
     MarkerClusterer.withDefaultStyle({

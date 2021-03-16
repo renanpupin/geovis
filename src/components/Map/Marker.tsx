@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createMarker, removeMarker, createMarkerEmpty} from "./markerUtils";
-import {createInfoWindow} from "src/Map/InfoWindow/infoWindowUtils";
+import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 
 const Marker = (props: any) => {
     const [didMount, setDidMount] = useState(false)

@@ -14,7 +14,8 @@ export type AttributeTypes = {
 
 export enum VisualizationTypeValues {
     Heatmap = 'Heatmap',
-    MarkerCluster = 'MarkerCluster'
+    MarkerCluster = 'MarkerCluster',
+    Chart = 'Chart'
 }
 
 export type VisualizationTypes = {

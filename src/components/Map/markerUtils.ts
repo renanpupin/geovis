@@ -1,4 +1,4 @@
-import {createInfoWindow} from "src/Map/InfoWindow/infoWindowUtils";
+import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 export const createMarker = (markerData: any, map: any, cluster: any) => {
     if(cluster){
         const mapMarker = new window.google.maps.Marker({

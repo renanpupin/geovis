@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styles from './Draggable.module.scss';
 
+const navbarHeight: number = 75 as const;
+
 type Position = {
     x: number
     y: number
@@ -9,17 +11,16 @@ type Position = {
 type Props = {
     children: any
     initialPosition?: Position
+    className?: any
 }
 
-const DraggableComponent = ({children, initialPosition}: Props) => {
+const DraggableComponent = ({children, initialPosition, className}: Props) => {
     const [pressed, setPressed] = useState<boolean>(false)
-    const [position, setPosition] = useState<Position>({x: initialPosition?.x ?? 50, y: initialPosition?.y ?? 50})
+    const [position, setPosition] = useState<Position>({x: initialPosition?.x ?? navbarHeight, y: initialPosition?.y ?? navbarHeight})
     const ref = useRef()
 
-    // Update the current position if mouse is down
     const onMouseMove = (event: any) => {
         if (pressed) {
-
             const newX = position.x + event.movementX
             const newY = position.y + event.movementY
 
@@ -27,8 +28,6 @@ const DraggableComponent = ({children, initialPosition}: Props) => {
             const componentWidth = ref?.current?.clientWidth;
             // @ts-ignore
             const componentHeight = ref?.current?.clientHeight;
-
-            const navbarHeight = 75;
 
             const maxX = Math.min(window.innerWidth - componentWidth, newX);
             const minX = Math.max(0, newX);
@@ -50,15 +49,15 @@ const DraggableComponent = ({children, initialPosition}: Props) => {
 
     return (
         <div
-    // @ts-ignore
-            ref={ ref }
-            className={styles.draggable}
+            // @ts-ignore
+            ref={ref}
+            className={[styles.draggable, className].join(' ')}
             style={{left: position.x, top: position.y}}
             onMouseLeave={ onmouseLeave }
             onMouseMove={ onMouseMove }
             onMouseDown={ () => setPressed(true) }
-            onMouseUp={ () => setPressed(false) }>
-            <p>{ pressed ? "Dragging..." : "Press to drag" }</p>
+            onMouseUp={ () => setPressed(false) }
+        >
             {children}
         </div>
     )

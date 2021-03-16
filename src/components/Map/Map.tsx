@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import MapLoader from './MapLoader';
-import Heatmap from 'src/Map/Heatmap/Heatmap';
-import MarkerList from 'src/Map/MarkerList';
+import MapLoader from 'src/components/Map/MapLoader';
+import Heatmap from 'src/components/Map/Heatmap/Heatmap';
+import MarkerList from 'src/components/Map/MarkerList';
 import FilterList from 'src/components/FilterList/FilterList';
 import LayersList from 'src/components/LayersList/LayersList';
 import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
