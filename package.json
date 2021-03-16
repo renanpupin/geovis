@@ -16,6 +16,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-google-charts": "^3.0.15",
+    "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@types/googlemaps": "^3.43.3"
+    "@types/googlemaps": "^3.43.3",
+    "@types/react-modal": "^3.12.0"
   }
 }

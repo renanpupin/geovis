@@ -33,41 +33,52 @@ const applyFilter = (dataItem: object, filter: FilterTypes) => {
     }).length === filter.conditions.length;
 };
 
-export const filterAttributes = (dataItem: object) => {
-    return Object.keys(dataItem);
-}
-
-export const getAttributesTypes = (dataItem: object) => {
+export const setAttributes = (dataItem: object) => {
     const keys = Object.keys(dataItem);
-    return keys.map(key => {
-
-        let attributeType;
-        //@ts-ignore
-        switch (typeof dataItem[key]){
-            case "boolean": {
-                attributeType = "boolean";
-                break;
-            }
-            case "number": {
-                attributeType = "number";
-                break;
-            }
-            case "string": {
-                attributeType = "string";
-                break;
-            }
-            default: {
-                attributeType = "undefined";
-            }
-        }
-
+    return keys.map((key, index) => {
         return {
-            [key]: attributeType
+            name: key,
+        // @ts-ignore
+            type: getAttributeType(dataItem[key])
         }
-    })
+    });
 }
 
-export const getAttributeValues = (data: object[], attribute: string) => {
+export const getAttributeType = (attribute: any) => {
+    let attributeType;
     //@ts-ignore
-    return data.map((item: object) => item[attribute])
+    switch (typeof attribute){
+        case "boolean": {
+            attributeType = "boolean";
+            break;
+        }
+        case "number": {
+            attributeType = "number";
+            break;
+        }
+        case "string": {
+            attributeType = "string";
+            break;
+        }
+        default: {
+            attributeType = "undefined";
+        }
+    }
+
+    return attributeType;
 }
+
+// export const getAttributesTypes = (dataItem: object) => {
+//     const keys = Object.keys(dataItem);
+//     return keys.map(key => {
+//         return {
+//             //@ts-ignore
+//             [key]: getAttributeType(typeof dataItem[key])
+//         }
+//     });
+// }
+
+// export const getAttributesValues = (data: object[], attribute: string) => {
+//     //@ts-ignore
+//     return data.map((item: object) => item[attribute])
+// }

@@ -8,7 +8,8 @@ export type StateProps = {
 }
 
 export type AttributeTypes = {
-    type: VisualizationTypeValues
+    name: string
+    type: any
     visible?: boolean
 }
 

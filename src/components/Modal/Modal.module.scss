@@ -1,0 +1,39 @@
+@import "src/_variables.scss";
+@import "src/_mixins.scss";
+
+.modal {
+  position: absolute;
+  padding: 15px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  min-width: 400px;
+  background-color: #fff;
+  @include border-radius(8px);
+  @include box-shadow($shadow-1);
+
+  &:hover {
+    @include box-shadow($shadow-2);
+  }
+}
+
+.overlay {
+  background-color: rgba(255,255,255,0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modalHeader{
+  margin-bottom: 15px;
+}
+
+.modalBody{
+  margin-bottom: 15px;
+}

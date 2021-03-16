@@ -7,6 +7,7 @@ import Draggable from "src/components/Draggable/Draggable";
 import GoogleCharts from "react-google-charts";
 import styles from './Chart.module.scss';
 
+// https://developers.google.com/chart/interactive/docs/printing
 
 const Chart: React.FC = ({}) => {
     // const visibleData = useSelector(getVisibleData)

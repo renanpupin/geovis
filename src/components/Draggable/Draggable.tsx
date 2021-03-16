@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styles from './Draggable.module.scss';
 
-const navbarHeight: number = 75 as const;
+const navbarHeight: number = 65 as const;
 
 type Position = {
     x: number

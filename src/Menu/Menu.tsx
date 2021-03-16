@@ -5,9 +5,10 @@ import Logo from 'src/assets/img/logo.png';
 import {useDispatch, useSelector} from "react-redux";
 import {addDataItem, addVisualization, removeDataItem, removeVisualization, setData} from "src/redux/data/actions";
 import {VisualizationTypeValues} from "src/redux/data/types";
-import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
+import {getAttributes, getVisibleData, getVisualizations} from "src/redux/data/selectors";
 import DropdownItem from "src/Menu/DropdownItem";
 import DropdownMenu from "src/Menu/DropdownMenu";
+import Modal from "src/components/Modal/Modal";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -33,6 +34,9 @@ const Menu: React.FC = (props: any) => {
     const dispatch = useDispatch()
     const visibleData = useSelector(getVisibleData)
     const visualizations = useSelector(getVisualizations)
+    const attributes = useSelector(getAttributes)
+    const [dropdownVisible, setDropdownVisible] = useState(false)
+    const [modalContent, setModalContent] = useState<string | null>(null)
 
     const loadMarkers = () => {
         dispatch(setData(markers))
@@ -78,6 +82,11 @@ const Menu: React.FC = (props: any) => {
         }
     }, []);
 
+    const openFilterDropdown = () => {
+        setModalContent('filter')
+        setDropdownVisible(true)
+    }
+
     const toggleMenu = (event: any, name: string) => {
         event.preventDefault();
         event.stopPropagation();
@@ -115,6 +124,10 @@ const Menu: React.FC = (props: any) => {
             case 'removeVis': {
                 removeHeatmap();
                 removeMarkerCluster();
+                break;
+            }
+            case 'addFilter': {
+                openFilterDropdown();
                 break;
             }
         }
@@ -164,7 +177,7 @@ const Menu: React.FC = (props: any) => {
                         </DropdownItem>
                         {menuOpen === 'filters' && <DropdownMenu>
                             <li className={styles.submenu}>
-                                <DropdownItem onPress={onPressItem}>
+                                <DropdownItem onPress={(event: any) => {onPressItem(event, 'addFilter')}}>
                                     <i className="material-icons">add</i>Adicionar
                                 </DropdownItem>
                             </li>
@@ -206,6 +219,61 @@ const Menu: React.FC = (props: any) => {
     //     </div>
     // </li>
 
+
+    // content += '<label for="inputFiltroAddName">Nome do filtro</label><input type="text" id="inputFiltroAddName">';
+    //
+    // content += '<label for="inputFiltroAddAttribute">Atributo</label><select id="inputFiltroAddAttribute">';
+    //
+    // for(var i = 0; i < app1.data.features[0].infodata.length; i++){
+    //     content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name+' ('+app1.data.features[0].infodata[i].type+')'+'</option>';
+    // }
+    //
+    // content += '</select>';
+    //
+    // content += '<label for="inputFiltroAddCondition">Condição</label><select id="inputFiltroAddCondition">'+
+    //     '<option value="more than">Maior que (>)</option>'+
+    //     '<option value="less than">Menor que (<)</option>'+
+    //     '<option value="equal">Igual (=)</option>'+
+    //     '</select>';
+    //
+    // content += '<label for="inputFiltroAddValue">Valor</label><input type="text" id="inputFiltroAddValue">';
+    // //more than average value
+    const getModalContent = () => {
+        if(modalContent === 'filter'){
+            return(
+                <div>
+                    <div>
+                        <label htmlFor="inputFiltroAddName">Nome do filtro</label>
+                        <input type="text" id="inputFiltroAddName"/>
+                    </div>
+                    <div>
+                        <label htmlFor="inputFiltroAddAttribute">Attribute</label>
+                        <select id="inputFiltroAddAttribute">
+                            {attributes.map((item, index) => {
+                                return(
+                                    <option key={index} value={item.name}>{item.name} ({item.type})</option>
+                                )
+                            })}
+
+                            {attributes.length === 0 && <option value={undefined}>No attributes found.</option>}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="inputFiltroAddCondition">Condition</label>
+                        <select id="inputFiltroAddCondition">
+                            <option value="equal">Equal</option>
+                            <option value="equal">Different</option>
+                            <option value="more than">More than</option>
+                            <option value="more than or equal">More than or equal</option>
+                            <option value="less than">Less than</option>
+                            <option value="less than or equal">Less than or equal</option>
+                        </select>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     return (
         <nav id="nav" className={styles.nav}>
             <div className={styles.navbarHeader}>
@@ -216,6 +284,15 @@ const Menu: React.FC = (props: any) => {
             </div>
 
             <Dropdown/>
+
+            <Modal
+                visible={dropdownVisible}
+                onConfirm={() => setDropdownVisible(false)}
+                onClose={() => setDropdownVisible(false)}
+                title={'Add filters'}
+            >
+                {getModalContent()}
+            </Modal>
         </nav>
     )
 }

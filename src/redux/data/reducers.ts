@@ -10,7 +10,7 @@ import {
     REMOVE_VISUALIZATION,
     TOGGLE_VISUALIZATION
 } from "./actionTypes";
-import { applyFilters, filterAttributes } from "./filters";
+import { applyFilters, setAttributes } from "./filters";
 
 import {StateProps} from "./types";
 
@@ -30,7 +30,7 @@ export default function(state = initialState, action: any) {
                 ...state,
                 data,
                 visibleData: data,
-                attributes: filterAttributes(data[0])
+                attributes: setAttributes(data[0])
             };
         }
         case CLEAR_DATA: {
