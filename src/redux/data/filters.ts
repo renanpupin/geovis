@@ -46,7 +46,6 @@ export const setAttributes = (dataItem: object) => {
 
 export const getAttributeType = (attribute: any) => {
     let attributeType;
-    //@ts-ignore
     switch (typeof attribute){
         case "boolean": {
             attributeType = "boolean";
