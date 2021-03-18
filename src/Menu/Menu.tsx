@@ -203,41 +203,6 @@ const Menu: React.FC = (props: any) => {
         )
     }
 
-    // <li className="nav-item">
-    //     <a className="nav-link" href="#">Link</a>
-    // </li>
-    // <li className="nav-item dropdown">
-    //     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-    //        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    //         Dropdown
-    //     </a>
-    //     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-    //         <a className="dropdown-item" href="#">Action</a>
-    //         <a className="dropdown-item" href="#">Another action</a>
-    //         <div className="dropdown-divider"></div>
-    //         <a className="dropdown-item" href="#">Something else here</a>
-    //     </div>
-    // </li>
-
-
-    // content += '<label for="inputFiltroAddName">Nome do filtro</label><input type="text" id="inputFiltroAddName">';
-    //
-    // content += '<label for="inputFiltroAddAttribute">Atributo</label><select id="inputFiltroAddAttribute">';
-    //
-    // for(var i = 0; i < app1.data.features[0].infodata.length; i++){
-    //     content += '<option value="'+app1.data.features[0].infodata[i].name+'">'+app1.data.features[0].infodata[i].name+' ('+app1.data.features[0].infodata[i].type+')'+'</option>';
-    // }
-    //
-    // content += '</select>';
-    //
-    // content += '<label for="inputFiltroAddCondition">Condição</label><select id="inputFiltroAddCondition">'+
-    //     '<option value="more than">Maior que (>)</option>'+
-    //     '<option value="less than">Menor que (<)</option>'+
-    //     '<option value="equal">Igual (=)</option>'+
-    //     '</select>';
-    //
-    // content += '<label for="inputFiltroAddValue">Valor</label><input type="text" id="inputFiltroAddValue">';
-    // //more than average value
     const getModalContent = () => {
         if(modalContent === 'filter'){
             return(
@@ -254,7 +219,6 @@ const Menu: React.FC = (props: any) => {
                                     <option key={index} value={item.name}>{item.name} ({item.type})</option>
                                 )
                             })}
-
                             {attributes.length === 0 && <option value={undefined}>No attributes found.</option>}
                         </select>
                     </div>
@@ -267,6 +231,30 @@ const Menu: React.FC = (props: any) => {
                             <option value="more than or equal">More than or equal</option>
                             <option value="less than">Less than</option>
                             <option value="less than or equal">Less than or equal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="inputFiltroAddCondition">Value</label>
+                        {/*if boolean*/}
+                        <select id="inputFiltroAddCondition">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+
+                        {/*if string*/}
+                        <input type="text" id="inputFiltroAddName"/>
+
+                        {/*if number*/}
+                        <select id="inputFiltroAddCondition">
+                            <option value="more than">More than</option>
+                            <option value="equal">Equal</option>
+                            {/*...*/}
+                        </select>
+
+                        <select id="inputFiltroAddCondition">
+                            <option value="average">Average</option>
+                            <option value="median">Median</option>
+                            {/*...*/}
                         </select>
                     </div>
                 </div>
