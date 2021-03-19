@@ -34,5 +34,20 @@
   outline-color: $input-main-color;
   border: none;
   color: #515151;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url('../../assets/img/down-arrow.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: right 10px top 50%, 0 0;
+  background-size: .85em auto, 100%;
   @include border-radius($input-border-radius);
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  option {
+    font-weight: normal;
+  }
 }
