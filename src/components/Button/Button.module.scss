@@ -8,7 +8,6 @@
   background-color: $main-color;
   color: #fff;
   position: relative;
-  padding: 15px;
   @include border-radius($input-border-radius);
   @include box-shadow($shadow-1);
   border: 2px solid $main-color;
@@ -16,6 +15,7 @@
   font-size: 16px;
   opacity: 1;
   cursor: pointer;
+  outline: none;
   @include transition($transition);
   &:hover{
     opacity: 0.9;
@@ -35,4 +35,17 @@
     border-color: $main-color;
     background-color: #fff;
   }
+  &.link{
+    color: $main-color;
+    border-color: #fff;
+    background-color: #fff;
+  }
+}
+
+.regular{
+  padding: 15px;
+}
+
+.small{
+  padding: 5px 15px;
 }

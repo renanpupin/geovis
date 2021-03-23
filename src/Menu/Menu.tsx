@@ -9,6 +9,7 @@ import {getAttributes, getVisibleData, getVisualizations} from "src/redux/data/s
 import DropdownItem from "src/Menu/DropdownItem";
 import DropdownMenu from "src/Menu/DropdownMenu";
 import Modal from "src/components/Modal/Modal";
+import DataWizard from "src/components/DataWizard/Wizard";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -36,6 +37,7 @@ const Menu: React.FC = (props: any) => {
     const visualizations = useSelector(getVisualizations)
     const attributes = useSelector(getAttributes)
     const [dropdownVisible, setDropdownVisible] = useState(false)
+    const [showDataWizard, setShowDataWizard] = useState(false)
     const [modalContent, setModalContent] = useState<string | null>(null)
 
     const loadMarkers = () => {
@@ -87,6 +89,10 @@ const Menu: React.FC = (props: any) => {
         setDropdownVisible(true)
     }
 
+    const openDataModal = () => {
+        setShowDataWizard(true)
+    }
+
     const toggleMenu = (event: any, name: string) => {
         event.preventDefault();
         event.stopPropagation();
@@ -113,7 +119,8 @@ const Menu: React.FC = (props: any) => {
                 break;
             }
             case 'loadData': {
-                loadMarkers();
+                // loadMarkers();
+                openDataModal();
                 break;
             }
             case 'addVis': {
@@ -272,6 +279,16 @@ const Menu: React.FC = (props: any) => {
             </div>
 
             <Dropdown/>
+
+            {showDataWizard && <DataWizard
+                onFinish={(data) => {
+                    console.log("onFinish", data);
+                    setShowDataWizard(false);
+                }}
+                onClose={() => {
+                    setShowDataWizard(false);
+                }}
+            />}
 
             <Modal
                 visible={dropdownVisible}

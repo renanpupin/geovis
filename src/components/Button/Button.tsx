@@ -7,10 +7,20 @@ export type ButtonProps = {
     disabled?: boolean
     negative?: boolean
     outline ?: boolean
+    link ?: boolean
+    size ?: 'regular' | 'small'
 }
 
-const Button: React.FC<ButtonProps> = ({onClick, disabled, negative, outline, children}) => {
-    const buttonStyles = [styles.button, disabled ? styles.disabled : {}, negative ? styles.negative : {}, outline ? styles.outline : {}].join(' ')
+const Button: React.FC<ButtonProps> = ({onClick, disabled, size, negative, outline, link, children}) => {
+    const buttonStyles = [
+        styles.button,
+        disabled ? styles.disabled : {},
+        negative ? styles.negative : {},
+        outline ? styles.outline : {},
+        link ? styles.link : {},
+        size === 'small' ? styles.small : styles.regular,
+        ].join(' ')
+
     return (
         <button
             className={buttonStyles}

@@ -1,0 +1,31 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.stepsView{
+  //margin-bottom: 30px;
+}
+
+.buttons{
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.dropzone{
+  font-size: 22px;
+  background-color: #efefef;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 30px;
+  outline: none;
+  cursor: pointer;
+  @include border-radius($input-border-radius);
+
+  &.dropzoneActive{
+    opacity: 0.4;
+  }
+
+  i{
+    font-size: 52px;
+    opacity: 0.8;
+  }
+}

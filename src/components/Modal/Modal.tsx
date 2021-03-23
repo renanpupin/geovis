@@ -7,33 +7,40 @@ ReactModal.setAppElement('#root')
 type ModalProps = {
     visible: boolean
     title?: any
-    onClose: () => void
-    onConfirm: () => void
+    onClose?: () => void
+    onConfirm?: () => void
+    shouldCloseOnOverlayClick?: boolean
 }
 
-const Modal: React.FC<ModalProps> = ({visible, onConfirm, onClose, title, children}) => {
+const Modal: React.FC<ModalProps> = ({visible, onConfirm, onClose, title, shouldCloseOnOverlayClick = false, children}) => {
     return(
         <ReactModal
             isOpen={visible}
             contentLabel="GeoVis Modal"
             onRequestClose={onClose}
-            shouldCloseOnOverlayClick={true}
+            shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
             className={styles.modal}
             // overlayClassName={styles.overlay}
         >
+
             <div className={styles.modalHeader}>
                 {title && <h2 className={styles.modalTitle}>{title}</h2>}
+                <div className={styles.closeView}>
+                    <button className={styles.closeButton} onClick={onClose}>
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
             </div>
 
             <div className={styles.modalBody}>
                 {children}
             </div>
 
-            <div className={styles.modalFooter}>
+            {onConfirm && <div className={styles.modalFooter}>
                 <button onClick={onConfirm}>
                     OK
                 </button>
-            </div>
+            </div>}
         </ReactModal>
     )
 }
