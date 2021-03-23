@@ -5,24 +5,32 @@ import Button from "src/components/Button/Button";
 
 
 type Step1Props = {
-    onPrev: () => void
-    onNext: () => void
+    onPrevConfig: {
+        onClick: () => void,
+        disabled: boolean
+        link?: boolean
+    }
+    onNextConfig: {
+        onClick: () => void,
+        disabled: boolean
+        link?: boolean
+    }
     step: number
     steps: number
 }
 
 const Actions: React.FC<Step1Props> = (props) => {
-    const {step, steps, onPrev, onNext} = props;
+    const {step, steps, onPrevConfig, onNextConfig} = props;
 
     return (
         <div className={styles.buttons}>
             <div style={{marginRight: 15}}>
-                <Button onClick={onPrev} disabled={step === 0} size={'small'} link={true}>
-                    Prev
+                <Button onClick={onPrevConfig.onClick} disabled={onPrevConfig.disabled} size={'small'} link={true}>
+                    Previous
                 </Button>
             </div>
             <div style={{marginLeft: 15}}>
-                <Button onClick={onNext} size={'small'} link={steps-1 !== step}>
+                <Button onClick={onNextConfig.onClick} disabled={onNextConfig.disabled} size={'small'} link={onNextConfig.link}>
                     {steps-1 === step ? 'Finish' : 'Next'}
                 </Button>
             </div>

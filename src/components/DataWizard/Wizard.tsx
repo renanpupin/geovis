@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import Button from 'src/components/Button/Button'
 import Step1 from 'src/components/DataWizard/Step1'
+import Step2 from 'src/components/DataWizard/Step1'
 
 import styles from "./Wizard.module.scss"
 import Modal from "src/components/Modal/Modal";
+import Actions from "src/components/DataWizard/Actions";
 
 type DataWizardProps = {
     // steps: number
@@ -31,12 +33,24 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
     }
 
     const steps = [
-        <Step1
-            step={step}
-            steps={1}
-            onPrev={onPrev}
-            onNext={onContinue}
-        />
+        {
+            title: 'Select data file',
+            component: <Step1
+                step={step}
+                steps={2}
+                onPrev={onPrev}
+                onNext={onContinue}
+            />
+        },
+        {
+            title: 'Select spatial attributes',
+            component: <Step2
+                step={step}
+                steps={2}
+                onPrev={onPrev}
+                onNext={onContinue}
+            />
+        }
     ];
 
     const getModalContent = () => (
@@ -46,7 +60,7 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
             {/*</div>*/}
 
             <div className={styles.stepsView}>
-                {steps[step]}
+                {steps[step].component}
             </div>
         </div>
     )
@@ -54,7 +68,7 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
     return(
         <Modal
             visible={true}
-            title={`Step ${step+1}`}
+            title={steps[step].title}
             onClose={onClose}
         >
             {getModalContent()}
