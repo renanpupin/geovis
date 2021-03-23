@@ -57,16 +57,26 @@ const Table: React.FC = () => {
         )
     }
 
+    if(isEmptyData){
+        return(
+            <div className={styles.container}>
+                <p>No data.</p>
+            </div>
+        )
+    }
+
     return (
-        <div className={styles.tableContainer}>
-            <table className={styles.table}>
-                <thead>
-                    {getHeaders()}
-                </thead>
-                <tbody>
-                    {getBody()}
-                </tbody>
-            </table>
+        <div className={styles.container}>
+            <div className={styles.tableContainer}>
+                <table className={styles.table}>
+                    <thead>
+                        {getHeaders()}
+                    </thead>
+                    <tbody>
+                        {getBody()}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

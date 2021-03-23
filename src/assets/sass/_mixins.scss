@@ -15,3 +15,11 @@
   -moz-box-sizing: $type;
   box-sizing: $type;
 }
+
+@mixin transition($config) {
+  -webkit-transition: $config;
+  -moz-transition: $config;
+  -o-transition: $config;
+  -ms-transition: $config;
+  transition: $config;
+}
