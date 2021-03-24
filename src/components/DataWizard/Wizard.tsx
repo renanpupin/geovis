@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import Button from 'src/components/Button/Button'
-import Step1 from 'src/components/DataWizard/Step1'
-import Step2 from 'src/components/DataWizard/Step1'
+import Step1Content from 'src/components/DataWizard/Steps/Step1Content'
+import Step2Content from 'src/components/DataWizard/Steps/Step2Content'
 
 import styles from "./Wizard.module.scss"
 import Modal from "src/components/Modal/Modal";
-import Actions from "src/components/DataWizard/Actions";
+import StepTemplate from "src/components/DataWizard/StepTemplate";
 
 type DataWizardProps = {
     // steps: number
@@ -17,6 +17,7 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
     const {onFinish, onClose} = props
 
     const [step, setStep] = useState(0);
+    const [stepData, setStepData] = useState<object[]>([]);
 
     const onPrev = () => {
         if(step > 0){
@@ -26,43 +27,54 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
 
     const onContinue = () => {
         if(steps.length-1 === step){
-            onFinish("aaa");
+            onFinish(stepData);
         }else{
             setStep(step+1);
         }
     }
 
+    const updateData = (data: any) => {
+        setStepData(oldData => {
+            let items = [...oldData];
+            items[step] = data;
+            return items;
+        });
+    }
+
     const steps = [
         {
             title: 'Select data file',
-            component: <Step1
-                step={step}
-                steps={2}
-                onPrev={onPrev}
-                onNext={onContinue}
+            component: <Step1Content
+                onData={updateData}
             />
         },
         {
             title: 'Select spatial attributes',
-            component: <Step2
-                step={step}
-                steps={2}
-                onPrev={onPrev}
-                onNext={onContinue}
+            component: <Step2Content
+                onData={updateData}
+                data={stepData[step-1]}
             />
         }
     ];
 
     const getModalContent = () => (
-        <div>
-            {/*<div>*/}
-            {/*    <p>Step {step+1}/{steps.length}</p>*/}
-            {/*</div>*/}
-
+        <StepTemplate
+            steps={steps.length}
+            step={step}
+            onPrevConfig={{
+                onClick: onPrev,
+                disabled: step === 0,
+                link: steps.length-1 !== step
+            }}
+            onNextConfig={{
+                onClick: onContinue,
+                disabled: !stepData[step]
+            }}
+        >
             <div className={styles.stepsView}>
                 {steps[step].component}
             </div>
-        </div>
+        </StepTemplate>
     )
 
     return(

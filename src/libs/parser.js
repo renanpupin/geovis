@@ -1,26 +1,19 @@
 import Papa from "papaparse"
 
 export const parseCsvFile = (fileInput) => {
-    Papa.parse(fileInput.files[0], {
-        complete: function(results) {
-            console.log(results);
-        }
+    return exports.parseCsvString(fileInput.files[0])
+}
+
+export const parseCsvString = (csvStr) => {
+    return Papa.parse(csvStr, {
+        dynamicTyping: true
+        // header: true
     });
 }
 
-// // Parse CSV string
-// var data = Papa.parse(csv);
-//
-
-//
-// // Stream big file in worker thread
-// Papa.parse(bigFile, {
-//     worker: true,
-//     step: function(results) {
-//         console.log("Row:", results.data);
-//     }
-// });
-
+export const convertJsonToCsv = (jsonStr) => {
+    return Papa.unparse(jsonStr);
+}
 
 export const convertGeovisJsonToCsv = (jsonString) => {
     let csvTxt = "";

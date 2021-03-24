@@ -1,19 +1,15 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {useDropzone} from 'react-dropzone'
-import Actions from './Actions'
-import styles from './Wizard.module.scss'
+// import StepActions from './StepActions'
+import styles from '../Wizard.module.scss'
 import DropdownItem from "src/Menu/DropdownItem";
 
-type Step1Props = {
-    onFileSelected?: (file: any) => void
-    onPrev: () => void
-    onNext: () => void
-    step: number
-    steps: number
+type Step1ContentProps = {
+    onData?: (data: any) => void
 }
 
-const Step1: React.FC<Step1Props> = (props) => {
-    const {onFileSelected, onPrev, onNext, step, steps} = props;
+const Step1Content: React.FC<Step1ContentProps> = (props) => {
+    const {onData} = props;
 
     const [fileData, setFileData] = useState<any>(null);
 
@@ -49,7 +45,7 @@ const Step1: React.FC<Step1Props> = (props) => {
                             content: fileContent,
                             type: fileType,
                         });
-                        // onFileSelected?.(fileContent);
+                        onData?.(fileContent);
                     }catch(e){
                         throw new Error(`Erro ao ler o arquivo de entrada, verifique se seu arquite está seguindo o padrão. Erro: ${e.message}`);
                     }
@@ -71,31 +67,20 @@ const Step1: React.FC<Step1Props> = (props) => {
 
     return (
         <div>
-            {fileData && <p>
+            {/*<p className={styles.smallDescription}>Select an csv or json file.</p>*/}
+
+            {fileData && <p className={styles.fileNameView}>
                 <i className="material-icons">attach_file</i>
                 <span>{fileData.name}</span>
             </p>}
 
             <div className={dropzoneStyles} {...getRootProps()}>
-                <input {...getInputProps()} accept=".json,.csv"/>
+                <input {...getInputProps()} accept=".csv"/>
                 <i className="material-icons">cloud_upload</i>
                 <p>Drop the files here or click to upload</p>
             </div>
-            <Actions
-                step={step}
-                steps={steps}
-                onPrevConfig={{
-                    onClick: onPrev,
-                    disabled: step === 0,
-                    link: steps-1 !== step
-                }}
-                onNextConfig={{
-                    onClick: onNext,
-                    disabled: !fileData
-                }}
-            />
         </div>
     )
 }
 
-export default Step1
+export default Step1Content
