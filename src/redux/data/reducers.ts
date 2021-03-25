@@ -1,7 +1,7 @@
 import {
     LOAD_DATA,
-    REMOVE_DATA_ITEM,
-    ADD_DATA_ITEM,
+    // REMOVE_DATA_ITEM,
+    // ADD_DATA_ITEM,
     CLEAR_DATA,
     ADD_VISUALIZATION,
     ADD_FILTER,
@@ -10,14 +10,16 @@ import {
     REMOVE_VISUALIZATION,
     TOGGLE_VISUALIZATION
 } from "./actionTypes";
-import { applyFilters, setAttributes } from "./filters";
+import { applyFilters } from "./filters";
 
 import {StateProps} from "./types";
 
 const initialState: StateProps = {
     attributes: [],
-    data: [],
-    visibleData: [],
+    rows: [],
+    visibleRows: [],
+    latAttribute: undefined,
+    lonAttribute: undefined,
     filters: [],
     visualizations: [],
 };
@@ -28,31 +30,33 @@ export default function(state = initialState, action: any) {
             const { data } = action.payload;
             return {
                 ...state,
-                data,
-                visibleData: data,
-                attributes: setAttributes(data[0])
+                rows: data.rows,
+                visibleRows: data.rows,
+                attributes: data.attributes,
+                latAttribute: data.latAttribute,
+                lonAttribute: data.lonAttribute,
             };
         }
         case CLEAR_DATA: {
             return initialState
         }
-        case REMOVE_DATA_ITEM: {
-            const { dataItem } = action.payload;
-            return {
-                ...state,
-                data: state.data.filter((item: any) => item.id !== dataItem.id)
-            };
-        }
-        case ADD_DATA_ITEM: {
-            const { dataItem } = action.payload;
-            return {
-                ...state,
-                data: [
-                    ...state.data,
-                    dataItem
-                ]
-            };
-        }
+        // case REMOVE_DATA_ITEM: {
+        //     const { dataItem } = action.payload;
+        //     return {
+        //         ...state,
+        //         data: state.data.filter((item: any) => item.id !== dataItem.id)
+        //     };
+        // }
+        // case ADD_DATA_ITEM: {
+        //     const { dataItem } = action.payload;
+        //     return {
+        //         ...state,
+        //         data: [
+        //             ...state.data,
+        //             dataItem
+        //         ]
+        //     };
+        // }
         case ADD_VISUALIZATION: {
             const { type } = action.payload;
             return {
@@ -102,7 +106,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                visibleData: applyFilters(state.data, updatedFilters)
+                visibleData: applyFilters(state.rows, updatedFilters)
             };
         }
         case REMOVE_FILTER: {
@@ -113,7 +117,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                visibleData: applyFilters(state.data, updatedFilters)
+                visibleData: applyFilters(state.rows, updatedFilters)
             };
         }
         case TOGGLE_FILTER: {
@@ -133,7 +137,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                visibleData: applyFilters(state.data, updatedFilters)
+                visibleData: applyFilters(state.rows, updatedFilters)
             };
         }
         default:

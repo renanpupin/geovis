@@ -5,10 +5,13 @@ import Heatmap from 'src/components/Map/Heatmap/Heatmap';
 import MarkerList from 'src/components/Map/MarkerList';
 import FilterList from 'src/components/FilterList/FilterList';
 import LayersList from 'src/components/LayersList/LayersList';
-import {getVisibleData, getVisualizations} from "src/redux/data/selectors";
+import {getLatAttributeIndex, getLonAttributeIndex, getAttributes, getVisibleData, getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from "src/redux/data/types";
 
 const Map: React.FC = () => {
+    const latAttributeIndex = useSelector(getLatAttributeIndex)
+    const lonAttributeIndex = useSelector(getLonAttributeIndex)
+    // const attributes = useSelector(getAttributes)
     const visibleData = useSelector(getVisibleData)
     const visualizations = useSelector(getVisualizations)
     const [map, setMap] = useState(undefined)
@@ -20,7 +23,7 @@ const Map: React.FC = () => {
     useEffect(() => {
         if(map && visibleData?.length > 0){
             let bounds = new google.maps.LatLngBounds();
-            visibleData.map((markerData: any) => bounds.extend(new google.maps.LatLng(markerData.lat, markerData.lng)))
+            visibleData.map((row: any) => bounds.extend(new google.maps.LatLng(row[latAttributeIndex], row[lonAttributeIndex])))
             // @ts-ignore
             map.fitBounds(bounds);
         }
@@ -42,7 +45,7 @@ const Map: React.FC = () => {
         return(
             <Heatmap
                 map={map}
-                data={visibleData.map((markerData: any) => ({lat: markerData.lat, lng: markerData.lng}))}
+                data={visibleData.map((row: any) => ({lat: row[latAttributeIndex], lng: row[lonAttributeIndex]}))}
             />
         )
     }, [visualizations, visibleData, map]);
@@ -54,7 +57,7 @@ const Map: React.FC = () => {
             return
         }
 
-        return <MarkerList data={visibleData} map={map} enableMarkerCluster={enableMarkerCluster}/>
+        return <MarkerList rows={visibleData} map={map} enableMarkerCluster={enableMarkerCluster}/>
     }, [visibleData, map, enableMarkerCluster]);
 
     return (

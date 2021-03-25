@@ -1,15 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {createMarker, removeMarker, createMarkerEmpty} from "./markerUtils";
+import {removeMarker, createMarkerEmpty} from "./markerUtils";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 
 const Marker = (props: any) => {
     const [didMount, setDidMount] = useState(false)
-    const [gmapMarker] = useState(createMarkerEmpty(props.data))
+    const [gmapMarker] = useState(createMarkerEmpty({
+        lat: props.lat,
+        lng: props.lon,
+        title: props.title
+    }))
     let infoWindow: any = null;
 
     //TODO: fix info window
     // gmapMarker.addListener('click', (evt: any) => {
-    //     infoWindow = createInfoWindow(gmapMarker, props.data, props.map)
+    //     infoWindow = createInfoWindow(gmapMarker, props.row, props.map)
     // })
 
     useEffect(() => {

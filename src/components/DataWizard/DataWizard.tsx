@@ -13,11 +13,19 @@ type DataWizardProps = {
     onClose: () => void
 }
 
+type stepDataProps = {
+    attributes?: any
+    rows?: any
+    latAttribute?: any
+    lonAttribute?: any
+    rawDataObj?: any
+}
+
 const DataWizard: React.FC<DataWizardProps> = (props) => {
     const {onFinish, onClose} = props
 
     const [step, setStep] = useState(0);
-    const [stepData, setStepData] = useState<object[]>([]);
+    const [stepsData, setStepsData] = useState<stepDataProps>({});
 
     const onPrev = () => {
         if(step > 0){
@@ -27,17 +35,19 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
 
     const onContinue = () => {
         if(steps.length-1 === step){
-            onFinish(stepData);
+            // console.log("stepsData", stepsData)
+            onFinish(stepsData);
         }else{
             setStep(step+1);
         }
     }
 
     const updateData = (data: any) => {
-        setStepData(oldData => {
-            let items = [...oldData];
-            items[step] = data;
-            return items;
+        setStepsData(oldData => {
+            return {
+                ...oldData,
+                ...data
+            }
         });
     }
 
@@ -46,14 +56,17 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
             title: 'Select data file',
             component: <Step1Content
                 onData={updateData}
-            />
+                data={stepsData}
+            />,
+            requiredFields: ['attributes', 'rows']
         },
         {
             title: 'Select spatial attributes',
             component: <Step2Content
                 onData={updateData}
-                data={stepData[step-1]}
-            />
+                data={stepsData}
+            />,
+            requiredFields: ['latAttribute', 'lonAttribute']
         }
     ];
 
@@ -68,7 +81,10 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
             }}
             onNextConfig={{
                 onClick: onContinue,
-                disabled: !stepData[step]
+                disabled: steps[step].requiredFields.filter((item: any) => {
+                    // @ts-ignore
+                    return !!stepsData[item]
+                }).length === 0
             }}
         >
             <div className={styles.stepsView}>

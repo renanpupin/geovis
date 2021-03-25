@@ -1,8 +1,10 @@
 
 export type StateProps = {
     attributes: AttributeTypes[]
-    data: object[]
-    visibleData: object[]
+    rows: object[]
+    visibleRows: object[]
+    latAttribute?: string
+    lonAttribute?: string
     filters: FilterTypes[]
     visualizations: VisualizationTypes[]
 }

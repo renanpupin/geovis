@@ -6,7 +6,8 @@ export const parseCsvFile = (fileInput) => {
 
 export const parseCsvString = (csvStr) => {
     return Papa.parse(csvStr, {
-        dynamicTyping: true
+        dynamicTyping: true,
+        skipEmptyLines: true
         // header: true
     });
 }

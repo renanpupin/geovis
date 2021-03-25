@@ -3,6 +3,8 @@ import MarkerClusterer from "@googlemaps/markerclustererplus";
 import Marker from "src/components/Map/Marker";
 import Img from "src/assets/img/logo.png";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
+import {useSelector} from "react-redux";
+import {getAttributes, getLatAttributeIndex, getLonAttributeIndex} from "src/redux/data/selectors";
 
 const styleCluster = [
     MarkerClusterer.withDefaultStyle({
@@ -37,6 +39,10 @@ const styleCluster = [
 ];
 
 const MarkerList = (props: any) => {
+    const latAttributeIndex = useSelector(getLatAttributeIndex)
+    const lonAttributeIndex = useSelector(getLonAttributeIndex)
+    // const attributes = useSelector(getAttributes)
+
     const [cluster] = useState(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
         averageCenter: true,
@@ -139,18 +145,21 @@ const MarkerList = (props: any) => {
     }, []);
 
     const getMarkers = useCallback(() => {
-        return props.data.map((data: any) => {
+        return props.rows.map((row: any, index: number) => {
             return (
                 <Marker
-                    key={data.id}
-                    data={data}
+                    key={index}
+                    title={String(index)}
+                    lat={row[latAttributeIndex]}
+                    lon={row[lonAttributeIndex]}
+                    // row={row}
                     map={props.map}
                     cluster={cluster}
                     enableMarkerCluster={props.enableMarkerCluster}
                 />
             )
         })
-    }, [props.data, props.map, cluster, props.enableMarkerCluster]);
+    }, [props.rows, props.map, cluster, props.enableMarkerCluster]);
 
     return getMarkers()
 }

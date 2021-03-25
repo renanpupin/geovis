@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({visible, onConfirm, onClose, title, should
         >
 
             <div className={styles.modalHeader}>
-                {title && <h2 className={styles.modalTitle}>{title}</h2>}
+                {title && <h4 className={styles.modalTitle}>{title}</h4>}
                 <div className={styles.closeView}>
                     <button className={styles.closeButton} onClick={onClose}>
                         <span aria-hidden="true">×</span>

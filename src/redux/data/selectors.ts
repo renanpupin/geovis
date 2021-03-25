@@ -3,9 +3,17 @@ import {FilterTypes, VisualizationTypes, AttributeTypes} from "src/redux/data/ty
 
 export const getDataState = (store: RootState): any => store.data;
 
-export const getData = (store: RootState): object[] => getDataState(store)?.data
+export const getData = (store: RootState): object[] => getDataState(store)?.rows
 
-export const getVisibleData = (store: RootState): object[] => getDataState(store)?.visibleData
+export const getVisibleData = (store: RootState): object[] => getDataState(store)?.visibleRows
+
+export const getLatAttribute = (store: RootState): object[] => getDataState(store)?.latAttribute
+
+export const getLatAttributeIndex = (store: RootState): number => getDataState(store)?.attributes?.findIndex((attribute: AttributeTypes) => attribute.name === getDataState(store)?.latAttribute)
+
+export const getLonAttribute = (store: RootState): object[] => getDataState(store)?.lonAttribute
+
+export const getLonAttributeIndex = (store: RootState): number => getDataState(store)?.attributes?.findIndex((attribute: AttributeTypes) => attribute.name === getDataState(store)?.lonAttribute)
 
 export const getVisualizations = (store: RootState): VisualizationTypes[] => getDataState(store)?.visualizations
 

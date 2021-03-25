@@ -3,13 +3,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from './Menu.module.scss';
 import Logo from 'src/assets/img/logo.png';
 import {useDispatch, useSelector} from "react-redux";
-import {addDataItem, addVisualization, removeDataItem, removeVisualization, setData} from "src/redux/data/actions";
+import { addVisualization, removeVisualization, loadData} from "src/redux/data/actions";
 import {VisualizationTypeValues} from "src/redux/data/types";
 import {getAttributes, getVisibleData, getVisualizations} from "src/redux/data/selectors";
 import DropdownItem from "src/Menu/DropdownItem";
 import DropdownMenu from "src/Menu/DropdownMenu";
 import Modal from "src/components/Modal/Modal";
-import DataWizard from "src/components/DataWizard/Wizard";
+import DataWizard from "src/components/DataWizard/DataWizard";
 
 const markers = [
     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -40,17 +40,17 @@ const Menu: React.FC = (props: any) => {
     const [showDataWizard, setShowDataWizard] = useState(false)
     const [modalContent, setModalContent] = useState<string | null>(null)
 
-    const loadMarkers = () => {
-        dispatch(setData(markers))
-    }
+    // const loadMarkers = () => {
+    //     dispatch(loadData(markers))
+    // }
 
-    const deleteMarker = () => {
-        dispatch(removeDataItem(visibleData[0]))
-    }
-
-    const addMarkers = () => {
-        dispatch(addDataItem(add))
-    }
+    // const deleteMarker = () => {
+    //     dispatch(removeDataItem(visibleData[0]))
+    // }
+    //
+    // const addMarkers = () => {
+    //     dispatch(addDataItem(add))
+    // }
 
     const addHeatmap = () => {
         dispatch(addVisualization(VisualizationTypeValues.Heatmap))
@@ -284,6 +284,8 @@ const Menu: React.FC = (props: any) => {
                 onFinish={(data) => {
                     console.log("onFinish", data);
                     setShowDataWizard(false);
+
+                    dispatch(loadData(data))
                 }}
                 onClose={() => {
                     setShowDataWizard(false);

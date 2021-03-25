@@ -14,28 +14,24 @@ type Step2ContentProps = {
 const Step2Content: React.FC<Step2ContentProps> = (props) => {
     const {onData, data} = props;
 
-    const [latAttribute, setLatAttribute] = useState<string | undefined>(undefined);
-    const [lonAttribute, setLonAttribute] = useState<string | undefined>(undefined);
-    const [rowsCount, setRowsCount] = useState<number>(0);
-    const [attributes, setAttributes] = useState<object[]>([]);
+    const [latAttribute, setLatAttribute] = useState<string | undefined>(data?.latAttribute ?? undefined);
+    const [lonAttribute, setLonAttribute] = useState<string | undefined>(data?.lonAttribute ?? undefined);
+    // console.log("data", data)
 
     useEffect(() => {
-        const parsedCsv = parseCsvString(data);
-        if(parsedCsv.errors?.length > 0){
-            alert("Erro ao ler arquivo: "+parsedCsv.errors[0].message)
+        const latParsedAttribute = data.attributes.filter((item: any) => ['lat', 'latitude'].includes(item.name))
+        if(latParsedAttribute.length > 0){
+            setLatAttribute(latParsedAttribute[0].name)
         }
-        console.log("parseCsvString", parsedCsv);
-        // console.log("parseCsvStringAttributes", parsedCsv.data.slice(0,1)[0].map((item: any) => console.log(item)));
-
-        const attributesTypes = parsedCsv.data.slice(1,2)[0].map((item: any) => getAttributeType(item));
-        const attributes = parsedCsv.data.slice(0,1)[0].map((item: any, index: number) => ({
-            name: item,
-            type: attributesTypes[index]
-        }));
-
-        setRowsCount(parsedCsv.data.length-1);
-        setAttributes(attributes)
-    }, [data])
+        // }
+        //auto detect lon attribute
+        // if(!lonAttribute){
+        const lonParsedAttribute = data.attributes.filter((item: any) => ['lon', 'lng', 'longitude'].includes(item.name))
+        if(lonParsedAttribute.length > 0){
+            setLonAttribute(lonParsedAttribute[0].name)
+        }
+        // }
+    }, [])
 
     useEffect(() => {
         if(latAttribute && lonAttribute){
@@ -43,37 +39,28 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
                 latAttribute,
                 lonAttribute,
             })
+        }else{
+            onData?.({
+                latAttribute: undefined,
+                lonAttribute: undefined,
+            })
         }
     }, [latAttribute, lonAttribute])
 
-    const getAttributesList = useCallback(() => {
-        return attributes.map((item: any, index: number) => {
-            return(
-                <div key={index}>
-                    <div style={{padding: 5}}>
-                        {item.name}: {item.type}
-                    </div>
-                </div>
-            )
-        })
-    }, [attributes])
-
-    const attributesOptions = attributes.map((item: any) => ({
-        label: item.name,
-        value: item.name
-    }));
+    const attributesOptions = [
+        {label: 'Select an option', value: undefined},
+        ...data.attributes.map((item: any) => ({
+            label: item.name,
+            value: item.name
+        }))
+    ];
 
     return (
         <div>
-            <p>Total Rows: <b>{rowsCount}</b></p>
-
-            <div style={{fontSize: 12, marginBottom: 15}}>
-                <label><b>Recognized attributes:</b></label>
-                {getAttributesList()}
-            </div>
-
             <div style={{marginBottom: 15}}>
-                <label>Select the latitude attribute</label>
+                <div style={{marginBottom: 5}}>
+                    <label>Select the latitude attribute:</label>
+                </div>
                 <Select
                     label={'Latitude attribute'}
                     placeholder={'Select the latitude attribute'}
@@ -84,7 +71,9 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
             </div>
 
             <div style={{marginBottom: 15}}>
-                <label>Select the longitude attribute</label>
+                <div style={{marginBottom: 5}}>
+                    <label>Select the longitude attribute:</label>
+                </div>
                 <Select
                     label={'Longitude attribute'}
                     placeholder={'Select the longitude attribute'}
