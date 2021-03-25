@@ -84,7 +84,10 @@ const Menu: React.FC = (props: any) => {
     useEffect(() => {
         document.addEventListener('click', documentClickListener);
 
-        if(ENV !== 'production'){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const loadTestData = urlParams.get('testdata');
+        if(ENV !== 'production' && (loadTestData === "true")){
             dispatch(loadData(fastLoadData))
         }
 
