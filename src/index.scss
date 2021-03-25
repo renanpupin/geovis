@@ -1,4 +1,6 @@
 @import "src/assets/sass/_mixins.scss";
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_typography.scss";
 
 * {
   &,
@@ -6,6 +8,11 @@
   &:after {
     @include box-sizing(border-box);
   }
+}
+
+html{
+  min-height: 100%;
+  font-size: 100%;
 }
 
 body {
@@ -16,6 +23,10 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  line-height: $base-line-height;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
 }
 
 code {
