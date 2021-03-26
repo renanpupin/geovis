@@ -44,7 +44,7 @@ const Table: React.FC = () => {
                 </tr>
             )
         }
-        const headerColumns = attributes.map((item: any, index: number) => {
+        const headerColumns = attributes.map ((item: any, index: number) => {
             return (
                 <th key={index}>
                     {item.name} ({item.type})
