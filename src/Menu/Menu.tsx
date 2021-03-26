@@ -10,6 +10,7 @@ import DropdownItem from "src/Menu/DropdownItem";
 import DropdownMenu from "src/Menu/DropdownMenu";
 import Modal from "src/components/Modal/Modal";
 import DataWizard from "src/components/DataWizard/DataWizard";
+import VisualizationWizard from "src/components/VisualizationWizard/VisualizationWizard";
 import {ENV} from "src/libs/env";
 import FPSStats from "src/libs/fps-stats";
 
@@ -42,6 +43,7 @@ const Menu: React.FC = (props: any) => {
     const attributes = useSelector(getAttributes)
     const [dropdownVisible, setDropdownVisible] = useState(false)
     const [showDataWizard, setShowDataWizard] = useState(false)
+    const [showVisualizationWizard, setShowVisualizationWizard] = useState(false)
     const [modalContent, setModalContent] = useState<string | null>(null)
 
     // const loadMarkers = () => {
@@ -56,16 +58,10 @@ const Menu: React.FC = (props: any) => {
     //     dispatch(addDataItem(add))
     // }
 
-    const addHeatmap = () => {
-        dispatch(addVisualization(VisualizationTypeValues.Heatmap))
-    }
     const removeHeatmap = () => {
         dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.Heatmap)?.[0]))
     }
 
-    const addMarkerCluster = () => {
-        dispatch(addVisualization(VisualizationTypeValues.MarkerCluster))
-    }
     const removeMarkerCluster = () => {
         dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.MarkerCluster)?.[0]))
     }
@@ -105,6 +101,10 @@ const Menu: React.FC = (props: any) => {
         setShowDataWizard(true)
     }
 
+    const openVisualizationModal = () => {
+        setShowVisualizationWizard(true)
+    }
+
     const toggleMenu = (event: any, name: string) => {
         event.preventDefault();
         event.stopPropagation();
@@ -136,8 +136,7 @@ const Menu: React.FC = (props: any) => {
                 break;
             }
             case 'addVis': {
-                addHeatmap();
-                addMarkerCluster();
+                openVisualizationModal();
                 break;
             }
             case 'removeVis': {
@@ -301,6 +300,22 @@ const Menu: React.FC = (props: any) => {
                 }}
                 onClose={() => {
                     setShowDataWizard(false);
+                }}
+            />}
+
+            {showVisualizationWizard && <VisualizationWizard
+                onFinish={(data) => {
+                    console.log("onFinish", data);
+                    setShowVisualizationWizard(false);
+
+                    if(data.type === 'heatmap'){
+                        dispatch(addVisualization(VisualizationTypeValues.Heatmap))
+                    }else if(data.type === 'cluster'){
+                        dispatch(addVisualization(VisualizationTypeValues.MarkerCluster))
+                    }
+                }}
+                onClose={() => {
+                    setShowVisualizationWizard(false);
                 }}
             />}
 
