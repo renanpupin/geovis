@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {getVisibleData} from "src/redux/data/selectors";
+import {getAttributes, getVisibleData} from "src/redux/data/selectors";
 
 import styles from './Table.module.scss';
 
 const Table: React.FC = () => {
+    const attributes = useSelector(getAttributes)
     const visibleData = useSelector(getVisibleData)
 
     const isEmptyData: boolean = !visibleData || visibleData.length === 0
@@ -22,7 +23,7 @@ const Table: React.FC = () => {
             const bodyColumns = Object.values(itemData).map((item: any, index: number) => {
                 return (
                     <td key={index}>
-                        {item}
+                        {String(item)}
                     </td>
                 )
             });
@@ -43,10 +44,10 @@ const Table: React.FC = () => {
                 </tr>
             )
         }
-        const headerColumns = Object.keys(visibleData[0]).map((item: any, index: number) => {
+        const headerColumns = attributes.map((item: any, index: number) => {
             return (
                 <th key={index}>
-                    {item}
+                    {item.name} ({item.type})
                 </th>
             )
         })
