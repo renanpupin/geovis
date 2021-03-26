@@ -13,7 +13,7 @@ const LayersList: React.FC = () => {
     const visualizations = useSelector(getVisualizations)
 
     const toggleLayer = (visualization: any) => {
-        dispatch(toggleVisualization(visualization, !visualization.visible))
+        dispatch(toggleVisualization(visualization.id, !visualization.visible))
     }
 
     const getLayersList = useCallback(() => {
@@ -21,7 +21,14 @@ const LayersList: React.FC = () => {
             return(
                 <li key={index}>
                     <Touchable onClick={() => {}}>
-                        <input type={"checkbox"} checked={visualization.visible} onChange={(event: any) => {toggleLayer(visualization)}}/><span>{visualization.type}</span>
+                        <input
+                            type={"checkbox"}
+                            checked={visualization.visible}
+                            onChange={(event: any) => {
+                                toggleLayer(visualization)
+                            }}
+                        />
+                        <span>{visualization.type} - #{visualization.id}</span>
                     </Touchable>
                 </li>
             )

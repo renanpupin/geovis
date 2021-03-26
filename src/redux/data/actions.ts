@@ -37,10 +37,10 @@ export const removeVisualization = (id: any) => ({
     }
 });
 
-export const toggleVisualization = (visualization: VisualizationTypes, toggle: boolean) => ({
+export const toggleVisualization = (id: string, toggle: boolean) => ({
     type: TOGGLE_VISUALIZATION,
     payload: {
-        visualization,
+        id,
         toggle
     }
 });

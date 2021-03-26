@@ -59,12 +59,15 @@ export default function(state = initialState, action: any) {
         // }
         case ADD_VISUALIZATION: {
             const { type } = action.payload;
+
+            const id: string = `${type}-${state.visualizations.filter(item => item.type === type).length+1}`
+
             return {
                 ...state,
                 visualizations: [
                     ...state.visualizations,
                     {
-                        id: String(new Date().getTime()),
+                        id,
                         type,
                         visible: true
                     }
@@ -80,12 +83,12 @@ export default function(state = initialState, action: any) {
             };
         }
         case TOGGLE_VISUALIZATION: {
-            const { visualization, toggle } = action.payload;
+            const { id, toggle } = action.payload;
 
             return {
                 ...state,
                 visualizations: state.visualizations.map(item => {
-                    if(item === visualization){
+                    if(item.id === id){
                         return {
                             ...item,
                             visible: toggle

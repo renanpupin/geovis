@@ -25,7 +25,7 @@ const Step1Content: React.FC<Step1ContentProps> = (props) => {
         {label: 'Select an option', value: undefined},
         ...visualizations.map((item: any, index: any) => {
             return {
-                label: item.type,
+                label: `${item.type} - (${item.id})`,
                 value: item.id,
             }
         })
