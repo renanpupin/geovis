@@ -22,6 +22,7 @@ export enum VisualizationTypeValues {
 }
 
 export type VisualizationTypes = {
+    id: string
     type: VisualizationTypeValues
     visible?: boolean
 }

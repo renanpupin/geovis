@@ -30,10 +30,10 @@ export const addVisualization = (type: VisualizationTypeValues) => ({
     }
 });
 
-export const removeVisualization = (visualization: VisualizationTypes) => ({
+export const removeVisualization = (id: any) => ({
     type: REMOVE_VISUALIZATION,
     payload: {
-        visualization
+        id
     }
 });
 

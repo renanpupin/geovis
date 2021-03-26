@@ -64,6 +64,7 @@ export default function(state = initialState, action: any) {
                 visualizations: [
                     ...state.visualizations,
                     {
+                        id: String(new Date().getTime()),
                         type,
                         visible: true
                     }
@@ -71,11 +72,11 @@ export default function(state = initialState, action: any) {
             };
         }
         case REMOVE_VISUALIZATION: {
-            const { visualization } = action.payload;
+            const { id } = action.payload;
 
             return {
                 ...state,
-                visualizations: state.visualizations.filter(item => item !== visualization)
+                visualizations: state.visualizations.filter(item => item.id !== id)
             };
         }
         case TOGGLE_VISUALIZATION: {

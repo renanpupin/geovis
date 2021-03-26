@@ -11,6 +11,7 @@ import DropdownMenu from "src/Menu/DropdownMenu";
 import Modal from "src/components/Modal/Modal";
 import DataWizard from "src/components/DataWizard/DataWizard";
 import VisualizationWizard from "src/components/VisualizationWizard/VisualizationWizard";
+import RemoveVisualizationWizard from "src/components/RemoveVisualizationWizard/RemoveVisualizationWizard";
 import {ENV} from "src/libs/env";
 import FPSStats from "src/libs/fps-stats";
 
@@ -44,6 +45,7 @@ const Menu: React.FC = (props: any) => {
     const [dropdownVisible, setDropdownVisible] = useState(false)
     const [showDataWizard, setShowDataWizard] = useState(false)
     const [showVisualizationWizard, setShowVisualizationWizard] = useState(false)
+    const [showRemoveVisualizationWizard, setShowRemoveVisualizationWizard] = useState(false)
     const [modalContent, setModalContent] = useState<string | null>(null)
 
     // const loadMarkers = () => {
@@ -58,13 +60,13 @@ const Menu: React.FC = (props: any) => {
     //     dispatch(addDataItem(add))
     // }
 
-    const removeHeatmap = () => {
-        dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.Heatmap)?.[0]))
-    }
-
-    const removeMarkerCluster = () => {
-        dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.MarkerCluster)?.[0]))
-    }
+    // const removeHeatmap = () => {
+    //     dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.Heatmap)?.[0]))
+    // }
+    //
+    // const removeMarkerCluster = () => {
+    //     dispatch(removeVisualization(visualizations.filter(item => item.type === VisualizationTypeValues.MarkerCluster)?.[0]))
+    // }
 
     const dropdownMenu = useRef(null)
     const [menuOpen, setMenuOpen] = useState<string | null>(null)
@@ -105,6 +107,10 @@ const Menu: React.FC = (props: any) => {
         setShowVisualizationWizard(true)
     }
 
+    const openRemoveVisualizationModal = () => {
+        setShowRemoveVisualizationWizard(true)
+    }
+
     const toggleMenu = (event: any, name: string) => {
         event.preventDefault();
         event.stopPropagation();
@@ -140,8 +146,9 @@ const Menu: React.FC = (props: any) => {
                 break;
             }
             case 'removeVis': {
-                removeHeatmap();
-                removeMarkerCluster();
+                openRemoveVisualizationModal();
+                // removeHeatmap();
+                // removeMarkerCluster();
                 break;
             }
             case 'addFilter': {
@@ -316,6 +323,18 @@ const Menu: React.FC = (props: any) => {
                 }}
                 onClose={() => {
                     setShowVisualizationWizard(false);
+                }}
+            />}
+
+            {showRemoveVisualizationWizard && <RemoveVisualizationWizard
+                onFinish={(data: any) => {
+                    console.log("onFinish", data);
+                    setShowRemoveVisualizationWizard(false);
+
+                    dispatch(removeVisualization(data.id))
+                }}
+                onClose={() => {
+                    setShowRemoveVisualizationWizard(false);
                 }}
             />}
 
