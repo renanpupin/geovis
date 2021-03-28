@@ -1,0 +1,56 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.wrapper{
+  border: 1px solid $border-color;
+  //@include border-radius($input-border-radius);
+  border-bottom-right-radius: $input-border-radius;
+  background-color: #fff;
+  //width: 100%;
+  position: absolute;
+  left: 0;
+  top: 300px;
+  z-index: 1000;
+  //display: inline-block;
+  min-height: 150px;
+  max-width: 250px;
+  min-width: 250px;
+  @include transition($transition-slow);
+  &.toggle{
+    min-width: 0;
+    max-width: 0px;
+  }
+}
+
+.content{
+  padding: 15px;
+  padding-right: 65px;
+}
+
+.rightMenu{
+  //border: 1px solid $border-color;
+  //border-left: 1px solid $border-color;
+  border-bottom-right-radius: $input-border-radius;
+  border-top-right-radius: $input-border-radius;
+  position: absolute;
+  right: -51px;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.menuButton{
+  background-color: #fff;
+  //border: 1px solid $border-color;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  &.active{
+    background-color: $main-color;
+    color: #fff;
+  }
+}

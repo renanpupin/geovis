@@ -4,6 +4,9 @@ import Table from './Table/Table'
 import Menu from './Menu/Menu'
 import Draggable from 'src/components/Draggable/Draggable'
 import Chart from 'src/components/Chart/Chart'
+import FilterList from "src/components/FilterList/FilterList";
+import LayersList from "src/components/LayersList/LayersList";
+import SideMenu from "src/components/SideMenu/SideMenu";
 
 const App: React.FC = () => {
     const [viewMode, setViewMode] = useState('map')
@@ -25,6 +28,21 @@ const App: React.FC = () => {
             {/*</Draggable>*/}
 
             {/*<Chart/>*/}
+
+            <SideMenu
+                items={[
+                    {
+                        title: 'Layers',
+                        component: <LayersList/>,
+                        icon: 'layers'
+                    },
+                    {
+                        title: 'Filters',
+                        component: <FilterList/>,
+                        icon: 'filter_alt'
+                    },
+                ]}
+            />
         </div>
     );
 }

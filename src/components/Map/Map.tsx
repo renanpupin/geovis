@@ -64,8 +64,6 @@ const Map: React.FC = () => {
         <MapLoader onLoad={onLoad}>
             {getMarkers()}
             {getHeatmap()}
-            <FilterList/>
-            <LayersList/>
         </MapLoader>
     );
 }
