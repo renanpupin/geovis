@@ -164,7 +164,7 @@ const Menu: React.FC = (props: any) => {
                 <ul className={styles.menuList}>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {onPressItem(event, 'changeView')}}>
-                            <i className="material-icons">{props.viewMode === 'map' ? 'map' : 'table_view'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}
+                            <i className="material-icons">{props.viewMode === 'map' ? 'table_view' : 'map'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}
                         </DropdownItem>
                     </li>
                     <li className={styles.submenu}>
@@ -181,7 +181,7 @@ const Menu: React.FC = (props: any) => {
                     </li>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {toggleMenu(event, 'visualizations')}}>
-                            <i className="material-icons">insert_chart</i>Visualizações
+                            <i className="material-icons">layers</i>Visualizações
                         </DropdownItem>
                         {menuOpen === 'visualizations' && <DropdownMenu>
                             <li className={styles.submenu}>
@@ -198,7 +198,7 @@ const Menu: React.FC = (props: any) => {
                     </li>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {toggleMenu(event, 'filters')}}>
-                            <i className="material-icons">details</i>Filtros
+                            <i className="material-icons">filter_alt</i>Filtros
                         </DropdownItem>
                         {menuOpen === 'filters' && <DropdownMenu>
                             <li className={styles.submenu}>

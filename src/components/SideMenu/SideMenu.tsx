@@ -36,7 +36,7 @@ const SideMenu: React.FC<SelectProps> = (props) => {
                     return(
                         <div style={{backgroundColor: '#fff'}} key={index}>
                             <Touchable onClick={() => {
-                                if(index === activeItemIndex){
+                                if(index === activeItemIndex || isToggle){
                                     setIsToggle(!isToggle)
                                 }
                                 setActiveItemIndex(index)

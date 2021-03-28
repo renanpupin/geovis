@@ -12,7 +12,7 @@ $sideMenuSize: 250px;
   left: 0;
   top: 300px;
   z-index: 1000;
-  //min-height: 150px;
+  min-height: 105px;
   max-width: $sideMenuSize;
   min-width: $sideMenuSize;
   @include transition($transition-slow);
