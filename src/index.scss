@@ -46,3 +46,8 @@ code {
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #ccc;
 }
+
+input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+}

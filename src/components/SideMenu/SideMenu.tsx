@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import styles from './SideMenu.module.scss';
 import Touchable from "src/components/Touchable/Touchable";
+import ReactDOM from "react-dom";
+
+const sideMenuRoot = document.getElementById('map-controls')
 
 export type OptionsProps = {
     title: string
@@ -21,7 +24,8 @@ const SideMenu: React.FC<SelectProps> = (props) => {
     const activeItem = items[activeItemIndex]
 
     const wrapperStyle = [styles.wrapper, isToggle ? styles.toggle: {}].join(' ')
-    return (
+
+    const element = (
         <div className={wrapperStyle}>
 
             <div className={styles.rightMenu}>
@@ -47,7 +51,7 @@ const SideMenu: React.FC<SelectProps> = (props) => {
             </div>
 
             <div className={styles.content}>
-                <h6 style={{fontWeight: 'bold'}}>{activeItem.title}</h6>
+                <h6 style={{fontWeight: 'bold', marginBottom: 15}}>{activeItem.title}</h6>
 
                 <div>
                     {activeItem.component}
@@ -55,6 +59,12 @@ const SideMenu: React.FC<SelectProps> = (props) => {
             </div>
         </div>
     )
+
+    return sideMenuRoot ? ReactDOM.createPortal(
+        element,
+        // @ts-ignore
+        sideMenuRoot
+    ) : null;
 }
 
 export default SideMenu

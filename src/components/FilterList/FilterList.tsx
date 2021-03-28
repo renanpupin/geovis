@@ -1,12 +1,9 @@
 import React, {useCallback} from 'react';
-import ReactDOM from 'react-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getFilters} from "src/redux/data/selectors";
 import Touchable from "src/components/Touchable/Touchable";
 import styles from './FilterList.module.scss';
 import {toggleFilter} from "src/redux/data/actions";
-
-const filterListRoot = document.getElementById('map-controls')
 
 const FilterList: React.FC = () => {
     const dispatch = useDispatch()
@@ -20,26 +17,25 @@ const FilterList: React.FC = () => {
         return filters.map((filter, index) => {
             return(
                 <li key={index}>
-                    <Touchable onClick={() => {}}>
-                        <input type={"checkbox"} checked={filter.visible} onChange={toggleFilterVisible}/><span>{filter.name}</span>
+                    <Touchable onClick={() => toggleFilterVisible(filter)}>
+                        <div className={styles.inputView}>
+                        <input type={"checkbox"} checked={filter.visible}/>
+                        <span>{filter.name}</span>
+                        </div>
                     </Touchable>
                 </li>
             )
         })
     }, [filters])
 
-    const element = (
+    return(
         <div className={styles.filterWrapper}>
             <ul>
+                {filters.length === 0 && <li>No filters.</li>}
                 {getFiltersList()}
             </ul>
         </div>
     )
-    return ReactDOM.createPortal(
-        element,
-        // @ts-ignore
-        filterListRoot
-    );
 }
 
 export default FilterList

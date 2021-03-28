@@ -1,12 +1,9 @@
 import React, {useCallback} from 'react';
-import ReactDOM from 'react-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getVisualizations} from "src/redux/data/selectors";
 import Touchable from "src/components/Touchable/Touchable";
 import styles from './LayersList.module.scss';
 import {toggleVisualization} from "src/redux/data/actions";
-
-const layersListRoot = document.getElementById('map-controls')
 
 const LayersList: React.FC = () => {
     const dispatch = useDispatch()
@@ -20,33 +17,29 @@ const LayersList: React.FC = () => {
         return visualizations.map((visualization, index) => {
             return(
                 <li key={index}>
-                    <Touchable onClick={() => {}}>
-                        <input
-                            type={"checkbox"}
-                            checked={visualization.visible}
-                            onChange={(event: any) => {
-                                toggleLayer(visualization)
-                            }}
-                        />
-                        <span>{visualization.type} - #{visualization.id}</span>
+                    <Touchable onClick={() => toggleLayer(visualization)}>
+                        <div className={styles.inputView}>
+                            <input
+                                type={"checkbox"}
+                                checked={visualization.visible}
+                                style={{marginRight: 5}}
+                            />
+                            <span>{visualization.type} - #{visualization.id}</span>
+                        </div>
                     </Touchable>
                 </li>
             )
         })
     }, [visualizations])
 
-    const element = (
+    return(
         <div className={styles.visualizationWrapper}>
             <ul>
+                {visualizations.length === 0 && <li>No layers.</li>}
                 {getLayersList()}
             </ul>
         </div>
     )
-    return ReactDOM.createPortal(
-        element,
-        // @ts-ignore
-        layersListRoot
-    );
 }
 
 export default LayersList
