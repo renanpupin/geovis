@@ -11,7 +11,6 @@ import {VisualizationTypeValues} from "src/redux/data/types";
 const Map: React.FC = () => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
-    // const attributes = useSelector(getAttributes)
     const visibleData = useSelector(getVisibleData)
     const visualizations = useSelector(getVisualizations)
     const [map, setMap] = useState(undefined)

@@ -11,6 +11,7 @@ import DropdownMenu from "src/Menu/DropdownMenu";
 import Modal from "src/components/Modal/Modal";
 import DataWizard from "src/components/DataWizard/DataWizard";
 import VisualizationWizard from "src/components/VisualizationWizard/VisualizationWizard";
+import FilterWizard from "src/components/FilterWizard/FilterWizard";
 import RemoveVisualizationWizard from "src/components/RemoveVisualizationWizard/RemoveVisualizationWizard";
 import {ENV} from "src/libs/env";
 import FPSStats from "src/libs/fps-stats";
@@ -45,8 +46,8 @@ const Menu: React.FC = (props: any) => {
     const [dropdownVisible, setDropdownVisible] = useState(false)
     const [showDataWizard, setShowDataWizard] = useState(false)
     const [showVisualizationWizard, setShowVisualizationWizard] = useState(false)
+    const [showFilterWizard, setShowFilterWizard] = useState(false)
     const [showRemoveVisualizationWizard, setShowRemoveVisualizationWizard] = useState(false)
-    const [modalContent, setModalContent] = useState<string | null>(null)
 
     // const loadMarkers = () => {
     //     dispatch(loadData(markers))
@@ -94,9 +95,8 @@ const Menu: React.FC = (props: any) => {
         }
     }, []);
 
-    const openFilterDropdown = () => {
-        setModalContent('filter')
-        setDropdownVisible(true)
+    const openFilterModal = () => {
+        setShowFilterWizard(true)
     }
 
     const openDataModal = () => {
@@ -152,7 +152,7 @@ const Menu: React.FC = (props: any) => {
                 break;
             }
             case 'addFilter': {
-                openFilterDropdown();
+                openFilterModal();
                 break;
             }
         }
@@ -228,65 +228,6 @@ const Menu: React.FC = (props: any) => {
         )
     }
 
-    const getModalContent = () => {
-        if(modalContent === 'filter'){
-            return(
-                <div>
-                    <div>
-                        <label htmlFor="inputFiltroAddName">Nome do filtro</label>
-                        <input type="text" id="inputFiltroAddName"/>
-                    </div>
-                    <div>
-                        <label htmlFor="inputFiltroAddAttribute">Attribute</label>
-                        <select id="inputFiltroAddAttribute">
-                            {attributes.map((item, index) => {
-                                return(
-                                    <option key={index} value={item.name}>{item.name} ({item.type})</option>
-                                )
-                            })}
-                            {attributes.length === 0 && <option value={undefined}>No attributes found.</option>}
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="inputFiltroAddCondition">Condition</label>
-                        <select id="inputFiltroAddCondition">
-                            <option value="equal">Equal</option>
-                            <option value="equal">Different</option>
-                            <option value="more than">More than</option>
-                            <option value="more than or equal">More than or equal</option>
-                            <option value="less than">Less than</option>
-                            <option value="less than or equal">Less than or equal</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="inputFiltroAddCondition">Value</label>
-                        {/*if boolean*/}
-                        <select id="inputFiltroAddCondition">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-
-                        {/*if string*/}
-                        <input type="text" id="inputFiltroAddName"/>
-
-                        {/*if number*/}
-                        <select id="inputFiltroAddCondition">
-                            <option value="more than">More than</option>
-                            <option value="equal">Equal</option>
-                            {/*...*/}
-                        </select>
-
-                        <select id="inputFiltroAddCondition">
-                            <option value="average">Average</option>
-                            <option value="median">Median</option>
-                            {/*...*/}
-                        </select>
-                    </div>
-                </div>
-            )
-        }
-    }
-
     return (
         <nav id="nav" className={styles.nav}>
             <div className={styles.navbarHeader}>
@@ -338,14 +279,16 @@ const Menu: React.FC = (props: any) => {
                 }}
             />}
 
-            <Modal
-                visible={dropdownVisible}
-                onConfirm={() => setDropdownVisible(false)}
-                onClose={() => setDropdownVisible(false)}
-                title={'Add filters'}
-            >
-                {getModalContent()}
-            </Modal>
+            {showFilterWizard && <FilterWizard
+                onFinish={(data) => {
+                    console.log("onFinish", data);
+                    setShowFilterWizard(false);
+
+                }}
+                onClose={() => {
+                    setShowFilterWizard(false);
+                }}
+            />}
         </nav>
     )
 }

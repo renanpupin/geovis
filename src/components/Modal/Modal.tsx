@@ -20,6 +20,7 @@ const Modal: React.FC<ModalProps> = ({visible, onConfirm, onClose, title, should
             onRequestClose={onClose}
             shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
             className={styles.modal}
+            portalClassName={'ReactModalPortal'}
             // overlayClassName={styles.overlay}
         >
 
