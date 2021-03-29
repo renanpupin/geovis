@@ -45,7 +45,7 @@ export const toggleVisualization = (id: string, toggle: boolean) => ({
     }
 });
 
-export const addFilter = (filter: FilterTypes) => ({
+export const addFilter = (filter: Omit<FilterTypes, 'id'>) => ({
     type: ADD_FILTER,
     payload: {
         filter
@@ -62,6 +62,7 @@ export const removeFilter = (id: any) => ({
 export const toggleFilter = (filter: FilterTypes, toggle: boolean) => ({
     type: TOGGLE_FILTER,
     payload: {
+        filter,
         toggle
     }
 });

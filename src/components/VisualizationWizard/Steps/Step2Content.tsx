@@ -1,10 +1,5 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {useDropzone} from 'react-dropzone'
-// import StepActions from './StepActions'
-import styles from '../Wizard.module.scss'
+import React, {useEffect, useState} from 'react';
 import Select from "src/components/Select/Select";
-import {getAttributeType} from "src/redux/data/filters";
-import {parseCsvString} from "src/libs/parser";
 
 type Step2ContentProps = {
     onData?: (data: any) => void,

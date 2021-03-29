@@ -27,7 +27,6 @@ export type VisualizationTypes = {
     visible?: boolean
 }
 
-
 export enum ConditionsTypes {
     Equal = 'Equal',
     Different = 'Different',
@@ -42,13 +41,24 @@ export type FilterConditionsTypes = {
     value: string | number | boolean | null | undefined
 }
 
+export type FilterAttributeTypes = {
+    name: string
+    type: 'number' | 'string' | 'boolean'
+}
+
+export enum FilterTargetTypes {
+    value = 'value',
+    averageValue = 'averageValue',
+    medianValue = 'medianValue',
+}
+
 export type FilterTypes = {
     id: string
     name: string
-    attribute: string
+    attribute: FilterAttributeTypes
     condition: FilterConditionsTypes
-    targetType: string
-    targetValue: any
+    targetType: FilterTargetTypes
+    targetValue: string | number | boolean | null | undefined
     visible: boolean
 }
 

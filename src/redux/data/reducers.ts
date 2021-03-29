@@ -102,20 +102,21 @@ export default function(state = initialState, action: any) {
         case ADD_FILTER: {
             const { filter } = action.payload;
 
-            const id: string = `${filter.type}-${state.filters.filter((item: any) => item.type === filter.type).length+1}`
+            const id: string = String(state.filters.filter((item: any) => item.type === filter.type).length+1)
 
             const updatedFilters: any = [
                 ...state.filters,
                 {
                     id,
                     ...filter,
+                    visible: true
                 }
             ];
 
             return {
                 ...state,
                 filters: updatedFilters,
-                visibleData: applyFilters(state.rows, updatedFilters)
+                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
         case REMOVE_FILTER: {
@@ -126,11 +127,12 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                visibleData: applyFilters(state.rows, updatedFilters)
+                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
         case TOGGLE_FILTER: {
             const { filter, toggle } = action.payload;
+
 
             const updatedFilters = state.filters.map(item => {
                 if(item === filter){
@@ -146,7 +148,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                visibleData: applyFilters(state.rows, updatedFilters)
+                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
         default:

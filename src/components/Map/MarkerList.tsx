@@ -1,42 +1,41 @@
-import React, {useEffect, useState, useCallback, useMemo} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import Marker from "src/components/Map/Marker";
 import Img from "src/assets/img/logo.png";
-import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 import {useSelector} from "react-redux";
-import {getAttributes, getLatAttributeIndex, getLonAttributeIndex} from "src/redux/data/selectors";
+import {getLatAttributeIndex, getLonAttributeIndex} from "src/redux/data/selectors";
 
-const styleCluster = [
-    MarkerClusterer.withDefaultStyle({
-        // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        url: Img,
-        width: 100,
-        height: 128,
-        anchorIcon: [64, 50],
-        textColor: "red",
-        textSize: 10,
-    }),
-    MarkerClusterer.withDefaultStyle({
-        // url: "src/assets/img/logo.png",
-        // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        url: Img,
-        width: 40,
-        height: 35,
-        anchorIcon: [35, 20],
-        textColor: "blue",
-        textSize: 11,
-    }),
-    MarkerClusterer.withDefaultStyle({
-        // url: "src/assets/img/logo.png",
-        // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        url: Img,
-        width: 50,
-        height: 44,
-        anchorIcon: [44, 25],
-        textColor: "green",
-        textSize: 12,
-    }),
-];
+// const styleCluster = [
+//     MarkerClusterer.withDefaultStyle({
+//         // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+//         url: Img,
+//         width: 100,
+//         height: 128,
+//         anchorIcon: [64, 50],
+//         textColor: "red",
+//         textSize: 10,
+//     }),
+//     MarkerClusterer.withDefaultStyle({
+//         // url: "src/assets/img/logo.png",
+//         // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+//         url: Img,
+//         width: 40,
+//         height: 35,
+//         anchorIcon: [35, 20],
+//         textColor: "blue",
+//         textSize: 11,
+//     }),
+//     MarkerClusterer.withDefaultStyle({
+//         // url: "src/assets/img/logo.png",
+//         // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+//         url: Img,
+//         width: 50,
+//         height: 44,
+//         anchorIcon: [44, 25],
+//         textColor: "green",
+//         textSize: 12,
+//     }),
+// ];
 
 const MarkerList = (props: any) => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)

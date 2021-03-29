@@ -3,15 +3,13 @@ import {useSelector} from 'react-redux';
 import MapLoader from 'src/components/Map/MapLoader';
 import Heatmap from 'src/components/Map/Heatmap/Heatmap';
 import MarkerList from 'src/components/Map/MarkerList';
-import FilterList from 'src/components/FilterList/FilterList';
-import LayersList from 'src/components/LayersList/LayersList';
-import {getLatAttributeIndex, getLonAttributeIndex, getAttributes, getVisibleData, getVisualizations} from "src/redux/data/selectors";
+import {getLatAttributeIndex, getLonAttributeIndex, getVisibleRows, getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from "src/redux/data/types";
 
 const Map: React.FC = () => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
-    const visibleData = useSelector(getVisibleData)
+    const visibleData = useSelector(getVisibleRows)
     const visualizations = useSelector(getVisualizations)
     const [map, setMap] = useState(undefined)
 

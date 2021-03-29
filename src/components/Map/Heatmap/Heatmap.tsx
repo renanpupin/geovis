@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 const Heatmap = (props: any) => {
     const gmapHeatmap = new window.google.maps.visualization.HeatmapLayer({

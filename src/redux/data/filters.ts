@@ -1,34 +1,47 @@
-import {ConditionsTypes, FilterTypes} from 'src/redux/data/types'
+import {ConditionsTypes, FilterTypes, AttributeTypes} from 'src/redux/data/types'
+import {useSelector} from "react-redux";
+import {getDataState} from "src/redux/data/selectors";
 
-export const applyFilters = (data: object[], filters: FilterTypes[]) => {
+export const applyFilters = (data: object[], filters: FilterTypes[], attributes: AttributeTypes[]) => {
+    console.log("applyFilters", filters)
+
     return data.filter((dataItem: object) => {
         return filters.filter(itemFilter => {
-            return applyFilter(dataItem, itemFilter)
+            const attributeIndex = attributes.findIndex((attribute: AttributeTypes) => attribute.name === itemFilter.attribute.name)
+            // //@ts-ignore
+            // console.log("applyFilter", applyFilter(dataItem, itemFilter, attributeIndex))
+
+            return applyFilter(dataItem, itemFilter, attributeIndex)
         }).length === filters.length;
-    }).length === data.length;
+    })//.length === data.length;
 };
 
-const applyFilter = (dataItem: object, filter: FilterTypes) => {
-    const {condition} = filter;
+const applyFilter = (dataItem: object, filter: FilterTypes, attributeIndex: number) => {
+    const {condition, targetValue}: any = filter;
+
+    if(!filter.visible){
+        return true;
+    }
+
     // return filter.conditions.filter(condition => {
-        if(condition.type === ConditionsTypes.Equal){
+        if(condition === ConditionsTypes.Equal){
             //@ts-ignore
-            return String(dataItem[filter.attribute]) === String(condition.value);
-        }else if(condition.type === ConditionsTypes.Different){
+            return String(dataItem[attributeIndex]) === String(targetValue);
+        }else if(condition === ConditionsTypes.Different){
             //@ts-ignore
-            return String(dataItem[filter.attribute]) !== String(condition.value);
-        }else if(condition.type === ConditionsTypes.MoreThan){
+            return String(dataItem[attributeIndex]) !== String(targetValue);
+        }else if(condition === ConditionsTypes.MoreThan){
             //@ts-ignore
-            return dataItem[filter.attribute] > condition.value;
-        }else if(condition.type === ConditionsTypes.MoreThanOrEqual){
+            return dataItem[attributeIndex] > targetValue;
+        }else if(condition === ConditionsTypes.MoreThanOrEqual){
             //@ts-ignore
-            return dataItem[filter.attribute] >= condition?.value;
-        }else if(condition.type === ConditionsTypes.LessThan){
+            return dataItem[attributeIndex] >= targetValue;
+        }else if(condition === ConditionsTypes.LessThan){
             //@ts-ignore
-            return dataItem[filter.attribute] < condition?.value;
-        }else if(condition.type === ConditionsTypes.LessThanOrEqual){
+            return dataItem[attributeIndex] < targetValue;
+        }else if(condition === ConditionsTypes.LessThanOrEqual){
             //@ts-ignore
-            return dataItem[filter.attribute] <= condition?.value;
+            return dataItem[attributeIndex] <= targetValue;
         }
         return false;
     // }).length === filter.conditions.length;

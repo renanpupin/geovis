@@ -23,6 +23,7 @@ const LayersList: React.FC = () => {
                                 type={"checkbox"}
                                 checked={visualization.visible}
                                 style={{marginRight: 5}}
+                                onChange={() => {}}
                             />
                             <span>{visualization.type} - #{visualization.id}</span>
                         </div>

@@ -5,7 +5,7 @@ export const getDataState = (store: RootState): any => store.data;
 
 export const getData = (store: RootState): object[] => getDataState(store)?.rows
 
-export const getVisibleData = (store: RootState): object[] => getDataState(store)?.visibleRows
+export const getVisibleRows = (store: RootState): object[] => getDataState(store)?.visibleRows
 
 export const getLatAttribute = (store: RootState): object[] => getDataState(store)?.latAttribute
 

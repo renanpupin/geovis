@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
-import {getAttributes, getVisibleData} from "src/redux/data/selectors";
+import {getAttributes, getVisibleRows} from "src/redux/data/selectors";
 
 import styles from './Table.module.scss';
 
 const Table: React.FC = () => {
     const attributes = useSelector(getAttributes)
-    const visibleData = useSelector(getVisibleData)
+    const visibleData = useSelector(getVisibleRows)
 
     const isEmptyData: boolean = !visibleData || visibleData.length === 0
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import Select from "src/components/Select/Select";
 import {useSelector} from "react-redux";
 import {getFilters} from "src/redux/data/selectors";
@@ -18,7 +18,7 @@ const Step1Content: React.FC<Step1ContentProps> = (props) => {
         {label: 'Select an option', value: undefined},
         ...filters.map((item: any, index: any) => {
             return {
-                label: `${item.name} - (${item.id})`,
+                label: `${item.name} (#${item.id})`,
                 value: item.id,
             }
         })

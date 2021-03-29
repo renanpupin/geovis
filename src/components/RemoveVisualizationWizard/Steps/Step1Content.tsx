@@ -1,11 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {useDropzone} from 'react-dropzone'
-// import StepActions from './StepActions'
-import styles from '../Wizard.module.scss'
-import DropdownItem from "src/Menu/DropdownItem";
-import Touchable from "src/components/Touchable/Touchable";
-import {parseCsvString} from "src/libs/parser";
-import {getAttributeType} from "src/redux/data/filters";
+import React, {useState} from 'react';
 import Select from "src/components/Select/Select";
 import {useSelector} from "react-redux";
 import {getVisualizations} from "src/redux/data/selectors";
@@ -25,7 +18,7 @@ const Step1Content: React.FC<Step1ContentProps> = (props) => {
         {label: 'Select an option', value: undefined},
         ...visualizations.map((item: any, index: any) => {
             return {
-                label: `${item.type} - (${item.id})`,
+                label: `${item.type} (#${item.id})`,
                 value: item.id,
             }
         })

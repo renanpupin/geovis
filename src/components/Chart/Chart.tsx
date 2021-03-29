@@ -1,8 +1,6 @@
 // https://developers.google.com/chart/interactive/docs/printing
 
 import React from 'react';
-import {useSelector} from "react-redux";
-import {getVisibleData} from "src/redux/data/selectors";
 import Draggable from "src/components/Draggable/Draggable";
 import GoogleCharts from "react-google-charts";
 import styles from './Chart.module.scss';
@@ -10,7 +8,7 @@ import styles from './Chart.module.scss';
 // https://developers.google.com/chart/interactive/docs/printing
 
 const Chart: React.FC = ({}) => {
-    // const visibleData = useSelector(getVisibleData)
+    // const visibleData = useSelector(getVisibleRows)
     return(
         <Draggable className={styles.chart}>
             <GoogleCharts

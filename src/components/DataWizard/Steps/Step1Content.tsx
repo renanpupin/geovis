@@ -1,8 +1,6 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {useDropzone} from 'react-dropzone'
-// import StepActions from './StepActions'
 import styles from '../Wizard.module.scss'
-import DropdownItem from "src/Menu/DropdownItem";
 import Touchable from "src/components/Touchable/Touchable";
 import {parseCsvString} from "src/libs/parser";
 import {getAttributeType} from "src/redux/data/filters";
