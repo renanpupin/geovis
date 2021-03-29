@@ -4,7 +4,7 @@ import styles from './Input.module.scss';
 export type InputProps = {
     label: string
     placeholder: string
-    value: string | number
+    value: string | number | undefined
     type?: 'text' | 'number'
     onChange?: (text: string) => void
 }
@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = (props) => {
                 placeholder={placeholder}
                 type={type ?? 'text'}
                 className={styles.input}
-                value={value}
+                value={value ?? ''}
                 onChange={(e) => onChange?.(e?.target?.value)}
                 onFocus={() => setHasFocus(true)}
                 onBlur={() => setHasFocus(false)}

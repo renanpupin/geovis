@@ -19,7 +19,11 @@ const FilterList: React.FC = () => {
                 <li key={index}>
                     <Touchable onClick={() => toggleFilterVisible(filter)}>
                         <div className={styles.inputView}>
-                        <input type={"checkbox"} checked={filter.visible}/>
+                        <input
+                            type={"checkbox"}
+                            checked={filter.visible}
+                            style={{marginRight: 5}}
+                        />
                         <span>{filter.name}</span>
                         </div>
                     </Touchable>

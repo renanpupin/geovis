@@ -39,13 +39,16 @@ export enum ConditionsTypes {
 
 export type FilterConditionsTypes = {
     type: ConditionsTypes
-    value: string | number | boolean// | null | undefined
+    value: string | number | boolean | null | undefined
 }
 
 export type FilterTypes = {
+    id: string
     name: string
     attribute: string
-    conditions: FilterConditionsTypes[]
+    condition: FilterConditionsTypes
+    targetType: string
+    targetValue: any
     visible: boolean
 }
 

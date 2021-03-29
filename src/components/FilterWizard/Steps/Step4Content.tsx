@@ -7,33 +7,62 @@ type Step4ContentProps = {
     data: any
 }
 
+const conditionalOptions: any = {
+    'value': {label: 'Value', value: 'value'},
+    'averageValue': {label: 'Average value', value: 'averageValue'},
+    'medianValue': {label: 'Average value', value: 'medianValue'},
+    // {label: 'Min value', value: 'minValue'},
+    // {label: 'Max value', value: 'maxValue'},
+}
+
+const typeOptionsKeys: any = {
+    'number': ['value', 'averageValue', 'medianValue'],
+    'boolean': ['value'],
+    'string': ['value'],
+}
+
 const Step4Content: React.FC<Step4ContentProps> = (props) => {
     const {onData, data} = props;
 
-    const [target, setTarget] = useState<string | undefined>(data?.target ?? undefined);
-    const [targetValue, setTargetValue] = useState<string>(data?.targetValue ?? '');
+    //TODO: verify isAttributeConditionTypeSupported (like step 3)
+    const normalizedTargetValue = data?.attribute.type !== 'boolean' ? data?.targetValue : String(data?.targetValue)
+
+    const [target, setTarget] = useState<string | undefined>(data?.targetType ?? undefined);
+    const [targetValue, setTargetValue] = useState<string | undefined>(data?.targetValue ? normalizedTargetValue : undefined);
 
     const targetOptions = [
         {label: 'Select an option', value: undefined},
-        {label: 'Value', value: 'value'},
-        // {label: 'Min value', value: 'minValue'},
-        // {label: 'Max value', value: 'maxValue'},
-        {label: 'Average value', value: 'average'},
-        {label: 'Median value', value: 'median'},
+        ...(typeOptionsKeys[data?.attribute?.type]?.map((item: any) => conditionalOptions[item]))
     ];
+
+    const targetBooleanOptions = [
+        {label: 'Select an option', value: undefined},
+        {label: 'True', value: 'true'},
+        {label: 'False', value: 'false'},
+    ];
+
+    useEffect(() => {
+        if(target && target !== "" && targetValue && targetValue !== ""){
+            const transformedValue: any = data?.attribute.type !== 'boolean' ? targetValue : targetValue === 'True' //force cast to boolean
+
+            onData?.({
+                targetType: target,
+                targetValue: transformedValue,
+            })
+        }else{
+            onData?.({
+                targetType: undefined,
+                targetValue: undefined,
+            })
+        }
+    }, [target, targetValue])
 
     const onSelectTarget = (value: string) => {
         setTarget(value)
-        onData?.({
-            target: value
-        })
     }
 
     const onChangeTargetValue = (value: string) => {
         setTargetValue(value)
-        onData?.({
-            targetValue: value
-        })
     }
 
     return (
@@ -50,7 +79,7 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
                     onChange={onSelectTarget}
                 />
             </div>
-            {target === 'value' && <div style={{marginBottom: 15}}>
+            {target === 'value' && data?.attribute.type !== 'boolean' && <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
                     <label>Select the filter target value:</label>
                 </div>
@@ -58,6 +87,18 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
                     label={'Filter target value'}
                     placeholder={'Select the filter target value'}
                     value={targetValue}
+                    onChange={onChangeTargetValue}
+                />
+            </div>}
+            {target === 'value' && data?.attribute.type === 'boolean' && <div style={{marginBottom: 15}}>
+                <div style={{marginBottom: 5}}>
+                    <label>Select the filter target value:</label>
+                </div>
+                <Select
+                    label={'Filter target value'}
+                    placeholder={'Select the filter target value'}
+                    value={targetValue}
+                    options={targetBooleanOptions}
                     onChange={onChangeTargetValue}
                 />
             </div>}

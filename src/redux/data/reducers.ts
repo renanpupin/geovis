@@ -102,9 +102,14 @@ export default function(state = initialState, action: any) {
         case ADD_FILTER: {
             const { filter } = action.payload;
 
-            const updatedFilters = [
+            const id: string = `${filter.type}-${state.filters.filter((item: any) => item.type === filter.type).length+1}`
+
+            const updatedFilters: any = [
                 ...state.filters,
-                filter
+                {
+                    id,
+                    ...filter,
+                }
             ];
 
             return {
@@ -114,9 +119,9 @@ export default function(state = initialState, action: any) {
             };
         }
         case REMOVE_FILTER: {
-            const { filter } = action.payload;
+            const { id } = action.payload;
 
-            const updatedFilters = state.filters.filter(item => item !== filter);
+            const updatedFilters = state.filters.filter(item => item.id !== id);
 
             return {
                 ...state,

@@ -52,10 +52,10 @@ export const addFilter = (filter: FilterTypes) => ({
     }
 });
 
-export const removeFilter = (filter: FilterTypes) => ({
+export const removeFilter = (id: any) => ({
     type: REMOVE_FILTER,
     payload: {
-        filter
+        id
     }
 });
 

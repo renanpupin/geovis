@@ -9,7 +9,8 @@ export const applyFilters = (data: object[], filters: FilterTypes[]) => {
 };
 
 const applyFilter = (dataItem: object, filter: FilterTypes) => {
-    return filter.conditions.filter(condition => {
+    const {condition} = filter;
+    // return filter.conditions.filter(condition => {
         if(condition.type === ConditionsTypes.Equal){
             //@ts-ignore
             return String(dataItem[filter.attribute]) === String(condition.value);
@@ -30,7 +31,7 @@ const applyFilter = (dataItem: object, filter: FilterTypes) => {
             return dataItem[filter.attribute] <= condition?.value;
         }
         return false;
-    }).length === filter.conditions.length;
+    // }).length === filter.conditions.length;
 };
 
 export const setAttributes = (dataItem: object) => {

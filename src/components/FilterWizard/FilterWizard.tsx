@@ -42,6 +42,7 @@ const FilterWizard: React.FC<FilterWizardProps> = (props) => {
     }
 
     const updateData = (data: any) => {
+        console.log(data, stepsData)
         setStepsData(oldData => {
             return {
                 ...oldData,
@@ -89,7 +90,7 @@ const FilterWizard: React.FC<FilterWizardProps> = (props) => {
                 onData={updateData}
                 data={stepsData}
             />,
-            requiredFields: ['conditionType']
+            requiredFields: ['condition']
         },
         {
             title: 'Select filter target',
@@ -97,7 +98,7 @@ const FilterWizard: React.FC<FilterWizardProps> = (props) => {
                 onData={updateData}
                 data={stepsData}
             />,
-            requiredFields: ['target']
+            requiredFields: ['targetType', 'targetValue']
         },
         // ...getDynamicSteps()
     ];
