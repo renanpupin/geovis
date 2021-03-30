@@ -42,7 +42,7 @@ const MarkerList = (props: any) => {
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     // const attributes = useSelector(getAttributes)
 
-    const [cluster] = useState(new MarkerClusterer(props.map, [], {
+    const [cluster] = useState<MarkerClusterer>(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
         averageCenter: true,
         ignoreHidden: true,
@@ -148,10 +148,10 @@ const MarkerList = (props: any) => {
             return (
                 <Marker
                     key={index}
-                    title={String(index)}
+                    id={String(index)}
                     lat={row[latAttributeIndex]}
                     lon={row[lonAttributeIndex]}
-                    // row={row}
+                    row={row}
                     map={props.map}
                     cluster={cluster}
                     enableMarkerCluster={props.enableMarkerCluster}

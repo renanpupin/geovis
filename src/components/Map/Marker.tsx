@@ -1,20 +1,31 @@
 import React, {useEffect, useState} from 'react';
+import MarkerClusterer from "@googlemaps/markerclustererplus";
 import {removeMarker, createMarkerEmpty} from "./markerUtils";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 
-const Marker = (props: any) => {
+export type MarkerPropTypes = {
+    id: string
+    lat: string
+    lon: string
+    row: any
+    map: any
+    cluster: MarkerClusterer
+    enableMarkerCluster: boolean
+}
+
+const Marker = (props: MarkerPropTypes) => {
     const [didMount, setDidMount] = useState(false)
     const [gmapMarker] = useState(createMarkerEmpty({
+        id: props.id,
         lat: props.lat,
         lng: props.lon,
-        title: props.title
     }))
     let infoWindow: any = null;
 
     //TODO: fix info window
-    // gmapMarker.addListener('click', (evt: any) => {
-    //     infoWindow = createInfoWindow(gmapMarker, props.row, props.map)
-    // })
+    gmapMarker.addListener('click', (evt: any) => {
+        infoWindow = createInfoWindow(gmapMarker, props.row, props.map)
+    })
 
     useEffect(() => {
         // console.log("mount", props.enableMarkerCluster)

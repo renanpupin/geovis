@@ -9,7 +9,7 @@ import {VisualizationTypeValues} from "src/redux/data/types";
 const Map: React.FC = () => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
-    const visibleData = useSelector(getVisibleRows)
+    const visibleRows = useSelector(getVisibleRows)
     const visualizations = useSelector(getVisualizations)
     const [map, setMap] = useState(undefined)
 
@@ -18,13 +18,13 @@ const Map: React.FC = () => {
     };
 
     useEffect(() => {
-        if(map && visibleData?.length > 0){
+        if(map && visibleRows?.length > 0){
             let bounds = new google.maps.LatLngBounds();
-            visibleData.map((row: any) => bounds.extend(new google.maps.LatLng(row[latAttributeIndex], row[lonAttributeIndex])))
+            visibleRows.map((row: any) => bounds.extend(new google.maps.LatLng(row[latAttributeIndex], row[lonAttributeIndex])))
             // @ts-ignore
             map.fitBounds(bounds);
         }
-    }, [visibleData, map]);
+    }, [visibleRows, map]);
 
     const getHeatmap = useCallback(() => {
         const hideHeatmap = visualizations.filter(visualization => {
@@ -42,10 +42,10 @@ const Map: React.FC = () => {
         return(
             <Heatmap
                 map={map}
-                data={visibleData.map((row: any) => ({lat: row[latAttributeIndex], lng: row[lonAttributeIndex]}))}
+                data={visibleRows.map((row: any) => ({lat: row[latAttributeIndex], lng: row[lonAttributeIndex]}))}
             />
         )
-    }, [visualizations, visibleData, map]);
+    }, [visualizations, visibleRows, map]);
 
     const enableMarkerCluster = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster).length > 0;
 
@@ -54,8 +54,8 @@ const Map: React.FC = () => {
             return
         }
 
-        return <MarkerList rows={visibleData} map={map} enableMarkerCluster={enableMarkerCluster}/>
-    }, [visibleData, map, enableMarkerCluster]);
+        return <MarkerList rows={visibleRows} map={map} enableMarkerCluster={enableMarkerCluster}/>
+    }, [visibleRows, map, enableMarkerCluster]);
 
     return (
         <MapLoader onLoad={onLoad}>

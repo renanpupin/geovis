@@ -22,7 +22,7 @@ export const createMarker = (markerData: any, map: any, cluster: any) => {
 export const createMarkerEmpty = (markerData: any) => {
     const marker = new window.google.maps.Marker({
         position: {lat: markerData.lat, lng: markerData.lng},
-        title: markerData.title
+        title: markerData.id
     });
 
     return marker;
