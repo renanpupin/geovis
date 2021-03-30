@@ -12544,6 +12544,11 @@ react-load-script@^0.0.6:
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
   integrity sha512-aRGxDGP9VoLxcsaYvKWIW+LRrMOzz2eEcubTS4NvQPPugjk2VvMhow0wWTkSl7RxookomD1MwcP4l5UStg5ShQ==
 
+react-memorystats@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-memorystats/-/react-memorystats-1.1.0.tgz#9ecd9d9d57c0e4ea23d981f86035221e2004ab87"
+  integrity sha512-jCkiVUv+zfWef/7TNVfdKrxl/Yw9QaLJtbbgjk2BiaZDEL6SfDRtW3IiKfAcgZ4CSD2KDLxN9F4GJh3zTgCQSw==
+
 react-modal@^3.12.1:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.12.1.tgz#38c33f70d81c33d02ff1ed115530443a3dc2afd3"

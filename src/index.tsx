@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
+// @ts-ignore
+import MemoryStatsComponent from 'react-memorystats';
 import FPSStats from "src/libs/fps-stats";
 import {ENV} from "src/libs/env";
 import './index.scss';
@@ -14,7 +16,8 @@ ReactDOM.render(
         <Provider store={store}>
             <App/>
         </Provider>
-        {ENV !== 'production' && <FPSStats right={0} left={'auto'} />}
+        {ENV !== 'production' && <FPSStats right={81} left={'auto'} />}
+        {ENV !== 'production' && <MemoryStatsComponent corner="topRight" />}
     </React.StrictMode>,
     document.getElementById('root')
 );

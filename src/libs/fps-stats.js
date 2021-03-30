@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const GRAPH_HEIGHT = 29
-const GRAPH_WIDTH = 70
+const GRAPH_WIDTH = 74
 
 class FPSStats extends Component {
     static propTypes = {
@@ -74,7 +74,7 @@ class FPSStats extends Component {
         const wrapperStyle = {
             zIndex: 999999,
             position: 'fixed',
-            height: '46px',
+            height: '48px',
             width: GRAPH_WIDTH + 6 + 'px',
             padding: '3px',
             backgroundColor: '#000',
