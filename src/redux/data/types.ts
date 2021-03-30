@@ -19,6 +19,13 @@ export enum VisualizationTypeValues {
     Heatmap = 'Heatmap',
     MarkerCluster = 'MarkerCluster',
     Chart = 'Chart'
+    // {label: 'Heatmap', value: 'heatmap'},
+    // {label: 'Cluster', value: 'cluster'},
+    // {label: 'Chart', value: 'chart'},
+    // {label: 'Marker chart', value: 'markerChart'},
+    // {label: 'Convex Hull', value: 'convexHull'},
+    // {label: 'Line', value: 'line'},
+    // {label: 'Euclidian', value: 'euclidian'},
 }
 
 export type VisualizationTypes = {
@@ -36,10 +43,10 @@ export enum ConditionsTypes {
     LessThanOrEqual = 'LessThanOrEqual',
 }
 
-export type FilterConditionsTypes = {
-    type: ConditionsTypes
-    value: string | number | boolean | null | undefined
-}
+// export type FilterConditionsTypes = {
+//     type: ConditionsTypes
+//     value: string | number | boolean | null | undefined
+// }
 
 export type FilterAttributeTypes = {
     name: string
@@ -56,7 +63,7 @@ export type FilterTypes = {
     id: string
     name: string
     attribute: FilterAttributeTypes
-    condition: FilterConditionsTypes
+    condition: ConditionsTypes
     targetType: FilterTargetTypes
     targetValue: string | number | boolean | null | undefined
     visible: boolean

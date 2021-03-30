@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Select from "src/components/Select/Select";
+import {VisualizationTypeValues} from 'src/redux/data/types'
 
 type Step1ContentProps = {
     onData?: (data: any) => void
@@ -13,13 +14,7 @@ const Step1Content: React.FC<Step1ContentProps> = (props) => {
 
     const typeOptions = [
         {label: 'Select an option', value: undefined},
-        {label: 'Heatmap', value: 'heatmap'},
-        {label: 'Cluster', value: 'cluster'},
-        // {label: 'Chart', value: 'chart'},
-        // {label: 'Marker chart', value: 'markerChart'},
-        // {label: 'Convex Hull', value: 'convexHull'},
-        // {label: 'Line', value: 'line'},
-        // {label: 'Euclidian', value: 'euclidian'},
+        ...Object.entries(VisualizationTypeValues).map((item: any) => ({label: item[0], value: item[1]}))
     ];
 
     const onSelectType = (value: string) => {

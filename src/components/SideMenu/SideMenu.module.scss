@@ -17,8 +17,7 @@ $sideMenuSize: 250px;
   min-width: $sideMenuSize;
   @include transition($transition-slow);
   &.toggle{
-    min-width: 0;
-    max-width: 0px;
+    left: -$sideMenuSize;
   }
 }
 

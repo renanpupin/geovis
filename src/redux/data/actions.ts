@@ -23,10 +23,10 @@ export const loadData = (data: object) => ({
 //     }
 // });
 
-export const addVisualization = (type: VisualizationTypeValues) => ({
+export const addVisualization = (visualization: Omit<VisualizationTypes, 'id' | 'visible'>) => ({
     type: ADD_VISUALIZATION,
     payload: {
-        type
+        visualization
     }
 });
 
@@ -45,7 +45,7 @@ export const toggleVisualization = (id: string, toggle: boolean) => ({
     }
 });
 
-export const addFilter = (filter: Omit<FilterTypes, 'id'>) => ({
+export const addFilter = (filter: Omit<FilterTypes, 'id' | 'visible'>) => ({
     type: ADD_FILTER,
     payload: {
         filter

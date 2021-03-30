@@ -58,9 +58,9 @@ export default function(state = initialState, action: any) {
         //     };
         // }
         case ADD_VISUALIZATION: {
-            const { type } = action.payload;
+            const { visualization } = action.payload;
 
-            const id: string = `${type}-${state.visualizations.filter(item => item.type === type).length+1}`
+            const id: string = String(state.visualizations.length+1)
 
             return {
                 ...state,
@@ -68,7 +68,7 @@ export default function(state = initialState, action: any) {
                     ...state.visualizations,
                     {
                         id,
-                        type,
+                        ...visualization,
                         visible: true
                     }
                 ]
