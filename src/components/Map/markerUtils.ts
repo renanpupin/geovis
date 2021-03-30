@@ -1,30 +1,11 @@
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
-export const createMarker = (markerData: any, map: any, cluster: any) => {
-    if(cluster){
-        const mapMarker = new window.google.maps.Marker({
-            position: {lat: markerData.lat, lng: markerData.lng},
-            // map: map,
-            title: markerData.title
-        });
-        cluster.addMarker(mapMarker)
-        // cluster.addMarkers([])
-        return mapMarker
-    }else{
-        const mapMarker = new window.google.maps.Marker({
-            position: {lat: markerData.lat, lng: markerData.lng},
-            map: map,
-            title: markerData.title
-        });
-        return mapMarker
-    }
-}
 
 export const createMarkerEmpty = (markerData: any) => {
     const marker = new window.google.maps.Marker({
+        title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
-        title: markerData.id
+        // map: map,
     });
-
     return marker;
 }
 

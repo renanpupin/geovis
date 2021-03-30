@@ -1,9 +1,9 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import Marker from "src/components/Map/Marker";
-import Img from "src/assets/img/logo.png";
 import {useSelector} from "react-redux";
-import {getLatAttributeIndex, getLonAttributeIndex} from "src/redux/data/selectors";
+import {getLatAttributeIndex, getLonAttributeIndex, getAttributes, getVisibleRows} from "src/redux/data/selectors";
+import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -40,7 +40,8 @@ import {getLatAttributeIndex, getLonAttributeIndex} from "src/redux/data/selecto
 const MarkerList = (props: any) => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
-    // const attributes = useSelector(getAttributes)
+    const attributes = useSelector(getAttributes)
+    const visibleRows = useSelector(getVisibleRows)
 
     const [cluster] = useState<MarkerClusterer>(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -119,25 +120,33 @@ const MarkerList = (props: any) => {
     // });
 
     useEffect(() => {
-        let infowindow: any;
+        let infoWindow: any;
+
         const clusterClickEventListener = google.maps.event.addListener(cluster, 'clusterclick', function (cluster) {
-            let markers = cluster.getMarkers();
-            console.log("markers", markers);
+            const gmapMarkers = cluster.getMarkers();
+            console.log("markers", gmapMarkers);
+            console.log("cluster", cluster);
 
-            infowindow = new window.google.maps.InfoWindow();
-            infowindow.setPosition(cluster.getCenter());
-            infowindow.setContent("adsdad");
-            infowindow.open(props.map);
+            const ids = gmapMarkers.map((item: any) => Number(item.title));
+            const rows = visibleRows.filter((item: any, index: number) => ids.includes(index));
+
+            infoWindow?.close();
+            // if(!infoWindow){
+                infoWindow = createInfoWindow(null, cluster.getCenter(), 'Cluster', rows, props.map, attributes, () => {
+                    infoWindow = null;
+                })
+            // }
         });
-
+        //
         const zoomChangedEventListener = google.maps.event.addListener(props.map, 'zoom_changed', function () {
-            // infowindow?.close();
+            infoWindow?.close();
+            infoWindow = null;
         });
 
         return () => {
             google.maps.event.removeListener(clusterClickEventListener);
             google.maps.event.removeListener(zoomChangedEventListener);
-            infowindow?.close();
+            infoWindow?.close();
             cluster.clearMarkers();
             cluster.setMap(null);
         };
@@ -152,6 +161,7 @@ const MarkerList = (props: any) => {
                     lat={row[latAttributeIndex]}
                     lon={row[lonAttributeIndex]}
                     row={row}
+                    attributes={attributes}
                     map={props.map}
                     cluster={cluster}
                     enableMarkerCluster={props.enableMarkerCluster}

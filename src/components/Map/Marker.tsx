@@ -9,6 +9,7 @@ export type MarkerPropTypes = {
     lon: string
     row: any
     map: any
+    attributes: any
     cluster: MarkerClusterer
     enableMarkerCluster: boolean
 }
@@ -21,27 +22,23 @@ const Marker = (props: MarkerPropTypes) => {
         lng: props.lon,
     }))
     let infoWindow: any = null;
-
-    //TODO: fix info window
-    gmapMarker.addListener('click', (evt: any) => {
-        infoWindow = createInfoWindow(gmapMarker, props.row, props.map)
-    })
+    let clusterInfoWindow: any = null;
 
     useEffect(() => {
         // console.log("mount", props.enableMarkerCluster)
         if (props.enableMarkerCluster) {
             props.cluster.addMarker(gmapMarker);
         } else {
-            gmapMarker.setMap(props.map)
+            gmapMarker.setMap(props.map);
         }
-        // return () => {
-        //     console.log("unmount", props.enableMarkerCluster)
-        //     if(props.enableMarkerCluster){
-        //         props.cluster.removeMarker(gmapMarker);
-        //     }else{
-        //         gmapMarker.setMap(null)
-        //     }
-        // }
+
+        gmapMarker.addListener('click', (evt: any) => {
+            if(!infoWindow){
+                infoWindow = createInfoWindow(gmapMarker, null, props.id, [props.row], props.map, props.attributes, () => {
+                    infoWindow = null;
+                })
+            }
+        });
     }, []);
 
     useEffect(() => {
@@ -61,8 +58,9 @@ const Marker = (props: MarkerPropTypes) => {
             removeMarker(gmapMarker, props.enableMarkerCluster, props.cluster)
             // console.log("remove", infoWindow)
             infoWindow?.close()
+            clusterInfoWindow?.close()
         };
-    }, [props.cluster, props.enableMarkerCluster, infoWindow]);
+    }, [props.cluster, props.enableMarkerCluster, infoWindow, clusterInfoWindow]);
 
     return null;
 }
