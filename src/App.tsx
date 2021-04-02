@@ -7,9 +7,13 @@ import Chart from 'src/components/Chart/Chart'
 import FilterList from "src/components/FilterList/FilterList";
 import LayersList from "src/components/LayersList/LayersList";
 import SideMenu from "src/components/SideMenu/SideMenu";
+import {useSelector} from "react-redux";
+import {getVisualizations} from "src/redux/data/selectors";
+import {VisualizationTypeValues} from 'src/redux/data/types'
 
 const App: React.FC = () => {
     const [viewMode, setViewMode] = useState('map')
+    const visualizations = useSelector(getVisualizations)
     return (
         <div>
             {viewMode === 'map' ? <Map/> : <Table/>}
@@ -27,7 +31,7 @@ const App: React.FC = () => {
             {/*    </div>*/}
             {/*</Draggable>*/}
 
-            {/*<Chart/>*/}
+            {visualizations.filter((item: any) => item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (<Chart key={index} index={index} data={item}/>))}
 
             <SideMenu
                 items={[

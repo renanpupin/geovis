@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import Button from 'src/components/Button/Button'
 import Step1Content from 'src/components/VisualizationWizard/Steps/Step1Content'
-import Step2Content from 'src/components/VisualizationWizard/Steps/Step2Content'
+import StepChartType from 'src/components/VisualizationWizard/Steps/StepChartType'
+import StepChartAttribute from 'src/components/VisualizationWizard/Steps/StepChartAttribute'
 
 import styles from "./Wizard.module.scss"
 import Modal from "src/components/Modal/Modal";
 import StepTemplate from "src/components/VisualizationWizard/StepTemplate";
+import {VisualizationTypeValues} from "src/redux/data/types";
 
 type VisualizationWizardProps = {
     // steps: number
@@ -49,7 +51,28 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
     }
 
     const getDynamicSteps = () => {
-        // if(stepsData?.type === 'line'){
+        if(stepsData?.type === VisualizationTypeValues.Chart){
+            return [
+                {
+                    title: 'Select chart type',
+                    component: <StepChartType
+                        onData={updateData}
+                        data={stepsData}
+                    />,
+                    requiredFields: ['chartType']
+                },
+                {
+                    title: 'Select chart attribute',
+                    component: <StepChartAttribute
+                        onData={updateData}
+                        data={stepsData}
+                    />,
+                    requiredFields: ['chartAttribute']
+                }
+            ]
+        }
+
+        // else if(stepsData?.type === 'line'){
         //     return [{
         //         title: 'Select spatial attributes',
         //         component: <Step2Content

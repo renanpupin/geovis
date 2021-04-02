@@ -20,3 +20,5 @@ export const getVisualizations = (store: RootState): VisualizationTypes[] => get
 export const getFilters = (store: RootState): FilterTypes[] => getDataState(store)?.filters
 
 export const getAttributes = (store: RootState): AttributeTypes[] => getDataState(store)?.attributes
+
+export const getNumericAttributes = (store: RootState): AttributeTypes[] => getAttributes(store).filter((attribute: AttributeTypes) => attribute.type === "number")
