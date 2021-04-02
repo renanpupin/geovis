@@ -46,13 +46,13 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
                 options={{
                     title: props.data.title ?? `Chart ${props.index}`,
                     chartArea: { width: '50%' },
-                    hAxis: {
-                        title: 'Total Population',
-                        minValue: 0,
-                    },
-                    vAxis: {
-                        title: 'City',
-                    },
+                    // hAxis: {
+                    //     title: 'Total Population',
+                    //     minValue: 0,
+                    // },
+                    // vAxis: {
+                    //     title: 'City',
+                    // },
                 }}
                 legendToggle
             />
