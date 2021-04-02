@@ -9,15 +9,17 @@ import styles from './Chart.module.scss';
 // https://developers.google.com/chart/interactive/docs/printing
 
 export type ChartPropTypes = {
-    data: any
+    visData: any
     index: number
 }
 
 const Chart: React.FC<ChartPropTypes> = (props) => {
     console.log("props", props)
-    const visibleData = useSelector(getVisibleRows)
+    const { visData } = props
+    const visibleRows = useSelector(getVisibleRows)
     const attributes = useSelector(getAttributes)
-    console.log("visibleData", visibleData)
+    console.log("visData", visData)
+    console.log("visibleRows", visibleRows)
     console.log("attributes", attributes)
 
     // chart = {
@@ -27,24 +29,59 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
     // }
     //hAxis = <field> or id, vAxis = ['numeric1', numeric2]
 
+    const labelAttributeIndex = attributes.findIndex(item => item.name === visData.chartLabelAttribute)
+    const attributeIndex = attributes.findIndex(item => item.name === visData.chartAttribute)
+
+    let data = [
+        [visData.chartLabelAttribute, visData.chartAttribute],
+        ...visibleRows.map((item: any, index: any) => [item[labelAttributeIndex], item[attributeIndex]])
+    ]
+    console.log("chart dataa", data)
+        // data = [
+        // ['City', '2010 Population', '2000 Population'],
+        //     ['New York City, NY', 8175000, 8008000],
+        //     ['Los Angeles, CA', 3792000, 3694000],
+        //     ['Chicago, IL', 2695000, 2896000],
+        //     ['Houston, TX', 2099000, 1953000],
+        //     ['Philadelphia, PA', 1526000, 1517000],
+        // ]
+
+    const normalizedChartType = () => {
+        switch (visData.chartType){
+            case "line": {
+                return "LineChart";
+            }
+            case "column": {
+                return "ColumnChart";
+            }
+            case "area": {
+                return "AreaChart";
+            }
+            case "histogram": {
+                return "Histogram";
+            }
+            case "pie": {
+                return "PieChart";
+            }
+            case "scatter": {
+                return "ScatterChart";
+            }
+            default: {
+                return "LineChart";
+            }
+        }
+    }
+
     return(
         <Draggable className={styles.chart}>
             <GoogleCharts
                 width={400}
                 height={300}
-                chartType="ColumnChart"
-                // chartType="LineChart"
+                chartType={normalizedChartType()}
                 loader={<div>Loading Chart</div>}
-                data={[
-                    ['City', '2010 Population', '2000 Population'],
-                    ['New York City, NY', 8175000, 8008000],
-                    ['Los Angeles, CA', 3792000, 3694000],
-                    ['Chicago, IL', 2695000, 2896000],
-                    ['Houston, TX', 2099000, 1953000],
-                    ['Philadelphia, PA', 1526000, 1517000],
-                ]}
+                data={data}
                 options={{
-                    title: props.data.title ?? `Chart ${props.index}`,
+                    title: props.visData.title ?? `Chart ${props.index}`,
                     chartArea: { width: '50%' },
                     // hAxis: {
                     //     title: 'Total Population',

@@ -31,6 +31,9 @@ export enum VisualizationTypeValues {
 export type VisualizationTypes = {
     id: string
     type: VisualizationTypeValues
+    chartType?: any
+    chartLabelAttribute?: any
+    chartAttribute?: any
     visible?: boolean
 }
 
