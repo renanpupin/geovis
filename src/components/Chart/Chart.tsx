@@ -46,7 +46,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
         //     ['Philadelphia, PA', 1526000, 1517000],
         // ]
 
-    const normalizedChartType = () => {
+    const getNormalizedChartType = () => {
         switch (visData.chartType){
             case "line": {
                 return "LineChart";
@@ -67,17 +67,25 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
                 return "ScatterChart";
             }
             default: {
-                return "LineChart";
+                return visData.chartType;
             }
         }
     }
 
+    const getParallel = () => {
+        return(
+            <div>parallel</div>
+        )
+    }
+
+    const normalizedChartType = getNormalizedChartType()
+
     return(
         <Draggable className={styles.chart}>
-            <GoogleCharts
+            {normalizedChartType === "parallel" ? getParallel() :<GoogleCharts
                 width={400}
                 height={300}
-                chartType={normalizedChartType()}
+                chartType={normalizedChartType}
                 loader={<div>Loading Chart</div>}
                 data={data}
                 options={{
@@ -92,7 +100,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
                     // },
                 }}
                 legendToggle
-            />
+            />}
         </Draggable>
     )
 }

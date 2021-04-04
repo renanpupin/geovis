@@ -25,6 +25,7 @@ const StepChartType: React.FC<StepChartTypeProps> = (props) => {
         {label: 'Pie', value: 'pie'},   //TODO: count ocurrences
         {label: 'Scatter', value: 'scatter'},   //TODO: count ocurrences
         {label: 'Histogram', value: 'histogram'},
+        {label: 'Parallel Coordinates', value: 'parallel'},
     ];
 
     return (
