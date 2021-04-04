@@ -75,7 +75,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
 
     const getParallel = () => {
         return(
-            <ParallelCoordinates/>
+            <ParallelCoordinates visData={visData}/>
         )
     }
 

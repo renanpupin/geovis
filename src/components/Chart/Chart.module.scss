@@ -3,12 +3,12 @@
 
 .chart{
   min-width: 300px;
-  max-width: 500px;
+  max-width: 750px;
   min-height: 75px;
   padding: 10px;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   @include border-radius(6px);
   @include box-shadow($shadow-1);
