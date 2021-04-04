@@ -1,5 +1,5 @@
 import React from "react";
-import styles from 'src/Menu/Menu.module.scss'
+import styles from 'src/components/Menu/Menu.module.scss'
 
 const DropdownItem = (props: any) => {
     const {children, onPress} = props

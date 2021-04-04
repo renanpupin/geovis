@@ -1,6 +1,5 @@
 import React from "react";
-import DropdownItem from 'src/Menu/DropdownItem'
-import styles from 'src/Menu/Menu.module.scss'
+import styles from 'src/components/Menu/Menu.module.scss'
 
 const DropdownMenu = (props: any) => {
     const {children} = props

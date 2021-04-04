@@ -1,7 +1,7 @@
 import React, {useEffect,  useState} from 'react';
 import Map from 'src/components/Map/Map'
-import Table from './Table/Table'
-import Menu from './Menu/Menu'
+import Table from 'src/components/Table/Table'
+import Menu from 'src/components/Menu/Menu'
 import Draggable from 'src/components/Draggable/Draggable'
 import Chart from 'src/components/Chart/Chart'
 import FilterList from "src/components/FilterList/FilterList";
