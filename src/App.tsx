@@ -31,7 +31,7 @@ const App: React.FC = () => {
             {/*    </div>*/}
             {/*</Draggable>*/}
 
-            {visualizations.filter((item: any) => item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (<Chart key={index} index={index} visData={item}/>))}
+            {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (<Chart key={index} index={index} visData={item}/>))}
 
             <SideMenu
                 items={[
