@@ -25,6 +25,10 @@ const fastLoadFilter: Omit<FilterTypes, 'id' | 'visible'> = {
 const fastLoadMarkerClusterVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerCluster
 };
+const fastLoadParallelVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.Chart,
+    chartType: "parallel"
+};
 
 // const markers = [
 //     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -75,6 +79,7 @@ const Menu: React.FC = (props: any) => {
             dispatch(loadData(fastLoadData))
             dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
+            dispatch(addVisualization(fastLoadParallelVis))
         }
 
         return () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {getAttributes, getVisibleRows} from "src/redux/data/selectors";
 
+import ParallelCoordinates from "src/components/ParallelCoordinates/ParallelCoordinates";
 import Draggable from "src/components/Draggable/Draggable";
 import GoogleCharts from "react-google-charts";
 import styles from './Chart.module.scss';
@@ -74,7 +75,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
 
     const getParallel = () => {
         return(
-            <div>parallel</div>
+            <ParallelCoordinates/>
         )
     }
 
