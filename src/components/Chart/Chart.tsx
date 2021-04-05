@@ -15,13 +15,13 @@ export type ChartPropTypes = {
 }
 
 const Chart: React.FC<ChartPropTypes> = (props) => {
-    console.log("props", props)
+    // console.log("props", props)
     const { visData } = props
     const visibleRows = useSelector(getVisibleRows)
     const attributes = useSelector(getAttributes)
     console.log("visData", visData)
-    console.log("visibleRows", visibleRows)
-    console.log("attributes", attributes)
+    // console.log("visibleRows", visibleRows)
+    // console.log("attributes", attributes)
 
     // chart = {
     //     title: string
@@ -37,7 +37,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
         [visData.chartLabelAttribute, visData.chartAttribute],
         ...visibleRows.map((item: any, index: any) => [item[labelAttributeIndex], item[attributeIndex]])
     ]
-    console.log("chart dataa", data)
+    // console.log("chart dataa", data)
         // data = [
         // ['City', '2010 Population', '2000 Population'],
         //     ['New York City, NY', 8175000, 8008000],

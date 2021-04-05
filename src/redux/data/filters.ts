@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {getDataState} from "src/redux/data/selectors";
 
 export const applyFilters = (data: object[], filters: FilterTypes[], attributes: AttributeTypes[]) => {
-    console.log("applyFilters", filters)
+    // console.log("applyFilters", filters)
 
     return data.filter((dataItem: object) => {
         return filters.filter(itemFilter => {
