@@ -19,31 +19,31 @@ export const applyFilters = (data: object[], filters: FilterTypes[], attributes:
 const applyFilter = (dataItem: object, filter: FilterTypes, attributeIndex: number) => {
     const {condition, targetValue}: any = filter;
 
-    if(!filter.visible){
+    if (!filter.visible) {
         return true;
     }
 
     // return filter.conditions.filter(condition => {
-        if(condition === ConditionsTypes.Equal){
-            //@ts-ignore
-            return String(dataItem[attributeIndex]) === String(targetValue);
-        }else if(condition === ConditionsTypes.Different){
-            //@ts-ignore
-            return String(dataItem[attributeIndex]) !== String(targetValue);
-        }else if(condition === ConditionsTypes.MoreThan){
-            //@ts-ignore
-            return dataItem[attributeIndex] > targetValue;
-        }else if(condition === ConditionsTypes.MoreThanOrEqual){
-            //@ts-ignore
-            return dataItem[attributeIndex] >= targetValue;
-        }else if(condition === ConditionsTypes.LessThan){
-            //@ts-ignore
-            return dataItem[attributeIndex] < targetValue;
-        }else if(condition === ConditionsTypes.LessThanOrEqual){
-            //@ts-ignore
-            return dataItem[attributeIndex] <= targetValue;
-        }
-        return false;
+    if (condition === ConditionsTypes.Equal) {
+        //@ts-ignore
+        return String(dataItem[attributeIndex]) === String(targetValue);
+    } else if (condition === ConditionsTypes.Different) {
+        //@ts-ignore
+        return String(dataItem[attributeIndex]) !== String(targetValue);
+    } else if (condition === ConditionsTypes.MoreThan) {
+        //@ts-ignore
+        return dataItem[attributeIndex] > targetValue;
+    } else if (condition === ConditionsTypes.MoreThanOrEqual) {
+        //@ts-ignore
+        return dataItem[attributeIndex] >= targetValue;
+    } else if (condition === ConditionsTypes.LessThan) {
+        //@ts-ignore
+        return dataItem[attributeIndex] < targetValue;
+    } else if (condition === ConditionsTypes.LessThanOrEqual) {
+        //@ts-ignore
+        return dataItem[attributeIndex] <= targetValue;
+    }
+    return false;
     // }).length === filter.conditions.length;
 };
 
@@ -52,7 +52,7 @@ export const setAttributes = (dataItem: object) => {
     return keys.map((key, index) => {
         return {
             name: key,
-        // @ts-ignore
+            // @ts-ignore
             type: getAttributeType(dataItem[key])
         }
     });
@@ -60,7 +60,7 @@ export const setAttributes = (dataItem: object) => {
 
 export const getAttributeType = (attribute: any) => {
     let attributeType;
-    switch (typeof attribute){
+    switch (typeof attribute) {
         case "boolean": {
             attributeType = "boolean";
             break;
@@ -99,16 +99,56 @@ export const getAttributeType = (attribute: any) => {
 export const countAttributeOcurrences = (data: object[], attributeIndex: number) => {
     let result = {};
 
-    for(let item of data){
+    for (let item of data) {
         // @ts-ignore
-        if(result[item[attributeIndex]]){
-        // @ts-ignore
+        if (result[item[attributeIndex]]) {
+            // @ts-ignore
             result[item[attributeIndex]]++;
-        }else{
-        // @ts-ignore
+        } else {
+            // @ts-ignore
             result[item[attributeIndex]] = 1;
         }
     }
 
     return [Object.keys(result), Object.values(result)];
+}
+
+export const calculateAverageAttributeValue = (data: object[], attributeIndex: number) => {
+    if (data.length === 0) {
+        return 0;
+    }
+
+    let sum: number = 0;
+    for (let item of data) {
+        // @ts-ignore
+        sum += result[item[attributeIndex]]
+    }
+
+    return sum / data.length
+}
+
+export const calculateMinAttributeValue = (data: object[], attributeIndex: number) => {
+    let min;
+    for (let item of data) {
+        // @ts-ignore
+        if (!min || item[attributeIndex] < min) {
+            // @ts-ignore
+            min = item[attributeIndex];
+        }
+    }
+
+    return min;
+}
+
+export const calculateMaxAttributeValue = (data: object[], attributeIndex: number) => {
+    let max;
+    for (let item of data) {
+        // @ts-ignore
+        if (!min || item[attributeIndex] < min) {
+            // @ts-ignore
+            max = item[attributeIndex];
+        }
+    }
+
+    return max;
 }
