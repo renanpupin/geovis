@@ -95,3 +95,20 @@ export const getAttributeType = (attribute: any) => {
 //     //@ts-ignore
 //     return data.map((item: object) => item[attribute])
 // }
+
+export const countAttributeOcurrences = (data: object[], attributeIndex: number) => {
+    let result = {};
+
+    for(let item of data){
+        // @ts-ignore
+        if(result[item[attributeIndex]]){
+        // @ts-ignore
+            result[item[attributeIndex]]++;
+        }else{
+        // @ts-ignore
+            result[item[attributeIndex]] = 1;
+        }
+    }
+
+    return [Object.keys(result), Object.values(result)];
+}

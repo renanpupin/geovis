@@ -14,14 +14,18 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
     const attributes = useSelector(getAttributes)
     const numericAttributes = useSelector(getNumericAttributes)
     const [chartLabelAttribute, setChartLabelAttribute] = useState<string | undefined>(data?.chartLabelAttribute ?? undefined);
-    const [chartAttribute, setChartAttribute] = useState<string | undefined>(data?.chartAttribute ?? undefined);
+    const [chartAttributeX, setChartAttributeX] = useState<string | undefined>(data?.chartAttributeX ?? undefined);
+    const [chartAttributeY, setChartAttributeY] = useState<string | undefined>(data?.chartAttributeY ?? undefined);
+    const [hasToGroup, setHasToGroup] = useState<boolean>(true);
 
     useEffect(() => {
         onData?.({
-            chartAttribute,
             chartLabelAttribute,
+            chartAttributeX,
+            chartAttributeY,
+            hasToGroup,
         })
-    }, [chartAttribute, chartLabelAttribute])
+    }, [chartAttributeX, chartAttributeY, chartLabelAttribute, hasToGroup])
 
     const attributesOptions = [
         {label: 'Select an option', value: undefined},
@@ -41,7 +45,7 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
 
     return (
         <div>
-            <div style={{marginBottom: 15}}>
+            {data.chartType !== "scatter" && <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
                     <label>Select the chart label attribute:</label>
                 </div>
@@ -52,20 +56,47 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
                     options={attributesOptions}
                     onChange={(value) => setChartLabelAttribute(value)}
                 />
-            </div>
+            </div>}
 
-            <div style={{marginBottom: 15}}>
+            {data.chartType === "scatter" && <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
-                    <label>Select the chart numeric attribute:</label>
+                    <label>Select the chart numeric attribute{data.chartType === "scatter" ? ' x' : ''}:</label>
                 </div>
                 <Select
-                    label={'Chart numeric attribute'}
-                    placeholder={'Select the chart numeric attribute'}
-                    value={chartAttribute}
+                    label={'Chart numeric attribute'+(data.chartType === "scatter" ? ' x' : '')}
+                    placeholder={'Select the chart numeric attribute'+(data.chartType === "scatter" ? ' x' : '')}
+                    value={chartAttributeX}
                     options={numericAttributesOptions}
-                    onChange={(value) => setChartAttribute(value)}
+                    onChange={(value) => setChartAttributeX(value)}
                 />
-            </div>
+            </div>}
+
+            {(data.chartType !== "pie" || (data.chartType === "pie" && !data.hasToGroup)) && <div style={{marginBottom: 15}}>
+                <div style={{marginBottom: 5}}>
+                    <label>Select the chart numeric attribute y:</label>
+                </div>
+                <Select
+                    label={'Chart numeric attribute y'}
+                    placeholder={'Select the chart numeric attribute y'}
+                    value={chartAttributeY}
+                    options={numericAttributesOptions}
+                    onChange={(value) => setChartAttributeY(value)}
+                />
+            </div>}
+
+            {data.chartType === "pie" && <div style={{marginBottom: 15}}>
+                <div style={{marginBottom: 5}}>
+                    <label>Group attributes:</label>
+                </div>
+                <div>
+                    <input
+                        type={'checkbox'}
+                        checked={hasToGroup}
+                        onChange={(event: any) => setHasToGroup(event.target.checked)}
+                    />
+                    <span style={{marginLeft: 5}}>Has to group?</span>
+                </div>
+            </div>}
         </div>
     )
 }

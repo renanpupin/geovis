@@ -16,8 +16,13 @@ type VisualizationWizardProps = {
 }
 
 type stepDataProps = {
-    type?: any
-    attribute?: any
+    type?: string
+    attribute?: string
+    chartType?: string
+    chartLabelAttribute?: string
+    chartAttributeX?: string
+    chartAttributeY?: string
+    hasToGroup?: boolean
 }
 
 const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
@@ -51,6 +56,17 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
     }
 
     const getDynamicSteps = () => {
+
+        const getRequiredByChartType = () => {
+            if(stepsData.chartType === 'scatter'){
+                return ['chartAttributeX', 'chartAttributeY']
+            }else if(stepsData.chartType === 'pie'){
+                return stepsData.hasToGroup ? ['chartLabelAttribute', 'hasToGroup'] : ['chartLabelAttribute', 'chartAttributeY', 'hasToGroup']
+            }else{
+                return ['chartLabelAttribute', 'chartAttributeY']
+            }
+        }
+
         if(stepsData?.type === VisualizationTypeValues.Chart){
             return [
                 {
@@ -67,7 +83,7 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
                         onData={updateData}
                         data={stepsData}
                     />,
-                    requiredFields: ['chartAttribute']
+                    requiredFields: getRequiredByChartType()
                 }
             ]
         }

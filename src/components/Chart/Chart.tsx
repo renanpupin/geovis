@@ -6,6 +6,7 @@ import ParallelCoordinates from "src/components/ParallelCoordinates/ParallelCoor
 import Draggable from "src/components/Draggable/Draggable";
 import GoogleCharts from "react-google-charts";
 import styles from './Chart.module.scss';
+import {countAttributeOcurrences} from 'src/redux/data/filters'
 
 // https://developers.google.com/chart/interactive/docs/printing
 
@@ -31,21 +32,33 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
     //hAxis = <field> or id, vAxis = ['numeric1', numeric2]
 
     const labelAttributeIndex = attributes.findIndex(item => item.name === visData.chartLabelAttribute)
-    const attributeIndex = attributes.findIndex(item => item.name === visData.chartAttribute)
+    const attributeIndexX = attributes.findIndex(item => item.name === visData.chartAttributeX)
+    const attributeIndexY = attributes.findIndex(item => item.name === visData.chartAttributeY)
+
+    const getDataByChartType = () => {
+        if(visData.chartType === 'pie' && visData.hasToGroup){
+            const ocurrences = countAttributeOcurrences(visibleRows, labelAttributeIndex);
+            return ocurrences[0].map((item: any, index: any) => (
+                [
+                    item,
+                    ocurrences[1][index]
+                ]
+            ))
+        }else{
+            return visibleRows.map((item: any, index: any) => (
+                    [
+                        labelAttributeIndex !== -1 ? item[labelAttributeIndex] : item[attributeIndexX],
+                        item[attributeIndexY]
+                    ]
+                ))
+            }
+    }
 
     let data = [
-        [visData.chartLabelAttribute, visData.chartAttribute],
-        ...visibleRows.map((item: any, index: any) => [item[labelAttributeIndex], item[attributeIndex]])
+        [visData.chartLabelAttribute || visData.chartAttributeX, visData.chartAttributeY ?? "Ocurrences"],
+        ...getDataByChartType()
     ]
-    // console.log("chart dataa", data)
-        // data = [
-        // ['City', '2010 Population', '2000 Population'],
-        //     ['New York City, NY', 8175000, 8008000],
-        //     ['Los Angeles, CA', 3792000, 3694000],
-        //     ['Chicago, IL', 2695000, 2896000],
-        //     ['Houston, TX', 2099000, 1953000],
-        //     ['Philadelphia, PA', 1526000, 1517000],
-        // ]
+    console.log("chart data", data)
 
     const getNormalizedChartType = () => {
         switch (visData.chartType){
