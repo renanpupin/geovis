@@ -20,8 +20,8 @@ type MarkerChartProps = {
 const MarkerChart = (props: MarkerChartProps) => {
     const {map, data, type} = props
 
-    const getColorForNormalizedValue = (normalizedValue: number) => {
-        console.log("getColorForNormalizedValue", normalizedValue);
+    const getHeatmapColorForNormalizedValue = (normalizedValue: number) => {
+        console.log("getHeatmapColorForNormalizedValue", normalizedValue);
         if(normalizedValue <= 20){
             return "0000FF";
         }else if(normalizedValue > 20 && normalizedValue <= 40){
@@ -57,7 +57,7 @@ const MarkerChart = (props: MarkerChartProps) => {
 
                 values += normalizedValue;
                 legends += String(attributesMinMaxValues[index].name);
-                colors += getColorForNormalizedValue(normalizedValue);
+                colors += getHeatmapColorForNormalizedValue(normalizedValue);
                 avg += normalizedValue;
 
                 if(index !== attributesMinMaxValues.length-1){
@@ -94,7 +94,7 @@ const MarkerChart = (props: MarkerChartProps) => {
             width = 65*scale;
             height = 35*scale;
         }else if(type === "line"){
-            let normalizedColor = getColorForNormalizedValue(result.avg);
+            let normalizedColor = getHeatmapColorForNormalizedValue(result.avg);
 
             url += `&chm=B,${normalizedColor},0,0,0`;   //&chm=a,990066,0,0.0,9.0|o,FF0000,0,1.0,25
             colors = normalizedColor;
