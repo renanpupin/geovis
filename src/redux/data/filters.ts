@@ -1,4 +1,4 @@
-import {ConditionsTypes, FilterTypes, AttributeTypes} from 'src/redux/data/types'
+import {ConditionsTypes, FilterTypes, AttributeTypes, AttributeStatsType} from 'src/redux/data/types'
 
 export const applyFilters = (data: object[], filters: FilterTypes[], attributes: AttributeTypes[]) => {
     // console.log("applyFilters", filters)
@@ -119,7 +119,7 @@ export const calculateAverageAttributeValue = (data: object[], attributeIndex: n
     let sum: number = 0;
     for (let item of data) {
         // @ts-ignore
-        sum += result[item[attributeIndex]]
+        sum += item[attributeIndex]
     }
 
     return sum / data.length
@@ -142,11 +142,27 @@ export const calculateMaxAttributeValue = (data: object[], attributeIndex: numbe
     let max;
     for (let item of data) {
         // @ts-ignore
-        if (!min || item[attributeIndex] < min) {
+        if (!max || item[attributeIndex] > max) {
             // @ts-ignore
             max = item[attributeIndex];
         }
     }
 
     return max;
+}
+
+export const getAttributesStats = (data: object[], attributes: any): AttributeStatsType[] => {
+    let stats: AttributeStatsType[] = [];
+    attributes.forEach((attribute: any, index: number) => {
+        if(attribute.type === "number"){
+            return stats.push({
+                attribute: attribute.name,
+                min: calculateMinAttributeValue(data, index),
+                max: calculateMaxAttributeValue(data, index),
+                avg: calculateAverageAttributeValue(data, index),
+            });
+        }
+    })
+
+    return stats;
 }

@@ -12,13 +12,12 @@ import {VisualizationTypeValues} from "src/redux/data/types";
 type MarkerChartTypeProps = 'line' | 'bar' | 'pie'
 
 type MarkerChartProps = {
-    map: any
     data: any
     type: MarkerChartTypeProps
 }
 
 const MarkerChart = (props: MarkerChartProps) => {
-    const {map, data, type} = props
+    const {data, type} = props
 
     const getHeatmapColorForNormalizedValue = (normalizedValue: number) => {
         console.log("getHeatmapColorForNormalizedValue", normalizedValue);
@@ -35,6 +34,11 @@ const MarkerChart = (props: MarkerChartProps) => {
         }
     };
 
+    const getNormalizedValue = (value: number, min: number, max: number) => {
+        console.log("getNormalizedValue", value);
+        return 100 * ((value-min) / (max-min))
+    };
+
     const getScaleForNormalizedValue = (normalizedValue: any) => {
         console.log("getScaleForNormalizedValue", normalizedValue);
 
@@ -42,29 +46,26 @@ const MarkerChart = (props: MarkerChartProps) => {
     };
 
     const processChartData = (features: any, attributesMinMaxValues: any, marker: any, type: any) => {
-
         let values = "";
         let legends = "";
         let colors = "";
 
-        var markerFeature = features.findFeatureById(marker.id);
-        var avg = 0;
+        let markerFeature = features.findFeatureById(marker.id);
+        let avg = 0;
 
-        if (markerFeature.visible === true){
-            for(var index = 0; index < attributesMinMaxValues.length; index++){
+        for(let index = 0; index < attributesMinMaxValues.length; index++){
 
-                var normalizedValue = 100 * ((markerFeature.getAttributeValueByName(attributesMinMaxValues[index].name) - attributesMinMaxValues[index].min) / (attributesMinMaxValues[index].max - attributesMinMaxValues[index].min));
+            let normalizedValue = 100 * ((markerFeature.getAttributeValueByName(attributesMinMaxValues[index].name) - attributesMinMaxValues[index].min) / (attributesMinMaxValues[index].max - attributesMinMaxValues[index].min));
 
-                values += normalizedValue;
-                legends += String(attributesMinMaxValues[index].name);
-                colors += getHeatmapColorForNormalizedValue(normalizedValue);
-                avg += normalizedValue;
+            values += normalizedValue;
+            legends += String(attributesMinMaxValues[index].name);
+            colors += getHeatmapColorForNormalizedValue(normalizedValue);
+            avg += normalizedValue;
 
-                if(index !== attributesMinMaxValues.length-1){
-                    values += ",";
-                    legends += "|";
-                    colors += type === "bar" ? "|" : ",";
-                }
+            if(index !== attributesMinMaxValues.length-1){
+                values += ",";
+                legends += "|";
+                colors += type === "bar" ? "|" : ",";
             }
         }
 
@@ -73,7 +74,7 @@ const MarkerChart = (props: MarkerChartProps) => {
         return {values, avg, legends, colors};
     }
 
-    const generateChartUrl = (features: any, attributesMinMaxValues: any, marker: any) => {
+    const generateChart = (features: any, attributesMinMaxValues: any, marker: any) => {
         //set value
         let result = processChartData(features, attributesMinMaxValues, marker, type);
         let url = `https://chart.googleapis.com/chart?chxl=0:||1:|&chf=bg,s,FFFFFF00`;
@@ -119,27 +120,34 @@ const MarkerChart = (props: MarkerChartProps) => {
 
     };
 
-    const generateMarkerCharts = () => {
-        let markers = map.getMarkers();
+    // const generateMarkerCharts = () => {
+    //     let attributesMinMaxValues = data.calculateAttributesMinAndMaxValue();
+    //
+    //     for(let index = 0; index < markers.length; index++) {
+    //         let {url, width, height} = generateChart(data, attributesMinMaxValues, markers[index]);
+    //
+    //         return {
+    //             url: url,
+    //             origin: new google.maps.Point(0, 0),
+    //             size: new google.maps.Size(width, height),
+    //             anchor: new google.maps.Point((width/2), (height/2)),
+    //             scaledSize: new google.maps.Size(width, height)
+    //         }
+    //     }
+    // }
 
-        let attributesMinMaxValues = data.calculateAttributesMinAndMaxValue();
-
-        for (let index = 0; index < markers.length; index++) {
-            // console.log(markers[index]);
-
-            let result = generateChartUrl(data, attributesMinMaxValues, markers[index]);
-
-            return {
-                url: result.url,
-                size: new google.maps.Size(result.width, result.height),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point((result.width/2), (result.height/2)),
-                scaledSize: new google.maps.Size(result.width, result.height)
-            }
-        }
+    // return `https://chart.googleapis.com/chart?chs=150x150&chd=t:5,10&cht=p3&chf=bg,s,FFFFFF00`
+    const width = 150;
+    const height = 150;
+    return {
+        url: `https://chart.googleapis.com/chart?chs=150x150&chd=t:5,10&cht=p3&chf=bg,s,FFFFFF00`,
+        origin: new google.maps.Point(0, 0),
+        size: new google.maps.Size(width, height),
+        anchor: new google.maps.Point((width/2), (height/2)),
+        scaledSize: new google.maps.Size(width, height)
     }
 
-    return generateMarkerCharts()
+    // return generateMarkerCharts()
 }
 
 export default MarkerChart

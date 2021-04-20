@@ -4,6 +4,7 @@ export const createMarkerEmpty = (markerData: any) => {
     const marker = new window.google.maps.Marker({
         title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
+        icon: markerData.icon
         // map: map,
     });
     return marker;

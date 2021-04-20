@@ -1,6 +1,7 @@
 
 export type StateProps = {
     attributes: AttributeTypes[]
+    attributesStats: AttributeStatsType[]
     rows: object[]
     visibleRows: object[]
     latAttribute?: string
@@ -15,9 +16,17 @@ export type AttributeTypes = {
     visible?: boolean
 }
 
+export type AttributeStatsType = {
+    attribute: string
+    min: number
+    max: number
+    avg: number
+}
+
 export enum VisualizationTypeValues {
     Heatmap = 'Heatmap',
     MarkerCluster = 'MarkerCluster',
+    MarkerChart = 'MarkerChart',
     Chart = 'Chart'
     // {label: 'Heatmap', value: 'heatmap'},
     // {label: 'Cluster', value: 'cluster'},

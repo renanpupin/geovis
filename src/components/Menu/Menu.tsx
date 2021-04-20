@@ -79,7 +79,7 @@ const Menu: React.FC = (props: any) => {
             dispatch(loadData(fastLoadData))
             dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
-            dispatch(addVisualization(fastLoadParallelVis))
+            // dispatch(addVisualization(fastLoadParallelVis))
         }
 
         return () => {

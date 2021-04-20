@@ -4,6 +4,7 @@ import Marker from "src/components/Map/Marker";
 import {useSelector} from "react-redux";
 import {getLatAttributeIndex, getLonAttributeIndex, getAttributes, getVisibleRows} from "src/redux/data/selectors";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
+import MarkerChart from "src/components/Map/MarkerChart/MarkerChart";
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -41,7 +42,6 @@ const MarkerList = (props: any) => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     const attributes = useSelector(getAttributes)
-    const visibleRows = useSelector(getVisibleRows)
 
     const [cluster] = useState<MarkerClusterer>(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -60,9 +60,9 @@ const MarkerList = (props: any) => {
     // return "<img alt=\"" + this.sums_.text + "\" aria-hidden=\"true\" src=\"" + url + "\" style=\"" + cssText + "\"/>";
 
     // console.log("aaa", cluster.getCalculator())
-    cluster.setCalculator((markers, numStyles) => {
+    cluster.setCalculator((clusterMarkers, numStyles) => {
         let index = 0;
-        const count: number = markers.length;
+        const count = clusterMarkers.length;
 
         let dv = count;
         while (dv !== 0) {
@@ -70,9 +70,18 @@ const MarkerList = (props: any) => {
             index++;
         }
 
+        const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${count},${props.rows.length-count}&cht=p3&chf=bg,s,FFFFFF00`
+        // const iconUrl = MarkerChart({data: row, type: "pie"}).url
+        console.log("iconUrl", iconUrl)
+        console.log("count", count)
+        console.log("visibleRows", props.rows.length)
+        console.log("clusterMarkers", clusterMarkers)
+        //TODO: enable cluster on visible
+
         index = Math.min(index, numStyles);
         return {
             text: count.toString(),
+            url: iconUrl,
             index: index,
             title: "",
         };
@@ -128,7 +137,7 @@ const MarkerList = (props: any) => {
             console.log("cluster", cluster);
 
             const ids = gmapMarkers.map((item: any) => Number(item.title));
-            const rows = visibleRows.filter((item: any, index: number) => ids.includes(index));
+            const rows = props.rows.filter((item: any, index: number) => ids.includes(index));
 
             infoWindow?.close();
             // if(!infoWindow){
@@ -165,10 +174,11 @@ const MarkerList = (props: any) => {
                     map={props.map}
                     cluster={cluster}
                     enableMarkerCluster={props.enableMarkerCluster}
+                    // icon={MarkerChart({data: row, type: "pie"})}
                 />
             )
         })
-    }, [props.rows, props.map, cluster, props.enableMarkerCluster]);
+    }, [props.rows, props.map, cluster, props.enableMarkerCluster, props.enableMarkerChart]);
 
     return getMarkers()
 }

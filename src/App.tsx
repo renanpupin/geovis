@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useSelector} from "react-redux";
 import Map from 'src/components/Map/Map'
 import Table from 'src/components/Table/Table'
 import Menu from 'src/components/Menu/Menu'
@@ -6,7 +7,6 @@ import Chart from 'src/components/Chart/Chart'
 import FilterList from "src/components/FilterList/FilterList";
 import LayersList from "src/components/LayersList/LayersList";
 import SideMenu from "src/components/SideMenu/SideMenu";
-import {useSelector} from "react-redux";
 import {getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from 'src/redux/data/types'
 

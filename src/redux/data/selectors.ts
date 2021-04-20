@@ -22,3 +22,5 @@ export const getFilters = (store: RootState): FilterTypes[] => getDataState(stor
 export const getAttributes = (store: RootState): AttributeTypes[] => getDataState(store)?.attributes
 
 export const getNumericAttributes = (store: RootState): AttributeTypes[] => getAttributes(store).filter((attribute: AttributeTypes) => attribute.type === "number")
+
+export const getAttributesStats = (store: RootState): AttributeTypes[] => getDataState(store)?.attributesStats

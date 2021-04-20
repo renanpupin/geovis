@@ -10,12 +10,13 @@ import {
     REMOVE_VISUALIZATION,
     TOGGLE_VISUALIZATION
 } from "./actionTypes";
-import { applyFilters } from "./filters";
+import { applyFilters, getAttributesStats } from "./filters";
 
 import {StateProps} from "./types";
 
 const initialState: StateProps = {
     attributes: [],
+    attributesStats: [],
     rows: [],
     visibleRows: [],
     latAttribute: undefined,
@@ -35,6 +36,7 @@ export default function(state = initialState, action: any) {
                 attributes: data.attributes,
                 latAttribute: data.latAttribute,
                 lonAttribute: data.lonAttribute,
+                attributesStats: getAttributesStats(data.rows, data.attributes)
             };
         }
         case CLEAR_DATA: {
@@ -116,6 +118,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
+                attributesStats: getAttributesStats(state.rows, state.attributes),
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
@@ -127,6 +130,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
+                attributesStats: getAttributesStats(state.rows, state.attributes),
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
@@ -148,6 +152,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
+                attributesStats: getAttributesStats(state.rows, state.attributes),
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
