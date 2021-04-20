@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select from "src/components/Select/Select";
 import Input from "src/components/Input/Input";
 

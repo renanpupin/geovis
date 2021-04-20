@@ -1,6 +1,4 @@
 import {ConditionsTypes, FilterTypes, AttributeTypes} from 'src/redux/data/types'
-import {useSelector} from "react-redux";
-import {getDataState} from "src/redux/data/selectors";
 
 export const applyFilters = (data: object[], filters: FilterTypes[], attributes: AttributeTypes[]) => {
     // console.log("applyFilters", filters)

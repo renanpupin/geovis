@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import Button from 'src/components/Button/Button'
+import React, {useState} from 'react';
 import Step1Content from 'src/components/VisualizationWizard/Steps/Step1Content'
 import StepChartType from 'src/components/VisualizationWizard/Steps/StepChartType'
 import StepChartAttribute from 'src/components/VisualizationWizard/Steps/StepChartAttribute'

@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import Button from 'src/components/Button/Button'
+import React, {useState} from 'react';
 import Step1Content from 'src/components/FilterWizard/Steps/Step1Content'
 import Step2Content from 'src/components/FilterWizard/Steps/Step2Content'
 import Step3Content from 'src/components/FilterWizard/Steps/Step3Content'

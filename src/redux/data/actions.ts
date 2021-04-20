@@ -1,6 +1,6 @@
 import { LOAD_DATA, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, TOGGLE_VISUALIZATION, REMOVE_VISUALIZATION } from "./actionTypes";
 
-import {VisualizationTypeValues, VisualizationTypes, FilterTypes} from 'src/redux/data/types'
+import {VisualizationTypes, FilterTypes} from 'src/redux/data/types'
 
 export const loadData = (data: object) => ({
     type: LOAD_DATA,

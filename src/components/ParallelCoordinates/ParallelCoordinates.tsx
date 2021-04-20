@@ -46,6 +46,7 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
         .interpolate(d3.interpolateLab);
     let color2 = (d: any) =>  { return colorSequenceInterpolated(d.id); };  // quantitative color scale
 
+    //TODO: move to utils and share usage with marker chart
     const colorHeat = function(row: any) {
         if (row.x <= 33){
             return "red"

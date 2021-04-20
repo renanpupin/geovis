@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import styles from './Draggable.module.scss';
 
 const navbarHeight: number = 65 as const;
