@@ -213,16 +213,16 @@ const Menu: React.FC = (props: any) => {
                             </li>
                         </DropdownMenu>}
                     </li>
-                    <li className={styles.submenu}>
-                        <DropdownItem onPress={onPressItem}>
-                            <i className="material-icons">file_download</i>Salvar
-                        </DropdownItem>
-                    </li>
-                    <li className={styles.submenu}>
-                        <DropdownItem onPress={onPressItem}>
-                            <i className="material-icons">file_upload</i>Carregar
-                        </DropdownItem>
-                    </li>
+                    {/*<li className={styles.submenu}>*/}
+                    {/*    <DropdownItem onPress={onPressItem}>*/}
+                    {/*        <i className="material-icons">file_download</i>Salvar*/}
+                    {/*    </DropdownItem>*/}
+                    {/*</li>*/}
+                    {/*<li className={styles.submenu}>*/}
+                    {/*    <DropdownItem onPress={onPressItem}>*/}
+                    {/*        <i className="material-icons">file_upload</i>Carregar*/}
+                    {/*    </DropdownItem>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         )

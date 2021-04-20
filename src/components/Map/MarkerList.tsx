@@ -71,12 +71,16 @@ const MarkerList = (props: any) => {
         }
 
         const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${count},${props.rows.length-count}&cht=p3&chf=bg,s,FFFFFF00`
+        const ids = clusterMarkers.map((item: any) => Number(item.title));
+        const rowsInCluster = props.rows.filter((item: any, index: number) => ids.includes(index));
+        //TODO: enable cluster on visible
         // const iconUrl = MarkerChart({data: row, type: "pie"}).url
+
+        console.log("rowsInCluster", rowsInCluster)
         console.log("iconUrl", iconUrl)
         console.log("count", count)
         console.log("visibleRows", props.rows.length)
         console.log("clusterMarkers", clusterMarkers)
-        //TODO: enable cluster on visible
 
         index = Math.min(index, numStyles);
         return {
@@ -137,11 +141,11 @@ const MarkerList = (props: any) => {
             console.log("cluster", cluster);
 
             const ids = gmapMarkers.map((item: any) => Number(item.title));
-            const rows = props.rows.filter((item: any, index: number) => ids.includes(index));
+            const rowsInCluster = props.rows.filter((item: any, index: number) => ids.includes(index));
 
             infoWindow?.close();
             // if(!infoWindow){
-                infoWindow = createInfoWindow(null, cluster.getCenter(), 'Cluster', rows, props.map, attributes, () => {
+                infoWindow = createInfoWindow(null, cluster.getCenter(), 'Cluster', rowsInCluster, props.map, attributes, () => {
                     infoWindow = null;
                 })
             // }
