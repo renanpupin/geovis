@@ -17,7 +17,7 @@ ReactDOM.render(
             <App/>
         </Provider>
         {ENV !== 'production' && <FPSStats right={81} left={'auto'} />}
-        {ENV !== 'production' && <MemoryStatsComponent corner="topRight" />}
+        {ENV !== 'production' && <div style={{zIndex: 99999, position: 'fixed'}}><MemoryStatsComponent corner="topRight" /></div>}
     </React.StrictMode>,
     document.getElementById('root')
 );
