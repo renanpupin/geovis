@@ -43,6 +43,7 @@ export type VisualizationTypes = {
     chartType?: any
     chartLabelAttribute?: any
     chartAttribute?: any
+    showPie?: 'yes' | 'no'
     visible?: boolean
 }
 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Step1Content from 'src/components/VisualizationWizard/Steps/Step1Content'
 import StepChartType from 'src/components/VisualizationWizard/Steps/StepChartType'
+import StepMarkerCluster from 'src/components/VisualizationWizard/Steps/StepMarkerCluster'
 import StepChartAttribute from 'src/components/VisualizationWizard/Steps/StepChartAttribute'
 
 import styles from "./Wizard.module.scss"
@@ -83,6 +84,17 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
                         data={stepsData}
                     />,
                     requiredFields: getRequiredByChartType()
+                }
+            ]
+        }else if(stepsData?.type === VisualizationTypeValues.MarkerCluster){
+            return [
+                {
+                    title: 'Customize markers',
+                    component: <StepMarkerCluster
+                        onData={updateData}
+                        data={stepsData}
+                    />,
+                    requiredFields: ['showPie']
                 }
             ]
         }

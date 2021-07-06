@@ -47,16 +47,13 @@ const Map: React.FC = () => {
         )
     }, [visualizations, visibleRows, map]);
 
-    const enableMarkerCluster = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster).length > 0;
-    const enableMarkerChart = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart).length > 0;
-
     const getMarkers = useCallback(() => {
         if(!map){
             return
         }
 
-        return <MarkerList rows={visibleRows} map={map} enableMarkerCluster={enableMarkerCluster} enableMarkerChart={enableMarkerChart}/>
-    }, [visibleRows, map, enableMarkerCluster]);
+        return <MarkerList rows={visibleRows} map={map}/>
+    }, [visibleRows, map]);
 
     return (
         <MapLoader onLoad={onLoad}>

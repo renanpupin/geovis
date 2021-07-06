@@ -2,9 +2,16 @@ import React, {useEffect, useState, useCallback} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import Marker from "src/components/Map/Marker";
 import {useSelector} from "react-redux";
-import {getLatAttributeIndex, getLonAttributeIndex, getAttributes, getVisibleRows} from "src/redux/data/selectors";
+import {
+    getLatAttributeIndex,
+    getLonAttributeIndex,
+    getAttributes,
+    getVisibleRows,
+    getVisualizations
+} from "src/redux/data/selectors";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 import MarkerChart from "src/components/Map/MarkerChart/MarkerChart";
+import {VisualizationTypeValues} from "../../redux/data/types";
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -39,9 +46,13 @@ import MarkerChart from "src/components/Map/MarkerChart/MarkerChart";
 // ];
 
 const MarkerList = (props: any) => {
+    const visualizations = useSelector(getVisualizations)
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     const attributes = useSelector(getAttributes)
+
+    const markerClusterVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster);
+    const enableMarkerChart = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart).length > 0;
 
     const [cluster] = useState<MarkerClusterer>(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -85,7 +96,7 @@ const MarkerList = (props: any) => {
         index = Math.min(index, numStyles);
         return {
             text: count.toString(),
-            url: iconUrl,
+            url: markerClusterVis?.[0]?.showPie === 'yes' ? iconUrl : undefined,
             index: index,
             title: "",
         };
@@ -177,12 +188,12 @@ const MarkerList = (props: any) => {
                     attributes={attributes}
                     map={props.map}
                     cluster={cluster}
-                    enableMarkerCluster={props.enableMarkerCluster}
+                    enableMarkerCluster={markerClusterVis.length > 0}
                     // icon={MarkerChart({data: row, type: "pie"})}
                 />
             )
         })
-    }, [props.rows, props.map, cluster, props.enableMarkerCluster, props.enableMarkerChart]);
+    }, [props.rows, props.map, cluster, markerClusterVis, enableMarkerChart]);
 
     return getMarkers()
 }
