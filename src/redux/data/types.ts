@@ -42,7 +42,10 @@ export type VisualizationTypes = {
     type: VisualizationTypeValues
     chartType?: any
     chartLabelAttribute?: any
+    chartAttributeX?: any
+    chartAttributeY?: any
     chartAttribute?: any
+    hasToGroup?: boolean
     showPie?: 'yes' | 'no'
     visible?: boolean
 }

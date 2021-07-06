@@ -26,6 +26,19 @@ const fastLoadMarkerClusterVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerCluster,
     // showPie: 'yes'
 };
+const fastLoadPieChartVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.Chart,
+    chartType: "pie",
+    chartLabelAttribute: 'category',
+    hasToGroup: true,
+};
+const fastLoadPieChartUngroupedVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.Chart,
+    chartType: "pie",
+    chartLabelAttribute: 'name',
+    chartAttributeY: 'value',
+    hasToGroup: false,
+};
 const fastLoadParallelVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.Chart,
     chartType: "parallel"
@@ -80,6 +93,8 @@ const Menu: React.FC = (props: any) => {
             dispatch(loadData(fastLoadData))
             dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
+            dispatch(addVisualization(fastLoadPieChartVis))
+            // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))
         }
 

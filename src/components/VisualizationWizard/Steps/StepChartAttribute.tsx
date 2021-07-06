@@ -47,11 +47,11 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
         <div>
             {data.chartType !== "scatter" && <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
-                    <label>Select the chart label attribute:</label>
+                    <label>Select the chart {data.chartType === 'pie' ? 'group' : 'label'} attribute:</label>
                 </div>
                 <Select
-                    label={'Chart label attribute'}
-                    placeholder={'Select the chart label attribute'}
+                    label={`Chart ${data.chartType === 'pie' ? 'group' : 'label'} attribute`}
+                    placeholder={`Select the chart ${data.chartType === 'pie' ? 'group' : 'label'} attribute`}
                     value={chartLabelAttribute}
                     options={attributesOptions}
                     onChange={(value) => setChartLabelAttribute(value)}
@@ -63,8 +63,8 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
                     <label>Select the chart numeric attribute{data.chartType === "scatter" ? ' x' : ''}:</label>
                 </div>
                 <Select
-                    label={'Chart numeric attribute'+(data.chartType === "scatter" ? ' x' : '')}
-                    placeholder={'Select the chart numeric attribute'+(data.chartType === "scatter" ? ' x' : '')}
+                    label={`Chart numeric attribute ${data.chartType === "scatter" ? 'x' : ''}`}
+                    placeholder={`Select the chart numeric attribute ${data.chartType === "scatter" ? 'x' : ''}`}
                     value={chartAttributeX}
                     options={numericAttributesOptions}
                     onChange={(value) => setChartAttributeX(value)}
@@ -76,8 +76,8 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
                     <label>Select the chart numeric attribute y:</label>
                 </div>
                 <Select
-                    label={'Chart numeric attribute y'}
-                    placeholder={'Select the chart numeric attribute y'}
+                    label={`Chart numeric attribute ${data.chartType !== "pie" ? 'y' : ''}`}
+                    placeholder={`Select the chart numeric attribute ${data.chartType !== "pie" ? 'y' : ''}`}
                     value={chartAttributeY}
                     options={numericAttributesOptions}
                     onChange={(value) => setChartAttributeY(value)}
