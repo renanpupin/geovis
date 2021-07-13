@@ -9,6 +9,7 @@ const mapOptions = {
     zoom: 8,
     streetViewControl: false,
     panControl: false,
+    fullscreenControl: false,
     zoomControl: true
 }
 

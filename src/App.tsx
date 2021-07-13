@@ -11,26 +11,28 @@ import {getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from 'src/redux/data/types'
 
 const App: React.FC = () => {
-    const [viewMode, setViewMode] = useState('map')
+    const [viewMode, setViewMode] = useState<'map' | 'table'>('map')
+    const [visMode, setVisMode] = useState<'split' | 'full'>('split')
     const visualizations = useSelector(getVisualizations)
     return (
         <div>
-            {viewMode === 'map' ? <Map/> : <Table/>}
             <Menu
-                //@ts-ignore
                 viewMode={viewMode}
                 onChangeMode={() => {
                     setViewMode(viewMode === 'map' ? 'table' : 'map')
                 }}
             />
 
-            {/*<Draggable initialPosition={{x: 150, y: 150}}>*/}
-            {/*    <div style={{padding: 20}}>*/}
-            {/*        Charts content*/}
-            {/*    </div>*/}
-            {/*</Draggable>*/}
-
-            {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (<Chart key={index} index={index} visData={item}/>))}
+            <div className={'splitView'} style={{display: 'flex', flexDirection: 'row'}}>
+                <div className={'dataViewWrapper'} style={{flex: 1, width: visMode === 'split' ? `min(80%, 80% - 400px)` : '100%'}}>
+                    {viewMode === 'map' ? <Map/> : <Table/>}
+                </div>
+                <div className={'chartsWrapper'} style={{flex: 0, flexDirection: 'column', maxHeight: `calc(100vh - 65px)`, marginTop: 65, overflowY: 'scroll', width: visMode === 'split' ? `max(20%, 400px)` : '0%', display: 'flex', minWidth: visMode === 'split' ? 400 : 0}}>
+                    {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (
+                        <Chart key={index} index={index} visData={item} visMode={visMode}/>
+                    ))}
+                </div>
+            </div>
 
             <SideMenu
                 items={[
@@ -46,6 +48,28 @@ const App: React.FC = () => {
                     },
                 ]}
             />
+
+            <div
+                style={{
+                    position: 'absolute',
+                    bottom: 10,
+                    left: 10,
+                    width: 50,
+                    height: 50,
+                    backgroundColor: '#fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    borderRadius: 6,
+                    userSelect: 'none'
+                }}
+                onClick={() => {
+                    setVisMode(visMode === 'split' ? 'full' : 'split')
+                }}
+            >
+                <i className="material-icons">{visMode === 'split' ? 'vertical_split' : 'fullscreen'}</i>
+            </div>
         </div>
     );
 }

@@ -13,12 +13,13 @@ import {setHighlight} from "../../redux/data/actions";
 
 export type ChartPropTypes = {
     visData: any
+    visMode?: any
     index: number
 }
 
 const Chart: React.FC<ChartPropTypes> = (props) => {
     // console.log("props", props)
-    const { visData } = props
+    const { visData, visMode } = props
     const dispatch = useDispatch();
     const visibleRows = useSelector(getVisibleRows)
     const attributes = useSelector(getAttributes)
@@ -60,7 +61,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
         [visData.chartLabelAttribute || visData.chartAttributeX, visData.chartAttributeY ?? "Ocurrences"],
         ...getDataByChartType()
     ]
-    console.log("chart data", data)
+    // console.log("chart data", data)
 
     const getNormalizedChartType = () => {
         switch (visData.chartType){
@@ -97,7 +98,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
     const normalizedChartType = getNormalizedChartType()
 
     return(
-        <Draggable className={styles.chart}>
+        <Draggable className={styles.chart} disabled={visMode === 'split'}>
             {normalizedChartType === "parallel" ? getParallel() :<GoogleCharts
                 width={400}
                 height={300}

@@ -68,7 +68,12 @@ const fastLoadMarkerChartPie: Omit<VisualizationTypes, 'id' | 'visible'> = {
 //
 // const add = {id: 5, lat: -21, lng: -44, title: 'Another'}
 
-const Menu: React.FC = (props: any) => {
+type MenuTypes = {
+    viewMode?: 'map' | 'table'
+    onChangeMode?: any
+}
+
+const Menu: React.FC<MenuTypes> = (props) => {
     const {onChangeMode} = props
     const dispatch = useDispatch()
     const [showDataWizard, setShowDataWizard] = useState(false)
@@ -99,7 +104,7 @@ const Menu: React.FC = (props: any) => {
             dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             dispatch(addVisualization(fastLoadPieChartVis))
-            dispatch(addVisualization(fastLoadMarkerChartPie))
+            // dispatch(addVisualization(fastLoadMarkerChartPie))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))
         }

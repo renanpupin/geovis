@@ -12,9 +12,10 @@ type Props = {
     children: any
     initialPosition?: Position
     className?: any
+    disabled?: boolean
 }
 
-const DraggableComponent = ({children, initialPosition, className}: Props) => {
+const DraggableComponent = ({children, initialPosition, className, disabled}: Props) => {
     const [pressed, setPressed] = useState<boolean>(false)
     const [position, setPosition] = useState<Position>({x: initialPosition?.x ?? navbarHeight, y: initialPosition?.y ?? navbarHeight})
     const ref = useRef()
@@ -51,8 +52,8 @@ const DraggableComponent = ({children, initialPosition, className}: Props) => {
         <div
             // @ts-ignore
             ref={ref}
-            className={[styles.draggable, className].join(' ')}
-            style={{left: position.x, top: position.y}}
+            className={disabled ? styles.draggable : [styles.draggable, styles.draggableEnabled, className].join(' ')}
+            style={disabled ? {} : {left: position.x, top: position.y}}
             onMouseLeave={ onmouseLeave }
             onMouseMove={ onMouseMove }
             onMouseDown={ () => setPressed(true) }
