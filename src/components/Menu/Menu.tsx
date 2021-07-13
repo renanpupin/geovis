@@ -97,9 +97,9 @@ const Menu: React.FC = (props: any) => {
         if(ENV !== 'production' && (loadTestData === "true")){
             dispatch(loadData(fastLoadData))
             dispatch(addFilter(fastLoadFilter))
-            dispatch(addVisualization(fastLoadMarkerChartPie))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             dispatch(addVisualization(fastLoadPieChartVis))
+            dispatch(addVisualization(fastLoadMarkerChartPie))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))
         }

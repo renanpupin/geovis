@@ -6,6 +6,7 @@ import {
     getLatAttributeIndex,
     getLonAttributeIndex,
     getAttributes,
+    getAttributesStats,
     getHighlight,
     getVisibleRows,
     getVisualizations
@@ -51,6 +52,7 @@ const MarkerList = (props: any) => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     const attributes = useSelector(getAttributes)
+    const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
 
     const markerClusterVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster);
@@ -199,10 +201,11 @@ const MarkerList = (props: any) => {
                         icon={
                             markerChartVis?.length > 0 ? (
                                 MarkerChart({
+                                    attributes,
+                                    attributesStats,
                                     data: row,
-                                    // type: "pie",
-                                    type: markerChartVis[0].markerChartType as MarkerChartTypeProps,
-                                    attributes: markerChartVis[0].markerChartAttributes,
+                                    chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                                    chartAttributes: markerChartVis[0].markerChartAttributes,
                                 })
                             ) : null
                         }

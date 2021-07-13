@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import {removeMarker, createMarkerEmpty} from "./markerUtils";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
-import MarkerChart from "./MarkerChart/MarkerChart";
 
 export type MarkerPropTypes = {
     id: string
@@ -40,7 +39,7 @@ const Marker = (props: MarkerPropTypes) => {
 
         gmapMarker.addListener('click', (evt: any) => {
             if(!infoWindow){
-                infoWindow = createInfoWindow(gmapMarker, null, props.id, [props.row], props.map, attributes, () => {
+                infoWindow = createInfoWindow(gmapMarker, null, props.id, [row], props.map, attributes, () => {
                     infoWindow = null;
                 })
             }
