@@ -13,17 +13,19 @@ export type MarkerPropTypes = {
     attributes: any
     cluster: MarkerClusterer
     enableMarkerCluster: boolean
+    // enableMarkerChart: boolean
     icon?: any
+    highlight?: boolean
 }
 
 const Marker = (props: MarkerPropTypes) => {
-    const {row, enableMarkerCluster, icon, cluster, attributes} = props
+    const {row, enableMarkerCluster, icon, cluster, attributes, highlight} = props
     const [didMount, setDidMount] = useState(false)
     const [gmapMarker] = useState(createMarkerEmpty({
         id: props.id,
         lat: props.lat,
         lng: props.lon,
-        // icon: icon
+        icon: icon
     }))
     let infoWindow: any = null;
     let clusterInfoWindow: any = null;
@@ -65,6 +67,15 @@ const Marker = (props: MarkerPropTypes) => {
             clusterInfoWindow?.close()
         };
     }, [cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon]);
+
+    useEffect(() => {
+        console.log('marker onchange highlight', highlight);
+        if(highlight === false){
+            gmapMarker.setOpacity(0.5);
+        }else{
+            gmapMarker.setOpacity(1);
+        }
+    }, [highlight])
 
     return null;
 }

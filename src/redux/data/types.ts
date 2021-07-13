@@ -8,6 +8,7 @@ export type StateProps = {
     lonAttribute?: string
     filters: FilterTypes[]
     visualizations: VisualizationTypes[]
+    highlight: string[]
 }
 
 export type AttributeTypes = {
@@ -37,6 +38,8 @@ export enum VisualizationTypeValues {
     // {label: 'Euclidian', value: 'euclidian'},
 }
 
+export type MarkerChartTypeProps = 'line' | 'bar' | 'pie'
+
 export type VisualizationTypes = {
     id: string
     type: VisualizationTypeValues
@@ -47,6 +50,8 @@ export type VisualizationTypes = {
     chartAttribute?: any
     hasToGroup?: boolean
     showPie?: 'yes' | 'no'
+    markerChartType?: MarkerChartTypeProps
+    markerChartAttributes?: any
     visible?: boolean
 }
 
@@ -84,6 +89,8 @@ export type FilterTypes = {
     targetValue: string | number | boolean | null | undefined
     visible: boolean
 }
+
+export type HighlightTypes = number[]
 
 
 // export enum MapVisualizationTypes {

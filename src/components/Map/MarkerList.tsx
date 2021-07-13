@@ -6,12 +6,13 @@ import {
     getLatAttributeIndex,
     getLonAttributeIndex,
     getAttributes,
+    getHighlight,
     getVisibleRows,
     getVisualizations
 } from "src/redux/data/selectors";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 import MarkerChart from "src/components/Map/MarkerChart/MarkerChart";
-import {VisualizationTypeValues} from "../../redux/data/types";
+import {VisualizationTypeValues, MarkerChartTypeProps} from "../../redux/data/types";
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -50,9 +51,10 @@ const MarkerList = (props: any) => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     const attributes = useSelector(getAttributes)
+    const highlight = useSelector(getHighlight)
 
     const markerClusterVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster);
-    const enableMarkerChart = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart).length > 0;
+    const markerChartVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart);
 
     const [cluster] = useState<MarkerClusterer>(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -81,17 +83,17 @@ const MarkerList = (props: any) => {
             index++;
         }
 
-        const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${count},${props.rows.length-count}&cht=p3&chf=bg,s,FFFFFF00`
+        const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${count},${props.visibleRows.length-count}&cht=p3&chf=bg,s,FFFFFF00`
         const ids = clusterMarkers.map((item: any) => Number(item.title));
-        const rowsInCluster = props.rows.filter((item: any, index: number) => ids.includes(index));
+        const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
         //TODO: enable cluster on visible
         // const iconUrl = MarkerChart({data: row, type: "pie"}).url
 
-        console.log("rowsInCluster", rowsInCluster)
-        console.log("iconUrl", iconUrl)
-        console.log("count", count)
-        console.log("visibleRows", props.rows.length)
-        console.log("clusterMarkers", clusterMarkers)
+        // console.log("rowsInCluster", rowsInCluster)
+        // console.log("iconUrl", iconUrl)
+        // console.log("count", count)
+        // console.log("visibleRows", props.visibleRows.length)
+        // console.log("clusterMarkers", clusterMarkers)
 
         index = Math.min(index, numStyles);
         return {
@@ -152,7 +154,7 @@ const MarkerList = (props: any) => {
             console.log("cluster", cluster);
 
             const ids = gmapMarkers.map((item: any) => Number(item.title));
-            const rowsInCluster = props.rows.filter((item: any, index: number) => ids.includes(index));
+            const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
 
             infoWindow?.close();
             // if(!infoWindow){
@@ -177,23 +179,37 @@ const MarkerList = (props: any) => {
     }, []);
 
     const getMarkers = useCallback(() => {
-        return props.rows.map((row: any, index: number) => {
-            return (
-                <Marker
-                    key={index}
-                    id={String(index)}
-                    lat={row[latAttributeIndex]}
-                    lon={row[lonAttributeIndex]}
-                    row={row}
-                    attributes={attributes}
-                    map={props.map}
-                    cluster={cluster}
-                    enableMarkerCluster={markerClusterVis.length > 0}
-                    // icon={MarkerChart({data: row, type: "pie"})}
-                />
-            )
-        })
-    }, [props.rows, props.map, cluster, markerClusterVis, enableMarkerChart]);
+        return props.visibleRows
+            .filter((row: any, index: number) => highlight.length === 0 || highlight.includes(index as any))
+            .map((row: any, index: number) => {
+                return (
+                    <Marker
+                        key={index}
+                        id={String(index)}
+                        // highlight={highlight.length === 0 || highlight.includes(index as any)}
+                        lat={row[latAttributeIndex]}
+                        lon={row[lonAttributeIndex]}
+                        row={row}
+                        attributes={attributes}
+                        map={props.map}
+                        cluster={cluster}
+                        enableMarkerCluster={markerClusterVis.length > 0}
+                        // enableMarkerChart={markerChartVis.length > 0}
+                        // icon={MarkerChart({data: row, type: "pie"})}
+                        icon={
+                            markerChartVis?.length > 0 ? (
+                                MarkerChart({
+                                    data: row,
+                                    // type: "pie",
+                                    type: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                                    attributes: markerChartVis[0].markerChartAttributes,
+                                })
+                            ) : null
+                        }
+                    />
+                )
+            });
+    }, [props, props.visibleRows, props.map, cluster, markerClusterVis, markerChartVis]);
 
     return getMarkers()
 }

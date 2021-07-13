@@ -43,6 +43,11 @@ const fastLoadParallelVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.Chart,
     chartType: "parallel"
 };
+const fastLoadMarkerChartPie: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.MarkerChart,
+    markerChartType: "pie",
+    markerChartAttributes: ['value', 'lat', 'lon'],
+};
 
 // const markers = [
 //     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -92,6 +97,7 @@ const Menu: React.FC = (props: any) => {
         if(ENV !== 'production' && (loadTestData === "true")){
             dispatch(loadData(fastLoadData))
             dispatch(addFilter(fastLoadFilter))
+            dispatch(addVisualization(fastLoadMarkerChartPie))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             dispatch(addVisualization(fastLoadPieChartVis))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))

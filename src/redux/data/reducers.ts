@@ -8,7 +8,8 @@ import {
     REMOVE_FILTER,
     TOGGLE_FILTER,
     REMOVE_VISUALIZATION,
-    TOGGLE_VISUALIZATION
+    TOGGLE_VISUALIZATION,
+    SET_HIGHLIGHT,
 } from "./actionTypes";
 import { applyFilters, getAttributesStats } from "./filters";
 
@@ -23,6 +24,7 @@ const initialState: StateProps = {
     lonAttribute: undefined,
     filters: [],
     visualizations: [],
+    highlight: [],
 };
 
 export default function(state = initialState, action: any) {
@@ -154,6 +156,14 @@ export default function(state = initialState, action: any) {
                 filters: updatedFilters,
                 attributesStats: getAttributesStats(state.rows, state.attributes),
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
+            };
+        }
+        case SET_HIGHLIGHT: {
+            const { highlight } = action.payload;
+
+            return {
+                ...state,
+                highlight: highlight,
             };
         }
         default:

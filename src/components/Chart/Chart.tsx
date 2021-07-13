@@ -1,12 +1,13 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import GoogleCharts from "react-google-charts";
 import {getAttributes, getVisibleRows} from "src/redux/data/selectors";
 
 import ParallelCoordinates from "src/components/ParallelCoordinates/ParallelCoordinates";
 import Draggable from "src/components/Draggable/Draggable";
-import GoogleCharts from "react-google-charts";
 import styles from './Chart.module.scss';
 import {countAttributeOcurrences} from 'src/redux/data/filters'
+import {setHighlight} from "../../redux/data/actions";
 
 // https://developers.google.com/chart/interactive/docs/printing
 
@@ -18,9 +19,10 @@ export type ChartPropTypes = {
 const Chart: React.FC<ChartPropTypes> = (props) => {
     // console.log("props", props)
     const { visData } = props
+    const dispatch = useDispatch();
     const visibleRows = useSelector(getVisibleRows)
     const attributes = useSelector(getAttributes)
-    console.log("visData", visData)
+    // console.log("visData", visData)
     // console.log("visibleRows", visibleRows)
     // console.log("attributes", attributes)
 
@@ -113,6 +115,25 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
                     //     title: 'City',
                     // },
                 }}
+                chartEvents={[
+                    {
+                        eventName: 'select',
+                        callback: ({ chartWrapper, google }) => {
+                            const chart = chartWrapper.getChart();
+                            console.log('chart getSelection', chart.getSelection())
+                            //@ts-ignore
+                            const selectedDataRow = chart.getSelection()?.length > 0 ? data[chart.getSelection()?.[0]?.row +1] : null
+                            console.log('selectedDataRow', selectedDataRow)
+                            console.log('visibleRows', visibleRows)
+                            const highlightIndexes = visibleRows.map((row: any, index: number) => (labelAttributeIndex !== -1 ? row[labelAttributeIndex] : row[attributeIndexX]) === selectedDataRow?.[0] ? index : null).filter((item: any) => item !== null)
+                            console.log('highlightIndexes', highlightIndexes)
+
+                            //TODO: arrumar isso está filtrando errado (testar clicar no gráfico e abrir os marcadores)
+
+                            dispatch(setHighlight(highlightIndexes as number[]))
+                        }
+                    }
+                ]}
                 legendToggle
             />}
         </Draggable>

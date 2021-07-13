@@ -52,7 +52,7 @@ const Map: React.FC = () => {
             return
         }
 
-        return <MarkerList rows={visibleRows} map={map}/>
+        return <MarkerList visibleRows={visibleRows} map={map}/>
     }, [visibleRows, map]);
 
     return (

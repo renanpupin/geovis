@@ -1,5 +1,5 @@
 import {RootState} from "../store";
-import {FilterTypes, VisualizationTypes, AttributeTypes} from "src/redux/data/types";
+import {FilterTypes, VisualizationTypes, AttributeTypes, HighlightTypes, AttributeStatsType} from "src/redux/data/types";
 
 export const getDataState = (store: RootState): any => store.data;
 
@@ -23,4 +23,6 @@ export const getAttributes = (store: RootState): AttributeTypes[] => getDataStat
 
 export const getNumericAttributes = (store: RootState): AttributeTypes[] => getAttributes(store).filter((attribute: AttributeTypes) => attribute.type === "number")
 
-export const getAttributesStats = (store: RootState): AttributeTypes[] => getDataState(store)?.attributesStats
+export const getAttributesStats = (store: RootState): AttributeStatsType[] => getDataState(store)?.attributesStats
+
+export const getHighlight = (store: RootState): HighlightTypes[] => getDataState(store)?.highlight

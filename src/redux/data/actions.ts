@@ -1,6 +1,6 @@
-import { LOAD_DATA, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, TOGGLE_VISUALIZATION, REMOVE_VISUALIZATION } from "./actionTypes";
+import { LOAD_DATA, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, TOGGLE_VISUALIZATION, REMOVE_VISUALIZATION, SET_HIGHLIGHT } from "./actionTypes";
 
-import {VisualizationTypes, FilterTypes} from 'src/redux/data/types'
+import {VisualizationTypes, FilterTypes, HighlightTypes} from 'src/redux/data/types'
 
 export const loadData = (data: object) => ({
     type: LOAD_DATA,
@@ -56,6 +56,13 @@ export const removeFilter = (id: any) => ({
     type: REMOVE_FILTER,
     payload: {
         id
+    }
+});
+
+export const setHighlight = (highlight: HighlightTypes) => ({
+    type: SET_HIGHLIGHT,
+    payload: {
+        highlight
     }
 });
 
