@@ -3,6 +3,8 @@ import Step1Content from 'src/components/VisualizationWizard/Steps/Step1Content'
 import StepChartType from 'src/components/VisualizationWizard/Steps/StepChartType'
 import StepMarkerCluster from 'src/components/VisualizationWizard/Steps/StepMarkerCluster'
 import StepChartAttribute from 'src/components/VisualizationWizard/Steps/StepChartAttribute'
+import StepMarkerChartType from 'src/components/VisualizationWizard/Steps/StepMarkerChartType'
+import StepMarkerChartAttributes from 'src/components/VisualizationWizard/Steps/StepMarkerChartAttributes'
 
 import styles from "./Wizard.module.scss"
 import Modal from "src/components/Modal/Modal";
@@ -89,12 +91,31 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
         }else if(stepsData?.type === VisualizationTypeValues.MarkerCluster){
             return [
                 {
-                    title: 'Customize markers',
+                    title: 'Customize cluster icon',
                     component: <StepMarkerCluster
                         onData={updateData}
                         data={stepsData}
                     />,
                     requiredFields: ['showPie']
+                }
+            ]
+        }else if(stepsData?.type === VisualizationTypeValues.MarkerChart){
+            return [
+                {
+                    title: 'Select chart type',
+                    component: <StepMarkerChartType
+                        onData={updateData}
+                        data={stepsData}
+                    />,
+                    requiredFields: ['markerChartType']
+                },
+                {
+                    title: 'Select marker chart attribute',
+                    component: <StepMarkerChartAttributes
+                        onData={updateData}
+                        data={stepsData}
+                    />,
+                    requiredFields: ['markerChartAttributes']
                 }
             ]
         }

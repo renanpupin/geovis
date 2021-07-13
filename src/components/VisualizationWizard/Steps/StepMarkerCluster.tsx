@@ -29,8 +29,8 @@ const StepMarkerCluster: React.FC<StepMarkerClusterProps> = (props) => {
                     <label>Use pie chart on cluster icon?</label>
                 </div>
                 <Select
-                    label={'Use pie chart'}
-                    placeholder={'Select the chart type'}
+                    label={'Use pie chart as cluster icon'}
+                    placeholder={'Use pie chart?'}
                     value={showPie}
                     options={attributesOptions}
                     onChange={(value) => setShowPie(value)}
