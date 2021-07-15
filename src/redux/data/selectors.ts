@@ -15,6 +15,10 @@ export const getLonAttribute = (store: RootState): object[] => getDataState(stor
 
 export const getLonAttributeIndex = (store: RootState): number => getDataState(store)?.attributes?.findIndex((attribute: AttributeTypes) => attribute.name === getDataState(store)?.lonAttribute)
 
+export const getTemporalAttribute = (store: RootState): object[] => getDataState(store)?.temporalAttribute
+
+export const getTemporalAttributeIndex = (store: RootState): number => getDataState(store)?.attributes?.findIndex((attribute: AttributeTypes) => attribute.name === getDataState(store)?.temporalAttribute)
+
 export const getVisualizations = (store: RootState): VisualizationTypes[] => getDataState(store)?.visualizations
 
 export const getFilters = (store: RootState): FilterTypes[] => getDataState(store)?.filters

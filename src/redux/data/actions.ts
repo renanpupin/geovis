@@ -1,4 +1,4 @@
-import { LOAD_DATA, ADD_VISUALIZATION, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, TOGGLE_VISUALIZATION, REMOVE_VISUALIZATION, SET_HIGHLIGHT } from "./actionTypes";
+import { LOAD_DATA, ADD_VISUALIZATION, SET_TEMPORAL_FILTER, ADD_FILTER, REMOVE_FILTER, TOGGLE_FILTER, TOGGLE_VISUALIZATION, REMOVE_VISUALIZATION, SET_HIGHLIGHT } from "./actionTypes";
 
 import {VisualizationTypes, FilterTypes, HighlightTypes} from 'src/redux/data/types'
 
@@ -71,5 +71,12 @@ export const toggleFilter = (filter: FilterTypes, toggle: boolean) => ({
     payload: {
         filter,
         toggle
+    }
+});
+
+export const setTemporalFilter = (value: any) => ({
+    type: SET_TEMPORAL_FILTER,
+    payload: {
+        value
     }
 });

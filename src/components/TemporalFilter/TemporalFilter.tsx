@@ -1,19 +1,50 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {Range} from 'react-range';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {getTemporalAttributeIndex, getVisibleRows, getData} from 'src/redux/data/selectors'
+import {setTemporalFilter} from '../../redux/data/actions';
 
 const TemporalFilter: React.FC<any> = (props) => {
-    const [values, setValues] = useState<any>([0])
+    const dispatch = useDispatch();
+    //TODO: repensar em como combinar esses dados com os filtros atuais
+    const visibleRows = useSelector(getData);    //TODO: mover highlight para esta lógica
+    const temporalAttributeIndex = useSelector(getTemporalAttributeIndex)
+    const [values, setValues] = useState<any>([0]);
 
-    const dates = [new Date(2021, 0, 1), new Date(2021, 1, 1), new Date(2021, 2, 1), new Date(2021, 3, 1), new Date(2021, 4, 1), new Date(2021, 5, 1)]
+    // const rangeValues = visibleRows.map((row: any) => row[temporalAttributeIndex])
+
+    const getRangeValues = useCallback(() => {
+        const rangeValues: string[] = [];
+
+        for(const row of visibleRows){
+            //@ts-ignore
+            if(!rangeValues.includes(row[temporalAttributeIndex])){
+                //@ts-ignore
+                rangeValues.push(row[temporalAttributeIndex])
+            }
+        }
+
+        return rangeValues;
+    }, [visibleRows, temporalAttributeIndex]);
+
+    // console.log('TemporalFilter row[0]', visibleRows?.[0]) //?.[temporalAttributeIndex as any])
+    // console.log('TemporalFilter rangeValues', getRangeValues())
+    // getTemporalAttributeIndex
+
+    const rangeValues = getRangeValues()
+
     return(
         <Range
             step={1}
             min={0}
-            max={dates.length-1}
+            max={rangeValues.length > 0 ? rangeValues.length-1 : 1}
             values={values}
             onChange={(values) => setValues(values)}
             onFinalChange={(values) => {
-                console.log('onFinalChange', values)
+                console.log('onFinalChange', values[0], rangeValues[values[0]]);
+
+                dispatch(setTemporalFilter(rangeValues[values[0]]))
             }}
             renderTrack={({ props, children }) => (
                 <div
@@ -64,7 +95,7 @@ const TemporalFilter: React.FC<any> = (props) => {
                             justifyContent: 'center'
                         }}
                     >
-                        {dates[values[0]].toLocaleDateString()}
+                        {rangeValues[values[0]]}
                     </div>
                     <div
                         style={{

@@ -6,6 +6,7 @@ export type StateProps = {
     visibleRows: object[]
     latAttribute?: string
     lonAttribute?: string
+    temporalAttribute?: string
     filters: FilterTypes[]
     visualizations: VisualizationTypes[]
     highlight: string[]

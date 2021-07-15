@@ -17,6 +17,7 @@ type stepDataProps = {
     rows?: any
     latAttribute?: any
     lonAttribute?: any
+    temporalAttribute?: any
     rawDataObj?: any
 }
 

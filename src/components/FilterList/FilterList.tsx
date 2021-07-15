@@ -16,7 +16,7 @@ const FilterList: React.FC = () => {
     }
 
     const getFiltersList = useCallback(() => {
-        return filters.map((filter, index) => {
+        return filters.filter(filter => filter.id !== 'temporal').map((filter, index) => {
             return(
                 <li key={index}>
                     <Touchable onClick={() => toggleFilterVisible(filter)}>
@@ -39,7 +39,7 @@ const FilterList: React.FC = () => {
         <div className={styles.filterWrapper}>
             <p style={{fontSize: 12, marginBottom: 10}}><b>{visibleData.length}/{data.length}</b> features visible</p>
             <ul>
-                {filters.length === 0 && <li>No filters.</li>}
+                {getFiltersList().length === 0 && <li>No filters.</li>}
                 {getFiltersList()}
             </ul>
         </div>

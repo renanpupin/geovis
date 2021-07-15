@@ -16,7 +16,7 @@ const Step1Content: React.FC<Step1ContentProps> = (props) => {
 
     const typeOptions = [
         {label: 'Select an option', value: undefined},
-        ...filters.map((item: any, index: any) => {
+        ...filters.filter(filter => filter.id !== 'temporal').map((item: any, index: any) => {
             return {
                 label: `${item.name} (#${item.id})`,
                 value: item.id,

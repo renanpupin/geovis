@@ -10,10 +10,11 @@ import {
     REMOVE_VISUALIZATION,
     TOGGLE_VISUALIZATION,
     SET_HIGHLIGHT,
+    SET_TEMPORAL_FILTER,
 } from "./actionTypes";
 import { applyFilters, getAttributesStats } from "./filters";
 
-import {StateProps} from "./types";
+import {ConditionsTypes, FilterTargetTypes, FilterTypes, StateProps} from "./types";
 
 const initialState: StateProps = {
     attributes: [],
@@ -22,6 +23,7 @@ const initialState: StateProps = {
     visibleRows: [],
     latAttribute: undefined,
     lonAttribute: undefined,
+    temporalAttribute: undefined,
     filters: [],
     visualizations: [],
     highlight: [],
@@ -31,14 +33,51 @@ export default function(state = initialState, action: any) {
     switch (action.type) {
         case LOAD_DATA: {
             const { data } = action.payload;
+
+            const filters: FilterTypes[] = data.temporalAttribute ? [
+                {
+                    id: 'temporal',
+                    name: "Filter temporal",
+                    condition: ConditionsTypes.Equal,
+                    attribute: {name: data.temporalAttribute, type: "string"},
+                    targetType: FilterTargetTypes.value,
+                    targetValue: data.rows[0][data.temporalAttribute],
+                    visible: true
+                }
+            ] : []
+
             return {
                 ...state,
                 rows: data.rows,
-                visibleRows: data.rows,
                 attributes: data.attributes,
                 latAttribute: data.latAttribute,
                 lonAttribute: data.lonAttribute,
-                attributesStats: getAttributesStats(data.rows, data.attributes)
+                temporalAttribute: data.temporalAttribute,
+                attributesStats: getAttributesStats(data.rows, data.attributes),
+                filters,
+                visibleRows: applyFilters(data.rows, filters, data.attributes)
+            };
+        }
+        case SET_TEMPORAL_FILTER: {
+            const { value } = action.payload;
+
+            const updatedFilters = state.filters.map(item => {
+                if(item.id === 'temporal'){
+                    return {
+                        ...item,
+                        targetValue: value
+                    };
+                }else{
+                    return item;
+                }
+            });
+            console.log('updatedFilters', updatedFilters)
+
+            return {
+                ...state,
+                filters: updatedFilters,
+                attributesStats: getAttributesStats(state.rows, state.attributes),  //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
+                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
         case CLEAR_DATA: {
@@ -120,7 +159,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                attributesStats: getAttributesStats(state.rows, state.attributes),
+                attributesStats: getAttributesStats(state.rows, state.attributes),  //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
@@ -132,13 +171,12 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                attributesStats: getAttributesStats(state.rows, state.attributes),
+                attributesStats: getAttributesStats(state.rows, state.attributes),  //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
         case TOGGLE_FILTER: {
             const { filter, toggle } = action.payload;
-
 
             const updatedFilters = state.filters.map(item => {
                 if(item === filter){
@@ -154,13 +192,15 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 filters: updatedFilters,
-                attributesStats: getAttributesStats(state.rows, state.attributes),
+                attributesStats: getAttributesStats(state.rows, state.attributes),  //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             };
         }
         case SET_HIGHLIGHT: {
             const { highlight } = action.payload;
             console.log('highlight =', highlight)
+
+            //TODO: filtrar marcadores aqui quando fizer highlight
 
             return {
                 ...state,

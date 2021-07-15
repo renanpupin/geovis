@@ -9,3 +9,4 @@ export const ADD_FILTER = "ADD_FILTER";
 export const REMOVE_FILTER = "REMOVE_FILTER";
 export const TOGGLE_FILTER = "TOGGLE_FILTER";
 export const SET_HIGHLIGHT = "SET_HIGHLIGHT";
+export const SET_TEMPORAL_FILTER = "SET_TEMPORAL_FILTER";

@@ -11,6 +11,7 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
 
     const [latAttribute, setLatAttribute] = useState<string | undefined>(data?.latAttribute ?? undefined);
     const [lonAttribute, setLonAttribute] = useState<string | undefined>(data?.lonAttribute ?? undefined);
+    const [temporalAttribute, setTemporalAttribute] = useState<string | undefined>(data?.temporalAttribute ?? undefined);
     // console.log("data", data)
 
     useEffect(() => {
@@ -26,6 +27,11 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
             setLonAttribute(lonParsedAttribute[0].name)
         }
         // }
+
+        const temporalParsedAttribute = data.attributes.filter((item: any) => ['date'].includes(item.name))
+        if(temporalParsedAttribute.length > 0){
+            setTemporalAttribute(temporalParsedAttribute[0].name)
+        }
     }, [])
 
     useEffect(() => {
@@ -33,14 +39,16 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
             onData?.({
                 latAttribute,
                 lonAttribute,
+                temporalAttribute,
             })
         }else{
             onData?.({
                 latAttribute: undefined,
                 lonAttribute: undefined,
+                temporalAttribute: undefined,
             })
         }
-    }, [latAttribute, lonAttribute])
+    }, [latAttribute, lonAttribute, temporalAttribute])
 
     const attributesOptions = [
         {label: 'Select an option', value: undefined},
@@ -57,7 +65,7 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
                     <label>Select the latitude attribute:</label>
                 </div>
                 <Select
-                    label={'Latitude attribute'}
+                    label={'Latitude attribute *'}
                     placeholder={'Select the latitude attribute'}
                     value={latAttribute}
                     options={attributesOptions}
@@ -70,11 +78,23 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
                     <label>Select the longitude attribute:</label>
                 </div>
                 <Select
-                    label={'Longitude attribute'}
+                    label={'Longitude attribute *'}
                     placeholder={'Select the longitude attribute'}
                     value={lonAttribute}
                     options={attributesOptions}
                     onChange={(value) => setLonAttribute(value)}
+                />
+            </div>
+            <div style={{marginBottom: 15}}>
+                <div style={{marginBottom: 5}}>
+                    <label>Select the temporal attribute: (not required)</label>
+                </div>
+                <Select
+                    label={'Temporal attribute'}
+                    placeholder={'Select the temporal attribute'}
+                    value={temporalAttribute}
+                    options={attributesOptions}
+                    onChange={(value) => setTemporalAttribute(value)}
                 />
             </div>
         </div>
