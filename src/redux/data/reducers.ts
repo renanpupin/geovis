@@ -160,6 +160,7 @@ export default function(state = initialState, action: any) {
         }
         case SET_HIGHLIGHT: {
             const { highlight } = action.payload;
+            console.log('highlight =', highlight)
 
             return {
                 ...state,

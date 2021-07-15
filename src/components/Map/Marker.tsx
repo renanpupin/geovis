@@ -38,14 +38,20 @@ const Marker = (props: MarkerPropTypes) => {
             gmapMarker.setMap(props.map);
         }
 
-        gmapMarker.addListener('click', (evt: any) => {
+        const markerClickEventListener = gmapMarker.addListener('click', (evt: any) => {
             if(!infoWindow){
                 infoWindow = createInfoWindow(gmapMarker, null, props.id, [row], props.map, attributes, false, () => {
                     infoWindow = null;
                 })
             }
         });
-    }, []);
+
+        return () => {
+            // console.log('marker remove events')
+            google.maps.event.removeListener(markerClickEventListener);
+            infoWindow?.close();
+        };
+    }, [enableMarkerCluster, cluster, props.map]);
 
     useEffect(() => {
         if (didMount) {

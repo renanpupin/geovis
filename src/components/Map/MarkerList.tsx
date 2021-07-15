@@ -222,7 +222,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
                     />
                 )
             });
-    }, [props, props.visibleRows, props.map, cluster, markerClusterVis, markerChartVis]);
+    }, [props, props.visibleRows, props.map, cluster, markerClusterVis, markerChartVis, highlight]);
 
     return getMarkers()
 }

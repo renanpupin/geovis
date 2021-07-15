@@ -8,7 +8,7 @@ export type InfoWindowPropTypes = {
 
 const InfoWindow = (props: InfoWindowPropTypes) => {
     return (
-        <div style={{minWidth: 200}}>
+        <div style={{minWidth: 300, maxHeight: '50vh', minHeight: 150}}>
             <h5 style={{marginBottom: 15}}>#{props.title}</h5>
             {props.rows.map((row: any, indexRow: number) => {
                 return(
