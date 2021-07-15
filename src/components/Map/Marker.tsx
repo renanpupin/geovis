@@ -74,14 +74,15 @@ const Marker = (props: MarkerPropTypes) => {
         };
     }, [cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon]);
 
-    useEffect(() => {
-        console.log('marker onchange highlight', highlight);
-        if(highlight === false){
-            gmapMarker.setOpacity(0.5);
-        }else{
-            gmapMarker.setOpacity(1);
-        }
-    }, [highlight])
+    // to use highlight with opacity (need to implement on cluster too)
+    // useEffect(() => {
+    //     console.log('marker onchange highlight', highlight);
+    //     if(highlight === false){
+    //         gmapMarker.setOpacity(0.3);
+    //     }else{
+    //         gmapMarker.setOpacity(1);
+    //     }
+    // }, [highlight])
 
     return null;
 }

@@ -198,7 +198,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
                     <Marker
                         key={index}
                         id={String(index)}
-                        // highlight={highlight.length === 0 || highlight.includes(index as any)}
+                        highlight={highlight.length === 0 || highlight.includes(index as any)}
                         lat={row[latAttributeIndex]}
                         lon={row[lonAttributeIndex]}
                         row={row}
