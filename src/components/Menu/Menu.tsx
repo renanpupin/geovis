@@ -191,51 +191,51 @@ const Menu: React.FC<MenuTypes> = (props) => {
                 <ul className={styles.menuList}>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {onPressItem(event, 'changeView')}}>
-                            <i className="material-icons">{props.viewMode === 'map' ? 'table_view' : 'map'}</i>{props.viewMode === 'map' ? 'Ver tabela' : 'Ver mapa'}
+                            <i className="material-icons">{props.viewMode === 'map' ? 'table_view' : 'map'}</i>{props.viewMode === 'map' ? 'View table' : 'View map'}
                         </DropdownItem>
                     </li>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {toggleMenu(event, 'data')}}>
-                            <i className="material-icons">assignment</i>Dados
+                            <i className="material-icons">assignment</i>Data
                         </DropdownItem>
                         {menuOpen === 'data' && <DropdownMenu>
                             <li className={styles.submenu}>
                                 <DropdownItem onPress={(event: any) => {onPressItem(event, 'loadData')}}>
-                                    <i className="material-icons">attach_file</i>Carregar
+                                    <i className="material-icons">attach_file</i>Load
                                 </DropdownItem>
                             </li>
                         </DropdownMenu>}
                     </li>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {toggleMenu(event, 'visualizations')}}>
-                            <i className="material-icons">layers</i>Visualizações
+                            <i className="material-icons">layers</i>Visualizations
                         </DropdownItem>
                         {menuOpen === 'visualizations' && <DropdownMenu>
                             <li className={styles.submenu}>
                                 <DropdownItem onPress={(event: any) => {onPressItem(event, 'addVis')}}>
-                                    <i className="material-icons">add</i>Adicionar
+                                    <i className="material-icons">add</i>Add
                                 </DropdownItem>
                             </li>
                             <li className={styles.submenu}>
                                 <DropdownItem onPress={(event: any) => {onPressItem(event, 'removeVis')}}>
-                                    <i className="material-icons">delete</i>Remover
+                                    <i className="material-icons">delete</i>Remove
                                 </DropdownItem>
                             </li>
                         </DropdownMenu>}
                     </li>
                     <li className={styles.submenu}>
                         <DropdownItem onPress={(event: any) => {toggleMenu(event, 'filters')}}>
-                            <i className="material-icons">filter_alt</i>Filtros
+                            <i className="material-icons">filter_alt</i>Filters
                         </DropdownItem>
                         {menuOpen === 'filters' && <DropdownMenu>
                             <li className={styles.submenu}>
                                 <DropdownItem onPress={(event: any) => {onPressItem(event, 'addFilter')}}>
-                                    <i className="material-icons">add</i>Adicionar
+                                    <i className="material-icons">add</i>Add
                                 </DropdownItem>
                             </li>
                             <li className={styles.submenu}>
                                 <DropdownItem onPress={(event: any) => {onPressItem(event, 'removeFilter')}}>
-                                    <i className="material-icons">delete</i>Remover
+                                    <i className="material-icons">delete</i>Remove
                                 </DropdownItem>
                             </li>
                         </DropdownMenu>}

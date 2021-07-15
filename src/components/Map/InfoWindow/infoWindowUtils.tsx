@@ -2,14 +2,15 @@ import React from 'react';
 import {render} from "react-dom";
 import InfoWindow from './InfoWindow'
 
-export const createInfoWindow = (gmapMarker: any, position: any, title: any, rows: any, map: any, attributes: any, onClose: any) => {
+export const createInfoWindow = (gmapMarker: any, position: any, title: any, rows: any, map: any, attributes: any, isCluster: boolean, onClose: any) => {
     const id: string = `info-window-${title}`
+    console.log('createInfoWindow', title, id);
 
     const infoWindow = new window.google.maps.InfoWindow({
         content: `<div id="${id}" />`,
         // position: position,
         position: position ? {lat: position.lat(), lng: position.lng()} : undefined,
-        pixelOffset: new google.maps.Size(0, -25)
+        pixelOffset: new google.maps.Size(0, isCluster ? -25 : 0)
     });
 
     infoWindow.addListener('domready', (e: any) => {

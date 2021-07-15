@@ -12588,6 +12588,11 @@ react-popper@^2.2.4:
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
 
+react-range@^1.8.9:
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/react-range/-/react-range-1.8.9.tgz#4d8f6ed44eddbc493d3272dc5f71fab367d9efae"
+  integrity sha512-rDR9NEmIYBsMYJY+bCTnY17I1NT9jlI0m2wM2yiddkRN6GygTGjylTnNGlpAh8chohABwb58XCtyOIvRGcTosw==
+
 react-redux@^7.2.2:
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.2.tgz#03862e803a30b6b9ef8582dadcc810947f74b736"

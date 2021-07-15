@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, FC} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import Marker from "src/components/Map/Marker";
 import {useSelector} from "react-redux";
@@ -47,7 +47,12 @@ import {VisualizationTypeValues, MarkerChartTypeProps} from "../../redux/data/ty
 //     }),
 // ];
 
-const MarkerList = (props: any) => {
+type MarkerListProps = {
+    map: any
+    visibleRows: any
+}
+
+const MarkerList:FC<MarkerListProps> = (props) => {
     const visualizations = useSelector(getVisualizations)
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
@@ -152,15 +157,19 @@ const MarkerList = (props: any) => {
 
         const clusterClickEventListener = google.maps.event.addListener(cluster, 'clusterclick', function (cluster) {
             const gmapMarkers = cluster.getMarkers();
-            console.log("markers", gmapMarkers);
-            console.log("cluster", cluster);
+            // console.log("markers", gmapMarkers);
+            // console.log("cluster", cluster);
 
             const ids = gmapMarkers.map((item: any) => Number(item.title));
             const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
 
+            // console.log("cluster ids", ids);
+            // console.log("cluster rowsInCluster", rowsInCluster);
+            // console.log("cluster props.visibleRows", props.visibleRows);
+
             infoWindow?.close();
             // if(!infoWindow){
-                infoWindow = createInfoWindow(null, cluster.getCenter(), 'Cluster', rowsInCluster, props.map, attributes, () => {
+                infoWindow = createInfoWindow(null, cluster.getCenter(), 'Cluster', rowsInCluster, props.map, attributes, true, () => {
                     infoWindow = null;
                 })
             // }
@@ -172,13 +181,14 @@ const MarkerList = (props: any) => {
         });
 
         return () => {
+            // console.log('marker list remove events')
             google.maps.event.removeListener(clusterClickEventListener);
             google.maps.event.removeListener(zoomChangedEventListener);
             infoWindow?.close();
-            cluster.clearMarkers();
-            cluster.setMap(null);
+            // cluster.clearMarkers();
+            // cluster.setMap(null);
         };
-    }, []);
+    }, [props.visibleRows]);
 
     const getMarkers = useCallback(() => {
         return props.visibleRows

@@ -11,9 +11,9 @@ import {getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from 'src/redux/data/types'
 
 const App: React.FC = () => {
-    const [viewMode, setViewMode] = useState<'map' | 'table'>('map')
-    const [visMode, setVisMode] = useState<'split' | 'full'>('split')
-    const visualizations = useSelector(getVisualizations)
+    const [viewMode, setViewMode] = useState<'map' | 'table'>('map');
+    const [visMode, setVisMode] = useState<'split' | 'full'>('full');
+    const visualizations = useSelector(getVisualizations);
     return (
         <div>
             <Menu

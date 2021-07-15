@@ -20,6 +20,7 @@ export type MarkerPropTypes = {
 const Marker = (props: MarkerPropTypes) => {
     const {row, enableMarkerCluster, icon, cluster, attributes, highlight} = props
     const [didMount, setDidMount] = useState(false)
+    // console.log('Marker ID', props.id)
     const [gmapMarker] = useState(createMarkerEmpty({
         id: props.id,
         lat: props.lat,
@@ -39,7 +40,7 @@ const Marker = (props: MarkerPropTypes) => {
 
         gmapMarker.addListener('click', (evt: any) => {
             if(!infoWindow){
-                infoWindow = createInfoWindow(gmapMarker, null, props.id, [row], props.map, attributes, () => {
+                infoWindow = createInfoWindow(gmapMarker, null, props.id, [row], props.map, attributes, false, () => {
                     infoWindow = null;
                 })
             }
