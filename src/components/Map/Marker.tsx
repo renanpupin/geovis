@@ -51,7 +51,7 @@ const Marker = (props: MarkerPropTypes) => {
             google.maps.event.removeListener(markerClickEventListener);
             infoWindow?.close();
         };
-    }, [enableMarkerCluster, cluster, props.map]);
+    }, [props.id, enableMarkerCluster, cluster, props.map]);
 
     useEffect(() => {
         if (didMount) {
@@ -72,7 +72,7 @@ const Marker = (props: MarkerPropTypes) => {
             infoWindow?.close()
             clusterInfoWindow?.close()
         };
-    }, [cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon]);
+    }, [props.map, cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon]);
 
     // to use highlight with opacity (need to implement on cluster too)
     // useEffect(() => {

@@ -122,15 +122,22 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
                         eventName: 'select',
                         callback: ({ chartWrapper, google }) => {
                             const chart = chartWrapper.getChart();
-                            console.log('chart getSelection', chart.getSelection())
+                            // console.log('chart getSelection', chart.getSelection())
                             //@ts-ignore
                             const selectedDataRow = chart.getSelection()?.length > 0 ? data[chart.getSelection()?.[0]?.row +1] : null
-                            console.log('selectedDataRow', selectedDataRow)
-                            console.log('visibleRows', visibleRows)
-                            const highlightIndexes = visibleRows.map((row: any, index: number) => (labelAttributeIndex !== -1 ? row[labelAttributeIndex] : row[attributeIndexX]) === selectedDataRow?.[0] ? index : null).filter((item: any) => item !== null)
-                            console.log('highlightIndexes', highlightIndexes)
-
-                            //TODO: arrumar isso está filtrando errado (testar clicar no gráfico e abrir os marcadores)
+                            // console.log('selectedDataRow', selectedDataRow)
+                            // console.log('visibleRows', visibleRows)
+                            // console.log('labelAttributeIndex', labelAttributeIndex)
+                            // console.log('attributeIndexX', attributeIndexX)
+                            const highlightIndexes = visibleRows.map((row: any, index: number) => {
+                                const rowAttributeIndex = labelAttributeIndex !== -1 ? labelAttributeIndex : attributeIndexX;
+                                // console.log('selectedDataRow?.[0]', selectedDataRow?.[0])
+                                // console.log('rowAttributeIndex', rowAttributeIndex)
+                                // console.log('row[rowAttributeIndex] value', row[rowAttributeIndex])
+                                // console.log('row[rowAttributeIndex] === selectedDataRow?.[0]', row[rowAttributeIndex], '===', selectedDataRow?.[0], row[rowAttributeIndex] === selectedDataRow?.[0])
+                                return row[rowAttributeIndex] === selectedDataRow?.[0] ? index : null
+                            }).filter((item: any) => item !== null)
+                            // console.log('highlightIndexes', highlightIndexes)
 
                             dispatch(setHighlight(highlightIndexes as number[]))
                         }

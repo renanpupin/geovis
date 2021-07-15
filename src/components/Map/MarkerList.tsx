@@ -59,6 +59,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
     const attributes = useSelector(getAttributes)
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
+    const [markersRefresh, setMarkersRefresh] = useState(props.visibleRows)
 
     const markerClusterVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster);
     const markerChartVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart);
@@ -161,11 +162,11 @@ const MarkerList:FC<MarkerListProps> = (props) => {
             // console.log("cluster", cluster);
 
             const ids = gmapMarkers.map((item: any) => Number(item.title));
-            const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
+            const rowsInCluster = markersRefresh.filter((item: any, index: number) => ids.includes(index));
 
             // console.log("cluster ids", ids);
             // console.log("cluster rowsInCluster", rowsInCluster);
-            // console.log("cluster props.visibleRows", props.visibleRows);
+            // console.log("cluster markersRefresh", markersRefresh);
 
             infoWindow?.close();
             // if(!infoWindow){
@@ -188,41 +189,50 @@ const MarkerList:FC<MarkerListProps> = (props) => {
             // cluster.clearMarkers();
             // cluster.setMap(null);
         };
-    }, [props.visibleRows]);
+    }, [markersRefresh, cluster]);
+
+    useEffect(() => {
+        setMarkersRefresh(
+            props.visibleRows
+                .filter((row: any, index: number) => highlight.length === 0 || highlight.includes(index as any))
+                .map((row: any, index: number) => ({
+                    ...row,
+                    _key_id: `${index}_${new Date().getTime()}`
+                }))
+        )
+    }, [props.visibleRows, highlight])
 
     const getMarkers = useCallback(() => {
-        return props.visibleRows
-            .filter((row: any, index: number) => highlight.length === 0 || highlight.includes(index as any))
-            .map((row: any, index: number) => {
-                return (
-                    <Marker
-                        key={index}
-                        id={String(index)}
-                        highlight={highlight.length === 0 || highlight.includes(index as any)}
-                        lat={row[latAttributeIndex]}
-                        lon={row[lonAttributeIndex]}
-                        row={row}
-                        attributes={attributes}
-                        map={props.map}
-                        cluster={cluster}
-                        enableMarkerCluster={markerClusterVis.length > 0}
-                        // enableMarkerChart={markerChartVis.length > 0}
-                        // icon={MarkerChart({data: row, type: "pie"})}
-                        icon={
-                            markerChartVis?.length > 0 ? (
-                                MarkerChart({
-                                    attributes,
-                                    attributesStats,
-                                    data: row,
-                                    chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
-                                    chartAttributes: markerChartVis[0].markerChartAttributes,
-                                })
-                            ) : null
-                        }
-                    />
-                )
-            });
-    }, [props, props.visibleRows, props.map, cluster, markerClusterVis, markerChartVis, highlight]);
+        return markersRefresh.map((row: any, index: number) => {
+            return (
+                <Marker
+                    key={row._key_id}
+                    id={String(index)}
+                    highlight={highlight.length === 0 || highlight.includes(index as any)}
+                    lat={row[latAttributeIndex]}
+                    lon={row[lonAttributeIndex]}
+                    row={row}
+                    attributes={attributes}
+                    map={props.map}
+                    cluster={cluster}
+                    enableMarkerCluster={markerClusterVis.length > 0}
+                    // enableMarkerChart={markerChartVis.length > 0}
+                    // icon={MarkerChart({data: row, type: "pie"})}
+                    icon={
+                        markerChartVis?.length > 0 ? (
+                            MarkerChart({
+                                attributes,
+                                attributesStats,
+                                data: row,
+                                chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                                chartAttributes: markerChartVis[0].markerChartAttributes,
+                            })
+                        ) : null
+                    }
+                />
+            )
+        });
+    }, [markersRefresh, props.map, cluster, markerClusterVis, markerChartVis, highlight, attributes, attributesStats]);
 
     return getMarkers()
 }
