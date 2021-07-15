@@ -5,6 +5,7 @@ import Table from 'src/components/Table/Table'
 import Menu from 'src/components/Menu/Menu'
 import Chart from 'src/components/Chart/Chart'
 import FilterList from "src/components/FilterList/FilterList";
+import TemporalFilter from "src/components/TemporalFilter/TemporalFilter";
 import LayersList from "src/components/LayersList/LayersList";
 import SideMenu from "src/components/SideMenu/SideMenu";
 import {getVisualizations} from "src/redux/data/selectors";
@@ -13,6 +14,7 @@ import {VisualizationTypeValues} from 'src/redux/data/types'
 const App: React.FC = () => {
     const [viewMode, setViewMode] = useState<'map' | 'table'>('map');
     const [visMode, setVisMode] = useState<'split' | 'full'>('full');
+    const [showTemporalFilter, setShowTemporalFilter] = useState<boolean>(false);
     const visualizations = useSelector(getVisualizations);
     return (
         <div>
@@ -70,6 +72,26 @@ const App: React.FC = () => {
             >
                 <i className="material-icons">{visMode === 'split' ? 'vertical_split' : 'fullscreen'}</i>
             </div>
+
+            {showTemporalFilter && viewMode === 'map' && <div
+                style={{
+                    position: 'absolute',
+                    bottom: 10,
+                    left: 'calc(50% - 250px)',
+                    width: 500,
+                    // height: 75,
+                    padding: 20,
+                    backgroundColor: '#fff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    borderRadius: 6,
+                    userSelect: 'none'
+                }}
+            >
+                <TemporalFilter/>
+            </div>}
         </div>
     );
 }
