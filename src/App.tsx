@@ -8,14 +8,15 @@ import FilterList from "src/components/FilterList/FilterList";
 import TemporalFilter from "src/components/TemporalFilter/TemporalFilter";
 import LayersList from "src/components/LayersList/LayersList";
 import SideMenu from "src/components/SideMenu/SideMenu";
-import {getVisualizations} from "src/redux/data/selectors";
+import {getTemporalAttribute, getVisualizations} from "src/redux/data/selectors";
 import {VisualizationTypeValues} from 'src/redux/data/types'
 
 const App: React.FC = () => {
     const [viewMode, setViewMode] = useState<'map' | 'table'>('map');
     const [visMode, setVisMode] = useState<'split' | 'full'>('full');
-    const [showTemporalFilter, setShowTemporalFilter] = useState<boolean>(false);
+    const temporalAttribute = useSelector(getTemporalAttribute);
     const visualizations = useSelector(getVisualizations);
+    // console.log('app temporalAttribute', !!temporalAttribute)
     return (
         <div>
             <Menu
@@ -73,7 +74,7 @@ const App: React.FC = () => {
                 <i className="material-icons">{visMode === 'split' ? 'vertical_split' : 'fullscreen'}</i>
             </div>
 
-            {showTemporalFilter && viewMode === 'map' && <div
+            {!!temporalAttribute && viewMode === 'map' && <div
                 style={{
                     position: 'absolute',
                     bottom: 10,

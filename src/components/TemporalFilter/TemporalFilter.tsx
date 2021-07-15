@@ -2,22 +2,19 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {Range} from 'react-range';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {getTemporalAttributeIndex, getVisibleRows, getData} from 'src/redux/data/selectors'
+import {getTemporalAttributeIndex, getData} from 'src/redux/data/selectors'
 import {setTemporalFilter} from '../../redux/data/actions';
 
 const TemporalFilter: React.FC<any> = (props) => {
     const dispatch = useDispatch();
-    //TODO: repensar em como combinar esses dados com os filtros atuais
-    const visibleRows = useSelector(getData);    //TODO: mover highlight para esta lógica
+    const allRows = useSelector(getData);    //TODO: mover highlight para esta lógica
     const temporalAttributeIndex = useSelector(getTemporalAttributeIndex)
     const [values, setValues] = useState<any>([0]);
-
-    // const rangeValues = visibleRows.map((row: any) => row[temporalAttributeIndex])
 
     const getRangeValues = useCallback(() => {
         const rangeValues: string[] = [];
 
-        for(const row of visibleRows){
+        for(const row of allRows){
             //@ts-ignore
             if(!rangeValues.includes(row[temporalAttributeIndex])){
                 //@ts-ignore
@@ -26,13 +23,11 @@ const TemporalFilter: React.FC<any> = (props) => {
         }
 
         return rangeValues;
-    }, [visibleRows, temporalAttributeIndex]);
-
-    // console.log('TemporalFilter row[0]', visibleRows?.[0]) //?.[temporalAttributeIndex as any])
-    // console.log('TemporalFilter rangeValues', getRangeValues())
-    // getTemporalAttributeIndex
+    }, [allRows, temporalAttributeIndex]);
 
     const rangeValues = getRangeValues()
+
+    //TODO: apertar play para ver iterações
 
     return(
         <Range
