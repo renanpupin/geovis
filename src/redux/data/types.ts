@@ -1,3 +1,4 @@
+import ParallelCoordinates from '../../components/ParallelCoordinates/ParallelCoordinates';
 
 export type StateProps = {
     attributes: AttributeTypes[]
@@ -29,7 +30,8 @@ export enum VisualizationTypeValues {
     Heatmap = 'Heatmap',
     MarkerCluster = 'MarkerCluster',
     MarkerChart = 'MarkerChart',
-    Chart = 'Chart'
+    Chart = 'Chart',
+    ParallelCoordinates = 'ParallelCoordinates',
     // {label: 'Heatmap', value: 'heatmap'},
     // {label: 'Cluster', value: 'cluster'},
     // {label: 'Chart', value: 'chart'},

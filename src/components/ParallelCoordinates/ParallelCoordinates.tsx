@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {getAttributes, getVisibleRows} from "src/redux/data/selectors";
+import styles from '../Chart/Chart.module.scss';
+import Draggable from '../Draggable/Draggable';
 
 export type Props = {
-    visData: any
+    visMode: any
 }
 
 const ParallelCoordinates: React.FC<Props> = (props) => {
+    const { visMode } = props
     const attributes = useSelector(getAttributes)
     const visibleRows = useSelector(getVisibleRows)
 
@@ -77,18 +80,20 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
             // .on("brush", (data:any) => console.log("[EVENT] brush data", data))
     }, [visibleRows])
 
-
+    const size = 400-35;    // 35 is scrollbar width
     return (
-        <div
-            style={{border: "1px solid #e1e1e1", overflow: "hidden", margin: 15}}
-        >
+        <Draggable className={styles.chart} disabled={visMode === 'split'}>
             <div
-                id={id}
-                onMouseDown={(e: any) => e.stopPropagation()}
-                className="parcoords"
-                style={{width: (attributes.length * 100) + 2, height: 300}}
-            />
-        </div>
+                style={{position: 'relative', border: "1px solid #e1e1e1", overflow: "scroll", margin: 15, width: visMode === 'split' ? size : 'auto'}}
+            >
+                <div
+                    id={id}
+                    onMouseDown={(e: any) => e.stopPropagation()}
+                    className="parcoords"
+                    style={{width: (attributes.length * 100) + 2, height: 300}}
+                />
+            </div>
+        </Draggable>
     );
 }
 

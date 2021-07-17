@@ -40,8 +40,8 @@ const fastLoadPieChartUngroupedVis: Omit<VisualizationTypes, 'id' | 'visible'> =
     hasToGroup: false,
 };
 const fastLoadParallelVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
-    type: VisualizationTypeValues.Chart,
-    chartType: "parallel"
+    type: VisualizationTypeValues.ParallelCoordinates,
+    // chartType: "parallel"
 };
 const fastLoadMarkerChartPie: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,

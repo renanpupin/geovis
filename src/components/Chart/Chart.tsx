@@ -89,18 +89,12 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
         }
     }
 
-    const getParallel = () => {
-        return(
-            <ParallelCoordinates visData={visData}/>
-        )
-    }
-
     const normalizedChartType = getNormalizedChartType()
 
     const size = 400-35;    // 35 is scrollbar width
     return(
         <Draggable className={styles.chart} disabled={visMode === 'split'}>
-            {normalizedChartType === "parallel" ? getParallel() :<GoogleCharts
+            <GoogleCharts
                 width={size}
                 height={size*0.75}
                 chartType={normalizedChartType}
@@ -144,7 +138,7 @@ const Chart: React.FC<ChartPropTypes> = (props) => {
                     }
                 ]}
                 legendToggle
-            />}
+            />
         </Draggable>
     )
 }

@@ -4,6 +4,7 @@ import Map from 'src/components/Map/Map'
 import Table from 'src/components/Table/Table'
 import Menu from 'src/components/Menu/Menu'
 import Chart from 'src/components/Chart/Chart'
+import ParallelCoordinates from 'src/components/ParallelCoordinates/ParallelCoordinates'
 import FilterList from "src/components/FilterList/FilterList";
 import TemporalFilter from "src/components/TemporalFilter/TemporalFilter";
 import LayersList from "src/components/LayersList/LayersList";
@@ -16,6 +17,7 @@ const App: React.FC = () => {
     const [visMode, setVisMode] = useState<'split' | 'full'>('full');
     const temporalAttribute = useSelector(getTemporalAttribute);
     const visualizations = useSelector(getVisualizations);
+    // console.log('visualizations', visualizations)
     // console.log('app temporalAttribute', !!temporalAttribute)
     return (
         <div>
@@ -33,6 +35,9 @@ const App: React.FC = () => {
                 <div className={'chartsWrapper'} style={{flex: 0, flexDirection: 'column', maxHeight: `calc(100vh - 65px)`, marginTop: 65, overflowY: 'scroll', width: visMode === 'split' ? `max(20%, 400px)` : '0%', display: 'flex', minWidth: visMode === 'split' ? 400 : 0}}>
                     {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (
                         <Chart key={index} index={index} visData={item} visMode={visMode}/>
+                    ))}
+                    {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.ParallelCoordinates).map((item: any, index: number) => (
+                        <ParallelCoordinates key={index} visMode={visMode}/>
                     ))}
                 </div>
             </div>
