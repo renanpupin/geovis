@@ -34,7 +34,7 @@ const App: React.FC = () => {
                 </div>
                 <div className={'chartsWrapper'} style={{flex: 0, flexDirection: 'column', maxHeight: `calc(100vh - 65px)`, marginTop: 65, overflowY: 'scroll', width: visMode === 'split' ? `max(20%, 400px)` : '0%', display: 'flex', minWidth: visMode === 'split' ? 400 : 0}}>
                     {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.Chart).map((item: any, index: number) => (
-                        <Chart key={index} index={index} visData={item} visMode={visMode}/>
+                        <Chart key={item.id} index={index} visData={item} visMode={visMode}/>
                     ))}
                     {visualizations.filter((item: any) => item.visible && item.type === VisualizationTypeValues.ParallelCoordinates).map((item: any, index: number) => (
                         <ParallelCoordinates key={index} visMode={visMode}/>

@@ -60,6 +60,8 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
         }
     }
 
+    const axisWidth = 100
+
     useEffect(() => {
         // @ts-ignore
         document.getElementById(id).innerHTML = "";
@@ -70,8 +72,8 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
             .mode("queue") // progressive rendering
             .height(300)
             .data(getNormalizedRows())
-            .width(attributes.length * 100)
-            // .hideAxis(["name"])
+            .width(attributes.length * axisWidth)
+            // .hideAxis(["ibgeID", 'country', 'cod_RegiaoDeSaude', 'name_RegiaoDeSaude', 'city', '_source'])
             // .color(color2)
             .render()
             .brushMode("1D-axes")
@@ -90,7 +92,7 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
                     id={id}
                     onMouseDown={(e: any) => e.stopPropagation()}
                     className="parcoords"
-                    style={{width: (attributes.length * 100) + 2, height: 300}}
+                    style={{width: (attributes.length * axisWidth) + 2, height: 300}}
                 />
             </div>
         </Draggable>

@@ -103,7 +103,7 @@ export default function(state = initialState, action: any) {
         case ADD_VISUALIZATION: {
             const { visualization } = action.payload;
 
-            const id: string = String(state.visualizations.length+1)
+            const id: string = String(`vis-${state.visualizations.length+1}`)
 
             return {
                 ...state,
@@ -131,6 +131,7 @@ export default function(state = initialState, action: any) {
             return {
                 ...state,
                 visualizations: state.visualizations.map(item => {
+                    console.log('TOGGLE_VISUALIZATION', id, toggle)
                     if(item.id === id){
                         return {
                             ...item,
