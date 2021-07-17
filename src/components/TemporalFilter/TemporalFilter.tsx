@@ -26,6 +26,7 @@ const TemporalFilter: React.FC<any> = (props) => {
     }, [allRows, temporalAttributeIndex]);
 
     const rangeValues = getRangeValues()
+    // console.log('rangeValues', rangeValues)
 
     //TODO: apertar play para ver iterações
 

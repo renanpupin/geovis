@@ -201,6 +201,17 @@ export default function(state = initialState, action: any) {
             console.log('highlight =', highlight)
 
             //TODO: filtrar marcadores aqui quando fizer highlight
+            //alterar highlight
+
+            // const highlightFilter = {
+            //     id: 'highlight',
+            //     name: "Filter highlight",
+            //     condition: ConditionsTypes.Equal,
+            //     attribute: 'index',
+            //     targetType: FilterTargetTypes.value,
+            //     targetValue: [],    //list
+            //     visible: true
+            // }
 
             return {
                 ...state,

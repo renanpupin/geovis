@@ -93,7 +93,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
 
         const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${count},${props.visibleRows.length-count}&cht=p3&chf=bg,s,FFFFFF00`
         const ids = clusterMarkers.map((item: any) => Number(item.title));
-        const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
+        // const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
         //TODO: enable cluster on visible
         // const iconUrl = MarkerChart({data: row, type: "pie"}).url
 

@@ -14,12 +14,17 @@ const Heatmap = (props: any) => {
     }, []);
 
     useEffect(() => {
+        //TODO: adicionar suporte ao highlight
         gmapHeatmap.setData(props.data.map((data: any) => {
             return {
                 location: new window.google.maps.LatLng(data.lat, data.lng),
                 weight: 1   //usar com peso de marker clusters
             }
         }));
+        return () => {
+            //TODO: testar aqui, está devagar para usar heatmap + filtro
+            gmapHeatmap.setMap(null)
+        };
         //TODO: ao remover pontos, não está removendo
     }, [props.data]);
 

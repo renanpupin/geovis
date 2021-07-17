@@ -27,8 +27,10 @@ const Map: React.FC = () => {
     }, [visibleRows, map]);
 
     const getHeatmap = useCallback(() => {
+        // console.log('getHeatmap changed visibleRows', visibleRows)
+        // console.log('getHeatmap changed visualizations', visualizations)
         const hideHeatmap = visualizations.filter(visualization => {
-            console.log("visualization", visualization)
+            // console.log("visualization", visualization)
             return(
                 visualization.visible &&
                 visualization.type === VisualizationTypeValues.Heatmap
