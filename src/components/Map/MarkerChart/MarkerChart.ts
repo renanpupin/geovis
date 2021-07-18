@@ -127,7 +127,7 @@ const MarkerChart = (props: MarkerChartProps) => {
     };
 
     const result = generateChartUrl();
-    console.log('generateChartUrl', result);
+    // console.log('generateChartUrl', result);
 
     return {
         // url: `https://chart.googleapis.com/chart?chs=150x150&chd=t:5,10&cht=p3&chf=bg,s,FFFFFF00`,

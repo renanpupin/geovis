@@ -59,7 +59,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
     const attributes = useSelector(getAttributes)
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
-    const [markersRefresh, setMarkersRefresh] = useState(props.visibleRows)
+    const [markersVisible, setMarkersVisible] = useState(props.visibleRows)
 
     const markerClusterVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster);
     const markerChartVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart);
@@ -83,31 +83,47 @@ const MarkerList:FC<MarkerListProps> = (props) => {
     // console.log("aaa", cluster.getCalculator())
     cluster.setCalculator((clusterMarkers, numStyles) => {
         let index = 0;
-        const count = clusterMarkers.length;
+        const clusterMarkersCount = clusterMarkers.length;
 
-        let dv = count;
-        while (dv !== 0) {
-            dv = Math.floor(dv / 10);
-            index++;
+        //cluster color strategy 1
+        // let dv = count;
+        // while (dv !== 0) {
+        //     dv = Math.floor(dv / 10);
+        //     index++;
+        // }
+        // index = Math.min(index, numStyles);
+
+        //cluster color strategy 2 (heatmap with 5 levels)
+        if(clusterMarkersCount / markersVisible.length > 0.8){
+            index = 5;
+        }else if(clusterMarkersCount / markersVisible.length > 0.6){
+            index = 4;
+        }else if(clusterMarkersCount / markersVisible.length > 0.4){
+            index = 3;
+        }else if(clusterMarkersCount / markersVisible.length > 0.2){
+            index = 2;
+        }else{
+            index = 1
         }
 
-        const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${count},${props.visibleRows.length-count}&cht=p3&chf=bg,s,FFFFFF00`
+        const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${clusterMarkersCount},${markersVisible.length-clusterMarkersCount}&cht=p3&chf=bg,s,FFFFFF00`
         const ids = clusterMarkers.map((item: any) => Number(item.title));
-        // const rowsInCluster = props.visibleRows.filter((item: any, index: number) => ids.includes(index));
+        // const rowsInCluster = markersVisible.filter((item: any, index: number) => ids.includes(index));
         //TODO: enable cluster on visible
         // const iconUrl = MarkerChart({data: row, type: "pie"}).url
 
+        console.log("index", index)
+        console.log("numStyles", numStyles)
         // console.log("rowsInCluster", rowsInCluster)
         // console.log("iconUrl", iconUrl)
         // console.log("count", count)
-        // console.log("visibleRows", props.visibleRows.length)
+        // console.log("markersVisible", markersVisible.length)
         // console.log("clusterMarkers", clusterMarkers)
 
-        index = Math.min(index, numStyles);
         return {
-            text: count.toString(),
+            text: clusterMarkersCount.toString(),
             url: markerClusterVis?.[0]?.showPie === 'yes' ? iconUrl : undefined,
-            index: index,
+            index,
             title: "",
         };
     });
@@ -162,11 +178,11 @@ const MarkerList:FC<MarkerListProps> = (props) => {
             // console.log("cluster", cluster);
 
             const ids = gmapMarkers.map((item: any) => Number(item.title));
-            const rowsInCluster = markersRefresh.filter((item: any, index: number) => ids.includes(index));
+            const rowsInCluster = markersVisible.filter((item: any, index: number) => ids.includes(index));
 
             // console.log("cluster ids", ids);
             // console.log("cluster rowsInCluster", rowsInCluster);
-            // console.log("cluster markersRefresh", markersRefresh);
+            // console.log("cluster markersVisible", markersVisible);
 
             infoWindow?.close();
             // if(!infoWindow){
@@ -189,10 +205,10 @@ const MarkerList:FC<MarkerListProps> = (props) => {
             // cluster.clearMarkers();
             // cluster.setMap(null);
         };
-    }, [markersRefresh, cluster]);
+    }, [markersVisible, cluster]);
 
     useEffect(() => {
-        setMarkersRefresh(
+        setMarkersVisible(
             props.visibleRows
                 .filter((row: any, index: number) => highlight.length === 0 || highlight.includes(index as any))
                 .map((row: any, index: number) => ({
@@ -203,7 +219,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
     }, [props.visibleRows, highlight])
 
     const getMarkers = useCallback(() => {
-        return markersRefresh.map((row: any, index: number) => {
+        return markersVisible.map((row: any, index: number) => {
             return (
                 <Marker
                     key={row._key_id}
@@ -232,7 +248,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
                 />
             )
         });
-    }, [markersRefresh, props.map, cluster, markerClusterVis, markerChartVis, highlight, attributes, attributesStats]);
+    }, [markersVisible, props.map, cluster, markerClusterVis, markerChartVis, highlight, attributes, attributesStats]);
 
     return getMarkers()
 }

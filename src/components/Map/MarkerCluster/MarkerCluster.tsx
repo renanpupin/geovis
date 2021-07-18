@@ -15,7 +15,7 @@ const MarkerCluster = (props: any) => {
     //     imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
     // });
     const createInstance = () => {
-        console.log("create instance")
+        // console.log("create instance")
         return new MarkerClusterer(props.map, props.markers, {
             imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
         });

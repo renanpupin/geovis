@@ -104,7 +104,7 @@ const Menu: React.FC<MenuTypes> = (props) => {
             dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             dispatch(addVisualization(fastLoadPieChartVis))
-            // dispatch(addVisualization(fastLoadMarkerChartPie))
+            dispatch(addVisualization(fastLoadMarkerChartPie))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))
         }
