@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback, FC} from 'react';
+import React, {useEffect, useState, useCallback, useMemo, FC} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
 import Marker from "src/components/Map/Marker";
 import {useSelector} from "react-redux";
@@ -59,10 +59,18 @@ const MarkerList:FC<MarkerListProps> = (props) => {
     const attributes = useSelector(getAttributes)
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
-    const [markersVisible, setMarkersVisible] = useState(props.visibleRows)
 
     const markerClusterVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster);
     const markerChartVis = visualizations.filter(visualization => visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart);
+
+    const markersVisible = useMemo(() => {
+        return props.visibleRows
+            .filter((row: any, index: number) => highlight.length === 0 || highlight.includes(index as any))
+            .map((row: any, index: number) => ({
+                ...row,
+                _key_id: `${index}_${new Date().getTime()}`
+            }))
+    }, [props.visibleRows, highlight])
 
     const [cluster] = useState<MarkerClusterer>(new MarkerClusterer(props.map, [], {
         imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -221,17 +229,6 @@ const MarkerList:FC<MarkerListProps> = (props) => {
             // cluster.setMap(null);
         };
     }, [markersVisible, cluster]);
-
-    useEffect(() => {
-        setMarkersVisible(
-            props.visibleRows
-                .filter((row: any, index: number) => highlight.length === 0 || highlight.includes(index as any))
-                .map((row: any, index: number) => ({
-                    ...row,
-                    _key_id: `${index}_${new Date().getTime()}`
-                }))
-        )
-    }, [props.visibleRows, highlight])
 
     const getMarkers = useCallback(() => {
         return markersVisible.map((row: any, index: number) => {
