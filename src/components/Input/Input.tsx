@@ -7,10 +7,11 @@ export type InputProps = {
     value: string | number | undefined
     type?: 'text' | 'number'
     onChange?: (text: string) => void
+    disabled?: boolean
 }
 
 const Input: React.FC<InputProps> = (props) => {
-    const {type, value, onChange, label, placeholder} = props
+    const {type, value, onChange, label, placeholder, disabled} = props
 
     const [hasFocus, setHasFocus] = useState(false)
 
@@ -20,6 +21,7 @@ const Input: React.FC<InputProps> = (props) => {
         <div className={styles.wrapper}>
             <label className={labelStyles}>{label}</label>
             <input
+                disabled={disabled}
                 placeholder={placeholder}
                 type={type ?? 'text'}
                 className={styles.input}

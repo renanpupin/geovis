@@ -15,7 +15,8 @@ export const applyFilters = (data: object[], filters: FilterTypes[], attributes:
 };
 
 const applyFilter = (dataItem: object, filter: FilterTypes, attributeIndex: number) => {
-    const {condition, targetValue}: any = filter;
+    const {condition, targetValue, targetType}: any = filter;
+    // console.log('filter', filter)
 
     if (!filter.visible) {
         return true;

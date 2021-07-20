@@ -106,23 +106,38 @@ const MarkerList:FC<MarkerListProps> = (props) => {
             index = 1
         }
 
-        const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${clusterMarkersCount},${markersVisible.length-clusterMarkersCount}&cht=p3&chf=bg,s,FFFFFF00`
+        // const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${clusterMarkersCount},${markersVisible.length-clusterMarkersCount}&cht=p3&chf=bg,s,FFFFFF00`
         const ids = clusterMarkers.map((item: any) => Number(item.title));
-        // const rowsInCluster = markersVisible.filter((item: any, index: number) => ids.includes(index));
+        const rowsInCluster = markersVisible.filter((item: any, index: number) => ids.includes(index));
         //TODO: enable cluster on visible
         // const iconUrl = MarkerChart({data: row, type: "pie"}).url
 
-        console.log("index", index)
-        console.log("numStyles", numStyles)
+        // console.log("index", index)
+        // console.log("numStyles", numStyles)
         // console.log("rowsInCluster", rowsInCluster)
         // console.log("iconUrl", iconUrl)
         // console.log("count", count)
         // console.log("markersVisible", markersVisible.length)
         // console.log("clusterMarkers", clusterMarkers)
 
+        let resultMarkerChartCluster
+        if(markerChartVis?.length > 0){
+            resultMarkerChartCluster = MarkerChart({
+                attributes,
+                attributesStats,
+                data: rowsInCluster,
+                chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                chartAttributes: markerChartVis[0].markerChartAttributes,
+                width: 150,
+                height: 150
+            })
+            // console.log("resultMarkerChartCluster", resultMarkerChartCluster)
+        }
+
         return {
             text: clusterMarkersCount.toString(),
-            url: markerClusterVis?.[0]?.showPie === 'yes' ? iconUrl : undefined,
+            // url: markerClusterVis?.[0]?.showChart === 'yes' ? iconUrl : undefined,
+            url: markerClusterVis?.[0]?.showChart === 'yes' && resultMarkerChartCluster ? resultMarkerChartCluster.url : undefined,
             index,
             title: "",
         };
@@ -239,7 +254,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
                             MarkerChart({
                                 attributes,
                                 attributesStats,
-                                data: row,
+                                data: [row],
                                 chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
                                 chartAttributes: markerChartVis[0].markerChartAttributes,
                             })

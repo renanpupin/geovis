@@ -17,6 +17,8 @@ type FilterWizardProps = {
 type stepDataProps = {
     type?: any
     attribute?: any
+    targetType?: any
+    targetValue?: any
 }
 
 const FilterWizard: React.FC<FilterWizardProps> = (props) => {
@@ -66,6 +68,7 @@ const FilterWizard: React.FC<FilterWizardProps> = (props) => {
         return []
     }
 
+    console.log("stepsData", stepsData)
     const steps = [
         {
             title: 'Select filter name',
@@ -97,7 +100,7 @@ const FilterWizard: React.FC<FilterWizardProps> = (props) => {
                 onData={updateData}
                 data={stepsData}
             />,
-            requiredFields: ['targetType', 'targetValue']
+            requiredFields: stepsData?.targetType === 'averageValue' ? ['targetType'] : ['targetType', 'targetValue']
         },
         // ...getDynamicSteps()
     ];

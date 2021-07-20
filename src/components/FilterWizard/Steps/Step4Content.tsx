@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Select from "src/components/Select/Select";
 import Input from "src/components/Input/Input";
+import {useSelector} from 'react-redux';
+import {getAttributesStats} from '../../../redux/data/selectors';
 
 type Step4ContentProps = {
     onData?: (data: any) => void
@@ -10,13 +12,13 @@ type Step4ContentProps = {
 const conditionalOptions: any = {
     'value': {label: 'Value', value: 'value'},
     'averageValue': {label: 'Average value', value: 'averageValue'},
-    'medianValue': {label: 'Average value', value: 'medianValue'},
+    // 'medianValue': {label: 'Median value', value: 'medianValue'},
     // {label: 'Min value', value: 'minValue'},
     // {label: 'Max value', value: 'maxValue'},
 }
 
 const typeOptionsKeys: any = {
-    'number': ['value', 'averageValue', 'medianValue'],
+    'number': ['value', 'averageValue'],
     'boolean': ['value'],
     'string': ['value'],
 }
@@ -24,11 +26,12 @@ const typeOptionsKeys: any = {
 const Step4Content: React.FC<Step4ContentProps> = (props) => {
     const {onData, data} = props;
 
+    const attributesStats = useSelector(getAttributesStats)
     //TODO: verify isAttributeConditionTypeSupported (like step 3)
     const normalizedTargetValue = data?.attribute.type !== 'boolean' ? data?.targetValue : String(data?.targetValue)
 
     const [target, setTarget] = useState<string | undefined>(data?.targetType ?? undefined);
-    const [targetValue, setTargetValue] = useState<string | undefined>(data?.targetValue ? normalizedTargetValue : undefined);
+    const [targetValue, setTargetValue] = useState<string | number | undefined>(data?.targetValue ? normalizedTargetValue : undefined);
 
     const targetOptions = [
         {label: 'Select an option', value: undefined},
@@ -43,7 +46,12 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
 
     useEffect(() => {
         if(target && target !== "" && targetValue && targetValue !== ""){
-            const transformedValue: any = data?.attribute.type !== 'boolean' ? targetValue : targetValue === 'True' //force cast to boolean
+            let transformedValue: any = targetValue;
+            if(data?.attribute.type === 'boolean'){
+                transformedValue = targetValue === 'True' //force cast to boolean
+            }else if(data?.attribute.type === 'number'){
+                transformedValue = Number(targetValue) //force cast to number
+            }
 
             onData?.({
                 targetType: target,
@@ -56,6 +64,19 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
             })
         }
     }, [target, targetValue])
+
+    useEffect(() => {
+        // console.log('attributesStats', attributesStats)
+        if(target === 'averageValue'){
+            const attributeStats = attributesStats.find(item => item.attribute === data?.attribute.name)
+            // console.log('attributeStats.avg', attributeStats?.avg)
+            if(attributeStats){
+                setTargetValue(attributeStats.avg)
+            }
+        }else{
+            setTargetValue(normalizedTargetValue)
+        }
+    }, [target]);
 
     const onSelectTarget = (value: string) => {
         setTarget(value)
@@ -79,7 +100,7 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
                     onChange={onSelectTarget}
                 />
             </div>
-            {target === 'value' && data?.attribute.type !== 'boolean' && <div style={{marginBottom: 15}}>
+            {data?.attribute.type !== 'boolean' && <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
                     <label>Select the filter target value:</label>
                 </div>
@@ -87,6 +108,7 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
                     label={'Filter target value'}
                     placeholder={'Select the filter target value'}
                     value={targetValue}
+                    disabled={data?.targetType === 'averageValue'}
                     onChange={onChangeTargetValue}
                 />
             </div>}
@@ -97,7 +119,7 @@ const Step4Content: React.FC<Step4ContentProps> = (props) => {
                 <Select
                     label={'Filter target value'}
                     placeholder={'Select the filter target value'}
-                    value={targetValue}
+                    value={String(targetValue)}
                     options={targetBooleanOptions}
                     onChange={onChangeTargetValue}
                 />

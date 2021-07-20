@@ -96,7 +96,7 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
                         onData={updateData}
                         data={stepsData}
                     />,
-                    requiredFields: ['showPie']
+                    requiredFields: ['showChart']
                 }
             ]
         }else if(stepsData?.type === VisualizationTypeValues.MarkerChart){

@@ -8,6 +8,8 @@ type MarkerChartProps = {
     attributesStats: any
     chartType: MarkerChartTypeProps
     chartAttributes: string[]
+    width?: number
+    height?: number
 }
 
 const MarkerChart = (props: MarkerChartProps) => {
@@ -52,8 +54,15 @@ const MarkerChart = (props: MarkerChartProps) => {
             // console.log('attributeIndex', attributeIndex, chartAttributes[index])
             const attributeStats = attributesStats.find((item: any) => item.attribute === chartAttributes[index])
             // console.log('attributeStats', attributeStats)
-            const attributeValue = data[attributeIndex];
+
+            //calculage avg value to support cluster
+            let attributeValue = 0;
+            for(const dataItem of data){
+                attributeValue += dataItem[attributeIndex];
+            }
+            attributeValue = attributeValue / data.length;
             // console.log('attributeValue', attributeValue)
+
             //@ts-ignore
             const normalizedValue = getNormalizedValue(attributeValue, attributeStats.min, attributeStats.max);
 
@@ -90,22 +99,22 @@ const MarkerChart = (props: MarkerChartProps) => {
             // gChartType = "bvs";
             gChartType = "bvg";
             colors = result.colors;
-            size = "100x100";
-            width = 50*scale;
-            height = 50*scale;
+            size = props.width && props.height ? `${props.width}x${props.height}` : "100x100";
+            width = 30*scale;
+            height = 30*scale;
         }else if(chartType === "line"){
             let normalizedColor = getHeatmapColorForNormalizedValue(result.avg);
 
             url += `&chm=B,${normalizedColor},0,0,0`;   //&chm=a,990066,0,0.0,9.0|o,FF0000,0,1.0,25
             colors = normalizedColor;
             gChartType = "lc";  //lc:nda
-            size = "100x100";
-            width = 50*scale;
-            height = 50*scale;
+            size = props.width && props.height ? `${props.width}x${props.height}` : "100x100";
+            width = 30*scale;
+            height = 30*scale;
         }else{
             gChartType = "p3";
             colors = result.colors;
-            size = "120x50";
+            size = props.width && props.height ? `${props.width}x${props.height}` : "120x50";
             width = 65*scale;
             height = 37*scale;
         }

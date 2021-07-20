@@ -52,7 +52,7 @@ export type VisualizationTypes = {
     chartAttributeY?: any
     chartAttribute?: any
     hasToGroup?: boolean
-    showPie?: 'yes' | 'no'
+    showChart?: 'yes' | 'no'
     markerChartType?: MarkerChartTypeProps
     markerChartAttributes?: any
     visible?: boolean

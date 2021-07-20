@@ -24,7 +24,7 @@ const fastLoadFilter: Omit<FilterTypes, 'id' | 'visible'> = {
 };
 const fastLoadMarkerClusterVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerCluster,
-    // showPie: 'yes'
+    showChart: 'yes'
 };
 const fastLoadPieChartVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.Chart,

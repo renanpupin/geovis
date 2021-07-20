@@ -20,7 +20,7 @@ const StepMarkerChartType: React.FC<StepMarkerChartTypeProps> = (props) => {
     const attributesOptions = [
         {label: 'Select an option', value: undefined},
         {label: 'Line', value: 'line'},
-        {label: 'Column', value: 'column'},
+        {label: 'Column', value: 'bar'},
         // {label: 'Area', value: 'area'},
         {label: 'Pie', value: 'pie'},   //TODO: count ocurrences
         // {label: 'Scatter', value: 'scatter'},   //TODO: count ocurrences

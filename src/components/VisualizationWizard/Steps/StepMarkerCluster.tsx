@@ -9,13 +9,13 @@ type StepMarkerClusterProps = {
 const StepMarkerCluster: React.FC<StepMarkerClusterProps> = (props) => {
     const {onData, data} = props;
 
-    const [showPie, setShowPie] = useState<string | undefined>(data?.showPie ?? 'no');
+    const [showChart, setShowChart] = useState<string | undefined>(data?.showChart ?? 'no');
 
     useEffect(() => {
         onData?.({
-            showPie
+            showChart
         })
-    }, [showPie])
+    }, [showChart])
 
     const attributesOptions = [
         {label: 'Yes', value: 'yes'},
@@ -26,14 +26,14 @@ const StepMarkerCluster: React.FC<StepMarkerClusterProps> = (props) => {
         <div>
             <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
-                    <label>Use pie chart on cluster icon?</label>
+                    <label>Use marker chart on cluster icon?</label>
                 </div>
                 <Select
-                    label={'Use pie chart as cluster icon'}
-                    placeholder={'Use pie chart?'}
-                    value={showPie}
+                    label={'Use marker chart as cluster icon'}
+                    placeholder={'Use marker chart?'}
+                    value={showChart}
                     options={attributesOptions}
-                    onChange={(value) => setShowPie(value)}
+                    onChange={(value) => setShowChart(value)}
                 />
             </div>
         </div>
