@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MarkerClusterer from "@googlemaps/markerclustererplus";
-import {removeMarker, createMarkerEmpty} from "./markerUtils";
+import {removeMarker, createMarkerEmpty, createMarkerCircle} from "./markerUtils";
 import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
 
 export type MarkerPropTypes = {
@@ -27,15 +27,19 @@ const Marker = (props: MarkerPropTypes) => {
         lng: props.lon,
         icon: icon
     }))
+    // const [gmapMarkerBubble] = useState(createMarkerCircle())
     let infoWindow: any = null;
     let clusterInfoWindow: any = null;
+    // console.log('gmapMarkerBubble', gmapMarkerBubble)
 
     useEffect(() => {
         // console.log("mount", props.enableMarkerCluster)
         if (enableMarkerCluster) {
             cluster.addMarker(gmapMarker);
+            // gmapMarkerBubble.setMap(props.map);
         } else {
             gmapMarker.setMap(props.map);
+            // gmapMarkerBubble.setMap(props.map);
         }
 
         const markerClickEventListener = gmapMarker.addListener('click', (evt: any) => {

@@ -29,6 +29,23 @@ export const createMarkerEmpty = (markerData: any) => {
     });
 }
 
+export const createMarkerCircle = () => {
+    return new window.google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.6,
+        strokeWeight: 2,
+        fillColor: "#ff0000",
+        fillOpacity: 0.02,
+        // map,
+        center: { lat: -22.2, lng: -51.4 },
+        radius: 50000,
+    });
+    // google.maps.event.addListener(circle, 'click', function() {
+    //     infoWindow.setContent(html);
+    //     infoWindow.open(ItemMap.map, circle);
+    // });
+}
+
 export const removeMarker = (marker: any, enableMarkerCluster: any, cluster: any) => {
     // console.log("removeMarker", marker, enableMarkerCluster, cluster)
     window.google.maps.event.clearInstanceListeners(marker);
