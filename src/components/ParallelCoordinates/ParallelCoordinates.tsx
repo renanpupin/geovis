@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
+import React, {useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {getAttributes, getVisibleRows} from "src/redux/data/selectors";
 import styles from '../Chart/Chart.module.scss';
 import Draggable from '../Draggable/Draggable';
+import {setHighlight} from "../../redux/data/actions";
 
 export type Props = {
     visMode: any
@@ -12,6 +13,8 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
     const { visMode } = props
     const attributes = useSelector(getAttributes)
     const visibleRows = useSelector(getVisibleRows)
+    const [brushData, setBrushData] = useState([])
+    const dispatch = useDispatch();
 
     const [id] = useState<string>("parallelChart")
 
@@ -60,7 +63,24 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
         }
     }
 
+    const errorTimeoutRef = useRef<NodeJS.Timeout>()
+
     const axisWidth = 100
+
+    useEffect(() => {
+            errorTimeoutRef.current = setTimeout(() => {
+                const visibleIndexes = brushData.map((row: any) => row.id)
+
+                const highlightIndexes = visibleRows.map((row: any, index: number) => {
+                    return visibleIndexes.includes(index) ? index : null
+                }).filter((item: any) => item !== null)
+
+                dispatch(setHighlight(highlightIndexes as number[]))
+            }, 1000)
+
+        //@ts-ignore
+        return () => clearTimeout(errorTimeoutRef?.current)
+    }, [brushData])
 
     useEffect(() => {
         // @ts-ignore
@@ -79,7 +99,10 @@ const ParallelCoordinates: React.FC<Props> = (props) => {
             .brushMode("1D-axes")
             .reorderable()
             .shadows()
-            // .on("brush", (data:any) => console.log("[EVENT] brush data", data))
+            .on("brush", (data:any) => {
+                // console.log("[EVENT] brush data", data)
+                setBrushData(data)
+            })
     }, [visibleRows])
 
     const size = 400-35;    // 35 is scrollbar width
