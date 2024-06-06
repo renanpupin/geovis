@@ -231,6 +231,7 @@ const MarkerList:FC<MarkerListProps> = (props) => {
     }, [markersVisible, cluster]);
 
     const getMarkers = useCallback(() => {
+        cluster.clearMarkers()
         return markersVisible.map((row: any, index: number) => {
             return (
                 <Marker
