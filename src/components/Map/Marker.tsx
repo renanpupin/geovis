@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import MarkerClusterer from "@googlemaps/markerclustererplus";
-import {removeMarker, createMarkerEmpty, createMarkerCircle} from "./markerUtils";
-import {createInfoWindow} from "src/components/Map/InfoWindow/infoWindowUtils";
+import React, {useEffect, useState} from 'react'
+import MarkerClusterer from '@googlemaps/markerclustererplus'
+import {removeMarker, createMarkerEmpty, createMarkerCircle} from './markerUtils'
+import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 
 export type MarkerPropTypes = {
     id: string
@@ -21,51 +21,63 @@ const Marker = (props: MarkerPropTypes) => {
     const {row, enableMarkerCluster, icon, cluster, attributes, highlight} = props
     const [didMount, setDidMount] = useState(false)
     // console.log('Marker ID', props.id)
-    const [gmapMarker] = useState(createMarkerEmpty({
-        id: props.id,
-        lat: props.lat,
-        lng: props.lon,
-        icon: icon
-    }))
+    const [gmapMarker] = useState(
+        createMarkerEmpty({
+            id: props.id,
+            lat: props.lat,
+            lng: props.lon,
+            icon: icon
+        })
+    )
+
     // const [gmapMarkerBubble] = useState(createMarkerCircle())
-    let infoWindow: any = null;
-    let clusterInfoWindow: any = null;
+    let infoWindow: any = null
+    let clusterInfoWindow: any = null
     // console.log('gmapMarkerBubble', gmapMarkerBubble)
 
     useEffect(() => {
         // console.log("mount", props.enableMarkerCluster)
         if (enableMarkerCluster) {
-            cluster.addMarker(gmapMarker);
+            cluster.addMarker(gmapMarker)
             // gmapMarkerBubble.setMap(props.map);
         } else {
-            gmapMarker.setMap(props.map);
+            gmapMarker.setMap(props.map)
             // gmapMarkerBubble.setMap(props.map);
         }
 
         const markerClickEventListener = gmapMarker.addListener('click', (evt: any) => {
-            if(!infoWindow){
-                infoWindow = createInfoWindow(gmapMarker, null, props.id, [row], props.map, attributes, false, () => {
-                    infoWindow = null;
-                })
+            if (!infoWindow) {
+                infoWindow = createInfoWindow(
+                    gmapMarker,
+                    null,
+                    props.id,
+                    [row],
+                    props.map,
+                    attributes,
+                    false,
+                    () => {
+                        infoWindow = null
+                    }
+                )
             }
-        });
+        })
 
         return () => {
             // console.log('marker remove events')
-            google.maps.event.removeListener(markerClickEventListener);
-            infoWindow?.close();
-        };
-    }, [props.id, enableMarkerCluster, cluster, props.map]);
+            google.maps.event.removeListener(markerClickEventListener)
+            infoWindow?.close()
+        }
+    }, [props.id, enableMarkerCluster, cluster, props.map])
 
     useEffect(() => {
         if (didMount) {
-            gmapMarker.setIcon(icon);
+            gmapMarker.setIcon(icon)
             if (enableMarkerCluster) {
-                gmapMarker.setMap(null);
+                gmapMarker.setMap(null)
                 cluster.addMarker(gmapMarker)
             } else {
                 cluster.removeMarker(gmapMarker)
-                gmapMarker.setMap(props.map);
+                gmapMarker.setMap(props.map)
             }
         }
         setDidMount(true)
@@ -75,8 +87,8 @@ const Marker = (props: MarkerPropTypes) => {
             // console.log("remove", infoWindow)
             infoWindow?.close()
             clusterInfoWindow?.close()
-        };
-    }, [props.map, cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon]);
+        }
+    }, [props.map, cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon])
 
     // to use highlight with opacity (need to implement on cluster too)
     // useEffect(() => {
@@ -88,7 +100,7 @@ const Marker = (props: MarkerPropTypes) => {
     //     }
     // }, [highlight])
 
-    return null;
+    return null
 }
 
-export default Marker;
+export default Marker

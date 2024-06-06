@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import Step1Content from 'src/components/DataWizard/Steps/Step1Content'
 import Step2Content from 'src/components/DataWizard/Steps/Step2Content'
 
-import styles from "./Wizard.module.scss"
-import Modal from "src/components/Modal/Modal";
-import StepTemplate from "src/components/DataWizard/StepTemplate";
+import styles from './Wizard.module.scss'
+import Modal from 'src/components/Modal/Modal'
+import StepTemplate from 'src/components/DataWizard/StepTemplate'
 
 type DataWizardProps = {
     // steps: number
@@ -21,24 +21,24 @@ type stepDataProps = {
     rawDataObj?: any
 }
 
-const DataWizard: React.FC<DataWizardProps> = (props) => {
+const DataWizard: React.FC<DataWizardProps> = props => {
     const {onFinish, onClose} = props
 
-    const [step, setStep] = useState(0);
-    const [stepsData, setStepsData] = useState<stepDataProps>({});
+    const [step, setStep] = useState(0)
+    const [stepsData, setStepsData] = useState<stepDataProps>({})
 
     const onPrev = () => {
-        if(step > 0){
-            setStep(step-1);
+        if (step > 0) {
+            setStep(step - 1)
         }
     }
 
     const onContinue = () => {
-        if(steps.length-1 === step){
+        if (steps.length - 1 === step) {
             // console.log("stepsData", stepsData)
-            onFinish(stepsData);
-        }else{
-            setStep(step+1);
+            onFinish(stepsData)
+        } else {
+            setStep(step + 1)
         }
     }
 
@@ -48,27 +48,21 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
                 ...oldData,
                 ...data
             }
-        });
+        })
     }
 
     const steps = [
         {
             title: 'Select data file',
-            component: <Step1Content
-                onData={updateData}
-                data={stepsData}
-            />,
+            component: <Step1Content onData={updateData} data={stepsData} />,
             requiredFields: ['attributes', 'rows']
         },
         {
             title: 'Select spatial attributes',
-            component: <Step2Content
-                onData={updateData}
-                data={stepsData}
-            />,
+            component: <Step2Content onData={updateData} data={stepsData} />,
             requiredFields: ['latAttribute', 'lonAttribute']
         }
-    ];
+    ]
 
     const getModalContent = () => (
         <StepTemplate
@@ -77,28 +71,23 @@ const DataWizard: React.FC<DataWizardProps> = (props) => {
             onPrevConfig={{
                 onClick: onPrev,
                 disabled: step === 0,
-                link: steps.length-1 !== step
+                link: steps.length - 1 !== step
             }}
             onNextConfig={{
                 onClick: onContinue,
-                disabled: steps[step].requiredFields.filter((item: any) => {
-                    // @ts-ignore
-                    return !!stepsData[item]
-                }).length === 0
+                disabled:
+                    steps[step].requiredFields.filter((item: any) => {
+                        // @ts-ignore
+                        return !!stepsData[item]
+                    }).length === 0
             }}
         >
-            <div className={styles.stepsView}>
-                {steps[step].component}
-            </div>
+            <div className={styles.stepsView}>{steps[step].component}</div>
         </StepTemplate>
     )
 
-    return(
-        <Modal
-            visible={true}
-            title={steps[step].title}
-            onClose={onClose}
-        >
+    return (
+        <Modal visible={true} title={steps[step].title} onClose={onClose}>
             {getModalContent()}
         </Modal>
     )

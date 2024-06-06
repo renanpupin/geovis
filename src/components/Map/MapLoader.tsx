@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 
-import styles from './Map.module.css';
+import styles from './Map.module.css'
 
-const mapNodeId = "map"
+const mapNodeId = 'map'
 
 const mapOptions = {
     center: {lat: 41.0082, lng: 28.9784},
@@ -18,18 +18,23 @@ const MapLoader = (props: any) => {
     const {onLoad} = props
     const onScriptLoad = () => {
         //@ts-ignore
-        onLoad(new window.google.maps.Map(document.getElementById(mapNodeId) as HTMLElement, mapOptions))
+        onLoad(
+            new window.google.maps.Map(
+                document.getElementById(mapNodeId) as HTMLElement,
+                mapOptions
+            )
+        )
     }
 
     useEffect(() => {
         //@ts-ignore
         if (!window.google) {
-            let s = document.createElement('script');
-            s.type = 'text/javascript';
-            s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwyQqepDLqf0quMCkBtuVZ6rOocccL9Q&libraries=visualization,marker`;
-            let x = document.getElementsByTagName('script')[0];
+            let s = document.createElement('script')
+            s.type = 'text/javascript'
+            s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwyQqepDLqf0quMCkBtuVZ6rOocccL9Q&libraries=visualization,marker`
+            let x = document.getElementsByTagName('script')[0]
             //@ts-ignore
-            x.parentNode.insertBefore(s, x);
+            x.parentNode.insertBefore(s, x)
             // Below is important.
             //We cannot access google.maps until it's finished loading
             s.addEventListener('load', e => {
@@ -44,7 +49,7 @@ const MapLoader = (props: any) => {
         <div id={mapNodeId} className={styles.map}>
             {props.children}
         </div>
-    );
+    )
 }
 
 export default MapLoader
