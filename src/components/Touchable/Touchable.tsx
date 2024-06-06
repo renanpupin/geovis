@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './Touchable.module.scss';
 
 type TouchableProps = {
-    onClick: () => void
+    onClick: (event:  React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
     style?: any
 }
 
