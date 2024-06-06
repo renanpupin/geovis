@@ -86,7 +86,7 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
 
             {data.chartType === "pie" && <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 5}}>
-                    <label>Group attributes:</label>
+                    <label>Group attributes ocurrences:</label>
                 </div>
                 <div>
                     <input
@@ -95,6 +95,7 @@ const StepChartAttribute: React.FC<StepChartAttributeProps> = (props) => {
                         onChange={(event: any) => setHasToGroup(event.target.checked)}
                     />
                     <span style={{marginLeft: 5}}>Has to group?</span>
+                    <span style={{display: "block", marginTop: 5, fontSize: 12}}>* Attribute numeric value will be used instead of number of ocurrences</span>
                 </div>
             </div>}
         </div>
