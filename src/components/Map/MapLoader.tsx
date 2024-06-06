@@ -10,7 +10,8 @@ const mapOptions = {
     streetViewControl: false,
     panControl: false,
     fullscreenControl: false,
-    zoomControl: true
+    zoomControl: true,
+    mapId: new Date().getTime().toString()
 }
 
 const MapLoader = (props: any) => {
