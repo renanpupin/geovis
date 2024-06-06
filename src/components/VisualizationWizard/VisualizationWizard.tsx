@@ -167,8 +167,8 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = (props) => {
                 onClick: onContinue,
                 disabled: steps[step].requiredFields.filter((item: any) => {
                     // @ts-ignore
-                    return !!stepsData[item]
-                }).length === 0
+                    return stepsData[item] === null || stepsData[item] === undefined || stepsData[item] === ''
+                }).length > 0
             }}
         >
             <div className={styles.stepsView}>

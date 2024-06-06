@@ -76,7 +76,7 @@ const App: React.FC = () => {
                     setVisMode(visMode === 'split' ? 'full' : 'split')
                 }}
             >
-                <i className="material-icons">{visMode === 'split' ? 'vertical_split' : 'fullscreen'}</i>
+                <i className="material-icons">{visMode === 'split' ? 'fullscreen' : 'vertical_split'}</i>
             </div>
 
             {!!temporalAttribute && viewMode === 'map' && <div
