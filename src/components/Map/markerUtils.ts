@@ -5,6 +5,8 @@ export const createMarkerEmpty = (markerData: any) => {
     // https://maps.google.com/mapfiles/ms/icons/red-dot.png
     // http://maps.google.com/mapfiles/kml/paddle/red-blank.png
     // https://sites.google.com/site/gmapsdevelopment/
+    // https://developers.google.com/maps/documentation/javascript/examples/icon-complex
+    // https://developers.google.com/maps/documentation/javascript/advanced-markers/html-markers#try-sample_2
 
     function getSymbolWithCustomColor(color: any) {
         return {
