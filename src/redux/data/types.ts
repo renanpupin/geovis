@@ -1,4 +1,4 @@
-import ParallelCoordinates from '../../components/ParallelCoordinates/ParallelCoordinates';
+import ParallelCoordinates from '../../components/ParallelCoordinates/ParallelCoordinates'
 
 export type StateProps = {
     attributes: AttributeTypes[]
@@ -31,7 +31,7 @@ export enum VisualizationTypeValues {
     MarkerCluster = 'MarkerCluster',
     MarkerChart = 'MarkerChart',
     Chart = 'Chart',
-    ParallelCoordinates = 'ParallelCoordinates',
+    ParallelCoordinates = 'ParallelCoordinates'
     // {label: 'Heatmap', value: 'heatmap'},
     // {label: 'Cluster', value: 'cluster'},
     // {label: 'Chart', value: 'chart'},
@@ -41,7 +41,7 @@ export enum VisualizationTypeValues {
     // {label: 'Euclidian', value: 'euclidian'},
 }
 
-export type MarkerChartTypeProps = 'line' | 'bar' | 'pie'
+export type MarkerChartTypeProps = 'line' | 'bar' | 'pie' | 'radar' | 'polar' | 'bubble'
 
 export type VisualizationTypes = {
     id: string
@@ -64,7 +64,7 @@ export enum ConditionsTypes {
     MoreThan = 'MoreThan',
     LessThan = 'LessThan',
     MoreThanOrEqual = 'MoreThanOrEqual',
-    LessThanOrEqual = 'LessThanOrEqual',
+    LessThanOrEqual = 'LessThanOrEqual'
 }
 
 // export type FilterConditionsTypes = {
@@ -80,7 +80,7 @@ export type FilterAttributeTypes = {
 export enum FilterTargetTypes {
     value = 'value',
     averageValue = 'averageValue',
-    medianValue = 'medianValue',
+    medianValue = 'medianValue'
 }
 
 export type FilterTypes = {
@@ -94,7 +94,6 @@ export type FilterTypes = {
 }
 
 export type HighlightTypes = number[]
-
 
 // export enum MapVisualizationTypes {
 //     Heatmap = 'heatmap',
