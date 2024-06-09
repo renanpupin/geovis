@@ -114,6 +114,27 @@ const fastLoadMarkerChartPie: Omit<VisualizationTypes, 'id' | 'visible'> = {
     markerChartType: 'pie',
     markerChartAttributes: ['value', 'age']
 }
+const fastLoadHistogramVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.Chart,
+    chartAttributeX: undefined,
+    chartAttributeY: 'value',
+    chartLabelAttribute: 'category',
+    chartType: 'histogram',
+    hasToGroup: true
+}
+
+const fastLoadLineChartVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.Chart,
+    chartAttributeX: undefined,
+    chartAttributeY: 'age',
+    chartLabelAttribute: 'name',
+    chartType: 'line',
+    hasToGroup: true
+}
+
+const fastLoadHeatmapVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.Heatmap
+}
 
 // const markers = [
 //     {id: 1, lat: 41.0082, lng: 28.9784, title: 'Istanbul'},
@@ -171,8 +192,11 @@ const Menu: React.FC<MenuTypes> = props => {
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             dispatch(addVisualization(fastLoadPieChartVis))
             dispatch(addVisualization(fastLoadMarkerChartPie))
-            // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
-            // dispatch(addVisualization(fastLoadParallelVis))
+            dispatch(addVisualization(fastLoadPieChartUngroupedVis))
+            dispatch(addVisualization(fastLoadParallelVis))
+            dispatch(addVisualization(fastLoadHistogramVis))
+            dispatch(addVisualization(fastLoadHeatmapVis))
+            dispatch(addVisualization(fastLoadLineChartVis))
         }
 
         return () => {

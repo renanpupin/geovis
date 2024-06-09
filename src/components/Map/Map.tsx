@@ -1,10 +1,15 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import MapLoader from 'src/components/Map/MapLoader';
-import Heatmap from 'src/components/Map/Heatmap/Heatmap';
-import MarkerList from 'src/components/Map/MarkerList';
-import {getLatAttributeIndex, getLonAttributeIndex, getVisibleRows, getVisualizations} from "src/redux/data/selectors";
-import {VisualizationTypeValues} from "src/redux/data/types";
+import React, {useCallback, useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
+import MapLoader from 'src/components/Map/MapLoader'
+import Heatmap from 'src/components/Map/Heatmap/Heatmap'
+import MarkerList from 'src/components/Map/MarkerList'
+import {
+    getLatAttributeIndex,
+    getLonAttributeIndex,
+    getVisibleRows,
+    getVisualizations
+} from 'src/redux/data/selectors'
+import {VisualizationTypeValues} from 'src/redux/data/types'
 
 const Map: React.FC = () => {
     const latAttributeIndex = useSelector(getLatAttributeIndex)
@@ -15,54 +20,64 @@ const Map: React.FC = () => {
 
     const onLoad = (map: any) => {
         setMap(map)
-    };
+    }
 
     useEffect(() => {
-        if(map && visibleRows?.length > 0){
-            let bounds = new google.maps.LatLngBounds();
-            visibleRows.map((row: any) => bounds.extend(new google.maps.LatLng(row[latAttributeIndex], row[lonAttributeIndex])))
+        if (map && visibleRows?.length > 0) {
+            let bounds = new google.maps.LatLngBounds()
+            visibleRows.map((row: any) =>
+                bounds.extend(
+                    new google.maps.LatLng(row[latAttributeIndex], row[lonAttributeIndex])
+                )
+            )
             // @ts-ignore
-            map.fitBounds(bounds);
+            map.fitBounds(bounds)
         }
-    }, [visibleRows, map]);
+    }, [visibleRows, map])
 
     const getHeatmap = useCallback(() => {
+        if (!map) {
+            return
+        }
         // console.log('getHeatmap changed visibleRows', visibleRows)
         // console.log('getHeatmap changed visualizations', visualizations)
-        const hideHeatmap = visualizations.filter(visualization => {
-            // console.log("visualization", visualization)
-            return(
-                visualization.visible &&
-                visualization.type === VisualizationTypeValues.Heatmap
-            )
-        }).length === 0;
-        if(hideHeatmap){
-            return;
-        }
-
-        //TODO: maybe refactor heatmap and move inside markers (inside cluster to use marker.getLocation())
-        return(
-            <Heatmap
-                map={map}
-                data={visibleRows.map((row: any) => ({lat: row[latAttributeIndex], lng: row[lonAttributeIndex]}))}
-            />
-        )
-    }, [visualizations, visibleRows, map]);
-
-    const getMarkers = useCallback(() => {
-        if(!map){
+        const hideHeatmap =
+            visualizations.filter(visualization => {
+                // console.log("visualization", visualization)
+                return (
+                    visualization.visible && visualization.type === VisualizationTypeValues.Heatmap
+                )
+            }).length === 0
+        if (hideHeatmap) {
             return
         }
 
-        return <MarkerList visibleRows={visibleRows} map={map}/>
-    }, [visibleRows, map]);
+        //TODO: maybe refactor heatmap and move inside markers (inside cluster to use marker.getLocation())
+        return (
+            <Heatmap
+                map={map}
+                data={visibleRows.map((row: any) => ({
+                    lat: row[latAttributeIndex],
+                    lng: row[lonAttributeIndex]
+                }))}
+            />
+        )
+    }, [visualizations, visibleRows, map])
+
+    const getMarkers = useCallback(() => {
+        if (!map) {
+            return
+        }
+
+        return <MarkerList visibleRows={visibleRows} map={map} />
+    }, [visibleRows, map])
 
     return (
         <MapLoader onLoad={onLoad}>
             {getMarkers()}
             {getHeatmap()}
         </MapLoader>
-    );
+    )
 }
 
 export default Map
