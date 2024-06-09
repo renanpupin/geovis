@@ -4,7 +4,7 @@
 $sideMenuSize: 250px;
 
 .wrapper{
-  border: 1px solid $border-color;
+  //border: 1px solid $border-color;
   //@include border-radius($input-border-radius);
   border-bottom-right-radius: $input-border-radius;
   background-color: #fff;
@@ -16,6 +16,7 @@ $sideMenuSize: 250px;
   max-width: $sideMenuSize;
   min-width: $sideMenuSize;
   @include transition($transition-slow);
+  @include box-shadow($shadow-1);
   &.toggle{
     left: -$sideMenuSize;
   }
@@ -38,6 +39,7 @@ $sideMenuSize: 250px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  @include box-shadow($shadow-1);
 }
 
 .menuButton{
