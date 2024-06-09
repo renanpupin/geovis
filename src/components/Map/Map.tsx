@@ -4,6 +4,7 @@ import MapLoader from 'src/components/Map/MapLoader'
 import Heatmap from 'src/components/Map/Heatmap/Heatmap'
 import MarkerList from 'src/components/Map/MarkerList'
 import {
+    getHighlight,
     getLatAttributeIndex,
     getLonAttributeIndex,
     getVisibleRows,
@@ -16,6 +17,7 @@ const Map: React.FC = () => {
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     const visibleRows = useSelector(getVisibleRows)
     const visualizations = useSelector(getVisualizations)
+    const highlight = useSelector(getHighlight)
     const [map, setMap] = useState(undefined)
 
     const onLoad = (map: any) => {
@@ -56,13 +58,18 @@ const Map: React.FC = () => {
         return (
             <Heatmap
                 map={map}
-                data={visibleRows.map((row: any) => ({
-                    lat: row[latAttributeIndex],
-                    lng: row[lonAttributeIndex]
-                }))}
+                data={visibleRows
+                    .filter(
+                        (_: any, index: number) =>
+                            highlight.length === 0 || highlight.includes(index as any)
+                    )
+                    .map((row: any) => ({
+                        lat: row[latAttributeIndex],
+                        lng: row[lonAttributeIndex]
+                    }))}
             />
         )
-    }, [visualizations, visibleRows, map])
+    }, [visualizations, visibleRows, map, highlight])
 
     const getMarkers = useCallback(() => {
         if (!map) {
