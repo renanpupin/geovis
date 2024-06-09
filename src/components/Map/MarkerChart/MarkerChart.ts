@@ -18,15 +18,15 @@ const MarkerChart = (props: MarkerChartProps) => {
 
     const getHeatmapColorForNormalizedValue = (normalizedValue: number) => {
         if (normalizedValue <= 20) {
-            return '#0000FF'
+            return '#0353ff'
         } else if (normalizedValue > 20 && normalizedValue <= 40) {
-            return '#00FFFF'
+            return '#4adbff'
         } else if (normalizedValue > 40 && normalizedValue <= 60) {
-            return '#00FF00'
+            return '#ffd940'
         } else if (normalizedValue > 60 && normalizedValue <= 80) {
-            return '#FFFF00'
+            return '#ff9800'
         } else {
-            return '#FF0000'
+            return '#ff3301'
         }
     }
 
@@ -86,7 +86,7 @@ const MarkerChart = (props: MarkerChartProps) => {
     const encodeChartToUrl = (chartObject: object, chartSize: {width: number; height: number}) => {
         const baseUrl = 'https://quickchart.io/chart?c='
         const encodedChart = encodeURIComponent(JSON.stringify(chartObject))
-        const chartConfig = `${props?.showLegend ? '' : '&devicePixelRatio=1'}&backgroundColor=transparent${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.3`
+        const chartConfig = `&backgroundColor=transparent${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.3`
         return `${baseUrl}${encodedChart}${chartConfig}`
     }
 
@@ -99,61 +99,61 @@ const MarkerChart = (props: MarkerChartProps) => {
         let width
         let height
         let colors
-        let type: 'outlabeledPie' | 'line' | 'bar' | 'polarArea' | 'radar' | 'bubble'
+        let type: 'outlabeledPie' | 'pie' | 'line' | 'bar' | 'polarArea' | 'radar' | 'bubble'
         if (chartType === 'bar') {
             type = 'bar'
             colors = result.colors
             size =
                 props.width && props.height
                     ? {width: props.width, height: props.height}
-                    : {width: 150, height: 150}
-            width = 65 * scale
-            height = 65 * scale
+                    : {width: 100, height: 100}
+            width = 40 * scale
+            height = 40 * scale
         } else if (chartType === 'line') {
             type = 'line'
             colors = getHeatmapColorForNormalizedValue(result.avg)
             size =
                 props.width && props.height
                     ? {width: props.width, height: props.height}
-                    : {width: 150, height: 150}
-            width = 65 * scale
-            height = 65 * scale
+                    : {width: 100, height: 100}
+            width = 40 * scale
+            height = 40 * scale
         } else if (chartType === 'radar') {
             type = 'radar'
             colors = result.colors
             size =
                 props.width && props.height
                     ? {width: props.width, height: props.height}
-                    : {width: 150, height: 150}
-            width = 65 * scale
-            height = 65 * scale
+                    : {width: 100, height: 100}
+            width = 40 * scale
+            height = 40 * scale
         } else if (chartType === 'polar') {
             type = 'polarArea'
             colors = result.colors
             size =
                 props.width && props.height
                     ? {width: props.width, height: props.height}
-                    : {width: 150, height: 150}
-            width = 65 * scale
-            height = 65 * scale
+                    : {width: 100, height: 100}
+            width = 40 * scale
+            height = 40 * scale
         } else if (chartType === 'bubble') {
             type = 'bubble'
             colors = result.colors
             size =
                 props.width && props.height
                     ? {width: props.width, height: props.height}
-                    : {width: 150, height: 150}
-            width = 65 * scale
-            height = 65 * scale
+                    : {width: 100, height: 100}
+            width = 40 * scale
+            height = 40 * scale
         } else {
-            type = 'outlabeledPie'
+            type = props?.showLegend ? 'outlabeledPie' : 'pie'
             colors = result.colors
             size =
                 props.width && props.height
                     ? {width: props.width, height: props.height}
-                    : {width: 150, height: 150}
-            width = 65 * scale
-            height = 65 * scale
+                    : {width: 100, height: 100}
+            width = 40 * scale
+            height = 40 * scale
         }
 
         const chartObject = {
