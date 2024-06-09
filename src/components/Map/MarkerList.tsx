@@ -64,10 +64,12 @@ const MarkerList: FC<MarkerListProps> = props => {
         visualization =>
             visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster
     )
-    const markerChartVis = visualizations.filter(
-        visualization =>
-            visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart
-    )
+    const markerChartVis = useMemo(() => {
+        return visualizations.filter(
+            visualization =>
+                visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart
+        )
+    }, [visualizations])
 
     const markersVisible = useMemo(() => {
         return props.visibleRows
@@ -217,20 +219,27 @@ const MarkerList: FC<MarkerListProps> = props => {
             'clusterclick',
             function (cluster) {
                 const gmapMarkers = cluster.getMarkers()
-                // console.log("markers", gmapMarkers);
-                // console.log("cluster", cluster);
 
                 const ids = gmapMarkers.map((item: any) => Number(item.title))
-                const rowsInCluster = markersVisible.filter((item: any, index: number) =>
-                    ids.includes(index)
-                )
-
-                // console.log("cluster ids", ids);
-                // console.log("cluster rowsInCluster", rowsInCluster);
-                // console.log("cluster markersVisible", markersVisible);
+                const rowsInCluster = markersVisible
+                    .filter((_: any, index: number) => ids.includes(index))
+                    .map((item: any, index: number) => {
+                        const markerChart =
+                            markerChartVis?.length > 0
+                                ? MarkerChart({
+                                      attributes,
+                                      attributesStats,
+                                      data: [item],
+                                      chartType: markerChartVis[0]
+                                          .markerChartType as MarkerChartTypeProps,
+                                      chartAttributes: markerChartVis[0].markerChartAttributes,
+                                      showLegend: true
+                                  })
+                                : null
+                        return {...item, markerImageUrl: markerChart?.url}
+                    })
 
                 infoWindow?.close()
-                // if(!infoWindow){
                 infoWindow = createInfoWindow(
                     null,
                     cluster.getCenter(),
@@ -243,10 +252,9 @@ const MarkerList: FC<MarkerListProps> = props => {
                         infoWindow = null
                     }
                 )
-                // }
             }
         )
-        //
+
         const zoomChangedEventListener = google.maps.event.addListener(
             props.map,
             'zoom_changed',

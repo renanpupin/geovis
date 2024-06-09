@@ -10,6 +10,7 @@ type MarkerChartProps = {
     chartAttributes: string[]
     width?: number
     height?: number
+    showLegend?: boolean
 }
 
 const MarkerChart = (props: MarkerChartProps) => {
@@ -85,7 +86,7 @@ const MarkerChart = (props: MarkerChartProps) => {
     const encodeChartToUrl = (chartObject: object, size: {width: number; height: number}) => {
         const baseUrl = 'https://quickchart.io/chart?c='
         const encodedChart = encodeURIComponent(JSON.stringify(chartObject))
-        const chartConfig = `&devicePixelRatio=1&backgroundColor=transparent&width=${size.width}&height=${size.height}&format=png&version=2.9.3`
+        const chartConfig = `${props?.showLegend ? '' : '&devicePixelRatio=1'}&backgroundColor=transparent${props?.showLegend ? '&width=${size.width}&height=${size.height}' : ''}&format=png&version=2.9.3`
         return `${baseUrl}${encodedChart}${chartConfig}`
     }
 

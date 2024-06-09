@@ -1,7 +1,18 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import MarkerClusterer from '@googlemaps/markerclustererplus'
 import {removeMarker, createMarkerEmpty, createMarkerCircle} from './markerUtils'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
+import MarkerChart from './MarkerChart/MarkerChart'
+import {MarkerChartTypeProps, VisualizationTypeValues} from '../../redux/data/types'
+import {useSelector} from 'react-redux'
+import {
+    getAttributes,
+    getAttributesStats,
+    getHighlight,
+    getLatAttributeIndex,
+    getLonAttributeIndex,
+    getVisualizations
+} from '../../redux/data/selectors'
 
 export type MarkerPropTypes = {
     id: string
@@ -21,6 +32,10 @@ const Marker = (props: MarkerPropTypes) => {
     const {row, enableMarkerCluster, icon, cluster, attributes, highlight} = props
     const [didMount, setDidMount] = useState(false)
     // console.log('Marker ID', props.id)
+
+    const visualizations = useSelector(getVisualizations)
+    const attributesStats = useSelector(getAttributesStats)
+
     const [gmapMarker] = useState(
         createMarkerEmpty({
             id: props.id,
@@ -34,6 +49,13 @@ const Marker = (props: MarkerPropTypes) => {
     let infoWindow: any = null
     let clusterInfoWindow: any = null
     // console.log('gmapMarkerBubble', gmapMarkerBubble)
+
+    const markerChartVis = useMemo(() => {
+        return visualizations.filter(
+            visualization =>
+                visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart
+        )
+    }, [visualizations])
 
     useEffect(() => {
         // console.log("mount", props.enableMarkerCluster)
@@ -51,7 +73,21 @@ const Marker = (props: MarkerPropTypes) => {
                     gmapMarker,
                     null,
                     props.id,
-                    [row],
+                    [row].map((item: any, index: number) => {
+                        const markerChart =
+                            markerChartVis?.length > 0
+                                ? MarkerChart({
+                                      attributes,
+                                      attributesStats,
+                                      data: [item],
+                                      chartType: markerChartVis[0]
+                                          .markerChartType as MarkerChartTypeProps,
+                                      chartAttributes: markerChartVis[0].markerChartAttributes,
+                                      showLegend: true
+                                  })
+                                : null
+                        return {...item, markerImageUrl: markerChart?.url}
+                    }),
                     props.map,
                     attributes,
                     false,
