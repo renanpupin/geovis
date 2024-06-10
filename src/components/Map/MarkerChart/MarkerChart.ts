@@ -198,7 +198,8 @@ const MarkerChart = (props: MarkerChartProps) => {
         origin: new google.maps.Point(0, 0),
         size: new google.maps.Size(result.width, result.height),
         anchor: new google.maps.Point(result.width / 2, result.height / 2),
-        scaledSize: new google.maps.Size(result.width, result.height)
+        scaledSize: new google.maps.Size(result.width, result.height),
+        sizes: {width: result.width, height: result.height}
     }
 }
 

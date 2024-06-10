@@ -5,44 +5,50 @@
 //     });
 // });
 
-import React, {useEffect} from 'react';
-import MarkerClusterer from "@googlemaps/markerclustererplus";
+import React, {useEffect} from 'react'
+// import MarkerClusterer from "@googlemaps/markerclustererplus";
+import {MarkerClusterer} from '@googlemaps/markerclusterer'
 
 const MarkerCluster = (props: any) => {
-    let mapCluster: any;
+    let mapCluster: any
 
     // new MarkerClusterer(props.map, props.markers, {
     //     imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
     // });
     const createInstance = () => {
         // console.log("create instance")
-        return new MarkerClusterer(props.map, props.markers, {
-            imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        });
+        return new MarkerClusterer({
+            map: props.map,
+            markers: props.markers
+            // {
+            //     imagePath:
+            //         'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            // }
+        })
     }
 
     useEffect(() => {
         return () => {
-            if(mapCluster){
-                mapCluster.clearMarkers();
+            if (mapCluster) {
+                mapCluster.clearMarkers()
                 // mapCluster.removeMarker()
-                mapCluster.setMap(null);
+                mapCluster.setMap(null)
             }
-        };
-    }, []);
+        }
+    }, [])
 
     useEffect(() => {
-        if(mapCluster) {
-            mapCluster.clearMarkers();
+        if (mapCluster) {
+            mapCluster.clearMarkers()
         }
 
-        mapCluster = createInstance();
-    }, [props.markers]);
+        mapCluster = createInstance()
+    }, [props.markers])
 
-    return null;
+    return null
 }
 
-export default MarkerCluster;
+export default MarkerCluster
 
 //CLUSTERING VIS
 //CHECK IF THE MARKERS IS INSIDE BOUNDS

@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import MarkerClusterer from '@googlemaps/markerclustererplus'
-import {removeMarker, createMarkerEmpty, createMarkerCircle} from './markerUtils'
+// import MarkerClusterer from '@googlemaps/markerclustererplus'
+import {MarkerClusterer} from '@googlemaps/markerclusterer'
+import {removeMarker, createMarkerEmpty, createMarkerCircle, createPin} from './markerUtils'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from './MarkerChart/MarkerChart'
 import {MarkerChartTypeProps, VisualizationTypeValues} from '../../redux/data/types'
@@ -63,7 +64,7 @@ const Marker = (props: MarkerPropTypes) => {
             cluster.addMarker(gmapMarker)
             // gmapMarkerBubble.setMap(props.map);
         } else {
-            gmapMarker.setMap(props.map)
+            gmapMarker.map = props.map
             // gmapMarkerBubble.setMap(props.map);
         }
 
@@ -107,13 +108,26 @@ const Marker = (props: MarkerPropTypes) => {
 
     useEffect(() => {
         if (didMount) {
-            gmapMarker.setIcon(icon)
+            // if icon is chart
+            if (icon?.url) {
+                const imageUrl = document.createElement('img')
+                //@ts-ignore
+                imageUrl.src = icon?.url
+                imageUrl.style.width = `${icon?.sizes?.width}px`
+                imageUrl.style.height = `${icon?.sizes?.height}px`
+                gmapMarker.content = imageUrl
+            } else if (icon?.color) {
+                gmapMarker.content = createPin(icon?.color)?.element
+            } else {
+                gmapMarker.content = null
+            }
+
             if (enableMarkerCluster) {
-                gmapMarker.setMap(null)
+                gmapMarker.map = null
                 cluster.addMarker(gmapMarker)
             } else {
                 cluster.removeMarker(gmapMarker)
-                gmapMarker.setMap(props.map)
+                gmapMarker.map = props.map
             }
         }
         setDidMount(true)
