@@ -10,7 +10,8 @@ export const createInfoWindow = (
     map: any,
     attributes: any,
     isCluster: boolean,
-    onClose: any
+    onClose: any,
+    icon?: any
 ) => {
     const id: string = `info-window-${title}`
 
@@ -18,7 +19,7 @@ export const createInfoWindow = (
         content: `<div id="${id}" />`,
         // position: position,
         position: position ? {lat: position.lat(), lng: position.lng()} : undefined,
-        pixelOffset: new google.maps.Size(0, isCluster ? -25 : 0)
+        pixelOffset: new google.maps.Size(0, isCluster ? -25 : icon ? icon?.sizes?.height / 2 : 0)
     })
 
     infoWindow.addListener('domready', (e: any) => {

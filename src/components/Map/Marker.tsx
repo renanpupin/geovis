@@ -56,7 +56,6 @@ const Marker = (props: MarkerPropTypes) => {
     // const [gmapMarkerBubble] = useState(createMarkerCircle())
     let infoWindow: any = null
     let clusterInfoWindow: any = null
-    // console.log('gmapMarkerBubble', gmapMarkerBubble)
 
     const markerChartVis = useMemo(() => {
         return visualizations.filter(
@@ -66,7 +65,6 @@ const Marker = (props: MarkerPropTypes) => {
     }, [visualizations])
 
     useEffect(() => {
-        // console.log("mount", props.enableMarkerCluster)
         if (enableMarkerCluster) {
             cluster.addMarker(gmapMarker)
             // gmapMarkerBubble.setMap(props.map);
@@ -101,7 +99,8 @@ const Marker = (props: MarkerPropTypes) => {
                     false,
                     () => {
                         infoWindow = null
-                    }
+                    },
+                    icon
                 )
             }
         })

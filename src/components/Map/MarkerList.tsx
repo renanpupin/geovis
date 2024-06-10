@@ -1,6 +1,11 @@
 import React, {useEffect, useState, useCallback, useMemo, FC, useRef} from 'react'
 // import MarkerClusterer from '@googlemaps/markerclustererplus'
-import {MarkerClusterer} from '@googlemaps/markerclusterer'
+import {
+    GridAlgorithm,
+    MarkerClusterer,
+    NoopAlgorithm,
+    SuperClusterAlgorithm
+} from '@googlemaps/markerclusterer'
 import Marker from 'src/components/Map/Marker'
 import {useSelector} from 'react-redux'
 import {
@@ -19,6 +24,7 @@ import {removeDuplicatesFromStringArray} from '../../utils/array'
 import {colorScale, colorScaleHeatmap, generateRandomColors} from '../../libs/colors'
 import {Cluster} from '@googlemaps/markerclusterer/dist/cluster'
 import {ClusterStats} from '@googlemaps/markerclusterer/dist/renderer'
+import {createClusterSvg} from './markerUtils'
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -100,6 +106,9 @@ const MarkerList: FC<MarkerListProps> = props => {
         new MarkerClusterer({
             map: props.map,
             markers: [],
+            algorithm: new GridAlgorithm({maxDistance: 40000}),
+            // algorithm: new SuperClusterAlgorithm({maxDistance: 40000}),
+            // algorithm: new NoopAlgorithm({}),
             onClusterClick: function (event: any, cluster: any) {
                 const gmapMarkers = cluster.markers
 
@@ -136,27 +145,16 @@ const MarkerList: FC<MarkerListProps> = props => {
                     attributes,
                     true,
                     () => {
-                        // setClusterInfoWindow(null)
                         infoWindowClusterRef.current = null
-                    }
+                    },
+                    null
                 )
             },
             renderer: {
                 render(cluster: Cluster, stats: ClusterStats, map: google.maps.Map) {
-                    // console.log('aaa', cluster, stats)
-
                     const clusterMarkersCount = cluster.count
 
-                    //cluster color strategy 1
-                    // let dv = count;
-                    // while (dv !== 0) {
-                    //     dv = Math.floor(dv / 10);
-                    //     index++;
-                    // }
-                    // index = Math.min(index, numStyles);
-
                     const getMarkerClusterColor = () => {
-                        //cluster color strategy 2 (heatmap with 5 levels)
                         let index = 0
                         if (clusterMarkersCount / markersVisible.length > 0.8) {
                             index = 4
@@ -175,21 +173,6 @@ const MarkerList: FC<MarkerListProps> = props => {
 
                     // change color if this cluster has more markers than the mean cluster
                     const color = getMarkerClusterColor()
-
-                    // create svg literal with fill color
-                    const svg = `
-                        <svg fill="${color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="50" height="50">
-                            <circle cx="120" cy="120" opacity=".8" r="70" />
-                            <circle cx="120" cy="120" opacity=".3" r="90" />
-                            <circle cx="120" cy="120" opacity=".2" r="110" />
-                            <text x="50%" y="50%" style="fill:#fff" text-anchor="middle" font-size="50" dominant-baseline="middle" font-family="roboto,arial,sans-serif">${cluster.count}</text>
-                        </svg>
-                    `
-
-                    // create cluster SVG element
-                    const parser = new DOMParser()
-                    const svgEl = parser.parseFromString(svg, 'image/svg+xml').documentElement
-                    svgEl.setAttribute('transform', 'translate(0 25)')
 
                     let resultMarkerChartCluster
                     if (markerChartVis?.length > 0) {
@@ -225,7 +208,6 @@ const MarkerList: FC<MarkerListProps> = props => {
                         span.style.left = '50%'
                         span.style.textShadow = '#000 0px 1px 2px'
                         span.style.transform = 'translate(-50%, -50%)'
-                        span.className = 'cluster-inner-text'
                         // span.style.textShadow = 'text-shadow: "5px 5px 5px black"'
                         clusterDiv = document.createElement('div')
                         clusterDiv.appendChild(imageUrl)
@@ -242,79 +224,14 @@ const MarkerList: FC<MarkerListProps> = props => {
                         // adjust zIndex to be above other markers
                         zIndex: Number(window.google.maps.Marker.MAX_ZINDEX) + cluster.count,
                         title: `Cluster of ${cluster.count} markers`,
-                        content: showClusterChart ? clusterDiv : svgEl
+                        content: showClusterChart
+                            ? clusterDiv
+                            : createClusterSvg(color, String(cluster.count))
                     })
                 }
             }
         })
     )
-
-    // cluster.setCalculator((clusterMarkers, numStyles) => {
-    //     let index = 0
-    //     const clusterMarkersCount = clusterMarkers.length
-    //
-    //     //cluster color strategy 1
-    //     // let dv = count;
-    //     // while (dv !== 0) {
-    //     //     dv = Math.floor(dv / 10);
-    //     //     index++;
-    //     // }
-    //     // index = Math.min(index, numStyles);
-    //
-    //     //cluster color strategy 2 (heatmap with 5 levels)
-    //     if (clusterMarkersCount / markersVisible.length > 0.8) {
-    //         index = 5
-    //     } else if (clusterMarkersCount / markersVisible.length > 0.6) {
-    //         index = 4
-    //     } else if (clusterMarkersCount / markersVisible.length > 0.4) {
-    //         index = 3
-    //     } else if (clusterMarkersCount / markersVisible.length > 0.2) {
-    //         index = 2
-    //     } else {
-    //         index = 1
-    //     }
-    //
-    //     // const iconUrl = `https://chart.googleapis.com/chart?chs=150x150&chd=t:${clusterMarkersCount},${markersVisible.length-clusterMarkersCount}&cht=p3&chf=bg,s,FFFFFF00`
-    //     const ids = clusterMarkers.map((item: any) => Number(item.title))
-    //     const rowsInCluster = markersVisible.filter((item: any, index: number) =>
-    //         ids.includes(index)
-    //     )
-    //     //TODO: enable cluster on visible
-    //     // const iconUrl = MarkerChart({data: row, type: "pie"}).url
-    //
-    //     // console.log("index", index)
-    //     // console.log("numStyles", numStyles)
-    //     // console.log("rowsInCluster", rowsInCluster)
-    //     // console.log("iconUrl", iconUrl)
-    //     // console.log("count", count)
-    //     // console.log("markersVisible", markersVisible.length)
-    //     // console.log("clusterMarkers", clusterMarkers)
-    //
-    //     let resultMarkerChartCluster
-    //     if (markerChartVis?.length > 0) {
-    //         resultMarkerChartCluster = MarkerChart({
-    //             attributes,
-    //             attributesStats,
-    //             data: rowsInCluster,
-    //             chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
-    //             chartAttributes: markerChartVis[0].markerChartAttributes,
-    //             width: 150,
-    //             height: 150
-    //         })
-    //         // console.log("resultMarkerChartCluster", resultMarkerChartCluster)
-    //     }
-    //
-    //     return {
-    //         text: clusterMarkersCount.toString(),
-    //         // url: markerClusterVis?.[0]?.showChart === 'yes' ? iconUrl : undefined,
-    //         url:
-    //             markerClusterVis?.[0]?.showChart === 'yes' && resultMarkerChartCluster
-    //                 ? resultMarkerChartCluster.url
-    //                 : undefined,
-    //         index,
-    //         title: ''
-    //     }
-    // })
 
     useEffect(() => {
         const zoomChangedEventListener = google.maps.event.addListener(
