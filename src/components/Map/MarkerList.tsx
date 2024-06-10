@@ -210,18 +210,9 @@ const MarkerList: FC<MarkerListProps> = props => {
                         })
                     }
 
-                    const pin = new window.google.maps.marker.PinElement({
-                        scale: 1,
-                        background: 'blue',
-                        borderColor: 'red',
-                        glyphColor: 'green'
-                        // glyph: 'b'
-                    })
-
                     let clusterDiv
                     if (resultMarkerChartCluster) {
                         const imageUrl = document.createElement('img')
-                        //@ts-ignore
                         imageUrl.src = resultMarkerChartCluster?.url
                         imageUrl.style.width = `${resultMarkerChartCluster?.sizes?.width}px`
                         imageUrl.style.height = `${resultMarkerChartCluster?.sizes?.height}px`
@@ -240,7 +231,11 @@ const MarkerList: FC<MarkerListProps> = props => {
                         clusterDiv = document.createElement('div')
                         clusterDiv.appendChild(imageUrl)
                         clusterDiv.appendChild(span)
+                        clusterDiv.style.transform = 'translateY(50%)'
                     }
+
+                    const showClusterChart =
+                        markerChartVis?.length > 0 && markerClusterVis?.[0]?.showChart === 'yes'
 
                     return new window.google.maps.marker.AdvancedMarkerElement({
                         map,
@@ -248,12 +243,7 @@ const MarkerList: FC<MarkerListProps> = props => {
                         // adjust zIndex to be above other markers
                         zIndex: Number(window.google.maps.Marker.MAX_ZINDEX) + cluster.count,
                         title: `Cluster of ${cluster.count} markers`,
-                        // markerClusterVis?.[0]?.showChart === 'yes' && resultMarkerChartCluster
-                        //@ts-ignore
-                        content:
-                            markerChartVis?.length > 0 && markerClusterVis?.[0]?.showChart === 'yes'
-                                ? clusterDiv
-                                : svgEl
+                        content: showClusterChart ? clusterDiv : svgEl
                     })
                 }
             }

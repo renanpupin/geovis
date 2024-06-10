@@ -115,6 +115,7 @@ const Marker = (props: MarkerPropTypes) => {
                 imageUrl.src = icon?.url
                 imageUrl.style.width = `${icon?.sizes?.width}px`
                 imageUrl.style.height = `${icon?.sizes?.height}px`
+                imageUrl.style.transform = 'translateY(50%)'
                 gmapMarker.content = imageUrl
             } else if (icon?.color) {
                 gmapMarker.content = createPin(icon?.color)?.element

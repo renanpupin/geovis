@@ -42,6 +42,7 @@ export const createMarkerEmpty = (markerData: any) => {
         imageUrl.src = markerData?.icon?.url
         imageUrl.style.width = `${markerData?.icon?.sizes?.width}px`
         imageUrl.style.height = `${markerData?.icon?.sizes?.height}px`
+        imageUrl.style.transform = 'translateY(50%)'
     }
 
     return new window.google.maps.marker.AdvancedMarkerElement({
