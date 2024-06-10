@@ -1,7 +1,14 @@
 import React, {useEffect, useMemo, useState} from 'react'
 // import MarkerClusterer from '@googlemaps/markerclustererplus'
 import {MarkerClusterer} from '@googlemaps/markerclusterer'
-import {removeMarker, createMarkerEmpty, createMarkerCircle, createPin} from './markerUtils'
+import {
+    removeMarker,
+    createMarkerEmpty,
+    createMarkerCircle,
+    createPin,
+    createMarkerChartHtmlElement,
+    getMarkerContent
+} from './markerUtils'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from './MarkerChart/MarkerChart'
 import {MarkerChartTypeProps, VisualizationTypeValues} from '../../redux/data/types'
@@ -108,20 +115,7 @@ const Marker = (props: MarkerPropTypes) => {
 
     useEffect(() => {
         if (didMount) {
-            // if icon is chart
-            if (icon?.url) {
-                const imageUrl = document.createElement('img')
-                //@ts-ignore
-                imageUrl.src = icon?.url
-                imageUrl.style.width = `${icon?.sizes?.width}px`
-                imageUrl.style.height = `${icon?.sizes?.height}px`
-                imageUrl.style.transform = 'translateY(50%)'
-                gmapMarker.content = imageUrl
-            } else if (icon?.color) {
-                gmapMarker.content = createPin(icon?.color)?.element
-            } else {
-                gmapMarker.content = null
-            }
+            gmapMarker.content = getMarkerContent(icon)
 
             if (enableMarkerCluster) {
                 gmapMarker.map = null

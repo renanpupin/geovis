@@ -24,6 +24,32 @@ export const createPin = (color: string, scale?: number) => {
     })
 }
 
+export const createMarkerChartHtmlElement = ({url, width, height}: any): HTMLImageElement => {
+    const imageUrl = document.createElement('img')
+    imageUrl.src = url
+    imageUrl.style.width = `${width}px`
+    imageUrl.style.height = `${height}px`
+    imageUrl.style.transform = 'translateY(50%)'
+
+    return imageUrl
+}
+
+export const getMarkerContent = (icon: any) => {
+    if (icon?.url) {
+        return createMarkerChartHtmlElement({
+            url: icon?.url,
+            width: icon?.sizes?.width,
+            height: icon?.sizes?.height
+        })
+    }
+
+    if (icon?.color) {
+        return createPin(icon?.color)?.element
+    }
+
+    return null
+}
+
 export const createMarkerEmpty = (markerData: any) => {
     // https://maps.google.com/mapfiles/ms/icons/red-dot.png
     // http://maps.google.com/mapfiles/kml/paddle/red-blank.png
@@ -31,25 +57,10 @@ export const createMarkerEmpty = (markerData: any) => {
     // https://developers.google.com/maps/documentation/javascript/examples/icon-complex
     // https://developers.google.com/maps/documentation/javascript/advanced-markers/html-markers#try-sample_2
 
-    let coloredPin
-    if (markerData?.icon?.color) {
-        coloredPin = createPin(markerData?.icon?.color)?.element
-    }
-
-    let imageUrl
-    if (markerData?.icon?.url) {
-        imageUrl = document.createElement('img')
-        imageUrl.src = markerData?.icon?.url
-        imageUrl.style.width = `${markerData?.icon?.sizes?.width}px`
-        imageUrl.style.height = `${markerData?.icon?.sizes?.height}px`
-        imageUrl.style.transform = 'translateY(50%)'
-    }
-
     return new window.google.maps.marker.AdvancedMarkerElement({
         title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
-        content: imageUrl ?? coloredPin ?? null
-        // content: pin.element,
+        content: getMarkerContent(markerData?.icon)
         // icon: getSymbolWithCustomColor("#ffa500"),
         // map: map,
     })

@@ -15,7 +15,6 @@ import {
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from 'src/components/Map/MarkerChart/MarkerChart'
 import {VisualizationTypeValues, MarkerChartTypeProps} from '../../redux/data/types'
-import {getSymbolWithCustomColor} from './markerUtils'
 import {removeDuplicatesFromStringArray} from '../../utils/array'
 import {colorScale, colorScaleHeatmap, generateRandomColors} from '../../libs/colors'
 import {Cluster} from '@googlemaps/markerclusterer/dist/cluster'
@@ -367,10 +366,8 @@ const MarkerList: FC<MarkerListProps> = props => {
                 const color = [...colorScale, ...extraRandomColors][
                     markerColorUniqueAttributeValues.indexOf(row[attributeIndex])
                 ]
-                // console.log('color', color)
 
                 return {color}
-                // return getSymbolWithCustomColor(color)
             }
 
             return null
