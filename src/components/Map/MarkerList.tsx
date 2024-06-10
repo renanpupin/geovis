@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback, useMemo, FC} from 'react'
+import React, {useEffect, useState, useCallback, useMemo, FC, useRef} from 'react'
 // import MarkerClusterer from '@googlemaps/markerclustererplus'
 import {MarkerClusterer} from '@googlemaps/markerclusterer'
 import Marker from 'src/components/Map/Marker'
@@ -65,7 +65,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     const attributes = useSelector(getAttributes)
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
-    const [clusterInfoWindow, setClusterInfoWindow] = useState<any>(null)
+    const infoWindowClusterRef = useRef(null)
 
     const markerClusterVis = visualizations.filter(
         visualization =>
@@ -102,16 +102,6 @@ const MarkerList: FC<MarkerListProps> = props => {
             map: props.map,
             markers: [],
             onClusterClick: function (event: any, cluster: any) {
-                console.log('onClusterClick', {
-                    event,
-                    cluster,
-                    markers: cluster.markers,
-                    marker: cluster.markers[0]?.title
-                })
-                //prevent cluster to zoom in on click
-                event.domEvent.preventDefault()
-                // event.stopPropagation()
-
                 const gmapMarkers = cluster.markers
 
                 const ids = gmapMarkers.map((item: any) => Number(item.title))
@@ -133,20 +123,23 @@ const MarkerList: FC<MarkerListProps> = props => {
                         return {...item, markerImageUrl: markerChart?.url}
                     })
 
-                clusterInfoWindow?.close()
-                setClusterInfoWindow(
-                    createInfoWindow(
-                        null,
-                        cluster.position,
-                        'Cluster',
-                        rowsInCluster,
-                        props.map,
-                        attributes,
-                        true,
-                        () => {
-                            setClusterInfoWindow(null)
-                        }
-                    )
+                //@ts-ignore
+                infoWindowClusterRef?.current?.close()
+                infoWindowClusterRef.current = null
+
+                //@ts-ignore
+                infoWindowClusterRef.current = createInfoWindow(
+                    null,
+                    cluster.position,
+                    'Cluster',
+                    rowsInCluster,
+                    props.map,
+                    attributes,
+                    true,
+                    () => {
+                        // setClusterInfoWindow(null)
+                        infoWindowClusterRef.current = null
+                    }
                 )
             },
             renderer: {
@@ -339,18 +332,18 @@ const MarkerList: FC<MarkerListProps> = props => {
             props.map,
             'zoom_changed',
             function () {
-                clusterInfoWindow?.close()
-                setClusterInfoWindow(null)
+                //@ts-ignore
+                infoWindowClusterRef?.current?.close()
+                infoWindowClusterRef.current = null
             }
         )
 
         return () => {
             // console.log('marker list remove events')
-            // google.maps.event.removeListener(clusterClickEventListener)
             google.maps.event.removeListener(zoomChangedEventListener)
-            clusterInfoWindow?.close()
-            // cluster.clearMarkers();
-            // cluster.setMap(null);
+            //@ts-ignore
+            infoWindowClusterRef?.current?.close()
+            infoWindowClusterRef.current = null
         }
     }, [markersVisible, cluster])
 

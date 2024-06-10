@@ -13,7 +13,6 @@ export const createInfoWindow = (
     onClose: any
 ) => {
     const id: string = `info-window-${title}`
-    console.log('createInfoWindow', title, id)
 
     const infoWindow = new window.google.maps.InfoWindow({
         content: `<div id="${id}" />`,
@@ -29,7 +28,7 @@ export const createInfoWindow = (
         )
     })
 
-    google.maps.event.addListener(infoWindow, 'closeclick', function () {
+    window.google.maps.event.addListener(infoWindow, 'closeclick', function () {
         onClose?.()
     })
 
