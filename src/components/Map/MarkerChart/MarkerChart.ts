@@ -1,6 +1,7 @@
 import {VisualizationTypeValues, MarkerChartTypeProps} from 'src/redux/data/types'
 import {useSelector} from 'react-redux'
 import {getAttributes, getAttributesStats} from '../../../redux/data/selectors'
+import {colorScaleHeatmap} from '../../../libs/colors'
 
 type MarkerChartProps = {
     data: any
@@ -18,15 +19,15 @@ const MarkerChart = (props: MarkerChartProps) => {
 
     const getHeatmapColorForNormalizedValue = (normalizedValue: number) => {
         if (normalizedValue <= 20) {
-            return '#0353ff'
+            return colorScaleHeatmap[0]
         } else if (normalizedValue > 20 && normalizedValue <= 40) {
-            return '#4adbff'
+            return colorScaleHeatmap[1]
         } else if (normalizedValue > 40 && normalizedValue <= 60) {
-            return '#ffd940'
+            return colorScaleHeatmap[2]
         } else if (normalizedValue > 60 && normalizedValue <= 80) {
-            return '#ff9800'
+            return colorScaleHeatmap[3]
         } else {
-            return '#ff3301'
+            return colorScaleHeatmap[4]
         }
     }
 

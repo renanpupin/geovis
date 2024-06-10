@@ -36,7 +36,7 @@ const App: React.FC = () => {
                     {viewMode === 'map' ? <Map /> : <Table />}
                 </div>
                 <div
-                    className={'chartsWrapper'}
+                    className={'visWrapper'}
                     style={{
                         flex: 0,
                         flexDirection: 'column',
@@ -48,13 +48,25 @@ const App: React.FC = () => {
                         minWidth: visMode === 'split' ? 400 : 0
                     }}
                 >
+                    <div
+                        style={{
+                            padding: 30,
+                            paddingTop: 15,
+                            paddingBottom: 15,
+                            borderBottom: '1px solid #e1e1e1'
+                        }}
+                    >
+                        <h6>Visualizations</h6>
+                    </div>
                     {visualizations
                         .filter(
                             (item: any) =>
                                 item.visible && item.type === VisualizationTypeValues.Chart
                         )
                         .map((item: any, index: number) => (
-                            <Chart key={item.id} index={index} visData={item} visMode={visMode} />
+                            <div key={item.id} style={{borderBottom: '1px solid #e1e1e1'}}>
+                                <Chart index={index} visData={item} visMode={visMode} />
+                            </div>
                         ))}
                     {visualizations
                         .filter(
@@ -63,7 +75,9 @@ const App: React.FC = () => {
                                 item.type === VisualizationTypeValues.ParallelCoordinates
                         )
                         .map((item: any, index: number) => (
-                            <ParallelCoordinates key={index} visMode={visMode} />
+                            <div key={index} style={{borderBottom: '1px solid #e1e1e1'}}>
+                                <ParallelCoordinates visMode={visMode} />
+                            </div>
                         ))}
                 </div>
             </div>
