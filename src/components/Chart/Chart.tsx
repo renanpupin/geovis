@@ -92,6 +92,40 @@ const Chart: React.FC<ChartPropTypes> = props => {
 
     const normalizedChartType = getNormalizedChartType()
 
+    console.log('props', props)
+
+    const getChartName = () => {
+        if (props.visData.title) {
+            return props.visData.title
+        }
+
+        const getNameChartType = (chartType: any) => {
+            if (chartType === 'pie') {
+                return 'Pie'
+            } else if (chartType === 'histogram') {
+                return 'Histogram'
+            } else if (chartType === 'line') {
+                return 'Line'
+            } else if (chartType === 'area') {
+                return 'Area'
+            } else if (chartType === 'column') {
+                return 'Column'
+            } else if (chartType === 'scatter') {
+                return 'Scatter'
+            }
+        }
+
+        if (props?.visData?.chartType === 'pie') {
+            return `${getNameChartType(props?.visData?.chartType)} chart ${props?.visData?.hasToGroup ? 'grouped by ' : ''}"${props?.visData?.chartLabelAttribute}"${props?.visData?.chartAttributeY ? ` x "${props?.visData?.chartAttributeY}"` : ''}`
+        } else if (
+            ['area', 'line', 'histogram', 'scatter', 'column'].includes(props?.visData?.chartType)
+        ) {
+            return `${getNameChartType(props?.visData?.chartType)} chart "${props?.visData?.chartLabelAttribute}"${props?.visData?.chartAttributeY ? ` x "${props?.visData?.chartAttributeY}"` : ''}`
+        }
+
+        return `Chart ${props.index}`
+    }
+
     const size = 400 - 35 // 35 is scrollbar width
     return (
         <Draggable className={styles.chart} disabled={visMode === 'split'}>
@@ -99,10 +133,10 @@ const Chart: React.FC<ChartPropTypes> = props => {
                 width={size}
                 height={size * 0.75}
                 chartType={normalizedChartType}
-                loader={<div>Loading Chart</div>}
+                loader={<div style={{padding: 30}}>Loading...</div>}
                 data={data}
                 options={{
-                    title: props.visData.title ?? `Chart ${props.index}`,
+                    title: getChartName(),
                     chartArea: {width: '50%'}
                     // hAxis: {
                     //     title: 'Total Population',
