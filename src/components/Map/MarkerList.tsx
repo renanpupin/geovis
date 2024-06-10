@@ -24,7 +24,7 @@ import {removeDuplicatesFromStringArray} from '../../utils/array'
 import {colorScale, colorScaleHeatmap, generateRandomColors} from '../../libs/colors'
 import {Cluster} from '@googlemaps/markerclusterer/dist/cluster'
 import {ClusterStats} from '@googlemaps/markerclusterer/dist/renderer'
-import {createClusterSvg} from './markerUtils'
+import {createClusterSvg, createMarkerChartHtmlElement} from './markerUtils'
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -192,28 +192,14 @@ const MarkerList: FC<MarkerListProps> = props => {
                         })
                     }
 
-                    let clusterDiv
-                    if (resultMarkerChartCluster) {
-                        const imageUrl = document.createElement('img')
-                        imageUrl.src = resultMarkerChartCluster?.url
-                        imageUrl.style.width = `${resultMarkerChartCluster?.sizes?.width}px`
-                        imageUrl.style.height = `${resultMarkerChartCluster?.sizes?.height}px`
-                        // clusterDiv.style.display = 'flex'
-                        const span = document.createElement('span')
-                        span.innerText = String(cluster.count)
-                        span.style.color = 'white'
-                        span.style.position = 'absolute'
-                        span.style.fontSize = '16px'
-                        span.style.top = '50%'
-                        span.style.left = '50%'
-                        span.style.textShadow = '#000 0px 1px 2px'
-                        span.style.transform = 'translate(-50%, -50%)'
-                        // span.style.textShadow = 'text-shadow: "5px 5px 5px black"'
-                        clusterDiv = document.createElement('div')
-                        clusterDiv.appendChild(imageUrl)
-                        clusterDiv.appendChild(span)
-                        clusterDiv.style.transform = 'translateY(50%)'
-                    }
+                    let clusterDiv = resultMarkerChartCluster
+                        ? createMarkerChartHtmlElement({
+                              url: resultMarkerChartCluster?.url,
+                              width: resultMarkerChartCluster?.sizes?.width,
+                              height: resultMarkerChartCluster?.sizes?.height,
+                              count: cluster.count
+                          })
+                        : null
 
                     const showClusterChart =
                         markerChartVis?.length > 0 && markerClusterVis?.[0]?.showChart === 'yes'

@@ -1,19 +1,3 @@
-import marker from './Marker'
-
-export const getSymbolWithCustomColor = (color: string) => {
-    return {
-        path: 'M27.648 -41.399q0 -3.816 -2.7 -6.516t-6.516 -2.7 -6.516 2.7 -2.7 6.516 2.7 6.516 6.516 2.7 6.516 -2.7 2.7 -6.516zm9.216 0q0 3.924 -1.188 6.444l-13.104 27.864q-0.576 1.188 -1.71 1.872t-2.43 0.684 -2.43 -0.684 -1.674 -1.872l-13.14 -27.864q-1.188 -2.52 -1.188 -6.444 0 -7.632 5.4 -13.032t13.032 -5.4 13.032 5.4 5.4 13.032z',
-        scale: 0.7,
-        // scaledSize: new google.maps.Size(36, 36),
-        anchor: new google.maps.Point(17, -7),
-        strokeWeight: 0.5,
-        strokeColor: '#888',
-        strokeOpacity: 1,
-        fillColor: color,
-        fillOpacity: 1
-    }
-}
-
 export const createClusterSvg = (color: string, count: string) => {
     // create svg literal with fill color
     const svg = `
@@ -43,14 +27,40 @@ export const createPin = (color: string, scale?: number) => {
     })
 }
 
-export const createMarkerChartHtmlElement = ({url, width, height}: any): HTMLImageElement => {
-    const imageUrl = document.createElement('img')
-    imageUrl.src = url
-    imageUrl.style.width = `${width}px`
-    imageUrl.style.height = `${height}px`
-    imageUrl.style.transform = 'translateY(50%)'
+export const createMarkerChartHtmlElement = ({
+    url,
+    width,
+    height,
+    count
+}: {
+    url: string
+    width: number
+    height: number
+    count?: number
+}): HTMLDivElement => {
+    const imageElement = document.createElement('img')
+    imageElement.src = url
+    imageElement.style.width = `${width}px`
+    imageElement.style.height = `${height}px`
 
-    return imageUrl
+    const wrapper = document.createElement('div')
+    wrapper.style.transform = 'translateY(50%)'
+    wrapper.append(imageElement)
+
+    if (count !== null && count !== undefined) {
+        const span = document.createElement('span')
+        span.innerText = String(count)
+        span.style.color = 'white'
+        span.style.position = 'absolute'
+        span.style.fontSize = '16px'
+        span.style.top = '50%'
+        span.style.left = '50%'
+        span.style.textShadow = '#000 0px 1px 2px'
+        span.style.transform = 'translate(-50%, -50%)'
+        wrapper.append(span)
+    }
+
+    return wrapper
 }
 
 export const getMarkerContent = (icon: any) => {
