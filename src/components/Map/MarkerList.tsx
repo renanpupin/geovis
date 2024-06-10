@@ -14,6 +14,9 @@ import {
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from 'src/components/Map/MarkerChart/MarkerChart'
 import {VisualizationTypeValues, MarkerChartTypeProps} from '../../redux/data/types'
+import {getSymbolWithCustomColor} from './markerUtils'
+import {removeDuplicatesFromStringArray} from '../../utils/array'
+import {colorScale, generateRandomColors} from '../../libs/colors'
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -68,6 +71,13 @@ const MarkerList: FC<MarkerListProps> = props => {
         return visualizations.filter(
             visualization =>
                 visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart
+        )
+    }, [visualizations])
+
+    const markerColorVis = useMemo(() => {
+        return visualizations.filter(
+            visualization =>
+                visualization.visible && visualization.type === VisualizationTypeValues.MarkerColor
         )
     }, [visualizations])
 
@@ -276,6 +286,41 @@ const MarkerList: FC<MarkerListProps> = props => {
 
     const getMarkers = useCallback(() => {
         cluster.clearMarkers()
+
+        const getMarkerIcon = (row: any) => {
+            if (markerChartVis?.length > 0) {
+                return MarkerChart({
+                    attributes,
+                    attributesStats,
+                    data: [row],
+                    chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                    chartAttributes: markerChartVis[0].markerChartAttributes
+                })
+            }
+
+            if (markerColorVis?.length > 0) {
+                const attributeIndex = attributes.findIndex(
+                    (item: any) => item.name === markerColorVis[0].markerColorAttribute
+                )
+
+                const markerColorUniqueAttributeValues = removeDuplicatesFromStringArray(
+                    markersVisible.map((item: any) => item[attributeIndex])
+                )
+
+                const extraRandomColors: string[] = generateRandomColors(
+                    markerColorUniqueAttributeValues?.length - colorScale?.length
+                )
+
+                const color = [...colorScale, ...extraRandomColors][
+                    markerColorUniqueAttributeValues.indexOf(row[attributeIndex])
+                ]
+
+                return getSymbolWithCustomColor(color)
+            }
+
+            return null
+        }
+
         return markersVisible.map((row: any, index: number) => {
             return (
                 <Marker
@@ -291,18 +336,7 @@ const MarkerList: FC<MarkerListProps> = props => {
                     enableMarkerCluster={markerClusterVis.length > 0}
                     // enableMarkerChart={markerChartVis.length > 0}
                     // icon={MarkerChart({data: row, type: "pie"})}
-                    icon={
-                        markerChartVis?.length > 0
-                            ? MarkerChart({
-                                  attributes,
-                                  attributesStats,
-                                  data: [row],
-                                  chartType: markerChartVis[0]
-                                      .markerChartType as MarkerChartTypeProps,
-                                  chartAttributes: markerChartVis[0].markerChartAttributes
-                              })
-                            : null
-                    }
+                    icon={getMarkerIcon(row)}
                 />
             )
         })

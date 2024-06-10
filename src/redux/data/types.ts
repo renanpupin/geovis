@@ -30,6 +30,7 @@ export enum VisualizationTypeValues {
     Heatmap = 'Heatmap',
     MarkerCluster = 'MarkerCluster',
     MarkerChart = 'MarkerChart',
+    MarkerColor = 'MarkerColor',
     Chart = 'Chart',
     ParallelCoordinates = 'ParallelCoordinates'
     // {label: 'Heatmap', value: 'heatmap'},
@@ -51,6 +52,7 @@ export type VisualizationTypes = {
     chartAttributeX?: any
     chartAttributeY?: any
     chartAttribute?: any
+    markerColorAttribute?: any
     hasToGroup?: boolean
     showChart?: 'yes' | 'no'
     markerChartType?: MarkerChartTypeProps

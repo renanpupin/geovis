@@ -60,3 +60,23 @@ export const colorScaleRandom = [
 export const colorScaleRandom2 = ['#1f78b4', '#fdbf6f', '#ff7f00', '#6a3d9a', '#e31a1c']
 
 export const colorScaleHeatmap = ['#0353ff', '#4adbff', '#ffd940', '#ff9800', '#ff3301']
+
+const generateRandomColor = () => {
+    // Gera um número aleatório entre 0 e 255 para cada componente de cor (R, G, B)
+    let r = Math.floor(Math.random() * 256)
+    let g = Math.floor(Math.random() * 256)
+    let b = Math.floor(Math.random() * 256)
+
+    // Converte cada componente de cor para hexadecimal e garante que tenha 2 dígitos
+    let corHex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()
+
+    return corHex
+}
+
+export const generateRandomColors = (size: number): string[] => {
+    let colorsArray: string[] = []
+    for (let i = 0; i < size; i++) {
+        colorsArray.push(generateRandomColor())
+    }
+    return colorsArray
+}
