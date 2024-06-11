@@ -1,26 +1,11 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react'
-// import MarkerClusterer from '@googlemaps/markerclustererplus'
 import {MarkerClusterer} from '@googlemaps/markerclusterer'
-import {
-    removeMarker,
-    createMarkerEmpty,
-    createMarkerCircle,
-    createPin,
-    createMarkerChartHtmlElement,
-    getMarkerContent
-} from './markerUtils'
+import {removeMarker, createMarkerEmpty, getMarkerContent} from './markerUtils'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from './MarkerChart/MarkerChart'
 import {MarkerChartTypeProps, VisualizationTypeValues} from '../../redux/data/types'
 import {useSelector} from 'react-redux'
-import {
-    getAttributes,
-    getAttributesStats,
-    getHighlight,
-    getLatAttributeIndex,
-    getLonAttributeIndex,
-    getVisualizations
-} from '../../redux/data/selectors'
+import {getAttributesStats, getVisualizations} from '../../redux/data/selectors'
 
 export const ENABLE_COLLISION_BEHAVIOR_THRESHOLD = 250
 
@@ -33,7 +18,6 @@ export type MarkerPropTypes = {
     attributes: any
     cluster: MarkerClusterer | null
     enableMarkerCluster: boolean
-    // enableMarkerChart: boolean
     enableCollisionBehavior?: boolean
     icon?: any
     highlight?: boolean
@@ -57,7 +41,6 @@ const Marker = (props: MarkerPropTypes) => {
         })
     )
 
-    // const [gmapMarkerBubble] = useState(createMarkerCircle())
     const infoWindowRef = useRef<any>(null)
 
     const markerChartVis = useMemo(() => {
@@ -75,10 +58,8 @@ const Marker = (props: MarkerPropTypes) => {
     useEffect(() => {
         if (enableMarkerCluster) {
             cluster?.addMarker(gmapMarker)
-            // gmapMarkerBubble.setMap(props.map);
         } else {
             gmapMarker.map = props.map
-            // gmapMarkerBubble.setMap(props.map);
         }
 
         const markerClickEventListener = gmapMarker.addListener('click', (evt: any) => {

@@ -1,3 +1,5 @@
+import {colorScaleHeatmap} from '../../libs/colors'
+
 export const createClusterSvg = (color: string, count: string) => {
     // create svg literal with fill color
     const svg = `
@@ -138,4 +140,29 @@ export const removeMarker = (marker: any, enableMarkerCluster: any, cluster: any
 
 export const toggleMarker = (marker: any, map: any) => {
     marker.setMap(marker.getMap() ? null : map)
+}
+
+export const getMarkerClusterColor = (clusterMarkersCount: number, markersVisibleCount: number) => {
+    let index = 0
+    if (clusterMarkersCount / markersVisibleCount > 0.8) {
+        index = 4
+    } else if (clusterMarkersCount / markersVisibleCount > 0.6) {
+        index = 3
+    } else if (clusterMarkersCount / markersVisibleCount > 0.4) {
+        index = 2
+    } else if (clusterMarkersCount / markersVisibleCount > 0.2) {
+        index = 1
+    } else {
+        index = 0
+    }
+
+    return colorScaleHeatmap[index]
+}
+
+export const getMakerIds = (markers: any) => {
+    return markers?.map((item: any) => Number(item.title))
+}
+
+export const getRowsInCluster = (markers: any, ids: number[]) => {
+    return markers.filter((item: any, index: number) => ids?.includes(index))
 }

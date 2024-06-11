@@ -24,7 +24,13 @@ import {removeDuplicatesFromStringArray} from '../../utils/array'
 import {colorScale, colorScaleHeatmap, generateRandomColors} from '../../libs/colors'
 import {Cluster} from '@googlemaps/markerclusterer/dist/cluster'
 import {ClusterStats} from '@googlemaps/markerclusterer/dist/renderer'
-import {createClusterSvg, createMarkerChartHtmlElement} from './markerUtils'
+import {
+    createClusterSvg,
+    createMarkerChartHtmlElement,
+    getMakerIds,
+    getMarkerClusterColor,
+    getRowsInCluster
+} from './markerUtils'
 import {ENABLE_COLLISION_BEHAVIOR_THRESHOLD} from './Marker'
 
 type MarkerListProps = {
@@ -81,6 +87,26 @@ const MarkerList: FC<MarkerListProps> = props => {
         infoWindowClusterRef.current = null
     }
 
+    const getMarkerChartImage = (
+        items: any,
+        showLegend: boolean,
+        width?: number,
+        height?: number
+    ) => {
+        return markerChartVis?.length > 0
+            ? MarkerChart({
+                  attributes,
+                  attributesStats,
+                  data: items,
+                  chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                  chartAttributes: markerChartVis[0].markerChartAttributes,
+                  showLegend,
+                  width,
+                  height
+              })
+            : null
+    }
+
     clusterRef.current = new MarkerClusterer({
         map: props.map,
         markers: [],
@@ -88,26 +114,7 @@ const MarkerList: FC<MarkerListProps> = props => {
         algorithm: new SuperClusterAlgorithm({maxDistance: 40000}),
         // algorithm: new NoopAlgorithm({}),
         onClusterClick: function (event: any, cluster: any) {
-            const gmapMarkers = cluster.markers
-
-            const ids = gmapMarkers.map((item: any) => Number(item.title))
-            const rowsInCluster = markersVisible
-                .filter((_: any, index: number) => ids.includes(index))
-                .map((item: any, index: number) => {
-                    const markerChart =
-                        markerChartVis?.length > 0
-                            ? MarkerChart({
-                                  attributes,
-                                  attributesStats,
-                                  data: [item],
-                                  chartType: markerChartVis[0]
-                                      .markerChartType as MarkerChartTypeProps,
-                                  chartAttributes: markerChartVis[0].markerChartAttributes,
-                                  showLegend: true
-                              })
-                            : null
-                    return {...item, markerImageUrl: markerChart?.url}
-                })
+            const rowsInCluster = getRowsInCluster(markersVisible, getMakerIds(cluster?.markers))
 
             cleanInfoWindow()
 
@@ -115,7 +122,9 @@ const MarkerList: FC<MarkerListProps> = props => {
                 null,
                 cluster.position,
                 'Cluster',
-                rowsInCluster,
+                rowsInCluster.map((item: any, index: number) => {
+                    return {...item, markerImageUrl: getMarkerChartImage([item], true)?.url}
+                }),
                 props.map,
                 attributes,
                 true,
@@ -127,44 +136,17 @@ const MarkerList: FC<MarkerListProps> = props => {
         },
         renderer: {
             render(cluster: Cluster, stats: ClusterStats, map: google.maps.Map) {
-                const clusterMarkersCount = cluster.count
-
-                const getMarkerClusterColor = () => {
-                    let index = 0
-                    if (clusterMarkersCount / markersVisible.length > 0.8) {
-                        index = 4
-                    } else if (clusterMarkersCount / markersVisible.length > 0.6) {
-                        index = 3
-                    } else if (clusterMarkersCount / markersVisible.length > 0.4) {
-                        index = 2
-                    } else if (clusterMarkersCount / markersVisible.length > 0.2) {
-                        index = 1
-                    } else {
-                        index = 0
-                    }
-
-                    return colorScaleHeatmap[index]
-                }
-
                 // change color if this cluster has more markers than the mean cluster
-                const color = getMarkerClusterColor()
+                const color = getMarkerClusterColor(cluster.count, markersVisible?.length)
 
                 let resultMarkerChartCluster
                 if (markerChartVis?.length > 0) {
-                    const ids = cluster?.markers?.map((item: any) => Number(item.title))
-                    const rowsInCluster = markersVisible.filter((item: any, index: number) =>
-                        ids?.includes(index)
+                    const rowsInCluster = getRowsInCluster(
+                        markersVisible,
+                        getMakerIds(cluster?.markers)
                     )
 
-                    resultMarkerChartCluster = MarkerChart({
-                        attributes,
-                        attributesStats,
-                        data: rowsInCluster,
-                        chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
-                        chartAttributes: markerChartVis[0].markerChartAttributes,
-                        width: 150,
-                        height: 150
-                    })
+                    resultMarkerChartCluster = getMarkerChartImage(rowsInCluster, false, 150, 150)
                 }
 
                 let clusterDiv = resultMarkerChartCluster
