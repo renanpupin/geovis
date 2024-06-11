@@ -5,8 +5,8 @@ import styles from './Map.module.css'
 const mapNodeId = 'map'
 
 const mapOptions = {
-    center: {lat: 41.0082, lng: 28.9784},
-    zoom: 8,
+    center: {lat: 0, lng: 0},
+    zoom: 2,
     streetViewControl: false,
     panControl: false,
     fullscreenControl: false,

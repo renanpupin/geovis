@@ -1,29 +1,38 @@
-import React, {useEffect, useState} from 'react';
-import Select from "src/components/Select/Select";
+import React, {useEffect, useState} from 'react'
+import Select from 'src/components/Select/Select'
 
 type Step2ContentProps = {
-    onData?: (data: any) => void,
+    onData?: (data: any) => void
     data: any
 }
 
-const Step2Content: React.FC<Step2ContentProps> = (props) => {
-    const {onData, data} = props;
+const Step2Content: React.FC<Step2ContentProps> = props => {
+    const {onData, data} = props
 
-    const [latAttribute, setLatAttribute] = useState<string | undefined>(data?.latAttribute ?? undefined);
-    const [lonAttribute, setLonAttribute] = useState<string | undefined>(data?.lonAttribute ?? undefined);
-    const [temporalAttribute, setTemporalAttribute] = useState<string | undefined>(data?.temporalAttribute ?? undefined);
-    // console.log("data", data)
+    const [latAttribute, setLatAttribute] = useState<string | undefined>(
+        data?.latAttribute ?? undefined
+    )
+    const [lonAttribute, setLonAttribute] = useState<string | undefined>(
+        data?.lonAttribute ?? undefined
+    )
+    const [temporalAttribute, setTemporalAttribute] = useState<string | undefined>(
+        data?.temporalAttribute ?? undefined
+    )
 
     useEffect(() => {
-        const latParsedAttribute = data.attributes.filter((item: any) => ['lat', 'latitude'].includes(item.name))
-        if(latParsedAttribute.length > 0){
+        const latParsedAttribute = data.attributes.filter((item: any) =>
+            ['lat', 'latitude'].includes(item.name)
+        )
+        if (latParsedAttribute.length > 0) {
             setLatAttribute(latParsedAttribute[0].name)
         }
         // }
         //auto detect lon attribute
         // if(!lonAttribute){
-        const lonParsedAttribute = data.attributes.filter((item: any) => ['lon', 'lng', 'longitude'].includes(item.name))
-        if(lonParsedAttribute.length > 0){
+        const lonParsedAttribute = data.attributes.filter((item: any) =>
+            ['lon', 'lng', 'longitude'].includes(item.name)
+        )
+        if (lonParsedAttribute.length > 0) {
             setLonAttribute(lonParsedAttribute[0].name)
         }
         // }
@@ -35,17 +44,17 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
     }, [])
 
     useEffect(() => {
-        if(latAttribute && lonAttribute){
+        if (latAttribute && lonAttribute) {
             onData?.({
                 latAttribute,
                 lonAttribute,
-                temporalAttribute,
+                temporalAttribute
             })
-        }else{
+        } else {
             onData?.({
                 latAttribute: undefined,
                 lonAttribute: undefined,
-                temporalAttribute: undefined,
+                temporalAttribute: undefined
             })
         }
     }, [latAttribute, lonAttribute, temporalAttribute])
@@ -56,7 +65,7 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
             label: item.name,
             value: item.name
         }))
-    ];
+    ]
 
     return (
         <div>
@@ -69,7 +78,7 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
                     placeholder={'Select the latitude attribute'}
                     value={latAttribute}
                     options={attributesOptions}
-                    onChange={(value) => setLatAttribute(value)}
+                    onChange={value => setLatAttribute(value)}
                 />
             </div>
 
@@ -82,7 +91,7 @@ const Step2Content: React.FC<Step2ContentProps> = (props) => {
                     placeholder={'Select the longitude attribute'}
                     value={lonAttribute}
                     options={attributesOptions}
-                    onChange={(value) => setLonAttribute(value)}
+                    onChange={value => setLonAttribute(value)}
                 />
             </div>
             {/*<div style={{marginBottom: 15}}>*/}

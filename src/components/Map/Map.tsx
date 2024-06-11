@@ -39,7 +39,7 @@ const Map: React.FC = () => {
 
     const getHeatmap = useCallback(() => {
         if (!map) {
-            return
+            return null
         }
         // console.log('getHeatmap changed visibleRows', visibleRows)
         // console.log('getHeatmap changed visualizations', visualizations)
@@ -51,7 +51,7 @@ const Map: React.FC = () => {
                 )
             }).length === 0
         if (hideHeatmap) {
-            return
+            return null
         }
 
         //TODO: maybe refactor heatmap and move inside markers (inside cluster to use marker.getLocation())
