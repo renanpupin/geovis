@@ -19,7 +19,8 @@ export const createInfoWindow = (
         content: `<div id="${id}" />`,
         // position: position,
         position: position ? {lat: position.lat(), lng: position.lng()} : undefined,
-        pixelOffset: new google.maps.Size(0, isCluster ? -25 : icon ? icon?.sizes?.height / 2 : 0)
+        pixelOffset: new google.maps.Size(0, isCluster ? -25 : icon ? icon?.sizes?.height / 2 : 0),
+        headerContent: `#${title}`
     })
 
     infoWindow.addListener('domready', (e: any) => {
