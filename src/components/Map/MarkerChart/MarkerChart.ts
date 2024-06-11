@@ -170,6 +170,30 @@ const MarkerChart = (props: MarkerChartProps) => {
                 ]
             },
             options: {
+                ...(!['pie', 'outlabeledPie'].includes(props?.chartType)
+                    ? {
+                          scales: {
+                              yAxes: [
+                                  {
+                                      display: props?.showLegend,
+                                      ticks: {
+                                          suggestedMin: 0,
+                                          suggestedMax: 100
+                                      }
+                                  }
+                              ],
+                              xAxes: [
+                                  {
+                                      drawTicks: false,
+                                      gridLines: {
+                                          display: false,
+                                          drawBorder: true
+                                      }
+                                  }
+                              ]
+                          }
+                      }
+                    : {}),
                 plugins: {
                     legend: false,
                     outlabels: {
