@@ -94,18 +94,18 @@ const Step2Content: React.FC<Step2ContentProps> = props => {
                     onChange={value => setLonAttribute(value)}
                 />
             </div>
-            {/*<div style={{marginBottom: 15}}>*/}
-            {/*    <div style={{marginBottom: 5}}>*/}
-            {/*        <label>Select the temporal attribute: (not required)</label>*/}
-            {/*    </div>*/}
-            {/*    <Select*/}
-            {/*        label={'Temporal attribute'}*/}
-            {/*        placeholder={'Select the temporal attribute'}*/}
-            {/*        value={temporalAttribute}*/}
-            {/*        options={attributesOptions}*/}
-            {/*        onChange={(value) => setTemporalAttribute(value)}*/}
-            {/*    />*/}
-            {/*</div>*/}
+            <div style={{marginBottom: 15}}>
+                <div style={{marginBottom: 5}}>
+                    <label>Select the temporal attribute: (not required)</label>
+                </div>
+                <Select
+                    label={'Temporal attribute'}
+                    placeholder={'Select the temporal attribute'}
+                    value={temporalAttribute}
+                    options={attributesOptions}
+                    onChange={value => setTemporalAttribute(value)}
+                />
+            </div>
         </div>
     )
 }

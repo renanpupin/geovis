@@ -17,8 +17,7 @@ const App: React.FC = () => {
     const [visMode, setVisMode] = useState<'split' | 'full'>('split')
     const temporalAttribute = useSelector(getTemporalAttribute)
     const visualizations = useSelector(getVisualizations)
-    // console.log('visualizations', visualizations)
-    // console.log('app temporalAttribute', !!temporalAttribute)
+
     return (
         <div>
             <Menu
