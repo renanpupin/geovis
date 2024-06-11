@@ -50,6 +50,7 @@ export const createMarkerChartHtmlElement = ({
 
     const wrapper = document.createElement('div')
     wrapper.style.transform = 'translateY(50%)'
+    wrapper.style.cursor = 'pointer'
     wrapper.append(imageElement)
 
     if (count !== null && count !== undefined) {
