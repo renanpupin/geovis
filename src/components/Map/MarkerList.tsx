@@ -180,34 +180,19 @@ const MarkerList: FC<MarkerListProps> = props => {
             props.map,
             'zoom_changed',
             function () {
-                console.log('zoom_changed')
-
                 cleanInfoWindow()
             }
         )
 
         return () => {
-            // console.log('marker list remove events')
             google.maps.event.removeListener(zoomChangedEventListener)
 
             cleanInfoWindow()
         }
     }, [markersVisible, clusterRef?.current])
 
-    const getMarkers = useCallback(() => {
-        clusterRef?.current?.clearMarkers()
-
-        const getMarkerIcon = (row: any) => {
-            if (markerChartVis?.length > 0) {
-                return MarkerChart({
-                    attributes,
-                    attributesStats,
-                    data: [row],
-                    chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
-                    chartAttributes: markerChartVis[0].markerChartAttributes
-                })
-            }
-
+    const getMarkerColorVis = useCallback(
+        (row: any) => {
             if (markerColorVis?.length > 0) {
                 const attributeIndex = attributes.findIndex(
                     (item: any) => item.name === markerColorVis[0].markerColorAttribute
@@ -227,6 +212,22 @@ const MarkerList: FC<MarkerListProps> = props => {
 
                 return {color}
             }
+            return null
+        },
+        [markerColorVis, markersVisible]
+    )
+
+    const getMarkers = useCallback(() => {
+        clusterRef?.current?.clearMarkers()
+
+        const getMarkerIcon = (row: any) => {
+            if (markerChartVis?.length > 0) {
+                return getMarkerChartImage([row], false)
+            }
+
+            if (markerColorVis?.length > 0) {
+                return getMarkerColorVis(row)
+            }
 
             return null
         }
@@ -244,7 +245,6 @@ const MarkerList: FC<MarkerListProps> = props => {
                     map={props.map}
                     cluster={clusterRef?.current}
                     enableMarkerCluster={markerClusterVis.length > 0}
-                    // enableMarkerChart={markerChartVis.length > 0}
                     icon={getMarkerIcon(row)}
                     enableCollisionBehavior={
                         markersVisible?.length > ENABLE_COLLISION_BEHAVIOR_THRESHOLD
