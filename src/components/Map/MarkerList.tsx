@@ -72,10 +72,14 @@ const MarkerList: FC<MarkerListProps> = props => {
     const highlight = useSelector(getHighlight)
     const infoWindowClusterRef = useRef(null)
 
-    const markerClusterVis = visualizations.filter(
-        visualization =>
-            visualization.visible && visualization.type === VisualizationTypeValues.MarkerCluster
-    )
+    const markerClusterVis = useMemo(() => {
+        return visualizations.filter(
+            visualization =>
+                visualization.visible &&
+                visualization.type === VisualizationTypeValues.MarkerCluster
+        )
+    }, [visualizations])
+
     const markerChartVis = useMemo(() => {
         return visualizations.filter(
             visualization =>
@@ -102,12 +106,14 @@ const MarkerList: FC<MarkerListProps> = props => {
             }))
     }, [props.visibleRows, highlight])
 
-    const [cluster] = useState<MarkerClusterer>(
-        new MarkerClusterer({
+    // console.log('markerChartVis outside', markerChartVis)
+
+    const getCluster = useCallback(() => {
+        return new MarkerClusterer({
             map: props.map,
             markers: [],
-            algorithm: new GridAlgorithm({maxDistance: 40000}),
-            // algorithm: new SuperClusterAlgorithm({maxDistance: 40000}),
+            // algorithm: new GridAlgorithm({maxDistance: 40000}),
+            algorithm: new SuperClusterAlgorithm({maxDistance: 40000}),
             // algorithm: new NoopAlgorithm({}),
             onClusterClick: function (event: any, cluster: any) {
                 const gmapMarkers = cluster.markers
@@ -173,6 +179,7 @@ const MarkerList: FC<MarkerListProps> = props => {
 
                     // change color if this cluster has more markers than the mean cluster
                     const color = getMarkerClusterColor()
+                    // console.log('markerChartVis inside', markerChartVis)
 
                     let resultMarkerChartCluster
                     if (markerChartVis?.length > 0) {
@@ -217,13 +224,20 @@ const MarkerList: FC<MarkerListProps> = props => {
                 }
             }
         })
-    )
+    }, [props.map, markersVisible, markerChartVis, attributes, attributesStats])
+
+    const [cluster, setCluster] = useState<MarkerClusterer>(getCluster())
+
+    // useEffect(() => {
+    //     setCluster(getCluster())
+    // }, [])
 
     useEffect(() => {
         const zoomChangedEventListener = google.maps.event.addListener(
             props.map,
             'zoom_changed',
             function () {
+                console.log('zoom_changed')
                 //@ts-ignore
                 infoWindowClusterRef?.current?.close()
                 infoWindowClusterRef.current = null

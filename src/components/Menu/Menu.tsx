@@ -173,16 +173,16 @@ const Menu: React.FC<MenuTypes> = props => {
         const loadTestData = urlParams.get('testdata')
         if (ENV !== 'production' && loadTestData === 'true') {
             dispatch(loadData(fastLoadData))
-            dispatch(addFilter(fastLoadFilter))
+            // dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
-            dispatch(addVisualization(fastLoadPieChartVis))
+            // dispatch(addVisualization(fastLoadPieChartVis))
             dispatch(addVisualization(fastLoadMarkerChartPie))
-            dispatch(addVisualization(fastLoadMarkerColor))
-            dispatch(addVisualization(fastLoadPieChartUngroupedVis))
-            dispatch(addVisualization(fastLoadParallelVis))
-            dispatch(addVisualization(fastLoadHistogramVis))
-            dispatch(addVisualization(fastLoadHeatmapVis))
-            dispatch(addVisualization(fastLoadLineChartVis))
+            // dispatch(addVisualization(fastLoadMarkerColor))
+            // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
+            // dispatch(addVisualization(fastLoadParallelVis))
+            // dispatch(addVisualization(fastLoadHistogramVis))
+            // dispatch(addVisualization(fastLoadHeatmapVis))
+            // dispatch(addVisualization(fastLoadLineChartVis))
         }
 
         return () => {
@@ -390,7 +390,7 @@ const Menu: React.FC<MenuTypes> = props => {
             {showDataWizard && (
                 <DataWizard
                     onFinish={data => {
-                        console.log('onFinish', data)
+                        // console.log('onFinish', data)
                         setShowDataWizard(false)
 
                         dispatch(loadData(data))
@@ -404,7 +404,7 @@ const Menu: React.FC<MenuTypes> = props => {
             {showVisualizationWizard && (
                 <VisualizationWizard
                     onFinish={(visualization: Omit<VisualizationTypes, 'id' | 'visible'>) => {
-                        console.log('onFinish', visualization)
+                        // console.log('onFinish', visualization)
                         setShowVisualizationWizard(false)
 
                         dispatch(addVisualization(visualization))
@@ -418,7 +418,7 @@ const Menu: React.FC<MenuTypes> = props => {
             {showRemoveVisualizationWizard && (
                 <RemoveVisualizationWizard
                     onFinish={(data: any) => {
-                        console.log('onFinish', data)
+                        // console.log('onFinish', data)
                         setShowRemoveVisualizationWizard(false)
 
                         dispatch(removeVisualization(data.id))
@@ -432,7 +432,7 @@ const Menu: React.FC<MenuTypes> = props => {
             {showFilterWizard && (
                 <FilterWizard
                     onFinish={data => {
-                        console.log('onFinish', data)
+                        // console.log('onFinish', data)
                         setShowFilterWizard(false)
 
                         dispatch(addFilter(data))
@@ -446,7 +446,7 @@ const Menu: React.FC<MenuTypes> = props => {
             {showRemoveFilterWizard && (
                 <RemoveFilterWizard
                     onFinish={(data: any) => {
-                        console.log('onFinish', data)
+                        // console.log('onFinish', data)
                         setShowRemoveFilterWizard(false)
 
                         dispatch(removeFilter(data.id))
