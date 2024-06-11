@@ -31,15 +31,17 @@ export const createMarkerChartHtmlElement = ({
     url,
     width,
     height,
-    count
+    count,
+    chartImage
 }: {
     url: string
     width: number
     height: number
     count?: number
+    chartImage?: string | null
 }): HTMLDivElement => {
     const imageElement = document.createElement('img')
-    imageElement.src = url
+    imageElement.src = chartImage ?? url
     imageElement.style.width = `${width}px`
     imageElement.style.height = `${height}px`
 
@@ -63,12 +65,13 @@ export const createMarkerChartHtmlElement = ({
     return wrapper
 }
 
-export const getMarkerContent = (icon: any) => {
+export const getMarkerContent = (icon: any, chartImage?: string | null) => {
     if (icon?.url) {
         return createMarkerChartHtmlElement({
             url: icon?.url,
             width: icon?.sizes?.width,
-            height: icon?.sizes?.height
+            height: icon?.sizes?.height,
+            chartImage
         })
     }
 

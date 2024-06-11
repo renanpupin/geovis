@@ -21,6 +21,7 @@ import {
     getLonAttributeIndex,
     getVisualizations
 } from '../../redux/data/selectors'
+import {Chart} from 'react-google-charts'
 
 export type MarkerPropTypes = {
     id: string
@@ -39,7 +40,7 @@ export type MarkerPropTypes = {
 const Marker = (props: MarkerPropTypes) => {
     const {row, enableMarkerCluster, icon, cluster, attributes, highlight} = props
     const [didMount, setDidMount] = useState(false)
-    // console.log('Marker ID', props.id)
+    const [chartImage, setChartImage] = useState<string | null>(null)
 
     const visualizations = useSelector(getVisualizations)
     const attributesStats = useSelector(getAttributesStats)
@@ -114,7 +115,7 @@ const Marker = (props: MarkerPropTypes) => {
 
     useEffect(() => {
         if (didMount) {
-            gmapMarker.content = getMarkerContent(icon)
+            gmapMarker.content = getMarkerContent(icon, chartImage)
 
             if (enableMarkerCluster) {
                 gmapMarker.map = null
@@ -132,19 +133,52 @@ const Marker = (props: MarkerPropTypes) => {
             infoWindow?.close()
             clusterInfoWindow?.close()
         }
-    }, [props.map, cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon])
-
-    // to use highlight with opacity (need to implement on cluster too)
-    // useEffect(() => {
-    //     console.log('marker onchange highlight', highlight);
-    //     if(highlight === false){
-    //         gmapMarker.setOpacity(0.3);
-    //     }else{
-    //         gmapMarker.setOpacity(1);
-    //     }
-    // }, [highlight])
+    }, [props.map, cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon, chartImage])
 
     return null
+    //to use google charts on the marker
+    // return (
+    //     <div style={{display: 'none'}}>
+    //         <Chart
+    //             chartType="PieChart"
+    //             data={[
+    //                 ['Task', 'Hours per Day'],
+    //                 ['Work', 11],
+    //                 ['Eat', 2],
+    //                 ['Commute', 2],
+    //                 ['Watch TV', 2],
+    //                 ['Sleep', 7]
+    //             ]}
+    //             options={{
+    //                 // title: 'My Daily Activities',
+    //                 colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+    //                 backgroundColor: 'transparent',
+    //                 legend: 'none',
+    //                 chartArea: {
+    //                     width: '100%',
+    //                     backgroundColor: 'blue',
+    //                     left: 0,
+    //                     top: 0,
+    //                     height: '100%'
+    //                 },
+    //                 width: 200
+    //             }}
+    //             width={200}
+    //             height={200}
+    //             chartEvents={[
+    //                 {
+    //                     eventName: 'ready',
+    //                     callback: ({chartWrapper, google}) => {
+    //                         console.log('=> base64', chartWrapper.getChart().getImageURI())
+    //                         //@ts-ignore
+    //                         setChartImage(chartWrapper.getChart().getImageURI())
+    //                     }
+    //                 }
+    //             ]}
+    //             // legendToggle
+    //         />
+    //     </div>
+    // )
 }
 
 export default Marker
