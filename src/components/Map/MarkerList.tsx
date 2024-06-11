@@ -71,6 +71,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     const attributes = useSelector(getAttributes)
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
+    const clusterRef = useRef<MarkerClusterer | null>(null)
     const infoWindowClusterRef = useRef(null)
 
     const markerClusterVis = useMemo(() => {
@@ -107,131 +108,127 @@ const MarkerList: FC<MarkerListProps> = props => {
             }))
     }, [props.visibleRows, highlight])
 
-    // console.log('markerChartVis outside', markerChartVis)
+    clusterRef.current = new MarkerClusterer({
+        map: props.map,
+        markers: [],
+        // algorithm: new GridAlgorithm({maxDistance: 40000}),
+        algorithm: new SuperClusterAlgorithm({maxDistance: 40000}),
+        // algorithm: new NoopAlgorithm({}),
+        onClusterClick: function (event: any, cluster: any) {
+            const gmapMarkers = cluster.markers
 
-    const getCluster = useCallback(() => {
-        return new MarkerClusterer({
-            map: props.map,
-            markers: [],
-            // algorithm: new GridAlgorithm({maxDistance: 40000}),
-            algorithm: new SuperClusterAlgorithm({maxDistance: 40000}),
-            // algorithm: new NoopAlgorithm({}),
-            onClusterClick: function (event: any, cluster: any) {
-                const gmapMarkers = cluster.markers
+            const ids = gmapMarkers.map((item: any) => Number(item.title))
+            const rowsInCluster = markersVisible
+                .filter((_: any, index: number) => ids.includes(index))
+                .map((item: any, index: number) => {
+                    const markerChart =
+                        markerChartVis?.length > 0
+                            ? MarkerChart({
+                                  attributes,
+                                  attributesStats,
+                                  data: [item],
+                                  chartType: markerChartVis[0]
+                                      .markerChartType as MarkerChartTypeProps,
+                                  chartAttributes: markerChartVis[0].markerChartAttributes,
+                                  showLegend: true
+                              })
+                            : null
+                    return {...item, markerImageUrl: markerChart?.url}
+                })
 
-                const ids = gmapMarkers.map((item: any) => Number(item.title))
-                const rowsInCluster = markersVisible
-                    .filter((_: any, index: number) => ids.includes(index))
-                    .map((item: any, index: number) => {
-                        const markerChart =
-                            markerChartVis?.length > 0
-                                ? MarkerChart({
-                                      attributes,
-                                      attributesStats,
-                                      data: [item],
-                                      chartType: markerChartVis[0]
-                                          .markerChartType as MarkerChartTypeProps,
-                                      chartAttributes: markerChartVis[0].markerChartAttributes,
-                                      showLegend: true
-                                  })
-                                : null
-                        return {...item, markerImageUrl: markerChart?.url}
-                    })
+            //@ts-ignore
+            infoWindowClusterRef?.current?.close()
+            infoWindowClusterRef.current = null
 
-                //@ts-ignore
-                infoWindowClusterRef?.current?.close()
-                infoWindowClusterRef.current = null
+            //@ts-ignore
+            infoWindowClusterRef.current = createInfoWindow(
+                null,
+                cluster.position,
+                'Cluster',
+                rowsInCluster,
+                props.map,
+                attributes,
+                true,
+                () => {
+                    infoWindowClusterRef.current = null
+                },
+                null
+            )
+        },
+        renderer: {
+            render(cluster: Cluster, stats: ClusterStats, map: google.maps.Map) {
+                const clusterMarkersCount = cluster.count
 
-                //@ts-ignore
-                infoWindowClusterRef.current = createInfoWindow(
-                    null,
-                    cluster.position,
-                    'Cluster',
-                    rowsInCluster,
-                    props.map,
-                    attributes,
-                    true,
-                    () => {
-                        infoWindowClusterRef.current = null
-                    },
-                    null
-                )
-            },
-            renderer: {
-                render(cluster: Cluster, stats: ClusterStats, map: google.maps.Map) {
-                    const clusterMarkersCount = cluster.count
-
-                    const getMarkerClusterColor = () => {
-                        let index = 0
-                        if (clusterMarkersCount / markersVisible.length > 0.8) {
-                            index = 4
-                        } else if (clusterMarkersCount / markersVisible.length > 0.6) {
-                            index = 3
-                        } else if (clusterMarkersCount / markersVisible.length > 0.4) {
-                            index = 2
-                        } else if (clusterMarkersCount / markersVisible.length > 0.2) {
-                            index = 1
-                        } else {
-                            index = 0
-                        }
-
-                        return colorScaleHeatmap[index]
+                const getMarkerClusterColor = () => {
+                    let index = 0
+                    if (clusterMarkersCount / markersVisible.length > 0.8) {
+                        index = 4
+                    } else if (clusterMarkersCount / markersVisible.length > 0.6) {
+                        index = 3
+                    } else if (clusterMarkersCount / markersVisible.length > 0.4) {
+                        index = 2
+                    } else if (clusterMarkersCount / markersVisible.length > 0.2) {
+                        index = 1
+                    } else {
+                        index = 0
                     }
 
-                    // change color if this cluster has more markers than the mean cluster
-                    const color = getMarkerClusterColor()
-                    // console.log('markerChartVis inside', markerChartVis)
+                    return colorScaleHeatmap[index]
+                }
 
-                    let resultMarkerChartCluster
-                    if (markerChartVis?.length > 0) {
-                        const ids = cluster?.markers?.map((item: any) => Number(item.title))
-                        const rowsInCluster = markersVisible.filter((item: any, index: number) =>
-                            ids?.includes(index)
-                        )
+                // change color if this cluster has more markers than the mean cluster
+                const color = getMarkerClusterColor()
+                // console.log('markerChartVis inside', markerChartVis)
 
-                        resultMarkerChartCluster = MarkerChart({
-                            attributes,
-                            attributesStats,
-                            data: rowsInCluster,
-                            chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
-                            chartAttributes: markerChartVis[0].markerChartAttributes,
-                            width: 150,
-                            height: 150
-                        })
-                    }
+                let resultMarkerChartCluster
+                if (markerChartVis?.length > 0) {
+                    const ids = cluster?.markers?.map((item: any) => Number(item.title))
+                    const rowsInCluster = markersVisible.filter((item: any, index: number) =>
+                        ids?.includes(index)
+                    )
 
-                    let clusterDiv = resultMarkerChartCluster
-                        ? createMarkerChartHtmlElement({
-                              url: resultMarkerChartCluster?.url,
-                              width: resultMarkerChartCluster?.sizes?.width,
-                              height: resultMarkerChartCluster?.sizes?.height,
-                              count: cluster.count
-                          })
-                        : null
-
-                    const showClusterChart =
-                        markerChartVis?.length > 0 && markerClusterVis?.[0]?.showChart === 'yes'
-
-                    return new window.google.maps.marker.AdvancedMarkerElement({
-                        map,
-                        position: cluster.position,
-                        // adjust zIndex to be above other markers
-                        zIndex: Number(window.google.maps.Marker.MAX_ZINDEX) + cluster.count,
-                        title: `Cluster of ${cluster.count} markers`,
-                        content: showClusterChart
-                            ? clusterDiv
-                            : createClusterSvg(color, String(cluster.count))
+                    resultMarkerChartCluster = MarkerChart({
+                        attributes,
+                        attributesStats,
+                        data: rowsInCluster,
+                        chartType: markerChartVis[0].markerChartType as MarkerChartTypeProps,
+                        chartAttributes: markerChartVis[0].markerChartAttributes,
+                        width: 150,
+                        height: 150
                     })
                 }
+
+                let clusterDiv = resultMarkerChartCluster
+                    ? createMarkerChartHtmlElement({
+                          url: resultMarkerChartCluster?.url,
+                          width: resultMarkerChartCluster?.sizes?.width,
+                          height: resultMarkerChartCluster?.sizes?.height,
+                          count: cluster.count
+                      })
+                    : null
+
+                const showClusterChart =
+                    markerChartVis?.length > 0 && markerClusterVis?.[0]?.showChart === 'yes'
+
+                console.log('showClusterChart', {
+                    showClusterChart,
+                    markerChartVis,
+                    markerClusterVis
+                })
+
+                return new window.google.maps.marker.AdvancedMarkerElement({
+                    map,
+                    position: cluster.position,
+                    // adjust zIndex to be above other markers
+                    zIndex: Number(window.google.maps.Marker.MAX_ZINDEX) + cluster.count,
+                    title: `Cluster of ${cluster.count} markers`,
+                    content: showClusterChart
+                        ? clusterDiv
+                        : createClusterSvg(color, String(cluster.count))
+                })
             }
-        })
-    }, [props.map, markersVisible, markerChartVis, attributes, attributesStats])
-
-    const [cluster, setCluster] = useState<MarkerClusterer>(getCluster())
-
-    // useEffect(() => {
-    //     setCluster(getCluster())
-    // }, [])
+        }
+    })
 
     useEffect(() => {
         const zoomChangedEventListener = google.maps.event.addListener(
@@ -252,10 +249,10 @@ const MarkerList: FC<MarkerListProps> = props => {
             infoWindowClusterRef?.current?.close()
             infoWindowClusterRef.current = null
         }
-    }, [markersVisible, cluster])
+    }, [markersVisible, clusterRef?.current])
 
     const getMarkers = useCallback(() => {
-        cluster.clearMarkers()
+        clusterRef?.current?.clearMarkers()
 
         const getMarkerIcon = (row: any) => {
             if (markerChartVis?.length > 0) {
@@ -302,7 +299,7 @@ const MarkerList: FC<MarkerListProps> = props => {
                     row={row}
                     attributes={attributes}
                     map={props.map}
-                    cluster={cluster}
+                    cluster={clusterRef?.current}
                     enableMarkerCluster={markerClusterVis.length > 0}
                     // enableMarkerChart={markerChartVis.length > 0}
                     // icon={MarkerChart({data: row, type: "pie"})}
@@ -316,7 +313,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     }, [
         markersVisible,
         props.map,
-        cluster,
+        clusterRef?.current,
         markerClusterVis,
         markerChartVis,
         highlight,

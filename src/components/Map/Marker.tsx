@@ -31,7 +31,7 @@ export type MarkerPropTypes = {
     row: any
     map: any
     attributes: any
-    cluster: MarkerClusterer
+    cluster: MarkerClusterer | null
     enableMarkerCluster: boolean
     // enableMarkerChart: boolean
     enableCollisionBehavior?: boolean
@@ -70,7 +70,7 @@ const Marker = (props: MarkerPropTypes) => {
 
     useEffect(() => {
         if (enableMarkerCluster) {
-            cluster.addMarker(gmapMarker)
+            cluster?.addMarker(gmapMarker)
             // gmapMarkerBubble.setMap(props.map);
         } else {
             gmapMarker.map = props.map
@@ -122,9 +122,9 @@ const Marker = (props: MarkerPropTypes) => {
 
             if (enableMarkerCluster) {
                 gmapMarker.map = null
-                cluster.addMarker(gmapMarker)
+                cluster?.addMarker(gmapMarker)
             } else {
-                cluster.removeMarker(gmapMarker)
+                cluster?.removeMarker(gmapMarker)
                 gmapMarker.map = props.map
             }
         }
