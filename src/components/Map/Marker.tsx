@@ -21,6 +21,7 @@ export type MarkerPropTypes = {
     enableCollisionBehavior?: boolean
     icon?: any
     highlight?: boolean
+    markerChartType?: MarkerChartTypeProps
 }
 
 const Marker = (props: MarkerPropTypes) => {
@@ -38,7 +39,8 @@ const Marker = (props: MarkerPropTypes) => {
             lat: props.lat,
             lng: props.lon,
             icon: icon,
-            enableCollisionBehavior: props.enableCollisionBehavior
+            enableCollisionBehavior: props.enableCollisionBehavior,
+            chartType: props.markerChartType
         })
     )
 
@@ -121,7 +123,7 @@ const Marker = (props: MarkerPropTypes) => {
 
     useEffect(() => {
         if (didMount) {
-            gmapMarker.content = getMarkerContent(icon, chartImage)
+            gmapMarker.content = getMarkerContent(icon, chartImage, props?.markerChartType)
 
             if (enableMarkerCluster) {
                 gmapMarker.map = null
@@ -137,7 +139,15 @@ const Marker = (props: MarkerPropTypes) => {
             removeMarker(gmapMarker, enableMarkerCluster, cluster)
             cleanInfoWindow()
         }
-    }, [props.map, cluster, enableMarkerCluster, infoWindowRef?.current, icon, chartImage])
+    }, [
+        props.map,
+        cluster,
+        enableMarkerCluster,
+        infoWindowRef?.current,
+        icon,
+        chartImage,
+        props?.markerChartType
+    ])
 
     return null
 

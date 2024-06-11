@@ -1,4 +1,5 @@
 import {colorScaleHeatmap} from '../../libs/colors'
+import {MarkerChartTypeProps} from '../../redux/data/types'
 
 export const createClusterSvg = (color: string, count: string) => {
     // create svg literal with fill color
@@ -34,19 +35,26 @@ export const createMarkerChartHtmlElement = ({
     width,
     height,
     count,
-    chartImage
+    chartImage,
+    chartType
 }: {
     url: string
     width: number
     height: number
     count?: number
     chartImage?: string | null
+    chartType?: MarkerChartTypeProps
 }): HTMLDivElement => {
     const minimumSize = 10
     const imageElement = document.createElement('img')
     imageElement.src = chartImage ?? url
     imageElement.style.width = `${Math.max(width, minimumSize)}px`
     imageElement.style.height = `${Math.max(height, minimumSize)}px`
+
+    if (!!chartType && !['pie'].includes(chartType)) {
+        imageElement.style.boxShadow = '#000 0px 1px 2px'
+        imageElement.style.borderRadius = '1px'
+    }
 
     const wrapper = document.createElement('div')
     wrapper.style.transform = 'translateY(50%)'
@@ -62,25 +70,32 @@ export const createMarkerChartHtmlElement = ({
         span.style.padding = '2px'
         span.style.paddingRight = '4px'
         span.style.paddingLeft = '4px'
-        span.style.borderRadius = '2px'
+        span.style.borderRadius = '4px'
+        // span.style.border = '1px solid #000'
         span.style.position = 'absolute'
         span.style.fontSize = '12px'
         span.style.top = '50%'
         span.style.left = '50%'
         span.style.transform = 'translate(-50%, -50%)'
+        span.style.boxShadow = '#000 0px 1px 2px'
         wrapper.append(span)
     }
 
     return wrapper
 }
 
-export const getMarkerContent = (icon: any, chartImage?: string | null) => {
+export const getMarkerContent = (
+    icon: any,
+    chartImage?: string | null,
+    chartType?: MarkerChartTypeProps
+) => {
     if (icon?.url) {
         return createMarkerChartHtmlElement({
             url: icon?.url,
             width: icon?.sizes?.width,
             height: icon?.sizes?.height,
-            chartImage
+            chartImage,
+            chartType
         })
     }
 
@@ -98,6 +113,7 @@ export const createMarkerEmpty = (markerData: {
     icon: any
     map?: any
     enableCollisionBehavior?: boolean
+    chartType?: MarkerChartTypeProps
 }) => {
     // https://maps.google.com/mapfiles/ms/icons/red-dot.png
     // http://maps.google.com/mapfiles/kml/paddle/red-blank.png
@@ -108,7 +124,7 @@ export const createMarkerEmpty = (markerData: {
     return new window.google.maps.marker.AdvancedMarkerElement({
         title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
-        content: getMarkerContent(markerData?.icon),
+        content: getMarkerContent(markerData?.icon, null, markerData?.chartType),
         collisionBehavior: markerData?.enableCollisionBehavior
             ? window.google.maps.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
             : window.google.maps.CollisionBehavior.REQUIRED,

@@ -156,7 +156,8 @@ const MarkerList: FC<MarkerListProps> = props => {
                           url: resultMarkerChartCluster?.url,
                           width: resultMarkerChartCluster?.sizes?.width,
                           height: resultMarkerChartCluster?.sizes?.height,
-                          count: cluster.count
+                          count: cluster.count,
+                          chartType: markerChartVis?.[0]?.markerChartType
                       })
                     : null
 
@@ -250,6 +251,7 @@ const MarkerList: FC<MarkerListProps> = props => {
                     cluster={clusterRef?.current}
                     enableMarkerCluster={markerClusterVis.length > 0}
                     icon={getMarkerIcon(row)}
+                    markerChartType={markerChartVis?.[0]?.markerChartType}
                     enableCollisionBehavior={
                         markersVisible?.length > ENABLE_COLLISION_BEHAVIOR_THRESHOLD
                     }
