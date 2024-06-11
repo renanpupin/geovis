@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
 // import MarkerClusterer from '@googlemaps/markerclustererplus'
 import {MarkerClusterer} from '@googlemaps/markerclusterer'
 import {
@@ -58,8 +58,7 @@ const Marker = (props: MarkerPropTypes) => {
     )
 
     // const [gmapMarkerBubble] = useState(createMarkerCircle())
-    let infoWindow: any = null
-    let clusterInfoWindow: any = null
+    const infoWindowRef = useRef<any>(null)
 
     const markerChartVis = useMemo(() => {
         return visualizations.filter(
@@ -67,6 +66,11 @@ const Marker = (props: MarkerPropTypes) => {
                 visualization.visible && visualization.type === VisualizationTypeValues.MarkerChart
         )
     }, [visualizations])
+
+    const cleanInfoWindow = () => {
+        infoWindowRef?.current?.close()
+        infoWindowRef.current = null
+    }
 
     useEffect(() => {
         if (enableMarkerCluster) {
@@ -78,8 +82,8 @@ const Marker = (props: MarkerPropTypes) => {
         }
 
         const markerClickEventListener = gmapMarker.addListener('click', (evt: any) => {
-            if (!infoWindow) {
-                infoWindow = createInfoWindow(
+            if (!infoWindowRef?.current) {
+                infoWindowRef.current = createInfoWindow(
                     gmapMarker,
                     null,
                     props.id,
@@ -102,7 +106,7 @@ const Marker = (props: MarkerPropTypes) => {
                     attributes,
                     false,
                     () => {
-                        infoWindow = null
+                        cleanInfoWindow()
                     },
                     icon
                 )
@@ -112,9 +116,23 @@ const Marker = (props: MarkerPropTypes) => {
         return () => {
             // console.log('marker remove events')
             google.maps.event.removeListener(markerClickEventListener)
-            infoWindow?.close()
+            cleanInfoWindow()
         }
     }, [props.id, enableMarkerCluster, cluster, props.map])
+
+    useEffect(() => {
+        const zoomChangedEventListener = google.maps.event.addListener(
+            props.map,
+            'zoom_changed',
+            function () {
+                cleanInfoWindow()
+            }
+        )
+
+        return () => {
+            google.maps.event.removeListener(zoomChangedEventListener)
+        }
+    }, [infoWindowRef?.current])
 
     useEffect(() => {
         if (didMount) {
@@ -132,13 +150,12 @@ const Marker = (props: MarkerPropTypes) => {
 
         return () => {
             removeMarker(gmapMarker, enableMarkerCluster, cluster)
-            // console.log("remove", infoWindow)
-            infoWindow?.close()
-            clusterInfoWindow?.close()
+            cleanInfoWindow()
         }
-    }, [props.map, cluster, enableMarkerCluster, infoWindow, clusterInfoWindow, icon, chartImage])
+    }, [props.map, cluster, enableMarkerCluster, infoWindowRef?.current, icon, chartImage])
 
     return null
+
     //to use google charts on the marker
     // return (
     //     <div style={{display: 'none'}}>

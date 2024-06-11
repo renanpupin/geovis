@@ -27,38 +27,6 @@ import {ClusterStats} from '@googlemaps/markerclusterer/dist/renderer'
 import {createClusterSvg, createMarkerChartHtmlElement} from './markerUtils'
 import {ENABLE_COLLISION_BEHAVIOR_THRESHOLD} from './Marker'
 
-// const styleCluster = [
-//     MarkerClusterer.withDefaultStyle({
-//         // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-//         url: Img,
-//         width: 100,
-//         height: 128,
-//         anchorIcon: [64, 50],
-//         textColor: "red",
-//         textSize: 10,
-//     }),
-//     MarkerClusterer.withDefaultStyle({
-//         // url: "src/assets/img/logo.png",
-//         // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-//         url: Img,
-//         width: 40,
-//         height: 35,
-//         anchorIcon: [35, 20],
-//         textColor: "blue",
-//         textSize: 11,
-//     }),
-//     MarkerClusterer.withDefaultStyle({
-//         // url: "src/assets/img/logo.png",
-//         // url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-//         url: Img,
-//         width: 50,
-//         height: 44,
-//         anchorIcon: [44, 25],
-//         textColor: "green",
-//         textSize: 12,
-//     }),
-// ];
-
 type MarkerListProps = {
     map: any
     visibleRows: any
@@ -72,7 +40,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
     const clusterRef = useRef<MarkerClusterer | null>(null)
-    const infoWindowClusterRef = useRef(null)
+    const infoWindowClusterRef = useRef<any>(null)
 
     const markerClusterVis = useMemo(() => {
         return visualizations.filter(
@@ -104,9 +72,14 @@ const MarkerList: FC<MarkerListProps> = props => {
             )
             .map((row: any, index: number) => ({
                 ...row,
-                _key_id: `${index}_${new Date().getTime()}`
+                _key_id: `${index}_${new Date().getTime().toString()}`
             }))
     }, [props.visibleRows, highlight])
+
+    const cleanInfoWindow = () => {
+        infoWindowClusterRef?.current?.close()
+        infoWindowClusterRef.current = null
+    }
 
     clusterRef.current = new MarkerClusterer({
         map: props.map,
@@ -136,11 +109,8 @@ const MarkerList: FC<MarkerListProps> = props => {
                     return {...item, markerImageUrl: markerChart?.url}
                 })
 
-            //@ts-ignore
-            infoWindowClusterRef?.current?.close()
-            infoWindowClusterRef.current = null
+            cleanInfoWindow()
 
-            //@ts-ignore
             infoWindowClusterRef.current = createInfoWindow(
                 null,
                 cluster.position,
@@ -178,7 +148,6 @@ const MarkerList: FC<MarkerListProps> = props => {
 
                 // change color if this cluster has more markers than the mean cluster
                 const color = getMarkerClusterColor()
-                // console.log('markerChartVis inside', markerChartVis)
 
                 let resultMarkerChartCluster
                 if (markerChartVis?.length > 0) {
@@ -210,12 +179,6 @@ const MarkerList: FC<MarkerListProps> = props => {
                 const showClusterChart =
                     markerChartVis?.length > 0 && markerClusterVis?.[0]?.showChart === 'yes'
 
-                console.log('showClusterChart', {
-                    showClusterChart,
-                    markerChartVis,
-                    markerClusterVis
-                })
-
                 return new window.google.maps.marker.AdvancedMarkerElement({
                     map,
                     position: cluster.position,
@@ -236,18 +199,16 @@ const MarkerList: FC<MarkerListProps> = props => {
             'zoom_changed',
             function () {
                 console.log('zoom_changed')
-                //@ts-ignore
-                infoWindowClusterRef?.current?.close()
-                infoWindowClusterRef.current = null
+
+                cleanInfoWindow()
             }
         )
 
         return () => {
             // console.log('marker list remove events')
             google.maps.event.removeListener(zoomChangedEventListener)
-            //@ts-ignore
-            infoWindowClusterRef?.current?.close()
-            infoWindowClusterRef.current = null
+
+            cleanInfoWindow()
         }
     }, [markersVisible, clusterRef?.current])
 
@@ -302,7 +263,6 @@ const MarkerList: FC<MarkerListProps> = props => {
                     cluster={clusterRef?.current}
                     enableMarkerCluster={markerClusterVis.length > 0}
                     // enableMarkerChart={markerChartVis.length > 0}
-                    // icon={MarkerChart({data: row, type: "pie"})}
                     icon={getMarkerIcon(row)}
                     enableCollisionBehavior={
                         markersVisible?.length > ENABLE_COLLISION_BEHAVIOR_THRESHOLD
