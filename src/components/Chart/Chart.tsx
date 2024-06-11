@@ -125,7 +125,19 @@ const Chart: React.FC<ChartPropTypes> = props => {
                 data={data}
                 options={{
                     title: getChartName(),
-                    chartArea: {width: '50%'}
+                    // colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+                    // backgroundColor: 'transparent',
+                    chartArea: {
+                        // backgroundColor: 'blue',
+                        width: '50%'
+                        // height: '80%'
+                        // left: 0,
+                        // top: 0,
+                    }
+                    // legend: 'none',
+                    // legend: {
+                    //     position: 'top'
+                    // }
                     // hAxis: {
                     //     title: 'Total Population',
                     //     minValue: 0,
