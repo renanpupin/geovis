@@ -45,7 +45,8 @@ const App: React.FC = () => {
                         overflowY: 'scroll',
                         width: visMode === 'split' ? `max(20%, 400px)` : '0%',
                         display: 'flex',
-                        minWidth: visMode === 'split' ? 400 : 0
+                        minWidth: visMode === 'split' ? 400 : 0,
+                        borderLeft: '1px solid #e1e1e1'
                     }}
                 >
                     <div
