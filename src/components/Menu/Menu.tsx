@@ -63,7 +63,7 @@ const fastLoadData = {
         [23, -22.333, -51.519, 'feature23', 'cat1', 7.51, 71, false],
         [24, -22.212, -51.312, 'feature24', 'cat3', 6.512, 62, false],
         [25, -22.512, -51.431, 'feature25', 'cat2', 2.12, 22, true],
-        [26, -22.301, -51.551, 'feature26', 'cat1', 9.65, 95, false],
+        [26, -22.351, -51.551, 'feature26', 'cat1', 9.65, 95, false],
         [27, -22.514, -51.123, 'feature27', 'cat3', 4.31, 41, true],
         [28, -22.5813, -51.598, 'feature28', 'cat2', 3.86, 36, true],
         [29, -22.1234, -51.563, 'feature29', 'cat3', 6.123, 63, false],
@@ -113,6 +113,26 @@ const fastLoadMarkerChartPie: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,
     markerChartType: 'pie',
     markerChartAttributes: ['value', 'age']
+}
+const fastLoadMarkerChartBar: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.MarkerChart,
+    markerChartType: 'bar',
+    markerChartAttributes: ['value', 'age']
+}
+const fastLoadMarkerChartLine: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.MarkerChart,
+    markerChartType: 'line',
+    markerChartAttributes: ['value', 'age']
+}
+const fastLoadMarkerChartPolar: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.MarkerChart,
+    markerChartType: 'polar',
+    markerChartAttributes: ['value', 'age']
+}
+const fastLoadMarkerChartRadar: Omit<VisualizationTypes, 'id' | 'visible'> = {
+    type: VisualizationTypeValues.MarkerChart,
+    markerChartType: 'radar',
+    markerChartAttributes: ['value', 'age', 'lat', 'lon']
 }
 const fastLoadMarkerColor: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerColor,
@@ -176,7 +196,12 @@ const Menu: React.FC<MenuTypes> = props => {
             // dispatch(addFilter(fastLoadFilter))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             // dispatch(addVisualization(fastLoadPieChartVis))
+            // dispatch(addVisualization(fastLoadPieChartVis))
             dispatch(addVisualization(fastLoadMarkerChartPie))
+            // dispatch(addVisualization(fastLoadMarkerChartBar))
+            // dispatch(addVisualization(fastLoadMarkerChartLine))
+            // dispatch(addVisualization(fastLoadMarkerChartPolar))
+            // dispatch(addVisualization(fastLoadMarkerChartRadar))
             // dispatch(addVisualization(fastLoadMarkerColor))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))

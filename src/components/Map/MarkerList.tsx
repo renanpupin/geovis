@@ -47,6 +47,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     const highlight = useSelector(getHighlight)
     const clusterRef = useRef<MarkerClusterer | null>(null)
     const infoWindowClusterRef = useRef<any>(null)
+    const [zoomLevel, setZoomLevel] = useState<number | null>(null)
 
     const markerClusterVis = useMemo(() => {
         return visualizations.filter(
@@ -102,7 +103,8 @@ const MarkerList: FC<MarkerListProps> = props => {
                   chartAttributes: markerChartVis[0].markerChartAttributes,
                   showLegend,
                   width,
-                  height
+                  height,
+                  zoomLevel
               })
             : null
     }
@@ -180,6 +182,8 @@ const MarkerList: FC<MarkerListProps> = props => {
             props.map,
             'zoom_changed',
             function () {
+                setZoomLevel(props.map.getZoom())
+
                 cleanInfoWindow()
             }
         )

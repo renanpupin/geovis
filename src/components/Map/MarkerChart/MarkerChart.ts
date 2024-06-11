@@ -12,6 +12,7 @@ type MarkerChartProps = {
     width?: number
     height?: number
     showLegend?: boolean
+    zoomLevel?: number | null
 }
 
 const MarkerChart = (props: MarkerChartProps) => {
@@ -87,7 +88,8 @@ const MarkerChart = (props: MarkerChartProps) => {
     const encodeChartToUrl = (chartObject: object, chartSize: {width: number; height: number}) => {
         const baseUrl = 'https://quickchart.io/chart?c='
         const encodedChart = encodeURIComponent(JSON.stringify(chartObject))
-        const chartConfig = `&backgroundColor=transparent${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.3`
+        const backgroundColor = ['line', 'bar'].includes(props?.chartType) ? 'white' : 'transparent'
+        const chartConfig = `&backgroundColor=${backgroundColor}${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.3`
         return `${baseUrl}${encodedChart}${chartConfig}`
     }
 
@@ -96,7 +98,13 @@ const MarkerChart = (props: MarkerChartProps) => {
 
         //set type and size
         let size: {width: number; height: number}
-        let scale = getScaleForNormalizedValue(result.avg)
+        const maxZoomLevel = 14
+        const minZoomLevel = 7
+        const numberOfZooms = 10
+        const zoomScale = props.zoomLevel
+            ? Math.min(Math.max(props.zoomLevel, minZoomLevel), maxZoomLevel) / numberOfZooms
+            : 1
+        let scale = getScaleForNormalizedValue(result.avg) * zoomScale
         let width
         let height
         let colors
@@ -170,7 +178,7 @@ const MarkerChart = (props: MarkerChartProps) => {
                 ]
             },
             options: {
-                ...(!['pie', 'outlabeledPie'].includes(props?.chartType)
+                ...(!['pie', 'outlabeledPie', 'polar'].includes(props?.chartType)
                     ? {
                           scales: {
                               yAxes: [

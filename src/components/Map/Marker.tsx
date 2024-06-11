@@ -27,6 +27,7 @@ const Marker = (props: MarkerPropTypes) => {
     const {row, enableMarkerCluster, icon, cluster, attributes, highlight} = props
     const [didMount, setDidMount] = useState(false)
     const [chartImage, setChartImage] = useState<string | null>(null)
+    const [zoomLevel, setZoomLevel] = useState<number | null>(null)
 
     const visualizations = useSelector(getVisualizations)
     const attributesStats = useSelector(getAttributesStats)
@@ -78,7 +79,8 @@ const Marker = (props: MarkerPropTypes) => {
                                       chartType: markerChartVis[0]
                                           .markerChartType as MarkerChartTypeProps,
                                       chartAttributes: markerChartVis[0].markerChartAttributes,
-                                      showLegend: true
+                                      showLegend: true,
+                                      zoomLevel
                                   })
                                 : null
                         return {...item, markerImageUrl: markerChart?.url}
@@ -106,6 +108,8 @@ const Marker = (props: MarkerPropTypes) => {
             props.map,
             'zoom_changed',
             function () {
+                setZoomLevel(props.map.getZoom())
+
                 cleanInfoWindow()
             }
         )

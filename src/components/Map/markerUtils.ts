@@ -42,10 +42,11 @@ export const createMarkerChartHtmlElement = ({
     count?: number
     chartImage?: string | null
 }): HTMLDivElement => {
+    const minimumSize = 10
     const imageElement = document.createElement('img')
     imageElement.src = chartImage ?? url
-    imageElement.style.width = `${width}px`
-    imageElement.style.height = `${height}px`
+    imageElement.style.width = `${Math.max(width, minimumSize)}px`
+    imageElement.style.height = `${Math.max(height, minimumSize)}px`
 
     const wrapper = document.createElement('div')
     wrapper.style.transform = 'translateY(50%)'
