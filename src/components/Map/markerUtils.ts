@@ -55,12 +55,17 @@ export const createMarkerChartHtmlElement = ({
     if (count !== null && count !== undefined) {
         const span = document.createElement('span')
         span.innerText = String(count)
-        span.style.color = 'white'
+        // span.style.color = 'white'
+        // span.style.textShadow = '#000 0px 1px 2px'
+        span.style.backgroundColor = 'white'
+        span.style.padding = '2px'
+        span.style.paddingRight = '4px'
+        span.style.paddingLeft = '4px'
+        span.style.borderRadius = '2px'
         span.style.position = 'absolute'
-        span.style.fontSize = '16px'
+        span.style.fontSize = '12px'
         span.style.top = '50%'
         span.style.left = '50%'
-        span.style.textShadow = '#000 0px 1px 2px'
         span.style.transform = 'translate(-50%, -50%)'
         wrapper.append(span)
     }
