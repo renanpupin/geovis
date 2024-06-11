@@ -82,7 +82,14 @@ export const getMarkerContent = (icon: any, chartImage?: string | null) => {
     return null
 }
 
-export const createMarkerEmpty = (markerData: any) => {
+export const createMarkerEmpty = (markerData: {
+    id: string
+    lat: any
+    lng: any
+    icon: any
+    map?: any
+    enableCollisionBehavior?: boolean
+}) => {
     // https://maps.google.com/mapfiles/ms/icons/red-dot.png
     // http://maps.google.com/mapfiles/kml/paddle/red-blank.png
     // https://sites.google.com/site/gmapsdevelopment/
@@ -92,9 +99,12 @@ export const createMarkerEmpty = (markerData: any) => {
     return new window.google.maps.marker.AdvancedMarkerElement({
         title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
-        content: getMarkerContent(markerData?.icon)
+        content: getMarkerContent(markerData?.icon),
+        collisionBehavior: markerData?.enableCollisionBehavior
+            ? window.google.maps.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
+            : window.google.maps.CollisionBehavior.REQUIRED,
         // icon: getSymbolWithCustomColor("#ffa500"),
-        // map: map,
+        map: markerData?.map ?? null
     })
 }
 

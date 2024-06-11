@@ -21,7 +21,8 @@ import {
     getLonAttributeIndex,
     getVisualizations
 } from '../../redux/data/selectors'
-import {Chart} from 'react-google-charts'
+
+export const ENABLE_COLLISION_BEHAVIOR_THRESHOLD = 250
 
 export type MarkerPropTypes = {
     id: string
@@ -33,6 +34,7 @@ export type MarkerPropTypes = {
     cluster: MarkerClusterer
     enableMarkerCluster: boolean
     // enableMarkerChart: boolean
+    enableCollisionBehavior?: boolean
     icon?: any
     highlight?: boolean
 }
@@ -50,7 +52,8 @@ const Marker = (props: MarkerPropTypes) => {
             id: props.id,
             lat: props.lat,
             lng: props.lon,
-            icon: icon
+            icon: icon,
+            enableCollisionBehavior: props.enableCollisionBehavior
         })
     )
 

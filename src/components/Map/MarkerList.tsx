@@ -25,6 +25,7 @@ import {colorScale, colorScaleHeatmap, generateRandomColors} from '../../libs/co
 import {Cluster} from '@googlemaps/markerclusterer/dist/cluster'
 import {ClusterStats} from '@googlemaps/markerclusterer/dist/renderer'
 import {createClusterSvg, createMarkerChartHtmlElement} from './markerUtils'
+import {ENABLE_COLLISION_BEHAVIOR_THRESHOLD} from './Marker'
 
 // const styleCluster = [
 //     MarkerClusterer.withDefaultStyle({
@@ -306,6 +307,9 @@ const MarkerList: FC<MarkerListProps> = props => {
                     // enableMarkerChart={markerChartVis.length > 0}
                     // icon={MarkerChart({data: row, type: "pie"})}
                     icon={getMarkerIcon(row)}
+                    enableCollisionBehavior={
+                        markersVisible?.length > ENABLE_COLLISION_BEHAVIOR_THRESHOLD
+                    }
                 />
             )
         })
