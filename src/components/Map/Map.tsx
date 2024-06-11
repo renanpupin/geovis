@@ -41,8 +41,6 @@ const Map: React.FC = () => {
         if (!map) {
             return null
         }
-        // console.log('getHeatmap changed visibleRows', visibleRows)
-        // console.log('getHeatmap changed visualizations', visualizations)
         const hideHeatmap =
             visualizations.filter(visualization => {
                 // console.log("visualization", visualization)
@@ -50,6 +48,7 @@ const Map: React.FC = () => {
                     visualization.visible && visualization.type === VisualizationTypeValues.Heatmap
                 )
             }).length === 0
+
         if (hideHeatmap) {
             return null
         }

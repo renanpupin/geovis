@@ -192,7 +192,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     }, [markersVisible, clusterRef?.current])
 
     const getMarkerColorVis = useCallback(
-        (row: any) => {
+        (row: any): {color: string} | null => {
             if (markerColorVis?.length > 0) {
                 const attributeIndex = attributes.findIndex(
                     (item: any) => item.name === markerColorVis[0].markerColorAttribute
