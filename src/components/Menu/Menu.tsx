@@ -112,7 +112,7 @@ const fastLoadParallelVis: Omit<VisualizationTypes, 'id' | 'visible'> = {
 const fastLoadMarkerChartPie: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,
     markerChartType: 'pie',
-    markerChartAttributes: ['value', 'age']
+    markerChartAttributes: ['value']
 }
 const fastLoadMarkerChartBar: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,

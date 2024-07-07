@@ -1,23 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import Select from "src/components/Select/Select";
-import {useSelector} from "react-redux";
-import {getAttributes, getNumericAttributes} from "src/redux/data/selectors";
+import React, {useEffect, useState} from 'react'
+import Select from 'src/components/Select/Select'
+import {useSelector} from 'react-redux'
+import {getAttributes, getNumericAttributes} from 'src/redux/data/selectors'
+import {StepDataProps} from '../VisualizationWizard'
 
 type StepMarkerChartAttributesProps = {
-    onData?: (data: any) => void,
-    data: any
+    onData?: (data: StepDataProps) => void
+    data: StepDataProps
 }
 
-const StepMarkerChartAttributes: React.FC<StepMarkerChartAttributesProps> = (props) => {
-    const {onData, data} = props;
+const StepMarkerChartAttributes: React.FC<StepMarkerChartAttributesProps> = props => {
+    const {onData, data} = props
 
     const attributes = useSelector(getAttributes)
     const numericAttributes = useSelector(getNumericAttributes)
-    const [markerChartAttributes, setMarkerChartAttributes] = useState<string[]>(data?.markerChartAttributes ?? []);
+    const [markerChartAttributes, setMarkerChartAttributes] = useState<string[]>(
+        data?.markerChartAttributes ?? []
+    )
 
     useEffect(() => {
         onData?.({
-            markerChartAttributes,
+            markerChartAttributes
         })
     }, [markerChartAttributes])
 
@@ -28,29 +31,25 @@ const StepMarkerChartAttributes: React.FC<StepMarkerChartAttributesProps> = (pro
                     <label>Select at least one attribute:</label>
                 </div>
                 {numericAttributes.map((attribute: any, index: any) => {
-                    return(
+                    return (
                         <div key={index} style={{marginBottom: 5}}>
                             <input
                                 type={'checkbox'}
                                 checked={markerChartAttributes.includes(attribute.name)}
                                 // checked={true}
                                 onChange={(event: any) => {
-                                    if(event.target.checked){
+                                    if (event.target.checked) {
                                         setMarkerChartAttributes(oldData => {
-                                            return [
-                                                ...oldData,
-                                                attribute.name
-                                            ]
-                                        });
-                                    }else{
-                                        setMarkerChartAttributes(oldData => (
+                                            return [...oldData, attribute.name]
+                                        })
+                                    } else {
+                                        setMarkerChartAttributes(oldData =>
                                             oldData.filter((item: any) => item !== attribute.name)
-                                        ));
+                                        )
                                     }
                                 }}
                             />
                             <span style={{marginLeft: 5}}>{attribute.name}</span>
-                            {/*{JSON.stringify(item)}*/}
                         </div>
                     )
                 })}

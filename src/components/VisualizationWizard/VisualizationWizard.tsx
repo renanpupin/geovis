@@ -18,7 +18,7 @@ type VisualizationWizardProps = {
     onClose: () => void
 }
 
-type stepDataProps = {
+export type StepDataProps = {
     type?: string
     attribute?: string
     chartType?: string
@@ -26,13 +26,14 @@ type stepDataProps = {
     chartAttributeX?: string
     chartAttributeY?: string
     hasToGroup?: boolean
+    markerChartAttributes?: string[]
 }
 
 const VisualizationWizard: React.FC<VisualizationWizardProps> = props => {
     const {onFinish, onClose} = props
 
     const [step, setStep] = useState(0)
-    const [stepsData, setStepsData] = useState<stepDataProps>({})
+    const [stepsData, setStepsData] = useState<StepDataProps>({})
 
     const onPrev = () => {
         if (step > 0) {
