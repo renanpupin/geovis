@@ -12,7 +12,7 @@ import {
     getVisualizations
 } from 'src/redux/data/selectors'
 import {VisualizationTypeValues} from 'src/redux/data/types'
-import {setBounds, setHighlight} from '../../redux/data/actions'
+import {addOverlay, setBounds, setHighlight} from '../../redux/data/actions'
 
 const Map: React.FC = () => {
     const dispatch = useDispatch()
@@ -23,10 +23,58 @@ const Map: React.FC = () => {
     const highlight = useSelector(getHighlight)
     const bounds = useSelector(getBounds)
     const [map, setMap] = useState<any | undefined>(undefined)
+    const [drawingManager, setDrawingManager] = useState<any>()
 
     const onLoad = (map: any) => {
         setMap(map)
     }
+
+    useEffect(() => {
+        let overlayCompleteEventListener: any = null
+        if (map) {
+            const dmanager = new window.google.maps.drawing.DrawingManager({
+                drawingMode: window.google.maps.drawing.OverlayType.POLYGON,
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: window.google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: [
+                        // window.google.maps.drawing.OverlayType.MARKER,
+                        window.google.maps.drawing.OverlayType.CIRCLE,
+                        window.google.maps.drawing.OverlayType.POLYGON,
+                        // window.google.maps.drawing.OverlayType.POLYLINE,
+                        window.google.maps.drawing.OverlayType.RECTANGLE
+                    ]
+                }
+                // circleOptions: {
+                //     fillColor: '#ffff00',
+                //     fillOpacity: 1,
+                //     strokeWeight: 5,
+                //     clickable: false,
+                //     editable: true,
+                //     zIndex: 1
+                // }
+            })
+            setDrawingManager(dmanager)
+            dmanager.setMap(map)
+
+            overlayCompleteEventListener = google.maps.event.addListener(
+                dmanager,
+                'overlaycomplete',
+                function (event: any) {
+                    dispatch(
+                        addOverlay({
+                            type: event.type,
+                            reference: event.overlay
+                        })
+                    )
+                }
+            )
+        }
+        return () => {
+            drawingManager?.setMap(null)
+            google.maps.event.removeListener(overlayCompleteEventListener)
+        }
+    }, [map])
 
     const isSameBounds = (newBounds: any) =>
         newBounds?.getNorthEast()?.lat() === bounds?.getNorthEast()?.lat() &&

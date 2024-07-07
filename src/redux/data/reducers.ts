@@ -11,7 +11,9 @@ import {
     TOGGLE_VISUALIZATION,
     SET_HIGHLIGHT,
     SET_TEMPORAL_FILTER,
-    SET_BOUNDS
+    SET_BOUNDS,
+    ADD_OVERLAY,
+    REMOVE_OVERLAY
 } from './actionTypes'
 import {applyFilters, getAttributesStats} from './filters'
 
@@ -28,7 +30,8 @@ const initialState: StateProps = {
     filters: [],
     visualizations: [],
     highlight: [],
-    bounds: undefined
+    bounds: undefined,
+    overlays: []
 }
 
 export default function (state = initialState, action: any) {
@@ -84,14 +87,7 @@ export default function (state = initialState, action: any) {
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
             }
         }
-        case SET_BOUNDS: {
-            const {bounds} = action.payload
 
-            return {
-                ...state,
-                bounds
-            }
-        }
         case CLEAR_DATA: {
             return initialState
         }
@@ -230,6 +226,30 @@ export default function (state = initialState, action: any) {
             return {
                 ...state,
                 highlight: highlight
+            }
+        }
+        case SET_BOUNDS: {
+            const {bounds} = action.payload
+
+            return {
+                ...state,
+                bounds
+            }
+        }
+        case ADD_OVERLAY: {
+            const {overlay} = action.payload
+
+            return {
+                ...state,
+                overlays: [...state.overlays, overlay]
+            }
+        }
+        case REMOVE_OVERLAY: {
+            const {overlay} = action.payload
+
+            return {
+                ...state,
+                overlays: state.overlays.filter((item: any) => item !== overlay)
             }
         }
         default:

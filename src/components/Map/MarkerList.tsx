@@ -16,7 +16,8 @@ import {
     getHighlight,
     getVisibleRows,
     getVisualizations,
-    getBounds
+    getBounds,
+    getOverlays
 } from 'src/redux/data/selectors'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from 'src/components/Map/MarkerChart/MarkerChart'
@@ -47,6 +48,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
     const bounds = useSelector(getBounds)
+    const overlays = useSelector(getOverlays)
     const clusterRef = useRef<MarkerClusterer | null>(null)
     const infoWindowClusterRef = useRef<any>(null)
     const [zoomLevel, setZoomLevel] = useState<number | null>(null)
@@ -88,11 +90,43 @@ const MarkerList: FC<MarkerListProps> = props => {
 
                 return bounds?.contains(location)
             })
+            .filter((row: any, index: number) => {
+                if (overlays?.length === 0) {
+                    return true
+                }
+
+                const location = new window.google.maps.LatLng(
+                    row[latAttributeIndex],
+                    row[lonAttributeIndex]
+                )
+                for (const overlay of overlays) {
+                    if (overlay?.type === 'circle' || overlay?.type === 'rectangle') {
+                        const isVisible = overlay?.reference?.getBounds()?.contains(location)
+                        // console.log('overlay isVisible', overlay)
+                        if (isVisible) {
+                            return true
+                        }
+                    } else if (overlay?.type === 'polygon') {
+                        const isVisible = window.google.maps.geometry.poly.containsLocation(
+                            location,
+                            overlay?.reference
+                        )
+                        // console.log('overlay isVisible', isVisible)
+                        if (isVisible) {
+                            return true
+                        }
+                    } else {
+                        console.log('overlay', overlay?.type)
+                    }
+                }
+
+                return false
+            })
             .map((row: any, index: number) => ({
                 ...row,
                 _key_id: `${index}_${new Date().getTime().toString()}`
             }))
-    }, [props.visibleRows, highlight, bounds])
+    }, [props.visibleRows, highlight, bounds, overlays])
 
     const cleanInfoWindow = () => {
         infoWindowClusterRef?.current?.close()

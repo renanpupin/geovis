@@ -12,6 +12,7 @@ export type StateProps = {
     visualizations: VisualizationTypes[]
     highlight: string[]
     bounds?: any
+    overlays?: any
 }
 
 export type AttributeTypes = {

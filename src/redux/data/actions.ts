@@ -8,7 +8,9 @@ import {
     TOGGLE_VISUALIZATION,
     REMOVE_VISUALIZATION,
     SET_HIGHLIGHT,
-    SET_BOUNDS
+    SET_BOUNDS,
+    ADD_OVERLAY,
+    REMOVE_OVERLAY
 } from './actionTypes'
 
 import {VisualizationTypes, FilterTypes, HighlightTypes} from 'src/redux/data/types'
@@ -96,5 +98,19 @@ export const setBounds = (bounds: any) => ({
     type: SET_BOUNDS,
     payload: {
         bounds
+    }
+})
+
+export const addOverlay = (overlay: any) => ({
+    type: ADD_OVERLAY,
+    payload: {
+        overlay
+    }
+})
+
+export const removeOverlay = (overlay: any) => ({
+    type: REMOVE_OVERLAY,
+    payload: {
+        overlay
     }
 })

@@ -31,7 +31,7 @@ const MapLoader = (props: any) => {
         if (!window.google) {
             let s = document.createElement('script')
             s.type = 'text/javascript'
-            s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwyQqepDLqf0quMCkBtuVZ6rOocccL9Q&libraries=visualization,marker`
+            s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwyQqepDLqf0quMCkBtuVZ6rOocccL9Q&libraries=visualization,marker,drawing`
             let x = document.getElementsByTagName('script')[0]
             //@ts-ignore
             x.parentNode.insertBefore(s, x)
