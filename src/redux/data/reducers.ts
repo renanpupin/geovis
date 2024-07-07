@@ -10,7 +10,8 @@ import {
     REMOVE_VISUALIZATION,
     TOGGLE_VISUALIZATION,
     SET_HIGHLIGHT,
-    SET_TEMPORAL_FILTER
+    SET_TEMPORAL_FILTER,
+    SET_BOUNDS
 } from './actionTypes'
 import {applyFilters, getAttributesStats} from './filters'
 
@@ -26,7 +27,8 @@ const initialState: StateProps = {
     temporalAttribute: undefined,
     filters: [],
     visualizations: [],
-    highlight: []
+    highlight: [],
+    bounds: undefined
 }
 
 export default function (state = initialState, action: any) {
@@ -80,6 +82,14 @@ export default function (state = initialState, action: any) {
                 filters: updatedFilters,
                 attributesStats: getAttributesStats(state.rows, state.attributes), //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
                 visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
+            }
+        }
+        case SET_BOUNDS: {
+            const {bounds} = action.payload
+
+            return {
+                ...state,
+                bounds
             }
         }
         case CLEAR_DATA: {

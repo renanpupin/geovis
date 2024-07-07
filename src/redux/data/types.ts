@@ -11,6 +11,7 @@ export type StateProps = {
     filters: FilterTypes[]
     visualizations: VisualizationTypes[]
     highlight: string[]
+    bounds?: any
 }
 
 export type AttributeTypes = {

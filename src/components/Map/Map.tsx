@@ -1,9 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import MapLoader from 'src/components/Map/MapLoader'
 import Heatmap from 'src/components/Map/Heatmap/Heatmap'
 import MarkerList from 'src/components/Map/MarkerList'
 import {
+    getBounds,
     getHighlight,
     getLatAttributeIndex,
     getLonAttributeIndex,
@@ -11,18 +12,70 @@ import {
     getVisualizations
 } from 'src/redux/data/selectors'
 import {VisualizationTypeValues} from 'src/redux/data/types'
+import {setBounds, setHighlight} from '../../redux/data/actions'
 
 const Map: React.FC = () => {
+    const dispatch = useDispatch()
     const latAttributeIndex = useSelector(getLatAttributeIndex)
     const lonAttributeIndex = useSelector(getLonAttributeIndex)
     const visibleRows = useSelector(getVisibleRows)
     const visualizations = useSelector(getVisualizations)
     const highlight = useSelector(getHighlight)
-    const [map, setMap] = useState(undefined)
+    const bounds = useSelector(getBounds)
+    const [map, setMap] = useState<any | undefined>(undefined)
 
     const onLoad = (map: any) => {
         setMap(map)
     }
+
+    const isSameBounds = (newBounds: any) =>
+        newBounds?.getNorthEast()?.lat() === bounds?.getNorthEast()?.lat() &&
+        newBounds?.getNorthEast()?.lng() === bounds?.getNorthEast()?.lng() &&
+        newBounds?.getSouthWest()?.lat() === bounds?.getSouthWest()?.lat() &&
+        newBounds?.getSouthWest()?.lng() === bounds?.getSouthWest()?.lng()
+
+    useEffect(() => {
+        // Fired when the map becomes idle after panning or zooming.
+        let idleEventListener: any
+        let boundsChangedEventListener: any
+        let timer: any
+
+        if (map) {
+            idleEventListener = google.maps.event.addListener(map, 'idle', function () {
+                // console.log('idle')
+
+                clearTimeout(timer)
+                const newBounds = map?.getBounds()
+                if (!isSameBounds(newBounds)) {
+                    dispatch(setBounds(newBounds))
+                }
+            })
+
+            boundsChangedEventListener = google.maps.event.addListener(
+                map,
+                'bounds_changed',
+                function () {
+                    // console.log('bounds_changed')
+
+                    clearTimeout(timer)
+
+                    timer = setTimeout(() => {
+                        const newBounds = map?.getBounds()
+
+                        if (!isSameBounds(newBounds)) {
+                            dispatch(setBounds(newBounds))
+                        }
+                    }, 1500)
+                }
+            )
+        }
+
+        return () => {
+            google.maps.event.removeListener(idleEventListener)
+            google.maps.event.removeListener(boundsChangedEventListener)
+            clearTimeout(timer)
+        }
+    }, [map])
 
     useEffect(() => {
         if (map && visibleRows?.length > 0) {

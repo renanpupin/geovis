@@ -15,7 +15,8 @@ import {
     getAttributesStats,
     getHighlight,
     getVisibleRows,
-    getVisualizations
+    getVisualizations,
+    getBounds
 } from 'src/redux/data/selectors'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
 import MarkerChart from 'src/components/Map/MarkerChart/MarkerChart'
@@ -45,6 +46,7 @@ const MarkerList: FC<MarkerListProps> = props => {
     const attributes = useSelector(getAttributes)
     const attributesStats = useSelector(getAttributesStats)
     const highlight = useSelector(getHighlight)
+    const bounds = useSelector(getBounds)
     const clusterRef = useRef<MarkerClusterer | null>(null)
     const infoWindowClusterRef = useRef<any>(null)
     const [zoomLevel, setZoomLevel] = useState<number | null>(null)
@@ -77,11 +79,20 @@ const MarkerList: FC<MarkerListProps> = props => {
                 (row: any, index: number) =>
                     highlight.length === 0 || highlight.includes(index as any)
             )
+            .filter((row: any, index: number) => {
+                const location = new window.google.maps.LatLng(
+                    row[latAttributeIndex],
+                    row[lonAttributeIndex]
+                )
+                // console.log('bounds contains', bounds?.contains(location))
+
+                return bounds?.contains(location)
+            })
             .map((row: any, index: number) => ({
                 ...row,
                 _key_id: `${index}_${new Date().getTime().toString()}`
             }))
-    }, [props.visibleRows, highlight])
+    }, [props.visibleRows, highlight, bounds])
 
     const cleanInfoWindow = () => {
         infoWindowClusterRef?.current?.close()

@@ -69,3 +69,5 @@ export const getAttributesStats = (store: RootState): AttributeStatsType[] =>
     getDataState(store)?.attributesStats
 
 export const getHighlight = (store: RootState): HighlightTypes[] => getDataState(store)?.highlight
+
+export const getBounds = (store: RootState): any => getDataState(store)?.bounds
