@@ -78,6 +78,12 @@ const MarkerChart = (props: MarkerChartProps) => {
             legends.push(String(chartAttributes[index]))
             colors.push(getHeatmapColorForNormalizedValue(normalizedValue))
             avg += normalizedValue
+
+            if (chartAttributes?.length === 1 && chartType === 'pie') {
+                values.push(100 - values[0])
+                colors.push('rgba(215, 215, 215, 1)')
+                legends.push(`max (${attributeStats.max})`)
+            }
         }
 
         avg = avg / chartAttributes.length
