@@ -12,7 +12,7 @@ import {
     getVisualizations
 } from 'src/redux/data/selectors'
 import {VisualizationTypeValues} from 'src/redux/data/types'
-import {addOverlay, setBounds, setHighlight} from '../../redux/data/actions'
+import {addOverlay, removeOverlay, setBounds, setHighlight} from '../../redux/data/actions'
 
 const Map: React.FC = () => {
     const dispatch = useDispatch()
@@ -33,7 +33,7 @@ const Map: React.FC = () => {
         let overlayCompleteEventListener: any = null
         if (map) {
             const dmanager = new window.google.maps.drawing.DrawingManager({
-                drawingMode: window.google.maps.drawing.OverlayType.POLYGON,
+                // drawingMode: window.google.maps.drawing.OverlayType.POLYGON,
                 drawingControl: true,
                 drawingControlOptions: {
                     position: window.google.maps.ControlPosition.TOP_CENTER,
@@ -61,11 +61,23 @@ const Map: React.FC = () => {
                 dmanager,
                 'overlaycomplete',
                 function (event: any) {
+                    const id = new Date().getTime().toString()
                     dispatch(
                         addOverlay({
+                            id,
                             type: event.type,
                             reference: event.overlay
                         })
+                    )
+
+                    window.google.maps.event.addListener(
+                        event.overlay,
+                        'click',
+                        function (eventClick: any) {
+                            // console.log('eventClick', eventClick, id)
+                            dispatch(removeOverlay(id))
+                            event.overlay.setMap(null)
+                        }
                     )
                 }
             )

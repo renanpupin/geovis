@@ -108,9 +108,9 @@ export const addOverlay = (overlay: any) => ({
     }
 })
 
-export const removeOverlay = (overlay: any) => ({
+export const removeOverlay = (id: any) => ({
     type: REMOVE_OVERLAY,
     payload: {
-        overlay
+        id
     }
 })

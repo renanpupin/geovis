@@ -245,11 +245,11 @@ export default function (state = initialState, action: any) {
             }
         }
         case REMOVE_OVERLAY: {
-            const {overlay} = action.payload
+            const {id} = action.payload
 
             return {
                 ...state,
-                overlays: state.overlays.filter((item: any) => item !== overlay)
+                overlays: state.overlays.filter((item: any) => item.id !== id)
             }
         }
         default:
