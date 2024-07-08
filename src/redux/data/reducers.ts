@@ -18,7 +18,10 @@ import {
 } from './actionTypes'
 import {applyFilters, getAttributesStats} from './filters'
 
-import {ConditionsTypes, FilterTargetTypes, FilterTypes, StateProps} from './types'
+import {AttributeTypes, ConditionsTypes, FilterTargetTypes, FilterTypes, StateProps} from './types'
+import {useSelector} from 'react-redux'
+import {getDataState, getLatAttributeIndex, getLonAttributeIndex} from './selectors'
+import {applyOverlays} from './overlays'
 
 const initialState: StateProps = {
     attributes: [],
@@ -54,16 +57,29 @@ export default function (state = initialState, action: any) {
                   ]
                 : []
 
+            const latAttributeIndex: number = data?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === data?.latAttribute
+            )
+            const lonAttributeIndex: number = data?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === data?.lonAttribute
+            )
+
             return {
                 ...state,
                 rows: data.rows,
                 attributes: data.attributes,
+                overlays: data.overlays ?? [],
                 latAttribute: data.latAttribute,
                 lonAttribute: data.lonAttribute,
                 temporalAttribute: data.temporalAttribute,
                 attributesStats: getAttributesStats(data.rows, data.attributes),
                 filters,
-                visibleRows: applyFilters(data.rows, filters, data.attributes)
+                visibleRows: applyOverlays(
+                    applyFilters(data.rows, filters, data.attributes),
+                    data.overlays ?? [],
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         case SET_TEMPORAL_FILTER: {
@@ -79,13 +95,25 @@ export default function (state = initialState, action: any) {
                     return item
                 }
             })
-            console.log('updatedFilters', updatedFilters)
+            // console.log('updatedFilters', updatedFilters)
+
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
 
             return {
                 ...state,
                 filters: updatedFilters,
                 attributesStats: getAttributesStats(state.rows, state.attributes), //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
-                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, updatedFilters, state.attributes),
+                    state.overlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
 
@@ -140,7 +168,7 @@ export default function (state = initialState, action: any) {
             return {
                 ...state,
                 visualizations: state.visualizations.map(item => {
-                    console.log('TOGGLE_VISUALIZATION', id, toggle)
+                    // console.log('TOGGLE_VISUALIZATION', id, toggle)
                     if (item.id === id) {
                         return {
                             ...item,
@@ -168,11 +196,23 @@ export default function (state = initialState, action: any) {
                 }
             ]
 
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
+
             return {
                 ...state,
                 filters: updatedFilters,
                 attributesStats: getAttributesStats(state.rows, state.attributes), //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
-                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, updatedFilters, state.attributes),
+                    state.overlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         case REMOVE_FILTER: {
@@ -180,11 +220,23 @@ export default function (state = initialState, action: any) {
 
             const updatedFilters = state.filters.filter(item => item.id !== id)
 
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
+
             return {
                 ...state,
                 filters: updatedFilters,
                 attributesStats: getAttributesStats(state.rows, state.attributes), //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
-                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, updatedFilters, state.attributes),
+                    state.overlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         case TOGGLE_FILTER: {
@@ -201,11 +253,23 @@ export default function (state = initialState, action: any) {
                 }
             })
 
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
+
             return {
                 ...state,
                 filters: updatedFilters,
                 attributesStats: getAttributesStats(state.rows, state.attributes), //TODO: o ideal seria calcular novamente após mudar os filtros baseado nos visibleRows
-                visibleRows: applyFilters(state.rows, updatedFilters, state.attributes)
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, updatedFilters, state.attributes),
+                    state.overlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         case SET_HIGHLIGHT: {
@@ -244,24 +308,54 @@ export default function (state = initialState, action: any) {
                 state.overlays.filter((item: any) => item.type === overlay.type).length + 1
             )
 
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
+
+            const updatedOverlays = [
+                ...state.overlays,
+                {
+                    id,
+                    ...overlay,
+                    visible: true
+                }
+            ]
+
             return {
                 ...state,
-                overlays: [
-                    ...state.overlays,
-                    {
-                        id,
-                        ...overlay,
-                        visible: true
-                    }
-                ]
+                overlays: updatedOverlays,
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, state.filters, state.attributes),
+                    updatedOverlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         case REMOVE_OVERLAY: {
             const {mapRefId} = action.payload
 
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
+
+            const updatedOverlays = state.overlays.filter((item: any) => item.mapRefId !== mapRefId)
+
             return {
                 ...state,
-                overlays: state.overlays.filter((item: any) => item.mapRefId !== mapRefId)
+                overlays: updatedOverlays,
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, state.filters, state.attributes),
+                    updatedOverlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         case TOGGLE_OVERLAY: {
@@ -278,9 +372,22 @@ export default function (state = initialState, action: any) {
                 }
             })
 
+            const latAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.latAttribute
+            )
+            const lonAttributeIndex: number = state?.attributes?.findIndex(
+                (attribute: AttributeTypes) => attribute.name === state?.lonAttribute
+            )
+
             return {
                 ...state,
-                overlays: updatedOverlays
+                overlays: updatedOverlays,
+                visibleRows: applyOverlays(
+                    applyFilters(state.rows, state.filters, state.attributes),
+                    updatedOverlays,
+                    latAttributeIndex,
+                    lonAttributeIndex
+                )
             }
         }
         default:

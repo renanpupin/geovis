@@ -155,7 +155,10 @@ const Map: React.FC = () => {
             let bounds = new google.maps.LatLngBounds()
             visibleRows.map((row: any) =>
                 bounds.extend(
-                    new google.maps.LatLng(row[latAttributeIndex], row[lonAttributeIndex])
+                    new google.maps.LatLng(
+                        row[latAttributeIndex] as number,
+                        row[lonAttributeIndex] as number
+                    )
                 )
             )
             // @ts-ignore

@@ -76,57 +76,59 @@ const MarkerList: FC<MarkerListProps> = props => {
     }, [visualizations])
 
     const markersVisible = useMemo(() => {
-        return props.visibleRows
-            .filter(
-                (row: any, index: number) =>
-                    highlight.length === 0 || highlight.includes(index as any)
-            )
-            .filter((row: any, index: number) => {
-                const location = new window.google.maps.LatLng(
-                    row[latAttributeIndex],
-                    row[lonAttributeIndex]
+        return (
+            props.visibleRows
+                .filter(
+                    (row: any, index: number) =>
+                        highlight.length === 0 || highlight.includes(index as any)
                 )
-                // console.log('bounds contains', bounds?.contains(location))
+                .filter((row: any, index: number) => {
+                    const location = new window.google.maps.LatLng(
+                        row[latAttributeIndex],
+                        row[lonAttributeIndex]
+                    )
+                    // console.log('bounds contains', bounds?.contains(location))
 
-                return bounds?.contains(location)
-            })
-            .filter((row: any, index: number) => {
-                const visibleOverlays = overlays.filter((overlay: any) => overlay.visible)
-                if (visibleOverlays?.length === 0) {
-                    return true
-                }
-
-                const location = new window.google.maps.LatLng(
-                    row[latAttributeIndex],
-                    row[lonAttributeIndex]
-                )
-                for (const overlay of visibleOverlays) {
-                    if (overlay?.type === 'circle' || overlay?.type === 'rectangle') {
-                        const isVisible = overlay?.reference?.getBounds()?.contains(location)
-                        // console.log('overlay isVisible', overlay)
-                        if (isVisible) {
-                            return true
-                        }
-                    } else if (overlay?.type === 'polygon') {
-                        const isVisible = window.google.maps.geometry.poly.containsLocation(
-                            location,
-                            overlay?.reference
-                        )
-                        // console.log('overlay isVisible', isVisible)
-                        if (isVisible) {
-                            return true
-                        }
-                    } else {
-                        console.log('overlay', overlay?.type)
-                    }
-                }
-
-                return false
-            })
-            .map((row: any, index: number) => ({
-                ...row,
-                _key_id: `${index}_${new Date().getTime().toString()}`
-            }))
+                    return bounds?.contains(location)
+                })
+                // .filter((row: any, index: number) => {
+                //     const visibleOverlays = overlays.filter((overlay: any) => overlay.visible)
+                //     if (visibleOverlays?.length === 0) {
+                //         return true
+                //     }
+                //
+                //     const location = new window.google.maps.LatLng(
+                //         row[latAttributeIndex],
+                //         row[lonAttributeIndex]
+                //     )
+                //     for (const overlay of visibleOverlays) {
+                //         if (overlay?.type === 'circle' || overlay?.type === 'rectangle') {
+                //             const isVisible = overlay?.reference?.getBounds()?.contains(location)
+                //             // console.log('overlay isVisible', overlay)
+                //             if (isVisible) {
+                //                 return true
+                //             }
+                //         } else if (overlay?.type === 'polygon') {
+                //             const isVisible = window.google.maps.geometry.poly.containsLocation(
+                //                 location,
+                //                 overlay?.reference
+                //             )
+                //             // console.log('overlay isVisible', isVisible)
+                //             if (isVisible) {
+                //                 return true
+                //             }
+                //         } else {
+                //             console.log('overlay', overlay?.type)
+                //         }
+                //     }
+                //
+                //     return false
+                // })
+                .map((row: any, index: number) => ({
+                    ...row,
+                    _key_id: `${index}_${new Date().getTime().toString()}`
+                }))
+        )
     }, [props.visibleRows, highlight, bounds, overlays])
 
     const cleanInfoWindow = () => {

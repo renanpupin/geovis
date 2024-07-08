@@ -150,7 +150,7 @@ const Chart: React.FC<ChartPropTypes> = props => {
                     {
                         eventName: 'ready',
                         callback: ({chartWrapper, google}) => {
-                            console.log('chart image base64', chartWrapper.getChart().getImageURI())
+                            // console.log('chart image base64', chartWrapper.getChart().getImageURI())
                         }
                     },
                     {
