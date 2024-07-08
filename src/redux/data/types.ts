@@ -12,7 +12,7 @@ export type StateProps = {
     visualizations: VisualizationTypes[]
     highlight: string[]
     bounds?: any
-    overlays?: any
+    overlays: OverlayTypes[]
 }
 
 export type AttributeTypes = {
@@ -94,6 +94,15 @@ export type FilterTypes = {
     condition: ConditionsTypes
     targetType: FilterTargetTypes
     targetValue: string | number | boolean | null | undefined
+    visible: boolean
+}
+
+export type OverlayTypes = {
+    id: string
+    mapRefId: string
+    name: string
+    type: 'polygon' | 'circle' | 'rectangle'
+    reference: any
     visible: boolean
 }
 

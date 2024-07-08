@@ -10,10 +10,11 @@ import {
     SET_HIGHLIGHT,
     SET_BOUNDS,
     ADD_OVERLAY,
-    REMOVE_OVERLAY
+    REMOVE_OVERLAY,
+    TOGGLE_OVERLAY
 } from './actionTypes'
 
-import {VisualizationTypes, FilterTypes, HighlightTypes} from 'src/redux/data/types'
+import {VisualizationTypes, FilterTypes, HighlightTypes, OverlayTypes} from 'src/redux/data/types'
 
 export const loadData = (data: object) => ({
     type: LOAD_DATA,
@@ -108,9 +109,17 @@ export const addOverlay = (overlay: any) => ({
     }
 })
 
-export const removeOverlay = (id: any) => ({
+export const removeOverlay = (mapRefId: any) => ({
     type: REMOVE_OVERLAY,
     payload: {
-        id
+        mapRefId
+    }
+})
+
+export const toggleOverlay = (overlay: OverlayTypes, toggle: boolean) => ({
+    type: TOGGLE_OVERLAY,
+    payload: {
+        id: overlay.id,
+        toggle
     }
 })

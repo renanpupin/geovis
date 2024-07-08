@@ -13,7 +13,8 @@ import {
     SET_TEMPORAL_FILTER,
     SET_BOUNDS,
     ADD_OVERLAY,
-    REMOVE_OVERLAY
+    REMOVE_OVERLAY,
+    TOGGLE_OVERLAY
 } from './actionTypes'
 import {applyFilters, getAttributesStats} from './filters'
 
@@ -239,17 +240,47 @@ export default function (state = initialState, action: any) {
         case ADD_OVERLAY: {
             const {overlay} = action.payload
 
-            return {
-                ...state,
-                overlays: [...state.overlays, overlay]
-            }
-        }
-        case REMOVE_OVERLAY: {
-            const {id} = action.payload
+            const id: string = String(
+                state.overlays.filter((item: any) => item.type === overlay.type).length + 1
+            )
 
             return {
                 ...state,
-                overlays: state.overlays.filter((item: any) => item.id !== id)
+                overlays: [
+                    ...state.overlays,
+                    {
+                        id,
+                        ...overlay,
+                        visible: true
+                    }
+                ]
+            }
+        }
+        case REMOVE_OVERLAY: {
+            const {mapRefId} = action.payload
+
+            return {
+                ...state,
+                overlays: state.overlays.filter((item: any) => item.mapRefId !== mapRefId)
+            }
+        }
+        case TOGGLE_OVERLAY: {
+            const {id, toggle} = action.payload
+
+            const updatedOverlays = state.overlays.map(item => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        visible: toggle
+                    }
+                } else {
+                    return item
+                }
+            })
+
+            return {
+                ...state,
+                overlays: updatedOverlays
             }
         }
         default:

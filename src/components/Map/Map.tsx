@@ -8,6 +8,7 @@ import {
     getHighlight,
     getLatAttributeIndex,
     getLonAttributeIndex,
+    getOverlays,
     getVisibleRows,
     getVisualizations
 } from 'src/redux/data/selectors'
@@ -22,6 +23,7 @@ const Map: React.FC = () => {
     const visualizations = useSelector(getVisualizations)
     const highlight = useSelector(getHighlight)
     const bounds = useSelector(getBounds)
+    const overlays = useSelector(getOverlays)
     const [map, setMap] = useState<any | undefined>(undefined)
     const [drawingManager, setDrawingManager] = useState<any>()
 
@@ -61,10 +63,10 @@ const Map: React.FC = () => {
                 dmanager,
                 'overlaycomplete',
                 function (event: any) {
-                    const id = new Date().getTime().toString()
+                    const mapRefId = new Date().getTime().toString()
                     dispatch(
                         addOverlay({
-                            id,
+                            mapRefId,
                             type: event.type,
                             reference: event.overlay
                         })
@@ -74,8 +76,8 @@ const Map: React.FC = () => {
                         event.overlay,
                         'click',
                         function (eventClick: any) {
-                            // console.log('eventClick', eventClick, id)
-                            dispatch(removeOverlay(id))
+                            // console.log('eventClick', eventClick, mapRefId)
+                            dispatch(removeOverlay(mapRefId))
                             event.overlay.setMap(null)
                         }
                     )
@@ -87,6 +89,17 @@ const Map: React.FC = () => {
             google.maps.event.removeListener(overlayCompleteEventListener)
         }
     }, [map])
+
+    useEffect(() => {
+        for (const overlay of overlays) {
+            if (overlay.visible) {
+                overlay.reference.setMap(map)
+            } else {
+                overlay.reference.setMap(null)
+            }
+        }
+        // console.log('overlays changed', overlays)
+    }, [overlays])
 
     const isSameBounds = (newBounds: any) =>
         newBounds?.getNorthEast()?.lat() === bounds?.getNorthEast()?.lat() &&

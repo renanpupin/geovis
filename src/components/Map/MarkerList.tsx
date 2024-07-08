@@ -91,7 +91,8 @@ const MarkerList: FC<MarkerListProps> = props => {
                 return bounds?.contains(location)
             })
             .filter((row: any, index: number) => {
-                if (overlays?.length === 0) {
+                const visibleOverlays = overlays.filter((overlay: any) => overlay.visible)
+                if (visibleOverlays?.length === 0) {
                     return true
                 }
 
@@ -99,7 +100,7 @@ const MarkerList: FC<MarkerListProps> = props => {
                     row[latAttributeIndex],
                     row[lonAttributeIndex]
                 )
-                for (const overlay of overlays) {
+                for (const overlay of visibleOverlays) {
                     if (overlay?.type === 'circle' || overlay?.type === 'rectangle') {
                         const isVisible = overlay?.reference?.getBounds()?.contains(location)
                         // console.log('overlay isVisible', overlay)
