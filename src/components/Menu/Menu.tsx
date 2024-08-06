@@ -35,42 +35,43 @@ const fastLoadData = {
         {name: 'category', type: 'string'},
         {name: 'value', type: 'number'},
         {name: 'age', type: 'number'},
+        {name: 'capital', type: 'number'},
         {name: 'active', type: 'boolean'}
     ],
     rows: [
-        [1, -22.075, -51.425, 'feature2', 'cat2', 5, 15, false],
-        [2, -22.08, -51.4352, 'feature1', 'cat1', 11, 31, false],
-        [3, -22.075, -51.415, 'feature3', 'cat3', 6, 63, true],
-        [4, -22.065, -51.315, 'feature4', 'cat1', 4, 44, false],
-        [5, -22.04153, -51.4512, 'feature5', 'cat2', 5.56, 55, true],
-        [6, -22.04976, -51.521, 'feature6', 'cat3', 6.21, 61, false],
-        [7, -22.0564, -51.5555, 'feature7', 'cat1', 7.11, 71, true],
-        [8, -22.0974, -51.5895, 'feature8', 'cat1', 8.123, 83, true],
-        [9, -22.101, -51.6, 'feature9', 'cat2', 9.3219, 39, true],
-        [10, -22.005, -51.5214, 'feature10', 'cat1', 10.543, 13, true],
-        [11, -22.155, -51.421, 'feature11', 'cat1', 11.543, 53, true],
-        [12, -22.165, -51.431, 'feature12', 'cat2', 12.12, 12, false],
-        [13, -22.169, -51.49, 'feature13', 'cat1', 12.12, 22, false],
-        [14, -22.1, -51.5, 'feature14', 'cat1', 5.12, 52, true],
-        [15, -22.13, -51.54, 'feature15', 'cat3', 7.22, 72, false],
-        [16, -22.135, -51.52, 'feature16', 'cat3', 8.65, 85, true],
-        [17, -22.19, -51.63, 'feature17', 'cat2', 1.23, 13, true],
-        [18, -22.22, -51.463, 'feature18', 'cat1', 7.85, 75, false],
-        [19, -22.301, -51.551, 'feature19', 'cat2', 7.86, 76, true],
-        [20, -22.345, -51.412, 'feature20', 'cat2', 5.23, 53, false],
-        [21, -22.223, -51.222, 'feature21', 'cat1', 5.54, 24, true],
-        [22, -22.441, -51.498, 'feature22', 'cat3', 0.56, 6, false],
-        [23, -22.333, -51.519, 'feature23', 'cat1', 7.51, 71, false],
-        [24, -22.212, -51.312, 'feature24', 'cat3', 6.512, 62, false],
-        [25, -22.512, -51.431, 'feature25', 'cat2', 2.12, 22, true],
-        [26, -22.351, -51.551, 'feature26', 'cat1', 9.65, 95, false],
-        [27, -22.514, -51.123, 'feature27', 'cat3', 4.31, 41, true],
-        [28, -22.5813, -51.598, 'feature28', 'cat2', 3.86, 36, true],
-        [29, -22.1234, -51.563, 'feature29', 'cat3', 6.123, 63, false],
-        [30, -22.123, -51.4689, 'feature30', 'cat1', 1.52, 12, true],
-        [31, -22.3567, -51.315, 'feature31', 'cat1', 0.33, 33, false],
-        [32, -22.654, -51.311, 'feature32', 'cat3', 7.81, 71, true],
-        [33, -22.445, -51.313, 'feature33', 'cat2', 5.76, 56, true]
+        [1, -22.075, -51.425, 'feature2', 'cat2', 5, 15, 1555, false],
+        [2, -22.08, -51.4352, 'feature1', 'cat1', 11, 31, 5555, false],
+        [3, -22.075, -51.415, 'feature3', 'cat3', 6, 63, 5123, true],
+        [4, -22.065, -51.315, 'feature4', 'cat1', 4, 44, 5111, false],
+        [5, -22.04153, -51.4512, 'feature5', 'cat2', 5.56, 55, 7112, true],
+        [6, -22.04976, -51.521, 'feature6', 'cat3', 6.21, 61, 9932, false],
+        [7, -22.0564, -51.5555, 'feature7', 'cat1', 7.11, 71, 3213, true],
+        [8, -22.0974, -51.5895, 'feature8', 'cat1', 8.123, 83, 500, true],
+        [9, -22.101, -51.6, 'feature9', 'cat2', 9.3219, 39, 5125, true],
+        [10, -22.005, -51.5214, 'feature10', 'cat1', 10.543, 13, 3212, true],
+        [11, -22.155, -51.421, 'feature11', 'cat1', 11.543, 53, 3213, true],
+        [12, -22.165, -51.431, 'feature12', 'cat2', 12.12, 12, 5521, false],
+        [13, -22.169, -51.49, 'feature13', 'cat1', 12.12, 22, 1222, false],
+        [14, -22.1, -51.5, 'feature14', 'cat1', 5.12, 52, 3213, true],
+        [15, -22.13, -51.54, 'feature15', 'cat3', 7.22, 72, 511, false],
+        [16, -22.135, -51.52, 'feature16', 'cat3', 8.65, 85, 9942, true],
+        [17, -22.19, -51.63, 'feature17', 'cat2', 1.23, 13, 8162, true],
+        [18, -22.22, -51.463, 'feature18', 'cat1', 7.85, 75, 3123, false],
+        [19, -22.301, -51.551, 'feature19', 'cat2', 7.86, 76, 12000, true],
+        [20, -22.345, -51.412, 'feature20', 'cat2', 5.23, 53, 9842, false],
+        [21, -22.223, -51.222, 'feature21', 'cat1', 5.54, 24, 2233, true],
+        [22, -22.441, -51.498, 'feature22', 'cat3', 0.56, 6, 8171, false],
+        [23, -22.333, -51.519, 'feature23', 'cat1', 7.51, 71, 9172, false],
+        [24, -22.212, -51.312, 'feature24', 'cat3', 6.512, 62, 9387, false],
+        [25, -22.512, -51.431, 'feature25', 'cat2', 2.12, 22, 9312, true],
+        [26, -22.351, -51.551, 'feature26', 'cat1', 9.65, 95, 9317, false],
+        [27, -22.514, -51.123, 'feature27', 'cat3', 4.31, 41, 8127, true],
+        [28, -22.5813, -51.598, 'feature28', 'cat2', 3.86, 36, 1233, true],
+        [29, -22.1234, -51.563, 'feature29', 'cat3', 6.123, 63, 9832, false],
+        [30, -22.123, -51.4689, 'feature30', 'cat1', 1.52, 12, 9123, true],
+        [31, -22.3567, -51.315, 'feature31', 'cat1', 0.33, 33, 8772, false],
+        [32, -22.654, -51.311, 'feature32', 'cat3', 7.81, 71, 8717, true],
+        [33, -22.445, -51.313, 'feature33', 'cat2', 5.76, 56, 8771, true]
     ],
     rawDataObj: {
         name: 'example.csv',
@@ -132,7 +133,7 @@ const fastLoadMarkerChartPolar: Omit<VisualizationTypes, 'id' | 'visible'> = {
 const fastLoadMarkerChartRadar: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,
     markerChartType: 'radar',
-    markerChartAttributes: ['value', 'age', 'lat', 'lon']
+    markerChartAttributes: ['value', 'age', 'capital']
 }
 const fastLoadMarkerColor: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerColor,
@@ -197,11 +198,11 @@ const Menu: React.FC<MenuTypes> = props => {
             dispatch(addVisualization(fastLoadMarkerClusterVis))
             dispatch(addVisualization(fastLoadPieChartVis))
             // dispatch(addVisualization(fastLoadPieChartVis))
-            dispatch(addVisualization(fastLoadMarkerChartPie))
+            // dispatch(addVisualization(fastLoadMarkerChartPie))
             // dispatch(addVisualization(fastLoadMarkerChartBar))
             // dispatch(addVisualization(fastLoadMarkerChartLine))
             // dispatch(addVisualization(fastLoadMarkerChartPolar))
-            // dispatch(addVisualization(fastLoadMarkerChartRadar))
+            dispatch(addVisualization(fastLoadMarkerChartRadar))
             // dispatch(addVisualization(fastLoadMarkerColor))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))
