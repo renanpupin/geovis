@@ -123,12 +123,12 @@ const fastLoadMarkerChartBar: Omit<VisualizationTypes, 'id' | 'visible'> = {
 const fastLoadMarkerChartLine: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,
     markerChartType: 'line',
-    markerChartAttributes: ['value', 'age']
+    markerChartAttributes: ['value', 'age', 'capital']
 }
 const fastLoadMarkerChartPolar: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,
     markerChartType: 'polar',
-    markerChartAttributes: ['value', 'age']
+    markerChartAttributes: ['value', 'age', 'capital']
 }
 const fastLoadMarkerChartRadar: Omit<VisualizationTypes, 'id' | 'visible'> = {
     type: VisualizationTypeValues.MarkerChart,
@@ -200,9 +200,9 @@ const Menu: React.FC<MenuTypes> = props => {
             // dispatch(addVisualization(fastLoadPieChartVis))
             // dispatch(addVisualization(fastLoadMarkerChartPie))
             // dispatch(addVisualization(fastLoadMarkerChartBar))
-            // dispatch(addVisualization(fastLoadMarkerChartLine))
+            dispatch(addVisualization(fastLoadMarkerChartLine))
             // dispatch(addVisualization(fastLoadMarkerChartPolar))
-            dispatch(addVisualization(fastLoadMarkerChartRadar))
+            // dispatch(addVisualization(fastLoadMarkerChartRadar))
             // dispatch(addVisualization(fastLoadMarkerColor))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
             // dispatch(addVisualization(fastLoadParallelVis))

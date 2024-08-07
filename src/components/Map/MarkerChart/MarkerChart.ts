@@ -73,7 +73,7 @@ const MarkerChart = (props: MarkerChartProps) => {
                 attributeStats.min,
                 attributeStats.max
             )
-            if (props.chartType === 'radar') {
+            if (['radar', 'polar'].includes(props?.chartType)) {
                 normalizedValue = parseFloat(normalizedValue.toFixed(1))
             }
 
@@ -97,7 +97,7 @@ const MarkerChart = (props: MarkerChartProps) => {
     const encodeChartToUrl = (chartObject: object, chartSize: {width: number; height: number}) => {
         const baseUrl = 'https://quickchart.io/chart?c='
         const encodedChart = encodeURIComponent(JSON.stringify(chartObject))
-        const backgroundColor = ['line', 'bar', 'radar'].includes(props?.chartType)
+        const backgroundColor = ['line', 'bar', 'radar', 'polar'].includes(props?.chartType)
             ? 'white'
             : 'transparent'
         const chartConfig = `&backgroundColor=${backgroundColor}${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.4`
@@ -118,7 +118,7 @@ const MarkerChart = (props: MarkerChartProps) => {
         let scale = getScaleForNormalizedValue(result.avg) * zoomScale
         let width
         let height
-        let colors
+        let colors: any
         let type: 'outlabeledPie' | 'pie' | 'line' | 'bar' | 'polarArea' | 'radar' | 'bubble'
         if (chartType === 'bar') {
             type = 'bar'
@@ -176,6 +176,26 @@ const MarkerChart = (props: MarkerChartProps) => {
             height = 40 * scale
         }
 
+        const getBorderColors = () => {
+            if (['radar'].includes(props?.chartType)) {
+                return hex2rgba(colors[0], 0.9)
+            } else if (['line'].includes(props?.chartType)) {
+                return hex2rgba(colors, 0.9)
+            } else {
+                return undefined
+            }
+        }
+
+        const getBackgroundColors = () => {
+            if (['radar'].includes(props?.chartType)) {
+                return hex2rgba(colors[0], 0.6)
+            } else if (['line'].includes(props?.chartType)) {
+                return hex2rgba(colors, 0.8)
+            } else {
+                return colors
+            }
+        }
+
         const chartObject = {
             type,
             data: {
@@ -183,12 +203,8 @@ const MarkerChart = (props: MarkerChartProps) => {
                 datasets: [
                     {
                         // backgroundColor: ['#FF3784', '#36A2EB', '#4BC0C0', '#F77825', '#9966FF'],
-                        backgroundColor: ['radar'].includes(props?.chartType)
-                            ? hex2rgba(colors[0], 0.6)
-                            : colors,
-                        borderColor: ['radar'].includes(props?.chartType)
-                            ? hex2rgba(colors[0], 0.9)
-                            : undefined,
+                        backgroundColor: getBackgroundColors(),
+                        borderColor: getBorderColors(),
                         data: result.values
                     }
                 ]
@@ -218,7 +234,7 @@ const MarkerChart = (props: MarkerChartProps) => {
                           }
                       }
                     : {}),
-                ...(['radar'].includes(props?.chartType)
+                ...(['radar', 'polar'].includes(props?.chartType)
                     ? {
                           scale: {
                               id: 'radial',
@@ -236,7 +252,7 @@ const MarkerChart = (props: MarkerChartProps) => {
                     : {}),
                 plugins: {
                     legend: false,
-                    ...(props?.chartType === 'radar'
+                    ...(['radar', 'polar'].includes(props?.chartType)
                         ? {
                               datalabels: {
                                   display: props.showLegend,
