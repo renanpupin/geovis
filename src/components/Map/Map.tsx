@@ -33,6 +33,8 @@ const Map: React.FC = () => {
 
     useEffect(() => {
         let overlayCompleteEventListener: any = null
+        let overlayClickEventListener: any = null
+        let overlayRightClickEventListener: any = null
         if (map) {
             const dmanager = new window.google.maps.drawing.DrawingManager({
                 // drawingMode: window.google.maps.drawing.OverlayType.POLYGON,
@@ -72,11 +74,20 @@ const Map: React.FC = () => {
                         })
                     )
 
-                    window.google.maps.event.addListener(
+                    overlayClickEventListener = window.google.maps.event.addListener(
                         event.overlay,
                         'click',
                         function (eventClick: any) {
-                            // console.log('eventClick', eventClick, mapRefId)
+                            console.log('event click', eventClick, mapRefId)
+                            dispatch(removeOverlay(mapRefId))
+                            event.overlay.setMap(null)
+                        }
+                    )
+                    overlayRightClickEventListener = window.google.maps.event.addListener(
+                        event.overlay,
+                        'rightclick',
+                        function (eventClick: any) {
+                            console.log('event rightclick', eventClick, mapRefId)
                             dispatch(removeOverlay(mapRefId))
                             event.overlay.setMap(null)
                         }
@@ -87,6 +98,8 @@ const Map: React.FC = () => {
         return () => {
             drawingManager?.setMap(null)
             google.maps.event.removeListener(overlayCompleteEventListener)
+            google.maps.event.removeListener(overlayClickEventListener)
+            google.maps.event.removeListener(overlayRightClickEventListener)
         }
     }, [map])
 
