@@ -51,7 +51,7 @@ export const createMarkerChartHtmlElement = ({
     imageElement.style.width = `${Math.max(width, minimumSize)}px`
     imageElement.style.height = `${Math.max(height, minimumSize)}px`
 
-    if (!!chartType && !['pie', 'radar'].includes(chartType)) {
+    if (!!chartType && !['pie'].includes(chartType)) {
         imageElement.style.boxShadow = '#000 0px 1px 2px'
         imageElement.style.borderRadius = '1px'
     }

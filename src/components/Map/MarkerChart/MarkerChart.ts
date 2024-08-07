@@ -68,11 +68,14 @@ const MarkerChart = (props: MarkerChartProps) => {
             attributeValue = attributeValue / data.length
             // console.log('attributeValue', attributeValue)
 
-            const normalizedValue = getNormalizedValue(
+            let normalizedValue = getNormalizedValue(
                 attributeValue,
                 attributeStats.min,
                 attributeStats.max
             )
+            if (props.chartType === 'radar') {
+                normalizedValue = parseFloat(normalizedValue.toFixed(1))
+            }
 
             values.push(normalizedValue)
             legends.push(String(chartAttributes[index]))
@@ -97,7 +100,7 @@ const MarkerChart = (props: MarkerChartProps) => {
         const backgroundColor = ['line', 'bar', 'radar'].includes(props?.chartType)
             ? 'white'
             : 'transparent'
-        const chartConfig = `&backgroundColor=${backgroundColor}${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.3`
+        const chartConfig = `&backgroundColor=${backgroundColor}${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.4`
         return `${baseUrl}${encodedChart}${chartConfig}`
     }
 
@@ -223,6 +226,10 @@ const MarkerChart = (props: MarkerChartProps) => {
                                   display: props?.showLegend,
                                   fontColor: '#666',
                                   fontSize: 10
+                              },
+                              ticks: {
+                                  min: 0,
+                                  max: 100
                               }
                           }
                       }
