@@ -51,7 +51,7 @@ export const createMarkerChartHtmlElement = ({
     imageElement.style.width = `${Math.max(width, minimumSize)}px`
     imageElement.style.height = `${Math.max(height, minimumSize)}px`
 
-    if (!!chartType && !['pie'].includes(chartType)) {
+    if (!!chartType && !['pie', 'radar'].includes(chartType)) {
         imageElement.style.boxShadow = '#000 0px 1px 2px'
         imageElement.style.borderRadius = '1px'
     }
@@ -125,9 +125,10 @@ export const createMarkerEmpty = (markerData: {
         title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
         content: getMarkerContent(markerData?.icon, null, markerData?.chartType),
-        collisionBehavior: markerData?.enableCollisionBehavior
-            ? window.google.maps.CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
-            : window.google.maps.CollisionBehavior.REQUIRED,
+        //TODO: this is hiding the marker when it is close to another marker, should control by zoom level
+        // collisionBehavior: markerData?.enableCollisionBehavior
+        //     ? window.google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL
+        //     : window.google.maps.CollisionBehavior.REQUIRED,
         // icon: getSymbolWithCustomColor("#ffa500"),
         map: markerData?.map ?? null
     })

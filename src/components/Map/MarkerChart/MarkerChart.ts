@@ -1,7 +1,7 @@
 import {VisualizationTypeValues, MarkerChartTypeProps} from 'src/redux/data/types'
 import {useSelector} from 'react-redux'
 import {getAttributes, getAttributesStats} from '../../../redux/data/selectors'
-import {colorScaleHeatmap} from '../../../libs/colors'
+import {colorScaleHeatmap, hex2rgba} from '../../../libs/colors'
 
 type MarkerChartProps = {
     data: any
@@ -94,7 +94,9 @@ const MarkerChart = (props: MarkerChartProps) => {
     const encodeChartToUrl = (chartObject: object, chartSize: {width: number; height: number}) => {
         const baseUrl = 'https://quickchart.io/chart?c='
         const encodedChart = encodeURIComponent(JSON.stringify(chartObject))
-        const backgroundColor = ['line', 'bar'].includes(props?.chartType) ? 'white' : 'transparent'
+        const backgroundColor = ['line', 'bar', 'radar'].includes(props?.chartType)
+            ? 'white'
+            : 'transparent'
         const chartConfig = `&backgroundColor=${backgroundColor}${props?.showLegend ? `` : `&width=${chartSize.width}&height=${chartSize.height}`}&format=png&version=2.9.3`
         return `${baseUrl}${encodedChart}${chartConfig}`
     }
@@ -178,13 +180,18 @@ const MarkerChart = (props: MarkerChartProps) => {
                 datasets: [
                     {
                         // backgroundColor: ['#FF3784', '#36A2EB', '#4BC0C0', '#F77825', '#9966FF'],
-                        backgroundColor: colors,
+                        backgroundColor: ['radar'].includes(props?.chartType)
+                            ? hex2rgba(colors[0], 0.6)
+                            : colors,
+                        borderColor: ['radar'].includes(props?.chartType)
+                            ? hex2rgba(colors[0], 0.9)
+                            : undefined,
                         data: result.values
                     }
                 ]
             },
             options: {
-                ...(!['pie', 'outlabeledPie', 'polar'].includes(props?.chartType)
+                ...(!['pie', 'outlabeledPie', 'polar', 'radar'].includes(props?.chartType)
                     ? {
                           scales: {
                               yAxes: [
@@ -208,18 +215,40 @@ const MarkerChart = (props: MarkerChartProps) => {
                           }
                       }
                     : {}),
+                ...(['radar'].includes(props?.chartType)
+                    ? {
+                          scale: {
+                              id: 'radial',
+                              pointLabels: {
+                                  display: props?.showLegend,
+                                  fontColor: '#666',
+                                  fontSize: 10
+                              }
+                          }
+                      }
+                    : {}),
                 plugins: {
                     legend: false,
-                    outlabels: {
-                        text: '%l %p',
-                        color: 'white',
-                        stretch: 35,
-                        font: {
-                            resizable: true,
-                            minSize: 12,
-                            maxSize: 18
-                        }
-                    }
+                    ...(props?.chartType === 'radar'
+                        ? {
+                              datalabels: {
+                                  display: props.showLegend,
+                                  align: 'center',
+                                  anchor: 'center',
+                                  backgroundColor: '#eee',
+                                  borderColor: '#ddd',
+                                  borderRadius: 6,
+                                  borderWidth: 1,
+                                  padding: 4,
+                                  color: '#666666',
+                                  font: {
+                                      family: 'sans-serif',
+                                      size: 10,
+                                      style: 'normal'
+                                  }
+                              }
+                          }
+                        : {})
                 }
             }
         }
