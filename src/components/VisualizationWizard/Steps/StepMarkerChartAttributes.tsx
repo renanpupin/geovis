@@ -28,7 +28,11 @@ const StepMarkerChartAttributes: React.FC<StepMarkerChartAttributesProps> = prop
         <div>
             <div style={{marginBottom: 15}}>
                 <div style={{marginBottom: 15}}>
-                    <label>Select at least one attribute:</label>
+                    <label>
+                        {data?.markerChartType === 'radar'
+                            ? 'Select at least three attributes:'
+                            : 'Select at least one attribute:'}
+                    </label>
                 </div>
                 {numericAttributes.map((attribute: any, index: any) => {
                     return (

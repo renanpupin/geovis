@@ -9,7 +9,7 @@ import StepMarkerChartAttributes from 'src/components/VisualizationWizard/Steps/
 import styles from './Wizard.module.scss'
 import Modal from 'src/components/Modal/Modal'
 import StepTemplate from 'src/components/VisualizationWizard/StepTemplate'
-import {VisualizationTypeValues} from 'src/redux/data/types'
+import {MarkerChartTypeProps, VisualizationTypeValues} from 'src/redux/data/types'
 import StepMarkerColorAttribute from './Steps/StepMarkerColorAttribute'
 
 type VisualizationWizardProps = {
@@ -27,6 +27,7 @@ export type StepDataProps = {
     chartAttributeY?: string
     hasToGroup?: boolean
     markerChartAttributes?: string[]
+    markerChartType?: MarkerChartTypeProps
 }
 
 const VisualizationWizard: React.FC<VisualizationWizardProps> = props => {
@@ -168,7 +169,10 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = props => {
                             // @ts-ignore
                             stepsData[item] === ''
                         )
-                    }).length > 0
+                    }).length > 0 ||
+                    (stepsData?.markerChartType === 'radar' &&
+                        !!stepsData?.markerChartAttributes &&
+                        stepsData?.markerChartAttributes?.length < 3)
             }}
         >
             <div className={styles.stepsView}>{steps[step].component}</div>
