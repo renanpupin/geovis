@@ -252,6 +252,16 @@ const MarkerChart = (props: MarkerChartProps) => {
                     : {}),
                 plugins: {
                     legend: false,
+                    outlabels: {
+                        text: '%l %p',
+                        color: 'white',
+                        stretch: 35,
+                        font: {
+                            resizable: true,
+                            minSize: 12,
+                            maxSize: 18
+                        }
+                    },
                     ...(['radar', 'polar'].includes(props?.chartType)
                         ? {
                               datalabels: {
