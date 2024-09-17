@@ -2,9 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Select from 'src/components/Select/Select'
 import {useSelector} from 'react-redux'
 import {
-    getAttributes,
     getNonSpatialAttributes,
-    getNumericAttributes
 } from 'src/redux/data/selectors'
 
 type StepMarkerColorAttributeProps = {

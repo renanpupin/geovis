@@ -30,7 +30,7 @@ $widths: (
 @mixin font-size($size) {
     font-size: $size;
     line-height: $base-line-height*$size;
-    margin: ($size / 2) 0 ($size / 2.5) 0;
+    margin: calc($size / 2) 0 calc($size / 2.5) 0;
 }
 
 // mixin border-radius

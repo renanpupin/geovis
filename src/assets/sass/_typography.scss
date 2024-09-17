@@ -41,7 +41,7 @@ caption {
   font-size: 1rem;
   line-height: $base-line-height;
   margin: 0 0 1.1em 0;
-  margin: (1rem / 2) 0 (1rem / 2.5) 0;
+  margin: calc(1rem / 2) 0 calc(1rem / 2.5) 0;
 }
 
 li p,
