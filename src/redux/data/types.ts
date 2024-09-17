@@ -1,5 +1,3 @@
-import ParallelCoordinates from '../../components/ParallelCoordinates/ParallelCoordinates'
-
 export type StateProps = {
     attributes: AttributeTypes[]
     attributesStats: AttributeStatsType[]
