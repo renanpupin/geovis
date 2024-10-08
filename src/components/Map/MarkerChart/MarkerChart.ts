@@ -1,6 +1,4 @@
-import {VisualizationTypeValues, MarkerChartTypeProps} from 'src/redux/data/types'
-import {useSelector} from 'react-redux'
-import {getAttributes, getAttributesStats} from '../../../redux/data/selectors'
+import {MarkerChartTypeProps} from 'src/redux/data/types'
 import {colorScaleHeatmap, hex2rgba} from '../../../libs/colors'
 
 type MarkerChartProps = {

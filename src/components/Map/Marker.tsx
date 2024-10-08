@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react'
+import {useEffect, useMemo, useRef, useState} from 'react'
 import {MarkerClusterer} from '@googlemaps/markerclusterer'
 import {removeMarker, createMarkerEmpty, getMarkerContent} from './markerUtils'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'

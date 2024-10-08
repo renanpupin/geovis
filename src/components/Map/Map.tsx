@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import MapLoader from 'src/components/Map/MapLoader'
 import Heatmap from 'src/components/Map/Heatmap/Heatmap'
@@ -13,7 +13,7 @@ import {
     getVisualizations
 } from 'src/redux/data/selectors'
 import {VisualizationTypeValues} from 'src/redux/data/types'
-import {addOverlay, removeOverlay, setBounds, setHighlight} from '../../redux/data/actions'
+import {addOverlay, removeOverlay, setBounds} from '../../redux/data/actions'
 
 const Map: React.FC = () => {
     const dispatch = useDispatch()

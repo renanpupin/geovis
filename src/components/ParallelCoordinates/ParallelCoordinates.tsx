@@ -4,7 +4,6 @@ import {getAttributes, getVisibleRows} from 'src/redux/data/selectors'
 import styles from '../Chart/Chart.module.scss'
 import Draggable from '../Draggable/Draggable'
 import {setHighlight} from '../../redux/data/actions'
-import {colorScaleRandom} from '../../libs/colors'
 
 export type ParallelCoordinatesProps = {
     visMode: 'split' | 'full'
@@ -37,32 +36,32 @@ const ParallelCoordinates: React.FC<ParallelCoordinatesProps> = props => {
     }
 
     //@ts-ignore
-    const colorSequenceGroups = d3.scale.ordinal().range(colorScaleRandom)
-    let color1 = (d: any) => {
-        return colorSequenceGroups(d.group)
-    }
+    // const colorSequenceGroups = d3.scale.ordinal().range(colorScaleRandom)
+    // let color1 = (d: any) => {
+    //     return colorSequenceGroups(d.group)
+    // }
 
     //@ts-ignore
-    const colorSequenceInterpolated = d3.scale
-        .linear()
-        .domain([0, 5])
-        .range(['#1f78b4', '#fdbf6f', '#ff7f00', '#6a3d9a', '#e31a1c'])
-        //@ts-ignore
-        .interpolate(d3.interpolateLab)
-    let color2 = (d: any) => {
-        return colorSequenceInterpolated(d.id)
-    } // quantitative color scale
+    // const colorSequenceInterpolated = d3.scale
+    //     .linear()
+    //     .domain([0, 5])
+    //     .range(['#1f78b4', '#fdbf6f', '#ff7f00', '#6a3d9a', '#e31a1c'])
+    //     //@ts-ignore
+    //     .interpolate(d3.interpolateLab)
+    // let color2 = (d: any) => {
+    //     return colorSequenceInterpolated(d.id)
+    // } // quantitative color scale
 
     //TODO: move to utils and share usage with marker chart
-    const colorHeat = function (row: any) {
-        if (row.x <= 33) {
-            return 'red'
-        } else if (row.x <= 66) {
-            return 'yellow'
-        } else {
-            return 'green'
-        }
-    }
+    // const colorHeat = function (row: any) {
+    //     if (row.x <= 33) {
+    //         return 'red'
+    //     } else if (row.x <= 66) {
+    //         return 'yellow'
+    //     } else {
+    //         return 'green'
+    //     }
+    // }
 
     const errorTimeoutRef = useRef<NodeJS.Timeout>()
 

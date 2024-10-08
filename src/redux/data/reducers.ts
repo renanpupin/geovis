@@ -19,8 +19,6 @@ import {
 import {applyFilters, getAttributesStats} from './filters'
 
 import {AttributeTypes, ConditionsTypes, FilterTargetTypes, FilterTypes, StateProps} from './types'
-import {useSelector} from 'react-redux'
-import {getDataState, getLatAttributeIndex, getLonAttributeIndex} from './selectors'
 import {applyOverlays} from './overlays'
 
 const initialState: StateProps = {
