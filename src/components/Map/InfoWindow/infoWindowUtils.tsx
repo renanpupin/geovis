@@ -21,6 +21,7 @@ export const createInfoWindow = (
         position: position ? {lat: position.lat(), lng: position.lng()} : undefined,
         pixelOffset: new google.maps.Size(0, isCluster ? -25 : icon ? icon?.sizes?.height / 2 : 0),
         headerContent: `#${title}`
+        // disableAutoPan: true
     })
 
     infoWindow.addListener('domready', (e: any) => {

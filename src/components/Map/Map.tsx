@@ -142,7 +142,7 @@ const Map: React.FC = () => {
                 map,
                 'bounds_changed',
                 function () {
-                    // console.log('bounds_changed')
+                    console.debug('=> Trigger event bounds_changed')
 
                     clearTimeout(timer)
 
