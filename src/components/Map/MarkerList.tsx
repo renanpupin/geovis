@@ -20,7 +20,7 @@ import {
     getKeyIdAttributeIndex
 } from 'src/redux/data/selectors'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
-import MarkerChart from 'src/components/Map/MarkerChart/MarkerChart'
+import MarkerChart, {updateZoomLevel} from 'src/components/Map/MarkerChart/MarkerChart'
 import {VisualizationTypeValues, MarkerChartTypeProps} from '../../redux/data/types'
 import {removeDuplicatesFromStringArray} from '../../utils/array'
 import {colorScale, generateRandomColors} from '../../libs/colors'
@@ -149,8 +149,7 @@ const MarkerList: FC<MarkerListProps> = memo(
                       chartAttributes: markerChartVis[0].markerChartAttributes,
                       showLegend,
                       width,
-                      height,
-                      zoomLevel
+                      height
                   })
                 : null
         }
@@ -238,6 +237,7 @@ const MarkerList: FC<MarkerListProps> = memo(
                 'zoom_changed',
                 function () {
                     setZoomLevel(props.map.getZoom())
+                    updateZoomLevel(props.map.getZoom())
 
                     cleanInfoWindow()
                 }

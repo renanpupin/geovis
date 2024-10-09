@@ -10,7 +10,12 @@ type MarkerChartProps = {
     width?: number
     height?: number
     showLegend?: boolean
-    zoomLevel?: number | null
+}
+
+let zoomLevel = 7
+
+export const updateZoomLevel = (level: number) => {
+    zoomLevel = level
 }
 
 const MarkerChart = (props: MarkerChartProps) => {
@@ -110,8 +115,8 @@ const MarkerChart = (props: MarkerChartProps) => {
         const maxZoomLevel = 14
         const minZoomLevel = 7
         const numberOfZooms = 10
-        const zoomScale = props.zoomLevel
-            ? Math.min(Math.max(props.zoomLevel, minZoomLevel), maxZoomLevel) / numberOfZooms
+        const zoomScale = zoomLevel
+            ? Math.min(Math.max(zoomLevel, minZoomLevel), maxZoomLevel) / numberOfZooms
             : 1
         let scale = getScaleForNormalizedValue(result.avg) * zoomScale
         let width

@@ -2,7 +2,7 @@ import {useEffect, useMemo, useRef, useState, memo, useCallback} from 'react'
 import {MarkerClusterer} from '@googlemaps/markerclusterer'
 import {removeMarker, createMarkerEmpty, getMarkerContent} from './markerUtils'
 import {createInfoWindow} from 'src/components/Map/InfoWindow/infoWindowUtils'
-import MarkerChart from './MarkerChart/MarkerChart'
+import MarkerChart, {updateZoomLevel} from './MarkerChart/MarkerChart'
 import {MarkerChartTypeProps, VisualizationTypeValues} from '../../redux/data/types'
 import {useSelector} from 'react-redux'
 import {getAttributesStats, getVisualizations} from '../../redux/data/selectors'
@@ -30,9 +30,7 @@ const Marker = memo(
         const visualizations = useSelector(getVisualizations)
         const attributesStats = useSelector(getAttributesStats)
 
-        const [didMount, setDidMount] = useState(false)
         const [chartImage, setChartImage] = useState<string | null>(null)
-        const [zoomLevel, setZoomLevel] = useState<number | null>(null)
 
         const [gmapMarker] = useState(
             createMarkerEmpty({
@@ -90,8 +88,7 @@ const Marker = memo(
                                           chartType: markerChartVis[0]
                                               .markerChartType as MarkerChartTypeProps,
                                           chartAttributes: markerChartVis[0].markerChartAttributes,
-                                          showLegend: true,
-                                          zoomLevel
+                                          showLegend: true
                                       })
                                     : null
                             return {...item, markerImageUrl: markerChart?.url}
@@ -112,15 +109,13 @@ const Marker = memo(
                 google.maps.event.removeListener(markerClickEventListener)
                 cleanInfoWindow()
             }
-        }, [props.id, enableMarkerCluster, cluster, props.map, zoomLevel])
+        }, [props.id, enableMarkerCluster, cluster, props.map])
 
         useEffect(() => {
             const zoomChangedEventListener = google.maps.event.addListener(
                 props.map,
                 'zoom_changed',
                 function () {
-                    setZoomLevel(props.map.getZoom())
-
                     cleanInfoWindow()
                 }
             )
