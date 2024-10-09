@@ -25,6 +25,7 @@ const Map: React.FC = () => {
     const bounds = useSelector(getBounds)
     const overlays = useSelector(getOverlays)
     const [map, setMap] = useState<any | undefined>(undefined)
+    const [finishCalculateBounds, setFinishCalculateBounds] = useState<boolean>(false)
     const [drawingManager, setDrawingManager] = useState<any>()
 
     const onLoad = (map: any) => {
@@ -101,7 +102,7 @@ const Map: React.FC = () => {
             google.maps.event.removeListener(overlayClickEventListener)
             google.maps.event.removeListener(overlayRightClickEventListener)
         }
-    }, [map])
+    }, [!!map])
 
     useEffect(() => {
         for (const overlay of overlays) {
@@ -161,10 +162,12 @@ const Map: React.FC = () => {
             google.maps.event.removeListener(boundsChangedEventListener)
             clearTimeout(timer)
         }
-    }, [map])
+    }, [!!map])
 
     useEffect(() => {
         if (map && visibleRows?.length > 0) {
+            console.log('=> calculate bounds')
+
             let bounds = new google.maps.LatLngBounds()
             visibleRows.map((row: any) =>
                 bounds.extend(
@@ -176,8 +179,10 @@ const Map: React.FC = () => {
             )
             // @ts-ignore
             map.fitBounds(bounds)
+
+            setFinishCalculateBounds(true)
         }
-    }, [visibleRows, map])
+    }, [visibleRows, !!map])
 
     const getHeatmap = useCallback(() => {
         if (!map) {
@@ -185,7 +190,6 @@ const Map: React.FC = () => {
         }
         const hideHeatmap =
             visualizations.filter(visualization => {
-                // console.log("visualization", visualization)
                 return (
                     visualization.visible && visualization.type === VisualizationTypeValues.Heatmap
                 )
@@ -216,13 +220,14 @@ const Map: React.FC = () => {
         if (!map) {
             return
         }
+        console.debug('=> Map render MarkerList')
 
         return <MarkerList visibleRows={visibleRows} map={map} />
-    }, [visibleRows, map])
+    }, [visibleRows, !!map])
 
     return (
         <MapLoader onLoad={onLoad}>
-            {getMarkers()}
+            {finishCalculateBounds ? getMarkers() : null}
             {getHeatmap()}
         </MapLoader>
     )
