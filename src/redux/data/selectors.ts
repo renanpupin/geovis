@@ -6,6 +6,7 @@ import {
     HighlightTypes,
     AttributeStatsType
 } from 'src/redux/data/types'
+import {keyIdAttributeName} from './reducers'
 
 export const getDataState = (store: RootState): any => store.data
 
@@ -25,6 +26,11 @@ export const getLonAttribute = (store: RootState): object[] => getDataState(stor
 export const getLonAttributeIndex = (store: RootState): number =>
     getDataState(store)?.attributes?.findIndex(
         (attribute: AttributeTypes) => attribute.name === getDataState(store)?.lonAttribute
+    )
+
+export const getKeyIdAttributeIndex = (store: RootState): number =>
+    getDataState(store)?.attributes?.findIndex(
+        (attribute: AttributeTypes) => attribute.name === keyIdAttributeName
     )
 
 export const getTemporalAttribute = (store: RootState): object[] =>

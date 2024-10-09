@@ -36,10 +36,20 @@ const initialState: StateProps = {
     overlays: []
 }
 
+export const keyIdAttributeName = '_key_id'
+
 export default function (state = initialState, action: any) {
     switch (action.type) {
         case LOAD_DATA: {
             const {data} = action.payload
+
+            const normalizedAttributes = [
+                ...data.attributes,
+                {name: keyIdAttributeName, type: 'number'}
+            ]
+            const normalizedRows = data.rows.map((row: any, index: number) => {
+                return [...row, index]
+            })
 
             const filters: FilterTypes[] = data.temporalAttribute
                 ? [
@@ -49,31 +59,31 @@ export default function (state = initialState, action: any) {
                           condition: ConditionsTypes.Equal,
                           attribute: {name: data.temporalAttribute, type: 'string'},
                           targetType: FilterTargetTypes.value,
-                          targetValue: data.rows[0][data.temporalAttribute],
+                          targetValue: normalizedRows[0][data.temporalAttribute],
                           visible: true
                       }
                   ]
                 : []
 
-            const latAttributeIndex: number = data?.attributes?.findIndex(
+            const latAttributeIndex: number = normalizedAttributes?.findIndex(
                 (attribute: AttributeTypes) => attribute.name === data?.latAttribute
             )
-            const lonAttributeIndex: number = data?.attributes?.findIndex(
+            const lonAttributeIndex: number = normalizedAttributes?.findIndex(
                 (attribute: AttributeTypes) => attribute.name === data?.lonAttribute
             )
 
             return {
                 ...state,
-                rows: data.rows,
-                attributes: data.attributes,
+                rows: normalizedRows,
+                attributes: normalizedAttributes,
                 overlays: data.overlays ?? [],
                 latAttribute: data.latAttribute,
                 lonAttribute: data.lonAttribute,
                 temporalAttribute: data.temporalAttribute,
-                attributesStats: getAttributesStats(data.rows, data.attributes),
+                attributesStats: getAttributesStats(normalizedRows, normalizedAttributes),
                 filters,
                 visibleRows: applyOverlays(
-                    applyFilters(data.rows, filters, data.attributes),
+                    applyFilters(normalizedRows, filters, normalizedAttributes),
                     data.overlays ?? [],
                     latAttributeIndex,
                     lonAttributeIndex
