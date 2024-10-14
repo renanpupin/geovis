@@ -1,0 +1,3 @@
+https://docs.google.com/spreadsheets/d/1WntTKNH94MWHExVBTnu5W5N72E9kx5EVfFQ8EiD7O20/edit?gid=318300640#gid=318300640
+https://github.com/kelvins/municipios-brasileiros/blob/main/csv/estados.csv
+https://www.kaggle.com/datasets/pauloeduneves/hdi-brazil-idh-brasil?resource=download&select=desc.csv

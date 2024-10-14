@@ -7,3 +7,6 @@ npm-debug.log
 
 # IDE
 .idea
+
+# Compiled source
+build

@@ -1,0 +1,51 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.button{
+  width: 100%;
+  max-width: 300px;
+  height: fit-content;
+  background-color: $main-color;
+  color: #fff;
+  position: relative;
+  @include border-radius($input-border-radius);
+  @include box-shadow($shadow-1);
+  border: 2px solid $main-color;
+  font-weight: bold;
+  font-size: 16px;
+  opacity: 1;
+  cursor: pointer;
+  outline: none;
+  @include transition($transition);
+  &:hover{
+    opacity: 0.9;
+    @include box-shadow($shadow-2);
+  }
+  &.disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &.negative{
+    color: $main-color;
+    border-color: #fff;
+    background-color: #fff;
+  }
+  &.outline{
+    color: $main-color;
+    border-color: $main-color;
+    background-color: #fff;
+  }
+  &.link{
+    color: $main-color;
+    border-color: #fff;
+    background-color: #fff;
+  }
+}
+
+.regular{
+  padding: 15px;
+}
+
+.small{
+  padding: 5px 15px;
+}

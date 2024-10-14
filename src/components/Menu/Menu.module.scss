@@ -1,0 +1,100 @@
+$width: 125px;
+$height: 65px;
+
+ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.button{
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background: none;
+  //background-color: blue;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 14px;
+  outline: none;
+  i{
+    font-size: 20px;
+    margin-right: 4px;
+  }
+  &:hover, &:active, .open{
+    background-color: rgba(0,0,0,0.1);
+  }
+}
+
+.submenu {
+  position: relative;
+  height: $height;
+  width: $width;
+  //background-color: red;
+  //align-items: center;
+  //justify-content: center;
+  //flex: 1;
+}
+
+.dropdownMenu {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 9px 9px rgba(0, 0, 0, 0.15);
+  top: $height;
+  left: 0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+}
+
+.nav {
+  width: 100%;
+  //height: 35px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  //justify-content: center;
+  //text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  //background: #efefef;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #e1e1e1;
+  z-index: 1000;
+}
+
+.navbarHeader {
+  padding-right: 40px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbarLogo {
+  height: 35px;
+  width: auto;
+}
+
+.navbarTitle {
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: row;
+  //list-style-type: none;
+  //margin: 0;
+}

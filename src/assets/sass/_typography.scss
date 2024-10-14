@@ -1,0 +1,55 @@
+@import "src/assets/sass/_mixins.scss";
+@import "src/assets/sass/_variables.scss";
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+h1, .biggest{
+  @include font-size(($h1-fontsize));
+  letter-spacing: -0.1rem;
+}
+h2, .bigger{
+  @include font-size(($h2-fontsize));
+}
+h3, .big{
+  @include font-size(($h3-fontsize));
+}
+h4, .small{
+  @include font-size(($h4-fontsize));
+  letter-spacing: .05rem;
+}
+h5, .smaller{
+  @include font-size(($h5-fontsize));
+  letter-spacing: .05rem;
+}
+h6, .smallest{
+  @include font-size(($h6-fontsize));
+  letter-spacing: .03rem;
+}
+
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre,
+td,
+th,
+textarea,
+caption {
+  font-size: 1rem;
+  line-height: $base-line-height;
+  margin: 0 0 1.1em 0;
+  margin: calc(1rem / 2) 0 calc(1rem / 2.5) 0;
+}
+
+li p,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+table {
+  margin-bottom: 1.1em;
+}

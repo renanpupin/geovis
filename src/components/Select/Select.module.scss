@@ -1,0 +1,53 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.wrapper{
+  @include border-radius($input-border-radius);
+  border: 1px solid $border-color;
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+}
+
+.label{
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  color: $label-color;
+  font-size: 13px;
+  font-weight: 500;
+  //text-transform: uppercase;
+}
+
+.labelFocus{
+  color: $input-main-color;
+}
+
+.select{
+  width: 100%;
+  font-size: 16px;
+  padding-top: 27px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: none;
+  outline-color: $input-main-color;
+  border: none;
+  color: #515151;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url('../../assets/img/down-arrow.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: right 10px top 50%, 0 0;
+  background-size: .85em auto, 100%;
+  @include border-radius($input-border-radius);
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  option {
+    font-weight: normal;
+  }
+}
