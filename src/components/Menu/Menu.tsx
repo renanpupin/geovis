@@ -195,18 +195,18 @@ const Menu: React.FC<MenuTypes> = props => {
         if (ENV !== 'production' && loadTestData === 'true') {
             dispatch(loadData(fastLoadData))
             // dispatch(addFilter(fastLoadFilter))
+            // dispatch(addVisualization(fastLoadHeatmapVis))
+            // dispatch(addVisualization(fastLoadMarkerColor))
             dispatch(addVisualization(fastLoadMarkerClusterVis))
-            dispatch(addVisualization(fastLoadPieChartVis))
             dispatch(addVisualization(fastLoadMarkerChartPie))
             // dispatch(addVisualization(fastLoadMarkerChartBar))
             // dispatch(addVisualization(fastLoadMarkerChartLine))
             // dispatch(addVisualization(fastLoadMarkerChartPolar))
             // dispatch(addVisualization(fastLoadMarkerChartRadar))
-            // dispatch(addVisualization(fastLoadMarkerColor))
+            // dispatch(addVisualization(fastLoadParallelVis))
+            dispatch(addVisualization(fastLoadHistogramVis))
+            // dispatch(addVisualization(fastLoadPieChartVis))
             // dispatch(addVisualization(fastLoadPieChartUngroupedVis))
-            dispatch(addVisualization(fastLoadParallelVis))
-            // dispatch(addVisualization(fastLoadHistogramVis))
-            // dispatch(addVisualization(fastLoadHeatmapVis))
             // dispatch(addVisualization(fastLoadLineChartVis))
         }
 
