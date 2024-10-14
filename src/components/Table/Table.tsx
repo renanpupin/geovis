@@ -1,65 +1,59 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import {getAttributes, getVisibleRows} from "src/redux/data/selectors";
+import React from 'react'
+import {useSelector} from 'react-redux'
+import {getAttributes, getKeyIdAttributeIndex, getVisibleRows} from 'src/redux/data/selectors'
 
-import styles from './Table.module.scss';
+import styles from './Table.module.scss'
+import {keyIdAttributeName} from '../../redux/data/reducers'
 
 const Table: React.FC = () => {
     const attributes = useSelector(getAttributes)
-    const visibleData = useSelector(getVisibleRows)
+    const visibleRows = useSelector(getVisibleRows)
+    const keyIdAttributeIndex = useSelector(getKeyIdAttributeIndex)
 
-    const isEmptyData: boolean = !visibleData || visibleData.length === 0
+    const isEmptyData: boolean = !visibleRows || visibleRows.length === 0
 
     const getBody = () => {
-        if(isEmptyData){
-            return(
+        if (isEmptyData) {
+            return (
                 <tr>
                     <td>No data.</td>
                 </tr>
             )
         }
 
-        return visibleData.map((itemData: any, indexData: number) => {
-            const bodyColumns = Object.values(itemData).map((item: any, index: number) => {
-                return (
-                    <td key={index}>
-                        {String(item)}
-                    </td>
-                )
-            });
+        return visibleRows.map((itemData: any, indexData: number) => {
+            const bodyColumns = Object.values(itemData)
+                ?.filter((item, index) => index !== keyIdAttributeIndex)
+                .map((item: any, index: number) => {
+                    return <td key={index}>{String(item)}</td>
+                })
 
-            return (
-                <tr key={indexData}>
-                    {bodyColumns}
-                </tr>
-            );
-        });
+            return <tr key={indexData}>{bodyColumns}</tr>
+        })
     }
 
     const getHeaders = () => {
-        if(isEmptyData){
-            return(
+        if (isEmptyData) {
+            return (
                 <tr>
                     <th>-</th>
                 </tr>
             )
         }
-        const headerColumns = attributes.map ((item: any, index: number) => {
-            return (
-                <th key={index}>
-                    {item.name} ({item.type})
-                </th>
-            )
-        })
-        return (
-            <tr>
-                {headerColumns}
-            </tr>
-        )
+        const headerColumns = attributes
+            ?.filter((item: any) => item.name !== keyIdAttributeName)
+            .map((item: any, index: number) => {
+                return (
+                    <th key={index}>
+                        {item.name} ({item.type})
+                    </th>
+                )
+            })
+        return <tr>{headerColumns}</tr>
     }
 
-    if(isEmptyData){
-        return(
+    if (isEmptyData) {
+        return (
             <div className={styles.container}>
                 <p>No data.</p>
             </div>
@@ -70,16 +64,12 @@ const Table: React.FC = () => {
         <div className={styles.container}>
             <div className={styles.tableContainer}>
                 <table className={styles.table}>
-                    <thead>
-                        {getHeaders()}
-                    </thead>
-                    <tbody>
-                        {getBody()}
-                    </tbody>
+                    <thead>{getHeaders()}</thead>
+                    <tbody>{getBody()}</tbody>
                 </table>
             </div>
         </div>
-    );
+    )
 }
 
 export default Table
