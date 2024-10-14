@@ -63,7 +63,7 @@ const MarkerChart = (props: MarkerChartProps) => {
             )
             // console.log('attributeStats', attributeStats)
 
-            //calculage avg value to support cluster
+            //calculate avg value to support cluster
             let attributeValue = 0
             for (const dataItem of data) {
                 attributeValue += dataItem[attributeIndex]
@@ -81,7 +81,7 @@ const MarkerChart = (props: MarkerChartProps) => {
             }
 
             values.push(normalizedValue)
-            legends.push(String(chartAttributes[index]))
+            legends.push(`${String(chartAttributes[index])} (${Math.round(attributeValue)})`)
             colors.push(getHeatmapColorForNormalizedValue(normalizedValue))
             avg += normalizedValue
 
