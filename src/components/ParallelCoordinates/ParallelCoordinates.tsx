@@ -1,9 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAttributes, getVisibleRows} from 'src/redux/data/selectors'
+import {getAttributes, getKeyIdAttributeIndex, getVisibleRows} from 'src/redux/data/selectors'
 import styles from '../Chart/Chart.module.scss'
 import Draggable from '../Draggable/Draggable'
 import {setHighlight} from '../../redux/data/actions'
+import {keyIdAttributeName} from '../../redux/data/reducers'
+import {generateRandomColors} from '../../libs/colors'
 
 export type ParallelCoordinatesProps = {
     visMode: 'split' | 'full'
@@ -12,20 +14,25 @@ export type ParallelCoordinatesProps = {
 const ParallelCoordinates: React.FC<ParallelCoordinatesProps> = props => {
     const {visMode} = props
     const attributes = useSelector(getAttributes)
+    const keyIdAttributeIndex = useSelector(getKeyIdAttributeIndex)
     const visibleRows = useSelector(getVisibleRows)
     const [brushData, setBrushData] = useState([])
     const dispatch = useDispatch()
 
     const [id] = useState<string>('parallelChart')
 
+    const normalizedAttributes = attributes?.filter((item: any) => item.name !== keyIdAttributeName)
+
     const getNormalizedRows = () => {
         return visibleRows.map((row: any, rowIndex: number) => {
             let attributesObject = {}
 
             for (const [rowValueIndex, rowValue] of row.entries()) {
-                // @ts-ignore
-                attributesObject[attributes[rowValueIndex].name] =
-                    attributes[rowValueIndex].type === 'boolean' ? String(rowValue) : rowValue
+                if (rowValueIndex !== keyIdAttributeIndex) {
+                    // @ts-ignore
+                    attributesObject[normalizedAttributes[rowValueIndex].name] =
+                        attributes[rowValueIndex].type === 'boolean' ? String(rowValue) : rowValue
+                }
             }
 
             return {
@@ -89,12 +96,13 @@ const ParallelCoordinates: React.FC<ParallelCoordinatesProps> = props => {
         document.getElementById(id).innerHTML = ''
 
         //@ts-ignore
-        d3.parcoords()(`#${id}`)
+        const chartParCoords = d3
+            .parcoords()(`#${id}`)
             .alpha(0.5)
             .mode('queue') // progressive rendering
             .height(300)
             .data(getNormalizedRows())
-            .width(attributes.length * axisWidth)
+            .width(normalizedAttributes.length * axisWidth)
             // .hideAxis(["ibgeID", 'country', 'cod_RegiaoDeSaude', 'name_RegiaoDeSaude', 'city', '_source'])
             // .color(color2)
             .render()
@@ -126,7 +134,7 @@ const ParallelCoordinates: React.FC<ParallelCoordinatesProps> = props => {
                     id={id}
                     onMouseDown={(e: any) => e.stopPropagation()}
                     className="parcoords"
-                    style={{width: attributes.length * axisWidth + 2, height: 300}}
+                    style={{width: normalizedAttributes.length * axisWidth + 2, height: 300}}
                 />
             </div>
         </Draggable>

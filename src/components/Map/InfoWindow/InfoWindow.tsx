@@ -1,4 +1,5 @@
 import React from 'react'
+import {keyIdAttributeName} from '../../../redux/data/reducers'
 
 export type InfoWindowPropTypes = {
     title: string
@@ -21,13 +22,15 @@ const InfoWindow = (props: InfoWindowPropTypes) => {
                                 indexRow === props.rows.length - 1 ? 'none' : '1px solid #e1e1e1'
                         }}
                     >
-                        {props.attributes.map((attribute: any, index: number) => {
-                            return (
-                                <p key={index} style={{fontSize: 14}}>
-                                    <b>{attribute.name}</b>: {String(row[index])}
-                                </p>
-                            )
-                        })}
+                        {props.attributes
+                            ?.filter((item: any) => item.name !== keyIdAttributeName)
+                            .map((attribute: any, index: number) => {
+                                return (
+                                    <p key={index} style={{fontSize: 14}}>
+                                        <b>{attribute.name}</b>: {String(row[index])}
+                                    </p>
+                                )
+                            })}
                         {row?.markerImageUrl ? (
                             <img
                                 style={{width: '300px', height: 'auto'}}
