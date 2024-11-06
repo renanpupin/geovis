@@ -227,6 +227,7 @@ const MarkerChart = (props: MarkerChartProps) => {
                               ],
                               xAxes: [
                                   {
+                                      display: props?.showLegend,
                                       drawTicks: false,
                                       gridLines: {
                                           display: false,
