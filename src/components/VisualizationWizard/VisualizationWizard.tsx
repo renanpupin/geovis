@@ -167,10 +167,13 @@ const VisualizationWizard: React.FC<VisualizationWizardProps> = props => {
                             // @ts-ignore
                             stepsData[item] === undefined ||
                             // @ts-ignore
-                            stepsData[item] === ''
+                            stepsData[item] === '' ||
+                            // @ts-ignore
+                            stepsData[item]?.length === 0
                         )
                     }).length > 0 ||
                     (stepsData?.markerChartType === 'radar' &&
+                        steps[step]?.requiredFields?.includes('markerChartAttributes') &&
                         !!stepsData?.markerChartAttributes &&
                         stepsData?.markerChartAttributes?.length < 3)
             }}

@@ -36,14 +36,11 @@ const MarkerChart = (props: MarkerChartProps) => {
     }
 
     const getNormalizedValue = (value: number, min: number, max: number) => {
-        // console.log("getNormalizedValue", value);
         return 100 * ((value - min) / (max - min))
     }
 
     const getScaleForNormalizedValue = (normalizedValue: any) => {
-        // console.log("getScaleForNormalizedValue", normalizedValue);
-
-        return normalizedValue / 50 + 0.5 //make the scale go from 1 to 3
+        return normalizedValue / 50 + 0.5 //make the scale go from 1 to 2.5
     }
 
     const processChartData = () => {
