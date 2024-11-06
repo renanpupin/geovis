@@ -25,10 +25,10 @@ const StepMarkerChartType: React.FC<StepMarkerChartTypeProps> = props => {
         {label: 'Column', value: 'bar'},
         {label: 'Radar', value: 'radar'},
         {label: 'Polar', value: 'polar'},
-        {label: 'Bubble', value: 'bubble'},
+        // {label: 'Bubble', value: 'bubble'},  //TODO: needs more work
         // {label: 'Area', value: 'area'},
         {label: 'Pie', value: 'pie'} //TODO: count ocurrences
-        // {label: 'Scatter', value: 'scatter'},   //TODO: count ocurrences
+        // {label: 'Scatter', value: 'scatter'} //TODO: count ocurrences
         // {label: 'Histogram', value: 'histogram'},
         // {label: 'Parallel Coordinates', value: 'parallel'},
     ]
