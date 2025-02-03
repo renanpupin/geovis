@@ -20,9 +20,17 @@ export const createClusterSvg = (color: string, count: string) => {
     return svgEl
 }
 
-export const createPin = (color: string, scale?: number) => {
+const createPin = ({
+    color,
+    scale,
+    invisible
+}: {
+    color?: string
+    scale?: number
+    invisible?: boolean
+}) => {
     return new window.google.maps.marker.PinElement({
-        scale: scale ?? 1,
+        scale: invisible ? 0 : scale ?? 1,
         background: color,
         borderColor: color,
         glyphColor: '#777'
@@ -87,8 +95,14 @@ export const createMarkerChartHtmlElement = ({
 export const getMarkerContent = (
     icon: any,
     chartImage?: string | null,
-    chartType?: MarkerChartTypeProps
+    chartType?: MarkerChartTypeProps,
+    hidePin?: boolean
 ) => {
+    if (hidePin) {
+        return createPin({
+            invisible: true
+        })?.element
+    }
     if (icon?.url) {
         return createMarkerChartHtmlElement({
             url: icon?.url,
@@ -100,7 +114,9 @@ export const getMarkerContent = (
     }
 
     if (icon?.color) {
-        return createPin(icon?.color)?.element
+        return createPin({
+            color: icon?.color
+        })?.element
     }
 
     return null
@@ -114,6 +130,7 @@ export const createMarkerEmpty = (markerData: {
     map?: any
     enableCollisionBehavior?: boolean
     chartType?: MarkerChartTypeProps
+    hasHeatmap: boolean
 }) => {
     // https://maps.google.com/mapfiles/ms/icons/red-dot.png
     // http://maps.google.com/mapfiles/kml/paddle/red-blank.png
@@ -124,7 +141,12 @@ export const createMarkerEmpty = (markerData: {
     return new window.google.maps.marker.AdvancedMarkerElement({
         title: markerData.id,
         position: {lat: markerData.lat, lng: markerData.lng},
-        content: getMarkerContent(markerData?.icon, null, markerData?.chartType),
+        content: getMarkerContent(
+            markerData?.icon,
+            null,
+            markerData?.chartType,
+            markerData?.hasHeatmap
+        ),
         //TODO: this is hiding the marker when it is close to another marker, should control by zoom level
         // collisionBehavior: markerData?.enableCollisionBehavior
         //     ? window.google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL
