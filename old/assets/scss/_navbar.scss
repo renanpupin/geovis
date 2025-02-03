@@ -1,0 +1,269 @@
+// dropdown
+//settings
+$dropdown-text-color: #757575;
+$dropdown-text-hover-color: #fff;
+$dropdown-background-color: #efefef;
+$dropdown-background-color-active-base: #4b545f;
+$dropdown-background-color-active: lighten($dropdown-background-color-active-base, 10%);
+$dropdown-border-top-color: lighten($dropdown-background-color-active-base, 15%);
+$dropdown-border-bottom-color: lighten($dropdown-background-color-active-base, 5%);
+$dropdown-cell-padding: 20px;
+//navbar
+nav{
+  width: 100%;
+  font-size: 13px;
+  position: relative;
+  background: $dropdown-background-color;
+  box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+  margin-bottom: 15px;
+  :before, :after {
+      content: " ";
+      display: table;
+  }
+  :after {
+      clear: both;
+  }
+  
+  //first level
+  ul {
+    text-transform: uppercase;
+    list-style: none;
+    font-size: .8rem;
+    margin: 0;
+    // position: relative;
+  }
+  #brand{
+    float: left;
+    padding: $dropdown-cell-padding;
+    height: 60px;
+    font-size: 1.4rem;
+    line-height: 20px;
+  }
+  .navbarHeader{
+    float: left;
+  }
+  > ul {
+    padding: 0;
+    margin-top: 0;
+  }
+  ul:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  li {
+    float: left;
+    position: relative;
+    a{
+      list-style: none;
+      text-decoration: none;
+      padding: $dropdown-cell-padding;
+      line-height: $dropdown-cell-padding;
+      display: block;
+      color: $dropdown-text-color;
+    }
+  }
+  li:hover , .submenu.openSub{
+    background: $dropdown-background-color-active-base;
+    cursor: pointer;
+  }
+  li:hover a, .submenu.openSub{
+    color: $dropdown-text-hover-color;
+  }
+  .submenu-button{
+    float: right;
+    padding-left: 5px;
+    margin-top: 4px;
+    position: relative;
+  }
+  .submenu-button::before{
+    content: '';
+    position: absolute;
+    //left: 21px;
+    top: 5px;
+    display: block;
+    width: 9px;
+    height: 1px;
+    background: $dropdown-text-color;
+    z-index: 99;
+    @include transition(0.3s);
+  }
+  .submenu-button::after {
+    content: '';
+    position: absolute;
+    //top: 5px;
+    left: 9px;
+    top: 1px;
+    //left: 26px;
+    display: block;
+    width: 1px;
+    height: 9px;
+    @include transition(0.3s);
+    background: $dropdown-text-color;
+    z-index: 99;
+  }
+  li:hover .submenu-button::before,
+  li:hover .submenu-button::after,
+  .active .submenu-button::before,
+  .active .submenu-button::after{
+    background: $dropdown-text-hover-color;
+  }
+}
+
+.submenu.openSub a{
+  color: $dropdown-text-hover-color;
+}
+//minus symbol
+.openSub .submenu-button::after{
+  // display: none;
+}
+//close symbol
+.openSub .submenu-button::after, .openSub .submenu-button::before{
+  -webkit-transform: rotate(135deg);
+}
+
+.toggleMenu{
+  display: none;
+  list-style: none;
+  // position: relative;
+  float: right;
+  line-height: 1;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: $dropdown-cell-padding;
+  margin: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  // background-color: $background-color;
+  color: $dropdown-text-color;
+  cursor: pointer;
+  &::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: block;
+      width: 15px;
+      height: 2px;
+      background: #000000;
+  }
+  &::before {
+      content: '';
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      display: block;
+      width: 15px;
+      height: 7px;
+      border-top: 2px solid #000000;
+      border-bottom: 2px solid #000000;
+  }
+}
+
+// #brand{
+//   position: relative;
+//   float: left;
+// }
+
+//second level
+.submenu ul{
+  display: none;
+  background: $dropdown-background-color-active;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+}
+.submenu li {
+  float: none;
+  border-top: 1px solid $dropdown-border-top-color;
+  border-bottom: 1px solid $dropdown-border-bottom-color;
+  position: relative;
+}
+.submenu li a {
+  padding: ($dropdown-cell-padding - 5px) $dropdown-cell-padding;
+  width: 155px;
+  color: $dropdown-text-hover-color;
+}
+.submenu li a:hover {
+  background: $dropdown-background-color-active-base;
+}
+//third level
+/*ul ul ul {
+  position: absolute;
+  left: 100%;
+  top:0;
+}*/
+
+//responsiveness
+@media screen and (max-width: 768px) {  //the value here have to be changed based on your menu itens width
+  .toggleMenu{
+    display: block;
+  }
+  #brand{
+    float: left;
+  }
+  .submenu ul{
+    position: relative;
+  }
+  .submenu li a{
+    padding: $dropdown-cell-padding;
+    width: 100%;
+  }
+  .submenu-button{
+    padding-right: 10px;
+  }
+  nav{
+    .container, .container > ul, > ul{
+      padding: 0;
+    }
+    .navbarHeader{
+      float: none;
+      background-color: $dropdown-background-color;
+    }
+    ul{
+      display: none;
+    }
+    > ul{
+      border-top: 1px solid rgba(120, 120, 120, 0.15);
+    }
+    ul li {
+      float: none;
+      border-top: 1px solid rgba(120, 120, 120, 0.15);
+    }
+    li:hover .submenu-button::after,
+    li:hover .submenu-button::before,
+    .active .submenu-button::before,
+    .active .submenu-button::after{
+      background-color: $dropdown-text-hover-color;
+    }
+  }
+}
+
+
+// <nav id="navbarMenu" class="navbar" role="navigation">
+//   <div class="navbarHeader">
+//       <div class="toggleMenu"></div>
+//       <div id="brand"><a href="#">WizardCSS</a></div>
+//   </div>
+//   <ul role="menu">
+//       <li><a href="#">Home</a></li>
+//       <li><a href="#">About</a></li>
+//       <li class="submenu"><a href="#">Tutorials</a>
+//           <ul>
+//               <li><a href="#">Photoshop</a></li>
+//               <li><a href="#">CSS</a></li>
+//           </ul>
+//       </li>
+//       <li class="submenu"><a href="#">Articles</a>
+//           <ul>
+//               <li><a href="#">Web Design</a></li>
+//               <li><a href="#">User Experience</a></li>
+//           </ul>
+//       </li>
+//       <li><a href="#">Inspiration</a></li>
+//       <li><a href="#">Contact</a></li>
+//   </ul>
+// </nav>

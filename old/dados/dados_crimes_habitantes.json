@@ -1,0 +1,1586 @@
+[
+    {
+        "id" : 1,
+        "geodata": 
+            {
+                "lat": -14.235004, 
+                "lon": -51.925280
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Brasil"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 80
+            },
+            {
+                "name": "numeroMortes",
+                "value": 25
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "geodata": 
+            {
+                "lat": 41.871940, 
+                "lon": 12.567380
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Itália"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 33
+            },
+            {
+                "name": "numeroMortes",
+                "value": 11
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "geodata": 
+            {
+                "lat": 40.463667, 
+                "lon": -3.749220
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Espanha"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 28
+            },
+            {
+                "name": "numeroMortes",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "geodata": 
+            {
+                "lat": 52.355518, 
+                "lon": -1.174320
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Inglaterra"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 21
+            },
+            {
+                "name": "numeroMortes",
+                "value": 9
+            }
+        ]
+    },
+    {
+        "id" : 5,
+        "geodata": 
+            {
+                "lat": -16.290154, 
+                "lon": -63.588653
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Bolívia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 85
+            },
+            {
+                "name": "numeroMortes",
+                "value": 33
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "geodata": 
+            {
+                "lat": 6.423750, 
+                "lon": -66.589730
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Venezuela"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 76
+            },
+            {
+                "name": "numeroMortes",
+                "value": 20
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "geodata": 
+            {
+                "lat": -30.559482, 
+                "lon": 22.937506
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "África do Sul"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 78
+            },
+            {
+                "name": "numeroMortes",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "geodata": 
+            {
+                "lat": 35.861660, 
+                "lon": 104.195397
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "China"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 77
+            },
+            {
+                "name": "numeroMortes",
+                "value": 27
+            }
+        ]
+    },
+    {
+        "id" : 9,
+        "geodata": 
+            {
+                "lat": 20.593684, 
+                "lon": 78.962880
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Índia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 88
+            },
+            {
+                "name": "numeroMortes",
+                "value": 54
+            }
+        ]
+    },
+    {
+        "id" : 10,
+        "geodata": 
+            {
+                "lat": -25.274398, 
+                "lon": 133.775136
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Austrália"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 31
+            },
+            {
+                "name": "numeroMortes",
+                "value": 16
+            }
+        ]
+    },
+    {
+        "id" : 11,
+        "geodata": 
+            {
+                "lat": 15.870032, 
+                "lon": 100.992541
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Tailândia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 60
+            },
+            {
+                "name": "numeroMortes",
+                "value": 24
+            }
+        ]
+    },
+    {
+        "id" : 12,
+        "geodata": 
+            {
+                "lat": 36.204824, 
+                "lon": 138.252924
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Japão"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 15
+            },
+            {
+                "name": "numeroMortes",
+                "value": 6
+            }
+        ]
+    },
+    {
+        "id" : 13,
+        "geodata": 
+            {
+                "lat": 39.074208, 
+                "lon": 21.824312
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Grécia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 23
+            },
+            {
+                "name": "numeroMortes",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "geodata": 
+            {
+                "lat": 61.524010, 
+                "lon": 105.318756
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Rússia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 82
+            },
+            {
+                "name": "numeroMortes",
+                "value": 31
+            }
+        ]
+    },
+    {
+        "id" : 15,
+        "geodata": 
+            {
+                "lat": 53.412910, 
+                "lon": -8.243890
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Irlanda"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 11
+            },
+            {
+                "name": "numeroMortes",
+                "value": 3
+            }
+        ]
+    },
+    {
+        "id" : 16,
+        "geodata": 
+            {
+                "lat": 33.939110, 
+                "lon": 67.709953
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Afeganistão"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 92
+            },
+            {
+                "name": "numeroMortes",
+                "value": 60
+            }
+        ]
+    },
+    {
+        "id" : 17,
+        "geodata": 
+            {
+                "lat": 48.019573, 
+                "lon": 66.923684
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Cazaquistão"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 94
+            },
+            {
+                "name": "numeroMortes",
+                "value": 70
+            }
+        ]
+    },
+    {
+        "id" : 18,
+        "geodata": 
+            {
+                "lat": -23.442503, 
+                "lon": -58.443832
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Paraguai"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 56
+            },
+            {
+                "name": "numeroMortes",
+                "value": 19
+            }
+        ]
+    },
+    {
+        "id" : 19,
+        "geodata": 
+            {
+                "lat": 37.090240, 
+                "lon": -95.712891
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Estados Unidos"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 65
+            },
+            {
+                "name": "numeroMortes",
+                "value": 28
+            }
+        ]
+    },
+    {
+        "id" : 20,
+        "geodata": 
+            {
+                "lat": 56.130366, 
+                "lon": -106.346771
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Canadá"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 46
+            },
+            {
+                "name": "numeroMortes",
+                "value": 25
+            }
+        ]
+    },
+    {
+        "id" : 21,
+        "geodata": 
+            {
+                "lat": 9.081999, 
+                "lon": 8.675277
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Nigéria"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 80
+            },
+            {
+                "name": "numeroMortes",
+                "value": 28
+            }
+        ]
+    },
+    {
+        "id" : 22,
+        "geodata": 
+            {
+                "lat": 33.223191, 
+                "lon": 43.679291
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Iraque"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 100
+            },
+            {
+                "name": "numeroMortes",
+                "value": 61
+            }
+        ]
+    },
+    {
+        "id" : 23,
+        "geodata": 
+            {
+                "lat": 9.145000, 
+                "lon": 40.489673
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Etiópia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 60
+            },
+            {
+                "name": "numeroMortes",
+                "value": 20
+            }
+        ]
+    },
+    {
+        "id" : 24,
+        "geodata": 
+            {
+                "lat": 26.820553, 
+                "lon": 30.802498
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Egito"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 58
+            },
+            {
+                "name": "numeroMortes",
+                "value": 22
+            }
+        ]
+    },
+    {
+        "id" : 25,
+        "geodata": 
+            {
+                "lat": 31.791702, 
+                "lon": -7.092620
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Marrocos"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 60
+            },
+            {
+                "name": "numeroMortes",
+                "value": 25
+            }
+        ]
+    },
+    {
+        "id" : 26,
+        "geodata": 
+            {
+                "lat": -35.675147, 
+                "lon": -71.542969
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Chile"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 68
+            },
+            {
+                "name": "numeroMortes",
+                "value": 17
+            }
+        ]
+    },
+    {
+        "id" : 27,
+        "geodata": 
+            {
+                "lat": -11.202692, 
+                "lon": 17.873887
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Angola"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 48
+            },
+            {
+                "name": "numeroMortes",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "id" : 28,
+        "geodata": 
+            {
+                "lat": -40.900557, 
+                "lon": 174.885971
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Nova Zelândia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 35
+            },
+            {
+                "name": "numeroMortes",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "id" : 29,
+        "geodata": 
+            {
+                "lat": 35.907757, 
+                "lon": 127.766922
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Coréia do Sul"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 32
+            },
+            {
+                "name": "numeroMortes",
+                "value": 14
+            }
+        ]
+    },
+    {
+        "id" : 30,
+        "geodata": 
+            {
+                "lat": -38.416097, 
+                "lon": -63.616672
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Argentina"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 81
+            },
+            {
+                "name": "numeroMortes",
+                "value": 26
+            }
+        ]
+    },
+    {
+        "id" : 31,
+        "geodata": 
+            {
+                "lat": 50.503887, 
+                "lon": 4.469936
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Bélgica"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 26
+            },
+            {
+                "name": "numeroMortes",
+                "value": 10
+            }
+        ]
+    },
+    {
+        "id" : 32,
+        "geodata": 
+            {
+                "lat": 60.128161, 
+                "lon": 18.643501
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Suécia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 13
+            },
+            {
+                "name": "numeroMortes",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "id" : 33,
+        "geodata": 
+            {
+                "lat": 60.472024, 
+                "lon": 8.468946
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Noruega"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 15
+            },
+            {
+                "name": "numeroMortes",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "id" : 34,
+        "geodata": 
+            {
+                "lat": 23.634501, 
+                "lon": -102.552784
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "México"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 76
+            },
+            {
+                "name": "numeroMortes",
+                "value": 33
+            }
+        ]
+    },
+    {
+        "id" : 35,
+        "geodata": 
+            {
+                "lat": 21.521757, 
+                "lon": -77.781167
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Cuba"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 67
+            },
+            {
+                "name": "numeroMortes",
+                "value": 28
+            }
+        ]
+    },
+    {
+        "id" : 36,
+        "geodata": 
+            {
+                "lat": 30.375321, 
+                "lon": 69.345116
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Paquistão"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 87
+            },
+            {
+                "name": "numeroMortes",
+                "value": 43
+            }
+        ]
+    },
+    {
+        "id" : 37,
+        "geodata": 
+            {
+                "lat": 39.399872, 
+                "lon": -8.224454
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Portugal"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 36
+            },
+            {
+                "name": "numeroMortes",
+                "value": 19
+            }
+        ]
+    },
+    {
+        "id" : 38,
+        "geodata": 
+            {
+                "lat": 18.220833, 
+                "lon": -66.590149
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Porto Rico"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 63
+            },
+            {
+                "name": "numeroMortes",
+                "value": 21
+            }
+        ]
+    },
+    {
+        "id" : 39,
+        "geodata": 
+            {
+                "lat": 46.862496, 
+                "lon": 103.846656
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Mongólia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 54
+            },
+            {
+                "name": "numeroMortes",
+                "value": 15
+            }
+        ]
+    },
+    {
+        "id" : 40,
+        "geodata": 
+            {
+                "lat": 51.919438, 
+                "lon": 19.145136
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Polônia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 23
+            },
+            {
+                "name": "numeroMortes",
+                "value": 8
+            }
+        ]
+    },
+    {
+        "id" : 41,
+        "geodata": 
+            {
+                "lat": 38.963745, 
+                "lon": 35.243322
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Turquia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 68
+            },
+            {
+                "name": "numeroMortes",
+                "value": 24
+            }
+        ]
+    },
+    {
+        "id" : 42,
+        "geodata": 
+            {
+                "lat": 23.885942, 
+                "lon": 45.079162
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Arábia Saudita"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 75
+            },
+            {
+                "name": "numeroMortes",
+                "value": 37
+            }
+        ]
+    },
+    {
+        "id" : 43,
+        "geodata": 
+            {
+                "lat": 12.862807, 
+                "lon": 30.217636
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Sudão"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 65
+            },
+            {
+                "name": "numeroMortes",
+                "value": 31
+            }
+        ]
+    },
+    {
+        "id" : 44,
+        "geodata": 
+            {
+                "lat": 15.783471, 
+                "lon": -90.230759
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Guatemala"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 45
+            },
+            {
+                "name": "numeroMortes",
+                "value": 28
+            }
+        ]
+    },
+    {
+        "id" : 45,
+        "geodata": 
+            {
+                "lat": 9.748917, 
+                "lon": -83.753428
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Costa Rica"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 55
+            },
+            {
+                "name": "numeroMortes",
+                "value": 31
+            }
+        ]
+    },
+    {
+        "id" : 46,
+        "geodata": 
+            {
+                "lat": -0.023559, 
+                "lon": 37.906193
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Quênia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 67
+            },
+            {
+                "name": "numeroMortes",
+                "value": 26
+            }
+        ]
+    },
+    {
+        "id" : 47,
+        "geodata": 
+            {
+                "lat": -0.228021, 
+                "lon": 15.827659
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Congo"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 61
+            },
+            {
+                "name": "numeroMortes",
+                "value": 23
+            }
+        ]
+    },
+    {
+        "id" : 48,
+        "geodata": 
+            {
+                "lat": 23.424076, 
+                "lon": 53.847818
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Emiratos Árabes Unidos"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 70
+            },
+            {
+                "name": "numeroMortes",
+                "value": 30
+            }
+        ]
+    },
+    {
+        "id" : 49,
+        "geodata": 
+            {
+                "lat": 34.802075, 
+                "lon": 38.996815
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Síria"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 89
+            },
+            {
+                "name": "numeroMortes",
+                "value": 58
+            }
+        ]
+    },
+    {
+        "id" : 50,
+        "geodata": 
+            {
+                "lat": 33.854721, 
+                "lon": 35.862285
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Líbano"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 65
+            },
+            {
+                "name": "numeroMortes",
+                "value": 23
+            }
+        ]
+    },
+    {
+        "id" : 51,
+        "geodata": 
+            {
+                "lat": 28.033886, 
+                "lon": 1.659626
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Argélia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 59
+            },
+            {
+                "name": "numeroMortes",
+                "value": 31
+            }
+        ]
+    },
+    {
+        "id" : 52,
+        "geodata": 
+            {
+                "lat": 14.497401, 
+                "lon": -14.452362
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Senegal"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 66
+            },
+            {
+                "name": "numeroMortes",
+                "value": 36
+            }
+        ]
+    },
+    {
+        "id" : 53,
+        "geodata": 
+            {
+                "lat": 48.379433, 
+                "lon": 31.165580
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Ucrânia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 24
+            },
+            {
+                "name": "numeroMortes",
+                "value": 12
+            }
+        ]
+    },
+    {
+        "id" : 54,
+        "geodata": 
+            {
+                "lat": 26.335100, 
+                "lon": 17.228331
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Líbia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 73
+            },
+            {
+                "name": "numeroMortes",
+                "value": 25
+            }
+        ]
+    },
+    {
+        "id" : 55,
+        "geodata": 
+            {
+                "lat": -32.522779, 
+                "lon": -55.765835
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Uruguai"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 76
+            },
+            {
+                "name": "numeroMortes",
+                "value": 35
+            }
+        ]
+    },
+    {
+        "id" : 56,
+        "geodata": 
+            {
+                "lat": -0.789275, 
+                "lon": 113.921327
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Indonésia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 76
+            },
+            {
+                "name": "numeroMortes",
+                "value": 37
+            }
+        ]
+    },
+    {
+        "id" : 57,
+        "geodata": 
+            {
+                "lat": -1.831239, 
+                "lon": -78.183406
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Equador"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 77
+            },
+            {
+                "name": "numeroMortes",
+                "value": 43
+            }
+        ]
+    },
+    {
+        "id" : 58,
+        "geodata": 
+            {
+                "lat": 5.152149, 
+                "lon": 46.199616
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Somália"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 67
+            },
+            {
+                "name": "numeroMortes",
+                "value": 32
+            }
+        ]
+    },
+    {
+        "id" : 59,
+        "geodata": 
+            {
+                "lat": -18.766947, 
+                "lon": 46.869107
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Madagascar"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 43
+            },
+            {
+                "name": "numeroMortes",
+                "value": 21
+            }
+        ]
+    },
+    {
+        "id" : 60,
+        "geodata": 
+            {
+                "lat": 17.607789, 
+                "lon": 8.081666
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Níger"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 78
+            },
+            {
+                "name": "numeroMortes",
+                "value": 35
+            }
+        ]
+    },
+    {
+        "id" : 61,
+        "geodata": 
+            {
+                "lat": 4.570868, 
+                "lon": -74.297333
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Colômbia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 83
+            },
+            {
+                "name": "numeroMortes",
+                "value": 41
+            }
+        ]
+    },
+    {
+        "id" : 62,
+        "geodata": 
+            {
+                "lat": -9.189967, 
+                "lon": -75.015152
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Peru"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 65
+            },
+            {
+                "name": "numeroMortes",
+                "value": 40
+            }
+        ]
+    },
+    {
+        "id" : 63,
+        "geodata": 
+            {
+                "lat": 7.946527, 
+                "lon": -1.023194
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Gana"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 74
+            },
+            {
+                "name": "numeroMortes",
+                "value": 65
+            }
+        ]
+    },
+    {
+        "id" : 64,
+        "geodata": 
+            {
+                "lat": 56.263920, 
+                "lon": 9.501785
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Dinamarca"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 13
+            },
+            {
+                "name": "numeroMortes",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "id" : 65,
+        "geodata": 
+            {
+                "lat": 12.879721, 
+                "lon": 121.774017
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Filipinas"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 67
+            },
+            {
+                "name": "numeroMortes",
+                "value": 21
+            }
+        ]
+    },
+    {
+        "id" : 66,
+        "geodata": 
+            {
+                "lat": 46.227638, 
+                "lon": 2.213749
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "França"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 30
+            },
+            {
+                "name": "numeroMortes",
+                "value": 25
+            }
+        ]
+    },
+    {
+        "id" : 67,
+        "geodata": 
+            {
+                "lat": 61.924110, 
+                "lon": 25.748151
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Finlândia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 26
+            },
+            {
+                "name": "numeroMortes",
+                "value": 14
+            }
+        ]
+    },
+    {
+        "id" : 68,
+        "geodata": 
+            {
+                "lat": 3.919305, 
+                "lon": -56.027783
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Suriname"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 76
+            },
+            {
+                "name": "numeroMortes",
+                "value": 20
+            }
+        ]
+    },
+    {
+        "id" : 69,
+        "geodata": 
+            {
+                "lat": 1.373333, 
+                "lon": 32.290275
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Uganda"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 81
+            },
+            {
+                "name": "numeroMortes",
+                "value": 45
+            }
+        ]
+    },
+    {
+        "id" : 70,
+        "geodata": 
+            {
+                "lat": 15.454166, 
+                "lon": 18.732207
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Chade"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 67
+            },
+            {
+                "name": "numeroMortes",
+                "value": 38
+            }
+        ]
+    },
+    {
+        "id" : 71,
+        "geodata": 
+            {
+                "lat": 15.552727, 
+                "lon": 48.516388
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Iêmen"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 78
+            },
+            {
+                "name": "numeroMortes",
+                "value": 23
+            }
+        ]
+    },
+    {
+        "id" : 72,
+        "geodata": 
+            {
+                "lat": -13.133897, 
+                "lon": 27.849332
+            },
+        "infodata": [
+            {
+                "name": "pais",
+                "value": "Zâmbia"
+            },
+            {
+                "name": "numeroCrimes",
+                "value": 72
+            },
+            {
+                "name": "numeroMortes",
+                "value": 24
+            }
+        ]
+    }
+]

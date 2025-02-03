@@ -1,0 +1,4562 @@
+[
+    {
+        "id" : 1,
+        "geodata": 
+            {
+                "lat": -23.550520, 
+                "lon": -46.633309
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São Paulo"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 11.967
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 570.706
+            },
+            {
+                "name": "IDH",
+                "value": 0.805
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "geodata": 
+            {
+                "lat": -22.906847, 
+                "lon": -43.172896
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Rio de Janeiro"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 6.453
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 282.538
+            },
+            {
+                "name": "IDH",
+                "value": 0.799
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "geodata": 
+            {
+                "lat": -19.916681, 
+                "lon": -43.934493
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Belo Horizonte"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 2.502
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 81.426
+            },
+            {
+                "name": "IDH",
+                "value": 0.810
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "geodata": 
+            {
+                "lat": -22.121126, 
+                "lon": -51.393006
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Presidente Prudente"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.220
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 4.499
+            },
+            {
+                "name": "IDH",
+                "value": 0.806
+            }
+        ]
+    },
+    {
+        "id" : 5,
+        "geodata": 
+            {
+                "lat": -22.314459, 
+                "lon": -49.058695
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Bauru"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.366
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.795
+            },
+            {
+                "name": "IDH",
+                "value": 0.801
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "geodata": 
+            {
+                "lat": -25.428954, 
+                "lon": -49.267137
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Curitiba"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.879
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 79.383
+            },
+            {
+                "name": "IDH",
+                "value": 0.823
+            }
+        ]
+    },
+    {
+        "id" : 7,
+        "geodata": 
+            {
+                "lat": -23.304452, 
+                "lon": -51.169582
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Londrina"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.548
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 12.826
+            },
+            {
+                "name": "IDH",
+                "value": 0.778
+            }
+        ]
+    },
+    {
+        "id" : 8,
+        "geodata": 
+            {
+                "lat": -23.223701, 
+                "lon": -45.900907
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São José dos Campos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.688
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 27.401
+            },
+            {
+                "name": "IDH",
+                "value": 0.807
+            }
+        ]
+    },
+    {
+        "id" : 9,
+        "geodata": 
+            {
+                "lat": -30.034647,
+                "lon": -51.217658
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Porto Alegre"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.476
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 57.379
+            },
+            {
+                "name": "IDH",
+                "value": 0.805
+            }
+        ]
+    },
+    {
+        "id" : 10,
+        "geodata": 
+            {
+                "lat": -22.909938,
+                "lon": -47.062633
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Campinas"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.164
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 51.347
+            },
+            {
+                "name": "IDH",
+                "value": 0.805
+            }
+        ]
+    },
+    {
+        "id" : 11,
+        "geodata": 
+            {
+                "lat": -3.119028,
+                "lon": -60.021731
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Manaus"
+            },
+            {
+                "name": "estado",
+                "value": "AM"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 2.057
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 64.025
+            },
+            {
+                "name": "IDH",
+                "value": 0.737
+            }
+        ]
+    },
+    {
+        "id" : 12,
+        "geodata": 
+            {
+                "lat": -12.973040,
+                "lon": -38.502304
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Salvador"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 2.921
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 18.264
+            },
+            {
+                "name": "IDH",
+                "value": 0.759
+            }
+        ]
+    },
+    {
+        "id" : 13,
+        "geodata": 
+            {
+                "lat": -3.731862,
+                "lon": -38.526670
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Fortaleza"
+            },
+            {
+                "name": "estado",
+                "value": "CE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 2.591
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 49.745
+            },
+            {
+                "name": "IDH",
+                "value": 0.754
+            }
+        ]
+    },
+    {
+        "id" : 14,
+        "geodata": 
+            {
+                "lat": -20.297618,
+                "lon": -40.295777
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Vitória"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.355
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 22.289
+            },
+            {
+                "name": "IDH",
+                "value": 0.845
+            }
+        ]
+    },
+    {
+        "id" : 15,
+        "geodata": 
+            {
+                "lat": -19.747367,
+                "lon": -47.939154
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Uberaba"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.322
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 9.368
+            },
+            {
+                "name": "IDH",
+                "value": 0.772
+            }
+        ]
+    },
+    {
+        "id" : 16,
+        "geodata": 
+            {
+                "lat": -8.057838,
+                "lon": -34.882897
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Recife"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.617
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 46.445
+            },
+            {
+                "name": "IDH",
+                "value": 0.772
+            }
+        ]
+    },
+    {
+        "id" : 17,
+        "geodata": 
+            {
+                "lat": -15.794229,
+                "lon": -47.882166
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Brasília"
+            },
+            {
+                "name": "estado",
+                "value": "DF"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 2.914
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 175.362
+            },
+            {
+                "name": "IDH",
+                "value": 0.824
+            }
+        ]
+    },
+    {
+        "id" : 18,
+        "geodata": 
+            {
+                "lat": -1.455755,
+                "lon": -48.490180
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Belém"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.439
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 25.772
+            },
+            {
+                "name": "IDH",
+                "value": 0.746
+            }
+        ]
+    },
+    {
+        "id" : 19,
+        "geodata": 
+            {
+                "lat": -5.779257,
+                "lon": -35.200916
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Natal"
+            },
+            {
+                "name": "estado",
+                "value": "RN"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.869
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 19.992
+            },
+            {
+                "name": "IDH",
+                "value": 0.763
+            }
+        ]
+    },
+    {
+        "id" : 20,
+        "geodata": 
+            {
+                "lat": -16.686891,
+                "lon": -49.264794
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Goiânia"
+            },
+            {
+                "name": "estado",
+                "value": "GO"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.430
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 40.461
+            },
+            {
+                "name": "IDH",
+                "value": 0.799
+            }
+        ]
+    },
+    {
+        "id" : 21,
+        "geodata": 
+            {
+                "lat": -7.119496,
+                "lon": -34.845012
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "João Pessoa"
+            },
+            {
+                "name": "estado",
+                "value": "PB"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.791
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 14.841
+            },
+            {
+                "name": "IDH",
+                "value": 0.763
+            }
+        ]
+    },
+    {
+        "id" : 22,
+        "geodata": 
+            {
+                "lat": -15.601411,
+                "lon": -56.097892
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Cuiabá"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.580
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 17.673
+            },
+            {
+                "name": "IDH",
+                "value": 0.785
+            }
+        ]
+    },
+    {
+        "id" : 23,
+        "geodata": 
+            {
+                "lat": -22.885897,
+                "lon": -43.115221
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Niterói"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.495
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 11.214
+            },
+            {
+                "name": "IDH",
+                "value": 0.837
+            }
+        ]
+    },
+    {
+        "id" : 24,
+        "geodata": 
+            {
+                "lat": -29.163403,
+                "lon": -51.179668
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Caxias do Sul"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.474
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 16.636
+            },
+            {
+                "name": "IDH",
+                "value": 0.782
+            }
+        ]
+    },
+    {
+        "id" : 25,
+        "geodata": 
+            {
+                "lat": -31.765399,
+                "lon": -52.337589
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Pelotas"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.341
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.564
+            },
+            {
+                "name": "IDH",
+                "value": 0.739
+            }
+        ]
+    },
+    {
+        "id" : 26,
+        "geodata": 
+            {
+                "lat": -22.734286,
+                "lon": -47.648064
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Piracicaba"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.391
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 11.887
+            },
+            {
+                "name": "IDH",
+                "value": 0.785
+            }
+        ]
+    },
+    {
+        "id" : 27,
+        "geodata": 
+            {
+                "lat": -23.421000,
+                "lon": -51.933056
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Maringá"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.397
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.263
+            },
+            {
+                "name": "IDH",
+                "value": 0.808
+            }
+        ]
+    },
+    {
+        "id" : 28,
+        "geodata": 
+            {
+                "lat": -24.957777,
+                "lon": -53.459511
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Cascavel"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.312
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.180
+            },
+            {
+                "name": "IDH",
+                "value": 0.782
+            }
+        ]
+    },
+    {
+        "id" : 29,
+        "geodata": 
+            {
+                "lat": -9.975377,
+                "lon": -67.824898
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Rio Branco"
+            },
+            {
+                "name": "estado",
+                "value": "AC"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.370
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.767
+            },
+            {
+                "name": "IDH",
+                "value": 0.727
+            }
+        ]
+    },
+    {
+        "id" : 30,
+        "geodata": 
+            {
+                "lat": -5.184128,
+                "lon": -37.347780
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Mossoró"
+            },
+            {
+                "name": "estado",
+                "value": "RN"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.288
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.538
+            },
+            {
+                "name": "IDH",
+                "value": 0.720
+            }
+        ]
+    },
+    {
+        "id" : 31,
+        "geodata": 
+            {
+                "lat": -10.249091,
+                "lon": -48.324286
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Palmas"
+            },
+            {
+                "name": "estado",
+                "value": "TO"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.272
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.824
+            },
+            {
+                "name": "IDH",
+                "value": 0.788
+            }
+        ]
+    },
+    {
+        "id" : 32,
+        "geodata": 
+            {
+                "lat": -20.811761,
+                "lon": -49.376227
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São José do Rio Preto"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.442
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.981
+            },
+            {
+                "name": "IDH",
+                "value": 0.797
+            }
+        ]
+    },
+    {
+        "id" : 33,
+        "geodata": 
+            {
+                "lat": -20.347782,
+                "lon": -40.294953
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Vila Velha"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.472
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 10.047
+            },
+            {
+                "name": "IDH",
+                "value": 0.8
+            }
+        ]
+    },
+    {
+        "id" : 34,
+        "geodata": 
+            {
+                "lat": -20.469711,
+                "lon": -54.620121
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Campo Grande"
+            },
+            {
+                "name": "estado",
+                "value": "MS"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.853
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 20.674
+            },
+            {
+                "name": "IDH",
+                "value": 0.784
+            }
+        ]
+    },
+    {
+        "id" : 35,
+        "geodata": 
+            {
+                "lat": -5.044685,
+                "lon": -42.766233
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Teresina"
+            },
+            {
+                "name": "estado",
+                "value": "PI"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.844
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 14.803
+            },
+            {
+                "name": "IDH",
+                "value": 0.751
+            }
+        ]
+    },
+    {
+        "id" : 36,
+        "geodata": 
+            {
+                "lat": -10.947247,
+                "lon": -37.073082
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Aracaju"
+            },
+            {
+                "name": "estado",
+                "value": "SE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.632
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 13.918
+            },
+            {
+                "name": "IDH",
+                "value": 0.770
+            }
+        ]
+    },
+    {
+        "id" : 37,
+        "geodata": 
+            {
+                "lat": -27.595378,
+                "lon": -48.548050
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Florianópolis"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.469
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 14.679
+            },
+            {
+                "name": "IDH",
+                "value": 0.847
+            }
+        ]
+    },
+    {
+        "id" : 38,
+        "geodata": 
+            {
+                "lat": -2.539110,
+                "lon": -44.282905
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São Luís"
+            },
+            {
+                "name": "estado",
+                "value": "MA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.073
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 23.132
+            },
+            {
+                "name": "IDH",
+                "value": 0.768
+            }
+        ]
+    },
+    {
+        "id" : 39,
+        "geodata": 
+            {
+                "lat": -8.761160,
+                "lon": -63.900430
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Porto Velho"
+            },
+            {
+                "name": "estado",
+                "value": "RO"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.502
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 11.464
+            },
+            {
+                "name": "IDH",
+                "value": 0.764
+            }
+        ]
+    },
+    {
+        "id" : 40,
+        "geodata": 
+            {
+                "lat": -26.304408,
+                "lon": -48.846383
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Joinville"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.562
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 18.299
+            },
+            {
+                "name": "IDH",
+                "value": 0.809
+            }
+        ]
+    },
+    {
+        "id" : 41,
+        "geodata": 
+            {
+                "lat": -16.444354,
+                "lon": -39.065366
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Porto Seguro"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.145
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 0.961
+            },
+            {
+                "name": "IDH",
+                "value": 0.676
+            }
+        ]
+    },
+    {
+        "id" : 42,
+        "geodata": 
+            {
+                "lat": 2.823510,
+                "lon": -60.675833
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Boa Vista"
+            },
+            {
+                "name": "estado",
+                "value": "RR"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.320
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.693
+            },
+            {
+                "name": "IDH",
+                "value": 0.752
+            }
+        ]
+    },
+    {
+        "id" : 43,
+        "geodata": 
+            {
+                "lat": -9.389083,
+                "lon": -40.503096
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Petrolina"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.331
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 4.905
+            },
+            {
+                "name": "IDH",
+                "value": 0.697
+            }
+        ]
+    },
+    {
+        "id" : 44,
+        "geodata": 
+            {
+                "lat": -9.649849,
+                "lon": -35.708949
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Maceió"
+            },
+            {
+                "name": "estado",
+                "value": "AL"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.115
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 16.365
+            },
+            {
+                "name": "IDH",
+                "value": 0.721
+            }
+        ]
+    },
+    {
+        "id" : 45,
+        "geodata": 
+            {
+                "lat": -25.516336,
+                "lon": -54.585376
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Foz do Iguaçu"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.263
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.702
+            },
+            {
+                "name": "IDH",
+                "value": 0.751
+            }
+        ]
+    },
+    {
+        "id" : 46,
+        "geodata": 
+            {
+                "lat": -21.170401,
+                "lon": -47.810324
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Ribeirão Preto"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.023
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 23.510
+            },
+            {
+                "name": "IDH",
+                "value": 0.800
+            }
+        ]
+    },
+    {
+        "id" : 47,
+        "geodata": 
+            {
+                "lat": -14.861924,
+                "lon": -40.844535
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Vitória da Conquista"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.343
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.836
+            },
+            {
+                "name": "IDH",
+                "value": 0.678
+            }
+        ]
+    },
+    {
+        "id" : 48,
+        "geodata": 
+            {
+                "lat": -11.860846,
+                "lon": -55.509545
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Sinop"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.130
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 1.733
+            },
+            {
+                "name": "IDH",
+                "value": 0.807
+            }
+        ]
+    },
+    {
+        "id" : 49,
+        "geodata": 
+            {
+                "lat": 0.035574,
+                "lon": -51.070535
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Macapá"
+            },
+            {
+                "name": "estado",
+                "value": "AP"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": true
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.456
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.247
+            },
+            {
+                "name": "IDH",
+                "value": 0.733
+            }
+        ]
+    },
+    {
+        "id" : 50,
+        "geodata": 
+            {
+                "lat": -12.147748,
+                "lon": -44.995347
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Barreiras"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.153
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.873
+            },
+            {
+                "name": "IDH",
+                "value": 0.723
+            }
+        ]
+    },
+    {
+        "id" : 51,
+        "geodata": 
+            {
+                "lat": -2.450629,
+                "lon": -54.700923
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Santarém"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.292
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.332
+            },
+            {
+                "name": "IDH",
+                "value": 0.691
+            }
+        ]
+    },
+    {
+        "id" : 52,
+        "geodata": 
+            {
+                "lat": -5.381136,
+                "lon": -49.133102
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Marabá"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.262
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.210
+            },
+            {
+                "name": "IDH",
+                "value": 0.668
+            }
+        ]
+    },
+    {
+        "id" : 53,
+        "geodata": 
+            {
+                "lat": -22.008708,
+                "lon": -47.890926
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São Carlos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.241
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.903
+            },
+            {
+                "name": "IDH",
+                "value": 0.805
+            }
+        ]
+    },
+    {
+        "id" : 54,
+        "geodata": 
+            {
+                "lat": -18.914608,
+                "lon": -48.275380
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Uberlândia"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.662
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 25.774
+            },
+            {
+                "name": "IDH",
+                "value": 0.789
+            }
+        ]
+    },
+    {
+        "id" : 55,
+        "geodata": 
+            {
+                "lat": -17.792720,
+                "lon": -50.919658
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Rio Verde"
+            },
+            {
+                "name": "estado",
+                "value": "GO"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.207
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 7.199
+            },
+            {
+                "name": "IDH",
+                "value": 0.754
+            }
+        ]
+    },
+    {
+        "id" : 56,
+        "geodata": 
+            {
+                "lat": -16.465476,
+                "lon": -54.638723
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Rondonópolis"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.215
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.801
+            },
+            {
+                "name": "IDH",
+                "value": 0.791
+            }
+        ]
+    },
+    {
+        "id" : 57,
+        "geodata": 
+            {
+                "lat": -7.229036,
+                "lon": -39.312446
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Juazeiro do Norte"
+            },
+            {
+                "name": "estado",
+                "value": "CE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.266
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.354
+            },
+            {
+                "name": "IDH",
+                "value": 0.694
+            }
+        ]
+    },
+    {
+        "id" : 58,
+        "geodata": 
+            {
+                "lat": -7.192773,
+                "lon": -48.204827
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Araguaína"
+            },
+            {
+                "name": "estado",
+                "value": "TO"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.170
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.201
+            },
+            {
+                "name": "IDH",
+                "value": 0.752
+            }
+        ]
+    },
+    {
+        "id" : 59,
+        "geodata": 
+            {
+                "lat": -23.967882,
+                "lon": -46.328887
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Santos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.433
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 37.722
+            },
+            {
+                "name": "IDH",
+                "value": 0.840
+            }
+        ]
+    },
+    {
+        "id" : 60,
+        "geodata": 
+            {
+                "lat": -29.687306,
+                "lon": -53.815477
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Santa Maria"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.276
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.855
+            },
+            {
+                "name": "IDH",
+                "value": 0.784
+            }
+        ]
+    },
+    {
+        "id" : 61,
+        "geodata": 
+            {
+                "lat": -22.223561,
+                "lon": -54.812549
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Dourados"
+            },
+            {
+                "name": "estado",
+                "value": "MS"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.212
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.583
+            },
+            {
+                "name": "IDH",
+                "value": 0.747
+            }
+        ]
+    },
+    {
+        "id" : 62,
+        "geodata": 
+            {
+                "lat": -22.217585,
+                "lon": -49.950529
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Marília"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.232
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 4.339
+            },
+            {
+                "name": "IDH",
+                "value": 0.798
+            }
+        ]
+    },
+    {
+        "id" : 63,
+        "geodata": 
+            {
+                "lat": -14.793505,
+                "lon": -39.046380
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Ilhéus"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.182
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.241
+            },
+            {
+                "name": "IDH",
+                "value": 0.690
+            }
+        ]
+    },
+    {
+        "id" : 64,
+        "geodata": 
+            {
+                "lat": -21.762668,
+                "lon": -41.318450
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Campos dos Goytacazes"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.483
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 58.2
+            },
+            {
+                "name": "IDH",
+                "value": 0.716
+            }
+        ]
+    },
+    {
+        "id" : 65,
+        "geodata": 
+            {
+                "lat": -23.532881,
+                "lon": -46.792003
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Osasco"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.694
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 55.1
+            },
+            {
+                "name": "IDH",
+                "value": 0.776
+            }
+        ]
+    },
+    {
+        "id" : 66,
+        "geodata": 
+            {
+                "lat": -23.454250,
+                "lon": -46.533793
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Guarulhos"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.324
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 49.3
+            },
+            {
+                "name": "IDH",
+                "value": 0.763
+            }
+        ]
+    },
+    {
+        "id" : 67,
+        "geodata": 
+            {
+                "lat": -23.689843,
+                "lon": -46.564848
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São Bernardo do Campo"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.816
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 47.668
+            },
+            {
+                "name": "IDH",
+                "value": 0.805
+            }
+        ]
+    },
+    {
+        "id" : 68,
+        "geodata": 
+            {
+                "lat": -23.511369,
+                "lon": -46.872942
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Barueri"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.240
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 44.118
+            },
+            {
+                "name": "IDH",
+                "value": 0.786
+            }
+        ]
+    },
+    {
+        "id" : 69,
+        "geodata": 
+            {
+                "lat": -23.185708,
+                "lon": -46.897806
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Jundiaí"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.401
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 36.662
+            },
+            {
+                "name": "IDH",
+                "value": 0.822
+            }
+        ]
+    },
+    {
+        "id" : 70,
+        "geodata": 
+            {
+                "lat": -23.501530,
+                "lon": -47.452560
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Sorocaba"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.644
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 26.908
+            },
+            {
+                "name": "IDH",
+                "value": 0.798
+            }
+        ]
+    },
+    {
+        "id" : 71,
+        "geodata": 
+            {
+                "lat": -25.531835,
+                "lon": -49.203572
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São José dos Pinhais"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.292
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 13.690
+            },
+            {
+                "name": "IDH",
+                "value": 0.758
+            }
+        ]
+    },
+    {
+        "id" : 72,
+        "geodata": 
+            {
+                "lat": -22.786299,
+                "lon": -43.305311
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Duque de Caxias"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.878
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 32.266
+            },
+            {
+                "name": "IDH",
+                "value": 0.711
+            }
+        ]
+    },
+    {
+        "id" : 73,
+        "geodata": 
+            {
+                "lat": -23.674223,
+                "lon": -46.543600
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Santo André"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.707
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 17.664
+            },
+            {
+                "name": "IDH",
+                "value": 0.815
+            }
+        ]
+    },
+    {
+        "id" : 74,
+        "geodata": 
+            {
+                "lat": -19.916151,
+                "lon": -44.080876
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Contagem"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.648
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 20.647
+            },
+            {
+                "name": "IDH",
+                "value": 0.756
+            }
+        ]
+    },
+    {
+        "id" : 75,
+        "geodata": 
+            {
+                "lat": -19.967308,
+                "lon": -44.201190
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Betim"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.412
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 25.314
+            },
+            {
+                "name": "IDH",
+                "value": 0.749
+            }
+        ]
+    },
+    {
+        "id" : 76,
+        "geodata": 
+            {
+                "lat": -22.827288,
+                "lon": -43.063765
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São Gonçalo"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 1.038
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 13.610
+            },
+            {
+                "name": "IDH",
+                "value": 0.739
+            }
+        ]
+    },
+    {
+        "id" : 77,
+        "geodata": 
+            {
+                "lat": -22.756132,
+                "lon": -43.460742
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Nova Iguaçu"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.804
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.359
+            },
+            {
+                "name": "IDH",
+                "value": 0.713
+            }
+        ]
+    },
+    {
+        "id" : 78,
+        "geodata": 
+            {
+                "lat": -8.172166,
+                "lon": -34.998683
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Jaboatão dos Guararapes"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.686
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 11.952
+            },
+            {
+                "name": "IDH",
+                "value": 0.717
+            }
+        ]
+    },
+    {
+        "id" : 79,
+        "geodata": 
+            {
+                "lat": -12.259727,
+                "lon": -38.964661
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Feira de Santana"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.617
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 10.840
+            },
+            {
+                "name": "IDH",
+                "value": 0.712
+            }
+        ]
+    },
+    {
+        "id" : 80,
+        "geodata": 
+            {
+                "lat": -21.762424,
+                "lon": -43.343400
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Juiz de Fora"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.555
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.314
+            },
+            {
+                "name": "IDH",
+                "value": 0.778
+            }
+        ]
+    },
+    {
+        "id" : 81,
+        "geodata": 
+            {
+                "lat": -16.820257,
+                "lon": -49.247304
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Aparecida de Goiânia"
+            },
+            {
+                "name": "estado",
+                "value": "GO"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.521
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 9.899
+            },
+            {
+                "name": "IDH",
+                "value": 0.718
+            }
+        ]
+    },
+    {
+        "id" : 82,
+        "geodata": 
+            {
+                "lat": -1.364272,
+                "lon": -48.374721
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Ananindeua"
+            },
+            {
+                "name": "estado",
+                "value": "PA"
+            },
+            {
+                "name": "região",
+                "value": "NO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.505
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.478
+            },
+            {
+                "name": "IDH",
+                "value": 0.718
+            }
+        ]
+    },
+    {
+        "id" : 83,
+        "geodata": 
+            {
+                "lat": -20.121522,
+                "lon": -40.307790
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Serra"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.485
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 14.850
+            },
+            {
+                "name": "IDH",
+                "value": 0.739
+            }
+        ]
+    },
+    {
+        "id" : 84,
+        "geodata": 
+            {
+                "lat": -22.764539,
+                "lon": -43.399626
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Belford Roxo"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.481
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.539
+            },
+            {
+                "name": "IDH",
+                "value": 0.684
+            }
+        ]
+    },
+    {
+        "id" : 85,
+        "geodata": 
+            {
+                "lat": -22.790766,
+                "lon": -43.369936
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São João de Meriti"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.469
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.474
+            },
+            {
+                "name": "IDH",
+                "value": 0.719
+            }
+        ]
+    },
+    {
+        "id" : 86,
+        "geodata": 
+            {
+                "lat": -23.668163,
+                "lon": -46.461709
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Mauá"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.448
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.676
+            },
+            {
+                "name": "IDH",
+                "value": 0.766
+            }
+        ]
+    },
+    {
+        "id" : 87,
+        "geodata": 
+            {
+                "lat": -23.521313,
+                "lon": -46.185853
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Mogi das Cruzes"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.424
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 9.646
+            },
+            {
+                "name": "IDH",
+                "value": 0.801
+            }
+        ]
+    },
+    {
+        "id" : 88,
+        "geodata": 
+            {
+                "lat": -23.681840,
+                "lon": -46.620967
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Diadema"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.406
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 11.786
+            },
+            {
+                "name": "IDH",
+                "value": 0.757
+            }
+        ]
+    },
+    {
+        "id" : 89,
+        "geodata": 
+            {
+                "lat": -7.229075,
+                "lon": -35.880834
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Campina Grande"
+            },
+            {
+                "name": "estado",
+                "value": "PB"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.402
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.538
+            },
+            {
+                "name": "IDH",
+                "value": 0.720
+            }
+        ]
+    },
+    {
+        "id" : 90,
+        "geodata": 
+            {
+                "lat": -16.728641,
+                "lon": -43.858214
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Montes Claros"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.394
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.335
+            },
+            {
+                "name": "IDH",
+                "value": 0.770
+            }
+        ]
+    },
+    {
+        "id" : 91,
+        "geodata": 
+            {
+                "lat": -23.523962,
+                "lon": -46.841124
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Carapicuíba"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.392
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 4.437
+            },
+            {
+                "name": "IDH",
+                "value": 0.749
+            }
+        ]
+    },
+    {
+        "id" : 92,
+        "geodata": 
+            {
+                "lat": -7.990714,
+                "lon": -34.841622
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Olinda"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.389
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.687
+            },
+            {
+                "name": "IDH",
+                "value": 0.735
+            }
+        ]
+    },
+    {
+        "id" : 93,
+        "geodata": 
+            {
+                "lat": -20.264311,
+                "lon": -40.420302
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Cariacica"
+            },
+            {
+                "name": "estado",
+                "value": "ES"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.348
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.552
+            },
+            {
+                "name": "IDH",
+                "value": 0.718
+            }
+        ]
+    },
+    {
+        "id" : 94,
+        "geodata": 
+            {
+                "lat": -16.328546,
+                "lon": -48.953403
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Anápolis"
+            },
+            {
+                "name": "estado",
+                "value": "GO"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.366
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 12.041
+            },
+            {
+                "name": "IDH",
+                "value": 0.737
+            }
+        ]
+    },
+    {
+        "id" : 95,
+        "geodata": 
+            {
+                "lat": -23.960766,
+                "lon": -46.396080
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "São Vicente"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.353
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.458
+            },
+            {
+                "name": "IDH",
+                "value": 0.768
+            }
+        ]
+    },
+    {
+        "id" : 96,
+        "geodata": 
+            {
+                "lat": -3.728144,
+                "lon": -38.661921
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Caucaia"
+            },
+            {
+                "name": "estado",
+                "value": "CE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.353
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 4.557
+            },
+            {
+                "name": "IDH",
+                "value": 0.682
+            }
+        ]
+    },
+    {
+        "id" : 97,
+        "geodata": 
+            {
+                "lat": -23.484946,
+                "lon": -46.349483
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Itaquaquecetuba"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.321
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.861
+            },
+            {
+                "name": "IDH",
+                "value": 0.714
+            }
+        ]
+    },
+    {
+        "id" : 98,
+        "geodata": 
+            {
+                "lat": -8.284964,
+                "lon": -35.970187
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Caruaru"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.347
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.239
+            },
+            {
+                "name": "IDH",
+                "value": 0.677
+            }
+        ]
+    },
+    {
+        "id" : 99,
+        "geodata": 
+            {
+                "lat": -20.539329,
+                "lon": -47.401344
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Franca"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.342
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.038
+            },
+            {
+                "name": "IDH",
+                "value": 0.780
+            }
+        ]
+    },
+    {
+        "id" : 100,
+        "geodata": 
+            {
+                "lat": -29.913258,
+                "lon": -51.186192
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Canoas"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.323
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 16.547
+            },
+            {
+                "name": "IDH",
+                "value": 0.815
+            }
+        ]
+    },
+    {
+        "id" : 101,
+        "geodata": 
+            {
+                "lat": -26.916579,
+                "lon": -49.071733
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Blumenau"
+            },
+            {
+                "name": "estado",
+                "value": "SC"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.334
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 10.927
+            },
+            {
+                "name": "IDH",
+                "value": 0.806
+            }
+        ]
+    },
+    {
+        "id" : 102,
+        "geodata": 
+            {
+                "lat": -25.099425,
+                "lon": -50.158322
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Ponta Grossa"
+            },
+            {
+                "name": "estado",
+                "value": "PR"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.337
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 10.280
+            },
+            {
+                "name": "IDH",
+                "value": 0.763
+            }
+        ]
+    },
+    {
+        "id" : 103,
+        "geodata": 
+            {
+                "lat": -7.934422,
+                "lon": -34.868721
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Paulista"
+            },
+            {
+                "name": "estado",
+                "value": "PE"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.332
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.701
+            },
+            {
+                "name": "IDH",
+                "value": 0.732
+            }
+        ]
+    },
+    {
+        "id" : 104,
+        "geodata": 
+            {
+                "lat": -19.761902,
+                "lon": -44.085357
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Ribeirão das Neves"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.322
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 1.499
+            },
+            {
+                "name": "IDH",
+                "value": 0.684
+            }
+        ]
+    },
+    {
+        "id" : 105,
+        "geodata": 
+            {
+                "lat": -23.994844,
+                "lon": -46.256868
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Guarujá"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.311
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.221
+            },
+            {
+                "name": "IDH",
+                "value": 0.751
+            }
+        ]
+    },
+    {
+        "id" : 106,
+        "geodata": 
+            {
+                "lat": -23.020456,
+                "lon": -45.556355
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Taubaté"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.302
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 14.988
+            },
+            {
+                "name": "IDH",
+                "value": 0.800
+            }
+        ]
+    },
+    {
+        "id" : 107,
+        "geodata": 
+            {
+                "lat": -24.008873,
+                "lon": -46.412503
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Praia Grande"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.293
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.333
+            },
+            {
+                "name": "IDH",
+                "value": 0.754
+            }
+        ]
+    },
+    {
+        "id" : 108,
+        "geodata": 
+            {
+                "lat": -22.511250,
+                "lon": -43.177931
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Petrópolis"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.305
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 9.212
+            },
+            {
+                "name": "IDH",
+                "value": 0.745
+            }
+        ]
+    },
+    {
+        "id" : 109,
+        "geodata": 
+            {
+                "lat": -22.566535,
+                "lon": -47.397437
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Limeira"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.294
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 7.462
+            },
+            {
+                "name": "IDH",
+                "value": 0.775
+            }
+        ]
+    },
+    {
+        "id" : 110,
+        "geodata": 
+            {
+                "lat": -12.697178,
+                "lon": -38.333198
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Camaçari"
+            },
+            {
+                "name": "estado",
+                "value": "BA"
+            },
+            {
+                "name": "região",
+                "value": "NE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.281
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 12.313
+            },
+            {
+                "name": "IDH",
+                "value": 0.700
+            }
+        ]
+    },
+    {
+        "id" : 111,
+        "geodata": 
+            {
+                "lat": -23.545321,
+                "lon": -46.311625
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Suzano"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.282
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.559
+            },
+            {
+                "name": "IDH",
+                "value": 0.765
+            }
+        ]
+    },
+    {
+        "id" : 112,
+        "geodata": 
+            {
+                "lat": -18.854932,
+                "lon": -41.955923
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Governador Valadares"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.278
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 4.200
+            },
+            {
+                "name": "IDH",
+                "value": 0.727
+            }
+        ]
+    },
+    {
+        "id" : 113,
+        "geodata": 
+            {
+                "lat": -29.942289,
+                "lon": -50.990788
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Gravataí"
+            },
+            {
+                "name": "estado",
+                "value": "RS"
+            },
+            {
+                "name": "região",
+                "value": "SU"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.255
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 7.081
+            },
+            {
+                "name": "IDH",
+                "value": 0.736
+            }
+        ]
+    },
+    {
+        "id" : 114,
+        "geodata": 
+            {
+                "lat": -23.622876,
+                "lon": -46.781665
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Taboão da Serra"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.244
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 3.866
+            },
+            {
+                "name": "IDH",
+                "value": 0.769
+            }
+        ]
+    },
+    {
+        "id" : 115,
+        "geodata": 
+            {
+                "lat": -15.646248,
+                "lon": -56.132713
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Várzea Grande"
+            },
+            {
+                "name": "estado",
+                "value": "MT"
+            },
+            {
+                "name": "região",
+                "value": "CO"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.268
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 5.362
+            },
+            {
+                "name": "IDH",
+                "value": 0.734
+            }
+        ]
+    },
+    {
+        "id" : 116,
+        "geodata": 
+            {
+                "lat": -22.820903,
+                "lon": -47.273273
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Sumaré"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.236
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 6.796
+            },
+            {
+                "name": "IDH",
+                "value": 0.762
+            }
+        ]
+    },
+    {
+        "id" : 117,
+        "geodata": 
+            {
+                "lat": -22.507767,
+                "lon": -44.094613
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Volta Redonda"
+            },
+            {
+                "name": "estado",
+                "value": "RJ"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.262
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 9.170
+            },
+            {
+                "name": "IDH",
+                "value": 0.771
+            }
+        ]
+    },
+    {
+        "id" : 118,
+        "geodata": 
+            {
+                "lat": -23.651508,
+                "lon": -46.852186
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Embu das Artes"
+            },
+            {
+                "name": "estado",
+                "value": "SP"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.240
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 2.825
+            },
+            {
+                "name": "IDH",
+                "value": 0.735
+            }
+        ]
+    },
+    {
+        "id" : 119,
+        "geodata": 
+            {
+                "lat": -19.470757,
+                "lon": -42.548012
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": "Ipatinga"
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.257
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.153
+            },
+            {
+                "name": "IDH",
+                "value": 0.771
+            }
+        ]
+    },
+    {
+        "id" : 120,
+        "geodata": 
+            {
+                "lat": -19.470757,
+                "lon": -42.548012
+            },
+        "infodata": [
+            {
+                "name": "cidade",
+                "value": ""
+            },
+            {
+                "name": "estado",
+                "value": "MG"
+            },
+            {
+                "name": "região",
+                "value": "SE"
+            },
+            {
+                "name": "capital",
+                "value": false
+            },
+            {
+                "name": "população (em milhões de pessoas)",
+                "value": 0.257
+            },
+            {
+                "name": "PIB (em bilhões de reais)",
+                "value": 8.153
+            },
+            {
+                "name": "IDH",
+                "value": 0.771
+            }
+        ]
+    }
+]

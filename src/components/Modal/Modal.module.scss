@@ -1,0 +1,76 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.modal {
+  position: absolute;
+  padding: 15px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  min-width: 400px;
+  background-color: #fff;
+  @include border-radius(8px);
+  @include box-shadow($shadow-1);
+  outline: none;
+
+  &:hover {
+    @include box-shadow($shadow-2);
+  }
+}
+
+.overlay {
+  background-color: rgba(255,255,255,0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modalHeader{
+  margin-bottom: 15px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto 30px;
+}
+
+.modalTitle{
+  font-weight: 500;
+}
+
+.modalBody{
+  margin-bottom: 15px;
+}
+
+.closeView{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.closeButton{
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  outline: 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .6;
+
+  &:hover{
+    opacity: .9;
+  }
+}
+
+.modalFooter{
+
+}

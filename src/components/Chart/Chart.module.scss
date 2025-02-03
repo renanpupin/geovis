@@ -1,0 +1,18 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.chart{
+  min-width: 300px;
+  max-width: 750px;
+  min-height: 75px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  display: flex;
+  @include border-radius(6px);
+  @include box-shadow($shadow-1);
+  &:hover{
+    @include box-shadow($shadow-2);
+  }
+}

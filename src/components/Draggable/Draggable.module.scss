@@ -1,0 +1,10 @@
+.draggable{
+  background-color: #fff;
+}
+
+.draggableEnabled{
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+}

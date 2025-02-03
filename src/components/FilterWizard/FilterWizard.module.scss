@@ -1,0 +1,56 @@
+@import "src/assets/sass/_variables.scss";
+@import "src/assets/sass/_mixins.scss";
+
+.stepsView{
+  //margin-bottom: 30px;
+}
+
+.buttons{
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.dropzone{
+  font-size: 22px;
+  background-color: #efefef;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 30px;
+  outline: none;
+  cursor: pointer;
+  border: 2px dashed black;
+  @include border-radius($input-border-radius);
+
+  &.dropzoneActive{
+    opacity: 0.4;
+  }
+
+  i{
+    font-size: 52px;
+    opacity: 0.8;
+  }
+}
+
+.fileNameView{
+  display: flex;
+  align-items: center;
+  i{
+    font-size: 24px;
+  }
+  button {
+    margin-left: 5px;
+    i{
+      font-size: 16px;
+    }
+  }
+}
+
+.smallDescription{
+  font-size: 12px;
+}
+
+.templateBody{
+  overflow-y: auto;
+  max-height: 80vh;
+  margin-bottom: 30px;
+}
