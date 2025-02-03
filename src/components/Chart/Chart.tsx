@@ -161,13 +161,18 @@ const Chart: React.FC<ChartPropTypes> = props => {
                                 chart.getSelection()?.length > 0
                                     ? data[chart.getSelection()?.[0]?.row + 1]
                                     : null
+                            const rowAttributeIndex =
+                                labelAttributeIndex !== -1 ? labelAttributeIndex : attributeIndexX
                             const highlightIndexes = visibleRows
                                 .map((row: any, index: number) => {
-                                    const rowAttributeIndex =
-                                        labelAttributeIndex !== -1
-                                            ? labelAttributeIndex
-                                            : attributeIndexX
-                                    return row[rowAttributeIndex] === selectedDataRow?.[0]
+                                    const selectedDataRowNormalized =
+                                        typeof row[rowAttributeIndex] === 'number'
+                                            ? Number(selectedDataRow?.[0])
+                                            : typeof row[rowAttributeIndex] === 'boolean'
+                                              ? Boolean(selectedDataRow?.[0])
+                                              : selectedDataRow?.[0]
+
+                                    return row[rowAttributeIndex] === selectedDataRowNormalized
                                         ? index
                                         : null
                                 })

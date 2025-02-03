@@ -1,6 +1,12 @@
 import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getFilters, getVisibleRows, getData, getOverlays} from 'src/redux/data/selectors'
+import {
+    getFilters,
+    getVisibleRows,
+    getData,
+    getOverlays,
+    getHighlight
+} from 'src/redux/data/selectors'
 import Touchable from 'src/components/Touchable/Touchable'
 import styles from './FilterList.module.scss'
 import {toggleFilter, toggleOverlay} from 'src/redux/data/actions'
@@ -11,6 +17,7 @@ const FilterList: React.FC = () => {
     const filters = useSelector(getFilters)
     const data = useSelector(getData)
     const visibleData = useSelector(getVisibleRows)
+    const highlight = useSelector(getHighlight)
     const overlays = useSelector(getOverlays)
 
     const toggleFilterVisible = (filter: any) => {
@@ -71,7 +78,7 @@ const FilterList: React.FC = () => {
         <div className={styles.filterWrapper}>
             <p style={{fontSize: 12, marginBottom: 10}}>
                 <b>
-                    {visibleData.length}/{data.length}
+                    {highlight?.length > 0 ? highlight?.length : visibleData.length}/{data.length}
                 </b>{' '}
                 features visible
             </p>
