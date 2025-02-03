@@ -130,7 +130,7 @@ export const createMarkerEmpty = (markerData: {
     map?: any
     enableCollisionBehavior?: boolean
     chartType?: MarkerChartTypeProps
-    hasHeatmap: boolean
+    hidePin: boolean
 }) => {
     // https://maps.google.com/mapfiles/ms/icons/red-dot.png
     // http://maps.google.com/mapfiles/kml/paddle/red-blank.png
@@ -145,7 +145,7 @@ export const createMarkerEmpty = (markerData: {
             markerData?.icon,
             null,
             markerData?.chartType,
-            markerData?.hasHeatmap
+            markerData?.hidePin
         ),
         //TODO: this is hiding the marker when it is close to another marker, should control by zoom level
         // collisionBehavior: markerData?.enableCollisionBehavior

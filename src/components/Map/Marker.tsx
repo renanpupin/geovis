@@ -35,6 +35,17 @@ const Marker = memo(
                 visualization.type === VisualizationTypeValues.Heatmap && visualization.visible
         )
 
+        const hasMarkerChart = visualizations?.some(
+            visualization =>
+                visualization.type === VisualizationTypeValues.MarkerChart && visualization.visible
+        )
+        const hasMarkerColor = visualizations?.some(
+            visualization =>
+                visualization.type === VisualizationTypeValues.MarkerColor && visualization.visible
+        )
+
+        const hidePin = hasHeatmap && !hasMarkerChart && !hasMarkerColor
+
         const [chartImage, setChartImage] = useState<string | null>(null)
 
         const [gmapMarker] = useState(
@@ -45,7 +56,7 @@ const Marker = memo(
                 icon: icon,
                 enableCollisionBehavior: props.enableCollisionBehavior,
                 chartType: props.markerChartType,
-                hasHeatmap
+                hidePin
             })
         )
 
@@ -133,12 +144,7 @@ const Marker = memo(
 
         useEffect(() => {
             // if (didMount) {
-            gmapMarker.content = getMarkerContent(
-                icon,
-                chartImage,
-                props?.markerChartType,
-                hasHeatmap
-            )
+            gmapMarker.content = getMarkerContent(icon, chartImage, props?.markerChartType, hidePin)
 
             if (enableMarkerCluster) {
                 gmapMarker.map = null
@@ -162,7 +168,7 @@ const Marker = memo(
             icon,
             chartImage,
             props?.markerChartType,
-            hasHeatmap
+            hidePin
         ])
 
         return null
