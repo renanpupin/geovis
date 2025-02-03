@@ -95,7 +95,8 @@ const MarkerChart = (props: MarkerChartProps) => {
     }
 
     const encodeChartToUrl = (chartObject: object, chartSize: {width: number; height: number}) => {
-        const baseUrl = 'https://quickchart.io/chart?c='
+        // const baseUrl = 'https://quickchart.io/chart?c='
+        const baseUrl = 'https://quickchart-cnuezymyga-rj.a.run.app/chart?c=' //self hosted
         const encodedChart = encodeURIComponent(JSON.stringify(chartObject))
         const backgroundColor = ['line', 'bar', 'radar', 'polar'].includes(props?.chartType)
             ? 'white'
